@@ -15,5 +15,14 @@
 
 			return $return;
 		}
+		
+		function preint_r($data)
+		{
+			$out = '<pre>' . "\n";
+			$out .= print_r($data, true);
+			$out .= '</pre>' . "\n";
+			
+			return $out;
+		}
 	}
 ?>
