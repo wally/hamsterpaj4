@@ -64,13 +64,4 @@
 		$message = (is_array($message)) ? '<pre>' . print_r($message, true) . '</pre>' : $message;
 		$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
 	}
-	
-	class cache
-	{
-		public function load($handle)
-		{
-			$serialized = file_get_contents(PATH_CACHE . $handle . '.phpserialized');
-			return unserialize($serialized);
-		}
-	}
 ?>
