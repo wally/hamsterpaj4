@@ -56,6 +56,12 @@ label:after
 	content: ':';
 }
 
+
+#daniella
+{
+	position: absolute;
+}
+
 /**
 * Framework
 */
@@ -98,17 +104,21 @@ label:after
 {
 	background: #e3e3e3 url('http://img.hamsterpaj.net/framework/head_repeat.png') repeat-x;
 	height: 73px;
+	-moz-border-radius-topright: 8px;
+	-webkit-border-radius-topright: 8px;
+	-moz-border-radius-topleft: 8px;
+	-webkit-border-radius-topleft: 8px;
 }
 
 #hp #head h1
 {
 	float: left;
 	height: 73px;
-	width: 355px;
+	width: 365px;
 	text-indent: -500px;
 	margin: 0px;
 	margin-right: 20px;
-	background: url('http://img.hamsterpaj.net/framework/logo.png') no-repeat;
+	background: url('http://img.hamsterpaj.net/framework/logo.png') no-repeat 10px;
 }
 
 #hp #head #login
@@ -116,14 +126,20 @@ label:after
 	float: left;
 	display: block;
 	padding-top: 20px;
+	width: 490px;
 }
 
 #hp #head #login span
 {
 	display: block;
 	float: left;
-	width: 150px;
+	width: 130px;
 	margin-left: 10px;
+}
+
+#hp #head #login input[type="text"], #hp #head #login input[type="password"]
+{
+	width: 120px;
 }
 
 #hp #head #login .buttons
@@ -197,7 +213,7 @@ label:after
 #hp #head #status
 {
 	float: left;
-	width: 200px;
+	width: 190px;
 	padding-top: 10px;
 }
 
@@ -285,6 +301,7 @@ label:after
 #hp #content
 {
 	padding: 10px;
+	width: 636px;
 }
 
 /**

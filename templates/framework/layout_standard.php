@@ -6,28 +6,35 @@
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 		<style type="text/css">
 			@import url('/css/framework.css');
+			@import url('/css/side_modules/search.css');
+			@import url('/css/side_modules/forum_posts.css');
+			@import url('/css/misc/alphabet_on_time.css');
 		</style>
+		<script src="/scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
+		<script src="/scripts/misc/alphabet_on_time.js" type="text/javascript"></script>
+		<script src="/scripts/debug.js" type="text/javascript"></script>
 	</head> 
 	<body>
+		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
 		<div id="wrapper">
 			<div id="hp">
 				<div id="head">
 					<h1><a href="/">Hamsterpaj.net</a></h1>
 					<?php if($page->user->exists()) : ?>
-						<?php echo template('framework/noticebar.php', $page->user); ?>
-						<?php echo template('framework/statusbar.php', $page->user); ?>
+						<?php echo template('framework/noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template('framework/statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
 						<?php echo template('framework/loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
 				<div id="main_menu">
-					<?php echo template('framework/main_menu.php', $page); ?>
+					<?php echo template('framework/main_menu.php', array('page' => $page)); ?>
 					<img src="http://images.hamsterpaj.net/steve/empty.gif" id="steve" />
 				</div>
 				<div id="modules">
 					<?php foreach($page->side_modules AS $module) : ?>
-						<div class="module">
-							<?php echo $module->execute(); ?>
+						<div class="module" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
+							<?php echo $module->execute($page); ?>
 						</div>
 					<?php endforeach; ?>
 				</div>

@@ -16,7 +16,7 @@
  
 # Files to exclude
 secrets/secret.class.php
+secrets/db_config.php
 
 # Configuration files
 config/paths.conf.php
-database/my_settings.ini

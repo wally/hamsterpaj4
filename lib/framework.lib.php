@@ -1,5 +1,37 @@
 <?php
-	class page
+	class hp4
+	{
+		public function set($args)
+		{
+			foreach($args as $var => $value)
+			{
+				$function = 'set_' . $var;
+				if(is_callable($this->$function))
+				{
+					$this->$function($value);
+				}
+				else
+				{
+					$this->$var = $value;
+				}
+			}
+		}
+	
+		public function get($var)
+		{
+			$function = 'get_' . $var;
+			if(is_callable(array($this, $function)))
+			{
+				return $this->$function($value);
+			}
+			else
+			{
+				return $this->$var;
+			}
+		}
+	}
+
+	class page extends hp4
 	{
 		public $menu = array();
 		public $side_modules = array();
@@ -13,13 +45,14 @@
 		function load_side_modules()
 		{
 			$this->side_modules['search'] = new side_module_search();
-			$this->side_modules['profile_visitors'] = new side_module_profile_visitors($this);
+			$this->side_modules['profile_visitors'] = new side_module_profile_visitors(array('page' => $this));
 			$this->side_modules['statistics'] = new side_module_statistics();
 			$this->side_modules['forum_posts'] = new side_module_forum_posts();
 		}
 		
 		function load_menu()
 		{
+			debug('Loading menu');
 			include(PATH_CONFIGS . 'menu.conf.php');
 			$this->menu = $menu;
 		}
@@ -35,20 +68,29 @@
 				$this->handler = '404';
 				$this->execute();
 			}
+			$this->load_menu();
 		}
 	}
 	
-	class module
+	class module extends hp4
 	{
-		function execute()
+		function execute($page)
 		{
-			return template('side_modules/' . $this->template . '.php', $this);
+			return template('side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
 	
 	
-	function template($template_handle, $page = null)
+	function template($template_handle, $params = null)
 	{
+		foreach($params as $key => $value)
+		{
+			if($key != 'template_handle')
+			{
+				$$key = $value;
+			}
+		}
+
 		ob_start();
 		include(PATH_TEMPLATES . $template_handle);
 		$html = ob_get_contents();
@@ -63,14 +105,5 @@
 		$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
 		$message = (is_array($message)) ? '<pre>' . print_r($message, true) . '</pre>' : $message;
 		$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
-	}
-	
-	class cache
-	{
-		public function load($handle)
-		{
-			$serialized = file_get_contents(PATH_CACHE . $handle . '.phpserialized');
-			return unserialize($serialized);
-		}
 	}
 ?>

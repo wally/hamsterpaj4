@@ -1,6 +1,6 @@
 <h5>Inlägg i forumet</h5>
 <ul>
-	<?php foreach($page->threads as $thread) : ?>
+	<?php foreach($module->threads as $thread) : ?>
 		<li>
 			<?php	$thread['title'] = (mb_strlen($thread['title'], 'UTF8') > 22) ? mb_substr($thread['title'], 0, 19, 'UTF8') . '...' : $thread['title']; ?>
 			<?php $info = 'I ' . $thread['category_title'] . ' av ' . $thread['username'] . ': ' . $thread['title']; ?>
