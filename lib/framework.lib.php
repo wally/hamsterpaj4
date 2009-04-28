@@ -106,4 +106,8 @@
 		$message = (is_array($message)) ? '<pre>' . print_r($message, true) . '</pre>' : $message;
 		$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
 	}
+<<<<<<< HEAD:lib/framework.lib.php
 ?>
+=======
+?>
+>>>>>>> 6b27fe6d8eee3c67c5eef9d8fe88144bb7b1a50e:lib/framework.lib.php
