@@ -76,7 +76,7 @@
 	{
 		function execute($page)
 		{
-			return template('side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
+			return template('layouts/amanda/side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
 	

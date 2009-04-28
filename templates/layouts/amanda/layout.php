@@ -21,14 +21,14 @@
 				<div id="head">
 					<h1><a href="/">Hamsterpaj.net</a></h1>
 					<?php if($page->user->exists()) : ?>
-						<?php echo template('framework/noticebar.php', array('user' => $page->user)); ?>
-						<?php echo template('framework/statusbar.php', array('user' => $page->user)); ?>
+						<?php echo template('layouts/amanda/noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template('layouts/amanda/statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
-						<?php echo template('framework/loginbar.php'); ?>
+						<?php echo template('layouts/amanda/loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
 				<div id="main_menu">
-					<?php echo template('framework/main_menu.php', array('page' => $page)); ?>
+					<?php echo template('layouts/amanda/main_menu.php', array('page' => $page)); ?>
 					<img src="http://images.hamsterpaj.net/steve/empty.gif" id="steve" />
 				</div>
 				<div id="modules">
