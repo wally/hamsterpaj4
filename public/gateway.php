@@ -64,7 +64,7 @@
 		$page->user->from_session($_SESSION);
 		$page->execute();
 	
-		$out = template('framework/layout_standard.php', array('page' => $page));
+		$out = template('layouts/amanda/layout.php', array('page' => $page));
 		$debug = template('framework/debug.php');
 		echo str_replace('<body>', '<body>' . "\n" . $debug, $out);
 	
