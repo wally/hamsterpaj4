@@ -1,25 +1,26 @@
 <?php
 	session_start();
-	include('../config/paths.conf.php');
-	include('../lib/framework.lib.php');
-	include('../lib/user.lib.php');
-	include('../lib/classes/page_404.class.php');
-	include('../lib/classes/digga.class.php');
-	include('../lib/classes/misc/alphabet_on_time.class.php');
-	include('../lib/classes/login.class.php');
-	include('../lib/classes/cache.class.php');
-	
-	include('../lib/tools.class.php');
-	
-	include('../lib/side_modules/statistics.class.php');
-	include('../lib/side_modules/profile_visitors.class.php');
-	include('../lib/side_modules/search.class.php');
-	include('../lib/side_modules/forum_posts.class.php');
-	include('../secrets/secret.class.php');
-	include('../secrets/db_config.php');
-		
+	require_once '../config/paths.conf.php';// is requiered because it is needed when fetching the classes and configs
+	require_once '../classes/tools.class.php'; // is requiered because it is needed when fetching the rest of the classes
+	require_once '../secrets/secret.class.php';
+	require_once '../secrets/db_config.php';
+
 	try
 	{
+		// Load all classes
+		$classes = tools::fetch_files_from_folder(PATH_CLASSES);
+		foreach($classes as $class)
+		{
+			require_once PATH_CLASSES . $class;
+		}
+		
+		// Load all configs
+		$configs = tools::fetch_files_from_folder(PATH_CONFIGS);
+		foreach($configs as $config)
+		{
+			require_once PATH_CONFIGS . $config;
+		}
+		
 		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;
 		$_PDO = new PDO($dns, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true));
 	
