@@ -16,8 +16,6 @@
 	margin: 0px;
 	padding: 0px;
 	font-family: verdana, arial, sans-serif;
-	position: absolute;
-	z-index: 2;
 }
 
 #alphabet_input
@@ -31,7 +29,6 @@
 	border: none;
 	width: 100%;
 	text-transform: uppercase;
-	z-index: 3;
 }
 
 
