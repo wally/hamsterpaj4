@@ -38,7 +38,6 @@
 		
 		function __construct()
 		{
-			$this->load_menu();
 			$this->load_side_modules();
 		}
 		
