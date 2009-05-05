@@ -15,7 +15,7 @@
 # Directories to exclude
 data/*
 !data/gateway.php
-!data/htaccess.php
+!data/.htaccess
 !data/css/*
 !data/scripts/* 
 # Files to exclude
