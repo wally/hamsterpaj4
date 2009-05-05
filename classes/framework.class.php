@@ -50,13 +50,6 @@
 			$this->side_modules['forum_posts'] = new side_module_forum_posts();
 		}
 		
-		function load_menu()
-		{
-			debug('Loading menu');
-			include(PATH_CONFIGS . 'menu.conf.php');
-			$this->menu = $menu;
-		}
-		
 		function execute()
 		{
 			if(class_exists('page_' . $this->handler))
@@ -68,7 +61,6 @@
 				$this->handler = '404';
 				$this->execute();
 			}
-			$this->load_menu();
 		}
 	}
 	

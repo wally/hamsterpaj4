@@ -28,7 +28,16 @@
 						<?php echo template('layouts/amanda/loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
-				<?php echo template('layouts/amanda/main_menu.php', array('page' => $page)); ?>
+				<ul id="main_menu">
+					<li class="big"><a href="/onlinespel/">Spel</a></li>
+					<li class="big"><a href="/filmklipp/">Filmklipp</a></li>
+					<li class="big"><a href="/flashfilmer/">Flash</a></li>
+					<li class="big"><a href="/traffa/">Träffa</a></li>
+					<li class="small"><a href="/">Startisdan</a></li>
+					<li class="small"><a href="/diskussionsforum/">Forum</a></li>
+					<li class="small"><a href="/roliga_bilder/">Humor</a></li>
+					<li class="small"><a href="/sex_och_sinne/">Sex och sinne</a></li>
+				</ul>
 				<div id="modules">
 					<?php foreach($page->side_modules AS $module) : ?>
 						<div class="module" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
