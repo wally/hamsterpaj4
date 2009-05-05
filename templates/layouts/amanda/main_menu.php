@@ -1,3 +1,4 @@
+<div id="main_menu">
 <ul>
 	<?php foreach($page->menu AS $menu) : ?>
 	<li>
@@ -11,3 +12,4 @@
 	</li>
 	<?php endforeach; ?>
 </ul>
+</div>
