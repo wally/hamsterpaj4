@@ -25,7 +25,10 @@
 		
 		function time_readable($duration)
 		{
+<<<<<<< HEAD:classes/tools.class.php
 			tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');
+=======
+>>>>>>> b96fa5857a7533f3e84a3cebe394c9ab30e95468:classes/tools.class.php
 			$days = floor($duration/86400);
 			$hrs = floor(($duration - $days * 86400) / 3600);
 			$min = floor(($duration - $days * 86400 - $hrs * 3600) / 60);

@@ -1,9 +1,10 @@
 <h5>Besökare</h5>
 <ul>
-	<?php foreach($module->visitors AS $visitor) : ?>
+	<?php foreach($page->visitors AS $visitor) : ?>
 		<li>
-			<a href="<?php echo $visitor->profile_url(); ?>" title="<?php echo $visitor->get('username'); ?> besökte dig <?php echo tools::date_readable($visitor->get('last_visit')); ?>">
-			<img src="<?php echo $visitor->avatar_thumb_url(); ?>" />
+			YO
+			<a href="/traffa/profile.php?id=' . $visitor['id'] . '" title="' . $visitor['username'] . ' besökte dig ' . strtolower(fix_time($visitor['timestamp'])) . '">
+			<img src="http://images.hamsterpaj.net/images/users/thumb/' . $visitor['id'] . '.jpg" />
 			</a>
 		</li>
 	<?php endforeach; ?>
