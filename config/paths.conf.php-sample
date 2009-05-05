@@ -3,7 +3,7 @@
 	define('PATH_TEMPLATES', PATH_ROOT . 'templates/');
 	define('PATH_CONFIGS', PATH_ROOT . 'config/');
 	define('PATH_WEBROOT', PATH_ROOT . 'data/');
-	define('PATH_CLASSES', PATH_ROOT . 'classes/');
+
 	define('PATH_CACHE', '/storage/www/www.hamsterpaj.net/data/cache/');
 ?>
 
