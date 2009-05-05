@@ -1,4 +1,4 @@
-<h5>Inlägg i forumet</h5>
+<h5>Nya diskussioner i forumet</h5>
 <ul>
 	<?php foreach($module->threads as $thread) : ?>
 		<li>

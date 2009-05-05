@@ -6,7 +6,6 @@
 		function __construct()
 		{
 			$this->threads = cache::load('latest_forum_posts');
-			debug($threads);
 		}
 	}
 

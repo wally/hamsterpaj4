@@ -1,4 +1,3 @@
-<?php debug('Statistics template'); ?>
 <h5>Statistik</h5>
 <dl>
 	<dt>Besökare</dt>

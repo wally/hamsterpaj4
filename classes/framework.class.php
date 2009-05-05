@@ -35,45 +35,35 @@
 	{
 		public $menu = array();
 		public $side_modules = array();
+		private $user;
 		
 		function __construct()
 		{
-			$this->load_menu();
-			$this->load_side_modules();
+			global $_PDO;
+			$this->pdo = $_PDO;
 		}
 		
 		function load_side_modules()
 		{
-			$this->side_modules['search'] = new side_module_search();
-			$this->side_modules['profile_visitors'] = new side_module_profile_visitors(array('page' => $this));
-			$this->side_modules['statistics'] = new side_module_statistics();
-			$this->side_modules['forum_posts'] = new side_module_forum_posts();
-		}
-		
-		function load_menu()
-		{
-			debug('Loading menu');
-			include(PATH_CONFIGS . 'menu.conf.php');
-			$this->menu = $menu;
-		}
-		
-		function execute()
-		{
-			if(class_exists('page_' . $this->handler))
+			$modules['search'] = new side_module_search();
+			$modules['profile_visitors'] = new side_module_profile_visitors($this->get('user'));
+			$modules['statistics'] = new side_module_statistics();
+			$modules['forum_posts'] = new side_module_forum_posts();
+			$modules['forum_threads'] = new side_module_forum_threads();
+
+			foreach($modules AS $key => $module)
 			{
-				
+				if($module->get('visible') == true)
+				{
+					$this->side_modules[] = $module;
+				}
 			}
-			else
-			{
-				$this->handler = '404';
-				$this->execute();
-			}
-			$this->load_menu();
 		}
 	}
 	
 	class module extends hp4
 	{
+		protected $visible = true;
 		function execute($page)
 		{
 			return template('layouts/amanda/side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
@@ -100,10 +90,9 @@
 	
 	function debug($message)
 	{
-		global $_DEBUG;
 		$backtrace = debug_backtrace();
 		$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
-		$message = (is_array($message)) ? '<pre>' . print_r($message, true) . '</pre>' : $message;
-		$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
+
+		tools::debug('<span style="color: red;">Deprecated</span> use of function debug() in ' . $file . ' #' . $backtrace[0]['line'] . ' please use tools::debug() instead');
 	}
 ?>

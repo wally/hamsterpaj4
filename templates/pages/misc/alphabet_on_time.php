@@ -1,23 +1,26 @@
-<h1>Alfabetet på tid</h1>
-
-<p id="alphabet_rating_1">
-	Om du tar ut högerhanden ur byxorna så kanske det går lite snabbare?
+<p id="alphabet_rating_5" class="alphabet_rating">
+	<img src="http://images.hamsterpaj.net/images/users/thumb/534434.jpg" />
+	Om du tar ut högerhanden ur byxorna så kanske det går lite snabbare nästa gång?
 </p>
 
-<p id="alphabet_rating_2">
-	Försök att inte använda handflatan när du skriver!
+<p id="alphabet_rating_4" class="alphabet_rating">
+	<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" />
+	Försök att inte använda fingrarna, inte handflatan, när du skriver!
 </p>
 
-<p id="alphabet_rating_3">
-	
+<p id="alphabet_rating_3" class="alphabet_rating">
+	<img src="http://images.hamsterpaj.net/images/users/thumb/87926.jpg" />
+	Du skriver som en P12!
 </p>
 
-<p id="alphabet_rating_4">
-	
+<p id="alphabet_rating_2" class="alphabet_rating">
+	<img src="http://images.hamsterpaj.net/images/users/thumb/15.jpg" />
+	Välkommen in i fyrasekundersklubben, nästa mål: tiotusenmetersklubben
 </p>
 
-<p id="alphabet_rating_5">
-	
+<p id="alphabet_rating_1" class="alphabet_rating">
+	<img src="http://images.hamsterpaj.net/images/users/thumb/299825.jpg" />
+	http://www.autohotkey.com/ ?
 </p>
 
 <div id="alphabet_container">
@@ -39,21 +42,16 @@
 
 <button id="alphabet_reset">Börja om</button>
 
-<h3>Din utveckling</h3>
-<div id="alphabet_graph">
-	
-</div>
-
 <h3>Tips från Johan</h3>
 <ul>
 	<li>Använd pekfingrarna</li>
 	<li>Dela upp alfabetet i grupper och träna varje grupp individuellt:
 		<ul>
 			<li>A-B-C-D-E-F</li>
-			<li>G-H-J-K-L-M-N-O-P</li>
+			<li>G-H-I-J</li>
+			<li>K-L-M-N-O-P</li>
 			<li>Q-R-S-T</li>
-			<li>U-V</li>
-			<li>X-Y-Z</li>
+			<li>U-V-X-Y-Z</li>
 			<li>Å-Ä-Ö</li>
 		</ul>
 		</li>

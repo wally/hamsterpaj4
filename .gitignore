@@ -13,7 +13,11 @@
 #
  
 # Directories to exclude
- 
+data/*
+!data/gateway.php
+!data/htaccess.php
+!data/css/*
+!data/scripts/* 
 # Files to exclude
 secrets/secret.class.php
 secrets/db_config.php

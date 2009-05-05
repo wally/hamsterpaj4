@@ -25,6 +25,7 @@
 		
 		function time_readable($duration)
 		{
+			tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');
 			$days = floor($duration/86400);
 			$hrs = floor(($duration - $days * 86400) / 3600);
 			$min = floor(($duration - $days * 86400 - $hrs * 3600) / 60);
@@ -37,6 +38,26 @@
 
 			return $return;
 		}
+
+		function duration_readable($duration)
+		{
+			$days = floor($duration/86400);
+			$hrs = floor(($duration - $days * 86400) / 3600);
+			$min = floor(($duration - $days * 86400 - $hrs * 3600) / 60);
+			$s = $duration - $days * 86400 - $hrs * 3600 - $min * 60;
+			
+			$return = ($days > 0) ? $days . ' d ' : '';
+			$return .= ($days > 0 || $hrs > 0) ? $hrs . ' tim ' : '';
+			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $min . ' min ' : '';
+			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $s . ' s ' : '';
+
+			return $return;
+		}
+
+		function date_readable($timestamp)
+		{
+			return date('Y-m-d H:i:s', $timestamp);
+		}
 		
 		function preint_r($data)
 		{
@@ -45,6 +66,23 @@
 			$out .= '</pre>' . "\n";
 			
 			return $out;
+		}
+
+		function debug($message)
+		{
+			global $_DEBUG;
+			$backtrace = debug_backtrace();
+			$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
+			$message = (is_string($message)) ? $message : '<pre>' . print_r($message, true) . '</pre>';
+			$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
+		}
+		
+		function timer($point)
+		{
+			global $_TIMER;
+			
+			$_TIMER[] = array('point' => $point, 'time' => microtime(true));
+			
 		}
 	}
 ?>

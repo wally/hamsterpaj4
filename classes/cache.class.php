@@ -1,7 +1,11 @@
 <?php
 	/* 
 			The plan is that this cache class should get outdated and we will use Memcache instead
+			---
+			No, it's not!
+			This class should continue to be used, as a wrapper for memcached. This provides portability to systems which lacks memcache.
 	*/
+
 	class cache
 	{
 		public function load($handle)
