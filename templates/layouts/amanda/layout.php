@@ -10,10 +10,12 @@
 			@import url('/css/side_modules/forum_posts.css');
 			@import url('/css/side_modules/profile_visitors.css');
 			@import url('/css/misc/alphabet_on_time.css');
+			@import url('/css/misc/free_music.css');
 		</style>
 		<script src="/scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
 		<script src="/scripts/misc/alphabet_on_time.js" type="text/javascript"></script>
 		<script src="/scripts/debug.js" type="text/javascript"></script>
+		<script src="/scripts/swfobject.js" type="text/javascript"></script>
 	</head> 
 	<body>
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
