@@ -8,7 +8,6 @@
 			{
 				$search['recipient'] = (is_array($search['recipient'])) ? $search['recipient'] : array($search['recipient']);
 			}
-
 			
 			$query = 'SELECT * FROM traffa_guestbooks AS g WHERE 1';
 			$query .= (count($search['recipient']) > 0) ? ' AND g.recipient IN("' . implode('", "', $search['recipient']) . '")' : null;
@@ -17,11 +16,10 @@
 			
 			$query .= ' LIMIT ' . GB_DEFAULT_LIMIT;
 			
-			tools::debug($query);
+			$entries = array();
 			foreach($_PDO->query($query) AS $row)
 			{
 				$entry = new guestbook();
-					
 				$entries[] = $entry;
 			}
 			return $entries;

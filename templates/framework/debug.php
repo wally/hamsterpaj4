@@ -1,4 +1,5 @@
 <dl id="debug">
+	<h3>Felsökningsinfo</h3>
 	<?php global $_DEBUG, $_TIMER; ?>
 	
 	<?php foreach($_TIMER AS $event) : ?>

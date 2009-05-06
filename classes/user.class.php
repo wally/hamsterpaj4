@@ -1,7 +1,8 @@
 <?php
 	class user extends hp4
 	{
-		public $last_action, $last_logon, $signature, $visitors, $pdo;
+		public $last_action, $last_logon, $signature, $visitors, $username;
+		protected $unread_gb_entries;
 		
 		public function online()
 		{
@@ -15,23 +16,59 @@
 		
 		public function from_session($session)
 		{
+			global $session_map;
 			if(isset($session['login']['id']))
 			{
-				$this->id = $session['login']['id'];
-				$this->username = $session['login']['username'];
-				$this->last_action = $session['login']['lastaction'];
-				$this->last_logon = $session['login']['last_logon'];
-				$this->signature = $session['userinfo']['user_status'];
+				foreach($session_map AS $property => $path)
+				{
+					switch(count($path))
+					{
+						case 1:
+							$this->set(array($property => $session[$path[0]]));
+							break;
+						case 2:
+							$this->set(array($property => $session[$path[0]][$path[1]]));
+							break;
+						case 3:
+							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]]));
+							break;
+						case 4:
+							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]]));
+							break;
+						case 5:
+							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]][$path[4]]));
+							break;
+					}
+				}
 			}
 		}
 		
 		public function to_session()
 		{
-			$_SESSION['login']['id'] = $this->id;
-			$_SESSION['login']['username'] = $this->username;
-			$_SESSION['login']['last_action'] = $this->last_action;
-			$_SESSION['login']['last_logon'] = $this->last_logon;
-			$_SESSION['userinfo']['user_status'] = $this->signature;
+			global $session_map;
+			$session = array();
+			foreach($session_map AS $property => $path)
+			{
+				switch(count($path))
+				{
+					case 1:
+						$session[$path[0]] = $this->get($property);
+						break;
+					case 2:
+						$session[$path[0]][$path[1]] = $this->get($property);
+						break;
+					case 3:
+						$session[$path[0]][$path[1]][$path[2]] = $this->get($property);
+						break;
+					case 4:
+						$session[$path[0]][$path[1]][$path[2]][$path[3]] = $this->get($property);
+						break;
+					case 5:
+						$session[$path[0]][$path[1]][$path[2]][$path[3]][$path[4]] = $this->get($property);
+						break;
+				}
+			}
+			return $session;
 		}
 		
 		public function lastaction()
@@ -67,8 +104,6 @@
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
 
-			tools::debug($query);
-
 			foreach($_PDO->query($query) AS $row)
 			{
 				$user = new user();
@@ -78,7 +113,7 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->last_visit = $row['last_visit'];
-
+				
 				if($params['allow_multiple'] == true)
 				{
 					$users[] = $user;

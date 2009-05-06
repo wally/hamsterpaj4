@@ -1,13 +1,12 @@
-<?php tools::debug($user); ?>
 <div id="notices">
 	<ul>
-		<?php $class = ($user->get_unread_gb_entries() > 0) ? ' class="active"' : ''; ?>
+		<?php $class = ($user->get('unread_gb_entries') > 0) ? ' class="active"' : ''; ?>
 		<li id="notices_guestbook"<?php echo $class; ?>>
 			<a href="/traffa/guestbook.php?user_id=3">
-			<?php if($user->get_unread_gb_entries() == 1) : ?>
-				1 nytt gästboksinlägg
-			<?php elseif($user->get_unread_gb_entries() > 1) : ?>
-				<?php echo $user->get_unread_gb_entries(); ?> nya
+			<?php if($user->get('unread_gb_entries') == 1) : ?>
+				1 nytt inlägg
+			<?php elseif($user->get('unread_gb_entries') > 1) : ?>
+				<?php echo $user->get('unread_gb_entries'); ?> nya inlägg
 			<?php else : ?>
 				Gästbok
 			<?php endif; ?>

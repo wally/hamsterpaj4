@@ -4,7 +4,7 @@
 		<a href="<?php echo $user->profile_url(); ?>"><?php echo $user->username; ?></a>
 		<span> | </span><a href="/logout">Logga ut</a><br />
 	</div>
-	<span>Online <?php echo tools::time_readable(time() - $user->last_logon); ?></span>
+	<span>Online <?php echo tools::duration_readable(time() - $user->last_logon); ?></span>
 	<div id="ui_statusbar_forumstatus">
 		<span title="<?php echo $user->signature; ?>"><?php echo $user->signature; ?></span>
 	</div>
