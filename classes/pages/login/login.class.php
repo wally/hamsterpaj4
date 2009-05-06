@@ -11,6 +11,7 @@
 					{
 						$this->user = $user;
 						$this->user->last_logon = time();
+						$this->user->privilegies = privilegies::load($this->user->id);
 					}
 				}
 				else
