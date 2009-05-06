@@ -48,7 +48,6 @@
 			$this->songs['peaches'][] = array('title' => 'Skateboard', 'url' => 'http://music.t67.se/wma/peaches_-_skateboard.wma');
 			$this->songs['peaches'][] = array('title' => 'Stockholm', 'url' => 'http://music.t67.se/wma/peaches_-_stockholm.wma');
 			$this->songs['peaches'][] = array('title' => 'Vi två', 'url' => 'http://music.t67.se/wma/peaches_-_vi_tvaa.wma');
-			$this->songs['peaches'][] = array('title' => 'Vi går på disco', 'url' => 'http://music.t67.se/wma/peaches_-_vi_gar_paa_disco.wma');
 
 			$this->songs['troed'][] = array('title' => 'En tönt som spelar Counter-Strike', 'url' => 'http://music.t67.se/mp3/troed_-_en_toent_som_spelar_counterstrike.mp3');
 			

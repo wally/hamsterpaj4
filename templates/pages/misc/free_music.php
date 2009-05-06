@@ -19,6 +19,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/beastie_boys/sida_1.php">Diskutera Beastie Boys i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['beastie_boys'])); ?>
 
 <a name="cirkus_miramar"></a>
@@ -34,8 +37,12 @@
 		</p>
 	</div>
 </div>
-
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/cirkus_miramar/sida_1.php">Diskutera Cirkus Miramar i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['cirkus_miramar'])); ?>
+
+
 
 <a name="ck"></a>
 
@@ -50,6 +57,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/ck_2/sida_1.php">Diskutera CK i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['ck'])); ?>
 
 <a name="dan_the_automator"></a>
@@ -64,6 +74,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/dan_the_automator/sida_1.php">Diskutera Dan the Automator i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['dan_the_automator'])); ?>
 
 
@@ -82,6 +95,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/dia_psalma_3/sida_1.php">Diskutera Dia Psalma i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['dia_psalma'])); ?>
 
 <a name="dubmood"></a>
@@ -93,6 +109,9 @@
 		Sedan 2008 turnerar Dubmood tillsammans med den franska gruppen Massilia Soundsystem som en del Oai Star.
 	</p>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/dubmood/sida_1.php">Diskutera Dubmood i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['dubmood'])); ?>
 
 
@@ -109,6 +128,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/fronda_2/sida_1.php">Diskutera Fronda i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['fronda'])); ?>
 
 <a name="peaches"></a>
@@ -124,6 +146,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/peaches/sida_1.php">Diskutera Peaches i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['peaches'])); ?>
 
 
@@ -137,6 +162,9 @@
 		</p>
 	</div>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/troed/sida_1.php">Diskutera T-röd i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['troed'])); ?>
 
 <a name="virtual_voices"></a>
@@ -144,8 +172,12 @@
 	<h2>"Plocka kottar, magiska svampar, flyger sen iväg till ett annat land, man äter kottar och sniffar mjöl"</h2>
 	<p>
 		<strong>Virtual Voices</strong> gjorde knarkad synth-musik med knarkade texter under mitten av nittiotalet.
+		Tydligen producerar de fortfarande en del låtar.
 	</p>
 </div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/virtual_voices_2/sida_1.php">Diskutera Virtual Voices i forumet!</a>
+</p>
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['virtual_voices'])); ?>
 
 

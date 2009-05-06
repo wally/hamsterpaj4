@@ -4,6 +4,18 @@
 	margin-right: 25px;
 }
 
+.free_music_discuss
+{
+	text-align: right;
+	margin-bottom: 0px;
+}
+
+.free_music_songs
+{
+	margin-top: 0px;
+	margin-bottom: 50px;
+}
+
 .free_music_songs dt
 {
 	font-weight: bold;
