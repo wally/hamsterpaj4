@@ -47,6 +47,10 @@
 		{
 			$page_handler = 'alphabet_on_time';
 		}
+		if(substr($uri, 1, 12) == 'gratis-musik')
+		{
+			$page_handler = 'free_music';
+		}
 
 		$page_class = 'page_' . $page_handler;
 		if(class_exists($page_class))

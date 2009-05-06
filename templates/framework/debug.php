@@ -1,5 +1,10 @@
 <dl id="debug">
 	<h3>Felsökningsinfo</h3>
+	<p>
+		Vissa inloggningar tycks gå sönder efter att
+		man besökt en Daniella-sida. Om Hamsterpaj slutar fungera
+		kan du behöva logga ut och sedan in igen!
+	</p>
 	<?php global $_DEBUG, $_TIMER; ?>
 	
 	<?php foreach($_TIMER AS $event) : ?>
