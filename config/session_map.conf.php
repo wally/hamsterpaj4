@@ -11,6 +11,8 @@
 	$session_map['session_id'] = array('login', 'session_id');
 	$session_map['username'] = array('login', 'username');
 
+	$session_map['DEPRECATED_userlevel'] = array('login', 'userlevel');
+
 	$session_map['birthday'] = array('userinfo', 'birthday');
 	$session_map['signature'] = array('userinfo', 'signature');
 	$session_map['contact1'] = array('userinfo', 'contact1');
@@ -20,6 +22,7 @@
 	$session_map['zip_code'] = array('userinfo', 'zip_code');
 	$session_map['location'] = array('userinfo', 'geo_location');
 
+	$session_map['location'] = array('userinfo', 'geo_location');
 
 	$session_map['privilegies'] = array('privilegies');
 ?>
