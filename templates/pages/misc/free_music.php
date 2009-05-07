@@ -5,6 +5,21 @@
 	Men du, inga färdiga beats från nätet tillsammans med sunkig rap från ditt headset...
 </p>
 
+<a name="bazooka_circus"></a>
+<div class="free_music_artist bazooka_circus">
+	<h2>"Han tror han är cool, luktar kattpiss och haft samma skor sen han var liten"</h2>
+	<p>
+		<strong>Bazooka Circus</strong> mailade in sina låtar till Hamsterpaj i maj 2009.
+		Soundet skulle kunna beskrivas som en blandning mellan Justice och Super Mario, genomarbetat
+		och varierande.
+	</p>
+</div>
+<p class="free_music_discuss">
+	<a href="/diskussionsforum/fritid/musik/bazooka_circus/sida_1.php">Diskutera Bazooka Circus i forumet!</a>
+</p>
+<?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['bazooka_circus'])); ?>
+
+
 <a name="beastie_boys"></a>
 <div class="free_music_artist beastie_boys">
 	<img src="http://static.hamsterpaj.net/images/misc/free_music/beastie_boys.jpg" />

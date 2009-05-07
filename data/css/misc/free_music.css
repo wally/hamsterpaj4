@@ -132,3 +132,14 @@
 	color: #2a2a0f;
 }
 
+.bazooka_circus
+{
+	background: black url('http://static.hamsterpaj.net/images/misc/free_music/bazooka_circus.png');
+	color: #f2f2f2;
+	padding-left: 170px;
+}
+
+.bazooka_circus h2
+{
+	margin-left: 50px;
+}

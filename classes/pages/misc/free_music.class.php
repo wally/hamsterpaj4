@@ -4,6 +4,16 @@
 		protected $songs;
 		function execute()
 		{
+			$this->songs['bazooka_circus'][] = array('title' => 'Blackout', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_blackout.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Drontophone', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_drontophone.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Epoxy', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_epoxy.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Godisregn', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_godisregn.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'No limit', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_no_limit.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Ogillade onsdagar', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_ogillade_onsdagar.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Slightly bound', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_slightly_bound.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Soloconcert nr. 1 für Drontophone', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_soloconcert_nr_1_fur_dontrophone.mp3');
+			$this->songs['bazooka_circus'][] = array('title' => 'Wolfram', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_wolfram.mp3');
+
 			$this->songs['beastie_boys'][] = array('title' => 'Now Get Busy', 'url' => 'http://music.t67.se/mp3/beastie_boys_-_now_get_busy.mp3');
 
 			$this->songs['cirkus_miramar'][] = array('title' => 'Fattiga barn med hjärna', 'url' => 'http://music.t67.se/mp3/cirkus_miramar_-_fattiga_barn_med_hjaerna.mp3');
