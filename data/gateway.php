@@ -73,8 +73,9 @@
 		$out = template('layouts/amanda/layout.php', array('page' => $page));
 
 		$page->user->lastaction();
-		//Det här fuckar upp din vanliga session i live miljön, Johan, ska vi lägga daniella sessionen för sig, i typ $_SESSION['daniella'] tsv eller något? För vi måste få dem att samarbeta, nu förlorar folk privilegier och skit.
-		// $_SESSION = $page->user->to_session();
+		// If the session is damaged when visiting a Daniella page, please add mapping data in conf/session_map.conf.php
+		// ONLY fields present in the session_map-config will be saved to session!
+		 $_SESSION = $page->user->to_session();
 		$debug = template('framework/debug.php');
 		echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 	}
