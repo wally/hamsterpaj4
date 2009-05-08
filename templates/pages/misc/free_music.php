@@ -167,6 +167,14 @@
 <?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['peaches'])); ?>
 
 
+<a name="power_music_electric_revival"></a>
+<div class="free_music_artist power_music_electric_revival">
+	<p>
+		<strong>Rå elektro-rock från Lund</strong> inskickat till Hamsterpaj våren 2009.
+	</p>
+</div>
+<?php echo template('pages/misc/free_music_song_list.php', array('songs' => $songs['power_music_electric_revival'])); ?>
+
 <a name="troed"></a>
 <div class="free_music_artist troed">
 	<img src="http://static.hamsterpaj.net/images/misc/free_music/troed.jpg" />

@@ -59,6 +59,11 @@
 			$this->songs['peaches'][] = array('title' => 'Stockholm', 'url' => 'http://music.t67.se/wma/peaches_-_stockholm.wma');
 			$this->songs['peaches'][] = array('title' => 'Vi två', 'url' => 'http://music.t67.se/wma/peaches_-_vi_tvaa.wma');
 
+			$this->songs['power_music_electric_revival'][] = array('title' => 'Kickin the kicks', 'url' => 'http://music.t67.se/mp3/power_music_electric_revival_-_kickin_the_kicks.mp3');
+			$this->songs['power_music_electric_revival'][] = array('title' => 'Ready-made sunshine', 'url' => 'http://music.t67.se/mp3/power_music_electric_revival_-_ready-made_sunshine.mp3');
+			$this->songs['power_music_electric_revival'][] = array('title' => 'This ends right now', 'url' => 'http://music.t67.se/mp3/power_music_electric_revival_-_this_ends_right_now.mp3');
+			$this->songs['power_music_electric_revival'][] = array('title' => 'Wolfman baby', 'url' => 'http://music.t67.se/mp3/power_music_electric_revival_-_wolfman_baby.mp3');
+			
 			$this->songs['troed'][] = array('title' => 'En tönt som spelar Counter-Strike', 'url' => 'http://music.t67.se/mp3/troed_-_en_toent_som_spelar_counterstrike.mp3');
 			
 			$this->songs['virtual_voices'][] = array('title' => 'Aceton-Sture', 'url' => 'http://music.t67.se/mp3/virtual_voices_-_acetonsture.mp3');
