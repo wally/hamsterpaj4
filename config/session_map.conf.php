@@ -10,6 +10,7 @@
 	$session_map['reg_ip'] = array('login', 'regip');
 	$session_map['session_id'] = array('login', 'session_id');
 	$session_map['username'] = array('login', 'username');
+	$session_map['password'] = array('login', 'password');
 
 	$session_map['DEPRECATED_userlevel'] = array('login', 'userlevel');
 
