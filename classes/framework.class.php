@@ -6,7 +6,7 @@
 			foreach($args as $var => $value)
 			{
 				$function = 'set_' . $var;
-				if(is_callable($this->$function))
+				if(is_callable(array($this, $function)))
 				{
 					$this->$function($value);
 				}

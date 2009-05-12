@@ -33,9 +33,17 @@
 			$uri = substr($uri, 0, strpos($uri, '?'));			
 		}
 	
-		if(substr($uri, 0, 6) == '/digga')
+		if($uri == '/digga')
 		{
-			$page_handler = 'digga';
+			$page_handler = 'digga_start';
+		}
+		if($uri == '/digga/ny-digga')
+		{
+			$page_handler = 'digga_add';
+		}
+		if(substr($uri, 0, 13) == '/digga/artist')
+		{
+			$page_handler = 'digga_artist';
 		}
 		if(substr($uri, 0, 7) == '/log-in')
 		{
@@ -44,6 +52,10 @@
 		if(substr($uri, 0, 7) == '/logout')
 		{
 			$page_handler = 'logout';
+		}
+		if(substr($uri, 0, 12) == '/skattjakten')
+		{
+			$page_handler = 'treasurehunt';
 		}
 		if(substr($uri, 1, 17) == 'alfabetet-paa-tid')
 		{
@@ -68,7 +80,7 @@
 		$page->user = new user;
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
-		$page->execute();
+		$page->execute($uri);
 	
 		$out = template('layouts/amanda/layout.php', array('page' => $page));
 

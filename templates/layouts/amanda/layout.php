@@ -6,6 +6,8 @@
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 		<style type="text/css">
 			@import url('/css/framework.css');
+			@import url('/css/framework/menu.css');
+			@import url('/css/framework/user_profile_mini.css');
 			@import url('/css/side_modules/search.css');
 			@import url('/css/side_modules/forum_posts.css');
 			@import url('/css/side_modules/profile_visitors.css');
