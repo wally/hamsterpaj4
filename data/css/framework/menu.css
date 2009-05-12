@@ -1,0 +1,38 @@
+/**
+* Menu
+*/
+#main_menu
+{
+	margin-top: 0px;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/background.png');
+	height: 80px;
+	padding-left: 5px;
+}
+
+#main_menu a
+{
+	color: #5e553c;	
+}
+
+#main_menu li
+{
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/separator.png') right no-repeat;
+	display: block;
+	float: left;
+	height: 44px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#main_menu .small
+{
+	padding-top: 15px;
+	height: 29px;
+}
+
+#main_menu .big
+{
+	font-size: 20px;
+	padding-top: 10px;
+	height: 34px;
+}
