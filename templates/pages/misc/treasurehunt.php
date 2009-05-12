@@ -1,3 +1,7 @@
+<button class="treasurehunt_forum_button" onclick="window.location='/diskussionsforum/skattjakten/'">
+	Diskutera ledtrådarna i forumet!
+</button>
+
 <h1>Kan du hitta den gömda skatten?</h1>
 
 <p>
