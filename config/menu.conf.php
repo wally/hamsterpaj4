@@ -1,4 +1,22 @@
 <?php
+	$menu['onlinespel'] = array('label' => 'Spel', 'url' => 'onlinespel', 'type' => 'big');
+	
+	$menu['filmklipp'] = array('label' => 'Filmklipp', 'url' => 'filmklipp', 'type' => 'big');
+	
+	$menu['flashfilmer'] = array('label' => 'Flash', 'url' => 'flashfilmer', 'type' => 'big');
+	
+	$menu['traffa'] = array('label' => 'Träffa', 'url' => 'traffa', 'type' => 'big');
+	
+	$menu['startsidan'] = array('label' => 'Startsidan', 'url' => '');
+	
+	$menu['mattan'] = array('label' => 'Mattan', 'url' => 'mattan');
+	$menu['mattan']['alfabetet-paa-tid'] = array('label' => 'Alfabetet på tid', 'url' => 'alfabetet-paa-tid');
+	
+	$menu['skattjakten'] = array('label' => 'Skattjakten', 'url' => 'skattjakten');
+	
+	
+
+/*
 	$menu['hamsterpaj'] = array('label' => 'Hamsterpaj', 'url' => '/', 'index_label' => 'Förstasidan');
 		$menu['hamsterpaj']['children']['nytt'] = array('label' => 'Senaste nytt', 'url' => '/hamsterpaj/nytt.php');
 		$menu['hamsterpaj']['children']['hamsterblogg'] = array('label' => 'Hamsterblogg', 'url' => '/hamsterpaj/hamsterblogg.php');
@@ -9,19 +27,19 @@
 		$menu['hamsterpaj']['children']['rules_and_policies'] = array('label' => 'Regler och policies', 'url' => '/hamsterpaj/rules_and_policies.php');
 		$menu['hamsterpaj']['children']['tillbakablickar'] = array('label' => 'Tillbakablickar', 'url' => '/hamsterpaj/tillbakablickar.php');
 
-	$menu['game'] = array('label' => 'game', 'url' => '');
+	$menu['game'] = array('label' => 'game', 'url' => '', 'type' => 'big');
 	$menu['image'] = array('label' => 'image', 'url' => '');
 	$menu['clip'] = array('label' => 'clip', 'url' => '');
 	$menu['flash'] = array('label' => 'flash', 'url' => '');
 
 	$menu['forum'] = array('label' => 'Forum', 'url' => '/diskussionsforum/', 'index_label' => 'Översikt');
-/*
+
 		if(login_checklogin())
 		{
 			$menu['forum']['children']['notices'] = array('label' => 'Dina notiser (' . $_SESSION['forum']['new_notices'] . ')', 'url' => '/diskussionsforum/notiser.php');
 			$menu['forum']['children']['user_threads'] = array('label' => 'Dina trådar', 'url' => '/diskussionsforum/dina_traadar.php');
 		}
-*/
+
 		$menu['forum']['children']['new_threads'] = array('label' => 'Nya trådar', 'url' => '/diskussionsforum/nya_traadar.php');
 		$menu['forum']['children']['search'] = array('label' => 'Sök', 'url' => '/diskussionsforum/soek.php');
 		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/hamsterpaj/rules_and_policies.php');
@@ -31,12 +49,12 @@
 		$menu['sex_sense']['children']['view_category'] = array('label' => 'Kategorier', 'url' => '/sex_och_sinne/kategorier.html');
 		$menu['sex_sense']['children']['search'] = array('label' => 'Sök', 'url' => '/sex_och_sinne/soek.php');
 		$menu['sex_sense']['children']['sexpretterna'] = array('label' => 'Sexperterna', 'url' => '/sex_och_sinne/sexperterna.php');
-/*
+
 		if(login_checklogin())
 		{
 			$menu['sex_sense']['children']['question'] = array('label' => 'Ställ en fråga', 'url' => '/sex_och_sinne/ny_fraaga.html');
 		}
-	*/
+
 		$menu['sex_sense']['children']['new_questions'] = array('label' => 'Admin', 'url' => '/sex_och_sinne/admin.php', 'is_privilegied' => 'sex_sense_admin');
 
 	$menu['mattan'] = array('label' => 'Under mattan', 'url' => '/mattan/');
@@ -104,12 +122,12 @@
 			$menu['artiklar']['children']['search']['children']['7'] = array('label' => 'Sex & Samlevnad', 'url' => '/artiklar/?action=list&category=7');
 			$menu['artiklar']['children']['search']['children']['8'] = array('label' => 'Övrigt', 'url' => '/artiklar/?action=list&category=8');
 
-/*		
+		
 		if(is_privilegied('articles_admin'))
 		{
 			$menu['artiklar']['children']['admin'] = array('label' => 'Admin', 'url' => '/artiklar/?action=admin');
 		}		
-*/
+
 
 	$menu['taevlingar'] = array('label' => 'Tävlingar', 'url' => '/taevlingar/');
 		$menu['taevlingar']['children']['dyra_vinster'] = array('label' => 'Dyra vinster', 'url' => '/taevlingar/dyra_vinster.php');
@@ -117,7 +135,7 @@
 		$menu['taevlingar']['children']['populaera'] = array('label' => 'Populära', 'url' => '/taevlingar/populaera.php');
 		$menu['taevlingar']['children']['opopulaera'] = array('label' => 'Opopulära', 'url' => '/taevlingar/opopulaera.php');
 
-/*
+
  if(login_checklogin())
  {
 	$menu['installningar'] = array('label' => 'Inställningar', 'url' => '/installningar/generalsettings.php', 'index_label' => 'Generella');
@@ -128,7 +146,7 @@
 		$menu['installningar']['children']['blockera'] = array('label' => 'Blockera', 'url' => '/installningar/userblock.php');
 		$menu['installningar']['children']['avregistrera'] = array('label' => 'Avregistrera', 'url' => '/installningar/unregister.php');
 	}
-*/
+
 
   $admin_privilegies = array('warnings_admin', 'use_statistic_tools', 'schedule_admin', 'ip_ban_admin', 'register_suspend_admin', 'ov_admin', 'entertain_add', 'privilegies_admin', 'use_ghosting_tools', 'backgrounds_admin', 'music_guess_admin', 'avatar_admin', 'user_management_admin');
 	$menu['admin'] = array('label' => 'A', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies, 'index_label' => 'Adminstart (ej klar)');
@@ -170,7 +188,7 @@
 			$menu['site_admin']['children']['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/site_admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
 
-/*
+
 require_once(PATHS_CONFIGS . 'entertain.conf.php');
 // this is just to make sure that the entertain configs are available at this point
 $handles = array('game', 'flash', 'clip', 'image');
@@ -199,5 +217,6 @@ foreach($handles as $handle)
 		$menu[$handle]['children']['admin'] = array('label' => 'Admin', 'url' => '/' . $type['url_handle'] . '/admin/', 'is_privilegied' => 'entertain_add');
 }
 	$menu['game']['children']['nord'] = array('label' => 'Nord', 'url' => '/entertain/nordframe.php');
+
 */
 ?>
