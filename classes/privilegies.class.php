@@ -27,13 +27,12 @@
     	$stmt = $_PDO->prepare('SELECT privilegie, value FROM privilegies WHERE user = :userid');
     	$stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
     	$stmt->execute();
-			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			
-    	foreach($result as $row)
+    	while($data = $stmt->fetch())
     	{
-    		$data[$row['privilegie']] = $row['value'];
+    		$privilegies[$data['privilegie']][$data['value']]= true;
     	}
-			return $data;
+
+			return $privilegies;
 		}
 	}
 ?>
