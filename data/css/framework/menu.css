@@ -31,10 +31,9 @@
 
 #main_menu .arrow
 {
-	margin: 0 auto;
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/arrow.png');
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/arrow.png') center no-repeat;
 	height: 5px;
-	width: 11px;
+	width: 100%;
 	position: relative;
 }
 
@@ -66,7 +65,7 @@
 */
 #main_menu_sub
 {
-	margin-top: 0px;
+	margin: 0;
 	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/css_sprites.png') -0 -44px;
 	height: 25px;
 	padding: 11px 20px 0 0;
