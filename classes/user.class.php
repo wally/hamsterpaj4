@@ -155,6 +155,15 @@
 			return 'http://images.hamsterpaj.net/images/users/thumb/' . $this->id . '.jpg';
 		}
 		
+		function get_age()
+		{
+			if(isset($this->birthday) && $this->birthday != '0000-00-00' && $this->birthday > 0)
+			{
+				return floor((date('Ymd') - str_replace('-', null, $this->birthday))/10000);
+			}
+			return false;
+		}
+		
 		function get_visitors()
 		{
 			if($this->id < 1)
@@ -170,5 +179,10 @@
 			return $this->visitors;
 		}
 		
+		
+		function profile_mini()
+		{
+			return template('framework/user_profile_mini.php', array('user' => $this));
+		}
 	}
 ?>

@@ -1,0 +1,31 @@
+.digga_classification_form label
+{
+	width: 40px;
+	display: block;
+	float: left;
+}
+
+.classification_label
+{
+	width: 165px !important;
+}
+
+.digga_classification_form p
+{
+	height: 10px;
+}
+
+
+.digga_classification_form ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.digga_classification_form select
+{
+	clear: left;
+	width: 150px;
+	margin-right: 10px;
+}

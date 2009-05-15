@@ -80,9 +80,15 @@
 		function timer($point)
 		{
 			global $_TIMER;
-			
 			$_TIMER[] = array('point' => $point, 'time' => microtime(true));
-			
+		}
+
+		function handle($string)
+		{
+			$healthy = array(' ', 'å', 'ä', 'ö');
+			$yummy = array('-', 'a', 'a', 'o');
+			$string = strtolower(str_replace($healthy, $yummy, $string));
+			return preg_replace('/[^a-zA-Z0-9\-\/]/', '', $string);		
 		}
 	}
 ?>

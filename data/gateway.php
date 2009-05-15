@@ -7,6 +7,34 @@
 	require_once '../secrets/secret.class.php';
 	require_once '../secrets/db_config.php';
 
+
+	// Sanitize POST and GET data
+	$new_post = array();
+	$new_get = array();
+	
+	foreach($_POST AS $key => $value)
+	{
+		if(!is_array($value))
+		{
+			$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
+		}
+	}
+	
+	foreach($_GET AS $key => $value)
+	{
+		if(!is_array($value))
+		{
+			$new_get[htmlspecialchars($key)] = htmlspecialchars($value);
+		}
+	}
+	
+	$_OLD_POST = $_POST;
+	$_POST = $new_post;
+	$_GET = $new_get;
+	unset($new_post, $new_get);
+
+
+
 	try
 	{
 		// Load all classes
@@ -15,6 +43,7 @@
 		{
 			require_once PATH_CLASSES . $class;
 		}
+		
 		// Load all configs
 		$configs = tools::fetch_files_from_folder(PATH_CONFIGS);
 		foreach($configs as $config)
@@ -44,6 +73,11 @@
 		if(substr($uri, 0, 13) == '/digga/artist')
 		{
 			$page_handler = 'digga_artist';
+		}
+		if(substr($uri, 0, 12) == '/digga/graph')
+		{
+			tools::debug('Found graph!');
+			$page_handler = 'digga_graph';
 		}
 		if(substr($uri, 0, 7) == '/log-in')
 		{
@@ -82,14 +116,21 @@
 		$page->load_side_modules();
 		$page->execute($uri);
 	
-		$out = template('layouts/amanda/layout.php', array('page' => $page));
-
 		$page->user->lastaction();
-		// If the session is damaged when visiting a Daniella page, please add mapping data in conf/session_map.conf.php
-		// ONLY fields present in the session_map-config will be saved to session!
-		 $_SESSION = $page->user->to_session();
-		$debug = template('framework/debug.php');
-		echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
+
+		if($page->get('raw_output') === true)
+		{
+			echo $page->content;
+		}
+		else
+		{
+			$out = template('layouts/amanda/layout.php', array('page' => $page));
+			// If the session is damaged when visiting a Daniella page, please add mapping data in conf/session_map.conf.php
+			// ONLY fields present in the session_map-config will be saved to session!
+			 $_SESSION = $page->user->to_session();
+			$debug = template('framework/debug.php');
+			echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
+		}
 	}
 	catch (Exception $e)
 	{
