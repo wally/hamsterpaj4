@@ -29,6 +29,9 @@
 				$artist->set(array('name' => $_POST['artist']));
 				$artist->save();
 				$artist->add_fan($this->user);
+				$this->content .= '<h1>Du diggar nu artisten</h1>';
+				$this->content .= '<p>Hade Daniella haft ett routing-system så hade du kommit till artistens sida automatiskt nu.';
+				$this->content .= '<a href="' . $artist->get('url') . '">Till artistens sida</a></p>' . "\n";
 			}
 			else
 			{
@@ -39,9 +42,6 @@
 				$this->content .= template('pages/misc/digga/dig_form.php', array('create' => true, 'artist' => $_POST['artist']));
 				tools::debug('Artist not found');
 			}
-			$this->content .= '<h1>Du diggar nu artisten</h1>';
-			$this->content .= '<p>Hade Daniella haft ett routing-system så hade du kommit till artistens sida automatiskt nu.';
-			$this->content .= '<a href="' . $artist->get('url') . '">Till artistens sida</a></p>' . "\n";
 		}
 	}
 	
