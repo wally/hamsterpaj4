@@ -1,13 +1,34 @@
+<?php 
+	$uri_parts = explode('/', $_SERVER['REQUEST_URI']); 
+	$uri = $uri_parts[1]; 
+?>
+	
 <ul id="main_menu">
-	<li class="big"><a href="/onlinespel/">Spel</a></li>
-	<li class="big"><a href="/filmklipp/">Film</a></li>
-	<li class="big"><a href="/flashfilmer/">Flash</a></li>
-	<li class="big"><a href="/roliga_bilder/">Humor</a></li>
-	<li class="big"><a href="/traffa/">Träffa</a></li>
-	<li class="small"><a href="/">Startsidan</a></li>
-	<li class="small"><a href="/diskussionsforum/">Forum</a></li>
-	<li class="small"><a href="/chat/">Chatt</a></li>
-	<li class="small"><a href="/sex_och_sinne/">Sex och sinne</a></li>
-	<li class="small"><a href="/artiklar/">Artiklar</a></li>
-	<li class="small"><a href="/mattan/">Under mattan</a></li>
+<?php global $menu; foreach($menu AS $handle => $current_menu): ?>
+	<?php if($current_menu['type'] == 'big'): ?>
+		<li class="big" <?php if($current_menu['url'] == $uri): ?> id="active"<?php endif ?>>
+			<a href="/<?php echo $current_menu['url'] ?>">
+				<?php echo $current_menu['label'] ?>
+			</a>	
+			<?php if($current_menu['url'] == $uri): ?>
+				<div class="arrow"></div>
+			<?php endif ?>
+		</li>
+	<?php else: ?>
+		<li class="small" <?php if($current_menu['url'] == $uri): ?> id="active"<?php endif ?>>
+			<a href="/<?php echo $current_menu['url'] ?>">
+				<?php echo $current_menu['label'] ?>
+			</a>
+			<?php if($current_menu['url'] == $uri): ?>
+				<div class="arrow"></div>
+			<?php endif ?>
+		</li>
+	<?php endif ?>
+<?php endforeach ?>
+</ul>
+
+<ul id="main_menu_sub">
+	<li><a href="/alfabetet-paa-tid">&raquo; Alfabetet på tid</a></li>
+	<li><a href="/digga">&raquo; Digga</a></li>
+	<li><a href="/gratis-musik">&raquo; Gratis musik</a></li>
 </ul>

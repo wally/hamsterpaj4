@@ -3,10 +3,10 @@
 */
 #main_menu
 {
-	margin-top: 0px;
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/background.png');
-	height: 80px;
-	padding-left: 5px;
+	margin: 0;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/css_sprites.png');
+	height: 44px;
+	padding: 0;
 }
 
 #main_menu a
@@ -16,12 +16,25 @@
 
 #main_menu li
 {
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/separator.png') right no-repeat;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/css_sprites.png') right -81px no-repeat;
 	display: block;
 	float: left;
 	height: 44px;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+#main_menu #active
+{
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/css_sprites.png') -0 -124px;
+}
+
+#main_menu .arrow
+{
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/arrow.png') center no-repeat;
+	height: 5px;
+	width: 100%;
+	position: relative;
 }
 
 #main_menu .small
@@ -30,9 +43,44 @@
 	height: 29px;
 }
 
+#main_menu .small .arrow
+{
+	top: 16px;
+}
+
 #main_menu .big
 {
 	font-size: 20px;
 	padding-top: 10px;
 	height: 34px;
+}
+
+#main_menu .big .arrow
+{
+	top: 10px;
+}
+	
+/**
+* Sub-menu
+*/
+#main_menu_sub
+{
+	margin: 0;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/main_menu/css_sprites.png') -0 -44px;
+	height: 25px;
+	padding: 11px 20px 0 0;
+	font-size: 13px;
+}
+
+#main_menu_sub a
+{
+	color: #5e553c;	
+}
+
+#main_menu_sub li
+{
+	display: block;
+	list-style-type: none;
+	margin-left: 20px;
+	float: left;
 }
