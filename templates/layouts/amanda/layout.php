@@ -31,15 +31,15 @@
 					<?php endif; ?>
 				</div>
 				<?php echo template('layouts/amanda/main_menu.php'); ?>
+				<div id="content">
+					<?php echo $page->content; ?>
+				</div>
 				<div id="modules">
 					<?php foreach($page->side_modules AS $module) : ?>
 						<div class="module" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
 							<?php echo $module->execute($page); ?>
 						</div>
 					<?php endforeach; ?>
-				</div>
-				<div id="content">
-					<?php echo $page->content; ?>
 				</div>
 
 				<!-- Nielsen Netratings -->
