@@ -1,5 +1,5 @@
 <?php tools::debug($classifications); ?>
-<h2>Hur låter <?php echo $artist->get('name'); ?>?</h2>
+<h2 class="clear">Hur låter <?php echo $artist->get('name'); ?>?</h2>
 <form action="<?php $artist->get('url'); ?>" method="post" class="digga_classification_form">
 	<input type="hidden" name="action" value="classify" />
 	<p>
@@ -7,7 +7,7 @@
 		<label>Lite</label>
 		<label>Mycket</label>
 	</p>
-	<ul>
+	<ul class="clear">
 		<?php for($i = 0; $i < 5; $i++) : ?>
 			<?php $class = array_pop($classifications); ?>
 			<li>

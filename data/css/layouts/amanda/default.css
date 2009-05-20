@@ -81,6 +81,10 @@ dd
 	margin-left: 20px;
 }
 
+.clear{
+	clear: both;
+}
+
 #wrapper
 {
 	width: 1000px;
