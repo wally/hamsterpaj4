@@ -41,9 +41,24 @@ h1, h2
 	font-weight: normal;
 }
 
+h2, h3, h4, h5, h6
+{
+	margin-top: 10px;
+}
+
 h2
 {
 	font-size: 1.5em;
+}
+
+h3
+{
+		font-size: 1.3em;
+}
+
+h5
+{
+	font-weight: 800;
 }
 
 label
@@ -56,34 +71,14 @@ label:after
 	content: ':';
 }
 
-
-#daniella
+ul
 {
-	position: absolute;
-	float: left;
+	padding-left: 30px;
 }
 
-/**
-* Framework
-*/
-#debug
+dd
 {
-	position: absolute;
-	margin: 0px;
-	right: 0px;
-	width: 250px;
-	padding: 20px;
-	opacity: 0.5;
-	background: white;
-	-moz-border-radius-bottomleft: 8px;
-	max-height: 90%;
-	overflow: auto;
-	float: right;
-}
-
-#debug dt
-{
-	font-weight: bold;
+	margin-left: 20px;
 }
 
 #wrapper
@@ -160,6 +155,7 @@ label:after
 */
 #hp #head #notices
 {
+	margin-top: 12px;
 	float: left;
 	width: 300px;
 }
@@ -167,6 +163,7 @@ label:after
 #hp #head #notices ul
 {
 	padding: 0px;
+	margin-left: 0;
 }
 
 #hp #head #notices ul li
@@ -175,18 +172,22 @@ label:after
 	float: left;
 	width: 75px;
 	height: 50px;
+	text-align: center
 }
 
 #hp #head #notices a
 {
 	display: block;
-	width: 39px;
-	padding-top: 40px;
+	width: 60px;
+	padding-top: 36px;
+	background-repeat: no-repeat;
+	background-position: center top !important;
 }
 
 #hp #head #notices a:hover, #hp #head #notices .active a
 {
 	background-position: center bottom !important;
+	background-repeat: no-repeat;
 }
 
 #hp #head #notices #notices_guestbook a
