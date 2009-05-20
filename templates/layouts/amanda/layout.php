@@ -5,16 +5,12 @@
 		<title><?php echo $title; ?></title>
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 		<style type="text/css">
-			@import url('/css/framework.css');
-			@import url('/css/framework/menu.css');
-			@import url('/css/framework/user_profile_mini.css');
-			@import url('/css/side_modules/search.css');
-			@import url('/css/side_modules/forum_posts.css');
-			@import url('/css/side_modules/profile_visitors.css');
-			@import url('/css/misc/alphabet_on_time.css');
-			@import url('/css/misc/free_music.css');
-			@import url('/css/misc/digga.css');
-			@import url('/css/misc/treasurehunt.css');
+			<?php
+			// Load all css
+			$stylesheets = css::get();
+			foreach($stylesheets as $stylesheet): ?>
+				@import url('<?php echo URL_CSS . $stylesheet; ?>');
+			<?php endforeach ?>
 		</style>
 		<script src="/scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
 		<script src="/scripts/misc/alphabet_on_time.js" type="text/javascript"></script>

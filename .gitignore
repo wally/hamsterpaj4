@@ -25,3 +25,4 @@ secrets/db_config.php
 
 # Configuration files
 config/paths.conf.php
+config/environment.conf.php

@@ -14,6 +14,14 @@
 			return unserialize($serialized);
 		}
 		
+		public function cache_save($handle, $data)
+		{
+			$serialized = serialize($data);
+			$file = fopen(PATH_CACHE . $handle . '.phpserialized', 'w');
+			fwrite($file, $serialized);
+			fclose($file);
+		}
+		
 		public function lastUpdate($handle)
 		{
 			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
