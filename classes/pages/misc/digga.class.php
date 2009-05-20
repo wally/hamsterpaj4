@@ -5,7 +5,8 @@
 		{
 			$recent_artists = artist::fetch(array('limit' => 10, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
 			$top_artists = artist::fetch(array('limit' => 10, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$this->content = template('pages/misc/digga/start.php', array('recent_artists' => $recent_artists, 'top_artists' => $top_artists));
+			$battle_artists = artist::fetch(array('limit' => 4, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+			$this->content = template('pages/misc/digga/start.php', array('recent_artists' => $recent_artists, 'top_artists' => $top_artists, 'battle_artists' => $battle_artists));
 		}
 	}
 	
@@ -49,10 +50,9 @@
 	{
 		function execute($uri)
 		{
-			require(PATH_ROOT . 'external/jpgraph/src/jpgraph.php');
-			require(PATH_ROOT . 'external/jpgraph/src/jpgraph_radar.php');
-	
-			// Some data to plot
+			include(PATH_ROOT . 'external/pchart/pChart/pData.class');
+			include(PATH_ROOT . 'external/pchart/pChart/pChart.class');
+			
 			foreach($_GET AS $key => $value)
 			{
 				if(is_numeric($value))
@@ -61,26 +61,26 @@
 					$titles[] = $key;
 				}
 			}
-			    
-			// Create the graph and the plot
-			$graph  = new RadarGraph(400, 350, 'auto');
-			$graph  = new RadarGraph(400, 350, 'auto');
-			$graph->axis->SetColor('#2d4b63'); 
-			$graph->grid->SetColor('green');
-			$graph->HideTickMarks();
-
-			// Not available in our PHP installation. "Use the GD version that comes with PHP and not the standalone version"
-			//$graph->img->SetAntiAliasing();
-
-			$plot  = new RadarPlot($data);
-			$plot->SetFillColor('#e9f1f4');
-			$plot->SetColor('#2d4b63');
-			$plot->SetLineWeight(2); 
-			$graph->SetTitles($titles);
 			
-			// Add the plot and display the graph
-			$graph->Add( $plot);
-			$graph->Stroke(); 
+		// Dataset definition   
+			$DataSet = new pData;
+			$DataSet->AddPoint($titles,"Label");  
+			$DataSet->AddPoint($data);
+			$DataSet->AddSerie("Serie1");
+			$DataSet->SetAbsciseLabelSerie("Label");  
+			 			 
+			// Initialise the graph  
+			$Test = new pChart(400,400);
+			$Test->setFontProperties('/storage/www/jhdev.hamsterpaj.net/external/pchart/Fonts/tahoma.ttf',8);  
+			$Test->setGraphArea(25,0,400,350);
+			 
+			// Draw the radar graph  
+			$Test->drawRadarAxis($DataSet->GetData(),$DataSet->GetDataDescription(),TRUE, 10, 100, 100, 100, 150, 150, 	50, 1);
+			$Test->drawFilledRadar($DataSet->GetData(),$DataSet->GetDataDescription(),50,20);
+			 
+			// Finish the graph  
+			$Test->setFontProperties('/storage/www/jhdev.hamsterpaj.net/external/pchart/Fonts/tahoma.ttf',10);
+			$Test->Stroke();
 			$this->raw_output = true;
 		}
 	}
@@ -119,7 +119,6 @@
 							$query = 'INSERT INTO digga_user_classifications (user, artist, classification, value)';
 							$query .= ' VALUES("' . $this->user->get('id') . '", "' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
 							$_PDO->query($query);
-							tools::debug($query);
 
 							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum)';
 							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
@@ -162,12 +161,14 @@
 	class artist extends hp4
 	{
 		protected $url, $name, $handle;
+		protected $group = array();
 		
 		function is_fan($user)
 		{
 			global $_PDO;
 			$query = 'SELECT user FROM digga_fans WHERE artist = "' . $this->id . '" AND user = "' . $user->get('id') . '" LIMIT 1';
-			while($_PDO->query($query))
+			tools::debug($query);
+			foreach($_PDO->query($query) AS $row)
 			{
 				return true;
 			}
@@ -210,7 +211,7 @@
 				$artist->set(array('name' => $row['name']));
 				$artist->set(array('handle' => $row['handle']));
 				$artist->set(array('fan_count' => $row['fan_count']));
-				$artist->set(array('group_id' => $row['group_id']));
+				$artist->set(array('group' => array('id' => $row['group_id'])));
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -226,7 +227,6 @@
 		
 		function set_name($name)
 		{
-			tools::debug('set_name() called!');
 			$this->name = $name;
 			$this->handle = tools::handle($name);
 		}
@@ -332,5 +332,36 @@
 			}
 			return $classifications;
 		}
+		
+		
+		function get_group()
+		{
+			global $_PDO;
+			if($this->group['id'] > 0)
+			{
+				return $this->group;
+			}
+			$name = $this->name;
+			$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+			$i = 0;
+			foreach($_PDO->query($query) AS $row)
+			{
+				$i++;
+				$name = $this->get('name') . ' ' . $i;
+				$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+			}
+
+			$query = 'INSERT INTO groups_list(owner, take_new_members, name, description, presentation, not_member_read_presentation, not_member_read_messages)';
+			$query .= ' VALUES(3, 1, "' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", 1, 1)';
+			
+			if($_PDO->query($query))
+			{
+				$this->group['id'] = $_PDO->lastInsertId();
+				$query = 'UPDATE digga_artists SET group_id = "' . $this->group['id'] . '" WHERE id = "' . $this->id . '" LIMIT 1';
+				$_PDO->query($query);
+				return $this->group;
+			}	
+		}
+		
 	}
 ?>

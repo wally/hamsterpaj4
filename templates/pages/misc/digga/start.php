@@ -14,6 +14,9 @@
 	<?php endforeach; ?>
 </p>
 
+<h2>Vilken musik <strong>diggas</strong> mest just nu?</h2>
+<?php echo template('pages/misc/digga/artist_battle.php', array('artists' => $battle_artists)); ?>
+
 <h2>Mest <strong>diggade</strong> artisterna</h2>
 <?php echo template('pages/misc/digga/top_list.php', array('artists' => $top_artists)); ?>
 

@@ -23,6 +23,11 @@
 			return $files;
 		}
 		
+		function cute_number($num)
+		{
+			return strrev(chunk_split(strrev($num), 3, ' '));
+		}
+		
 		function time_readable($duration)
 		{
 			tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');

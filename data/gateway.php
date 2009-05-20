@@ -1,12 +1,11 @@
 <?php
 	session_start();
-	require_once '../classes/framework.class.php'; // is requiered because it is needed when fetching the rest of the classes
-	require_once '../classes/tools.class.php'; // is requiered because it is needed when fetching the rest of the classes
-	require_once '../classes/user.class.php'; // is requiered because it is needed when fetching the rest of the classes
-	require_once '../config/paths.conf.php';// is requiered because it is needed when fetching the classes and configs
+	require_once '../classes/framework.class.php';
+	require_once '../classes/tools.class.php';
+	require_once '../classes/user.class.php';
+	require_once '../config/paths.conf.php';
 	require_once '../secrets/secret.class.php';
 	require_once '../secrets/db_config.php';
-
 
 	// Sanitize POST and GET data
 	$new_post = array();

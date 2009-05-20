@@ -3,7 +3,6 @@
 <p><?php echo $artist->get('fan_count'); ?> fans just nu</p>
 <div class="fans">
 	<?php foreach($fans AS $fan) : ?>
-		<?php tools::debug($fan); ?>
 		<?php echo $fan->profile_mini(); ?>
 	<?php endforeach; ?>
 </div>
@@ -15,9 +14,15 @@
 	</form>
 <?php endif; ?>
 
-<img src="<?php echo $artist->graph_url(); ?>" />
+<img src="<?php echo $artist->graph_url(); ?>" class="artist_radar" />
 
 <?php	if($user->exists()) : ?>
-	<?php echo template('pages/misc/digga/classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
+	<?php if($artist->is_fan($user)) : ?>
+		<?php echo template('pages/misc/digga/classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
+	<?php else : ?>
+	
+	<?php endif; ?>
 <?php endif; ?>
 
+<?php	$group = $artist->get('group'); ?>
+<a href="/traffa/groups.php?action=goto&groupid=<?php echo $group['id']; ?>">Kolla in gruppen!</a>
