@@ -1,3 +1,0 @@
-<?php
-	define('ENVIRONMENT', 'development'); // Set environement, either development or production
-?>
