@@ -42,6 +42,11 @@
 
 }
 
+.artist_battle
+{
+	padding-bottom: 50px;
+}
+
 .artist_battle .container
 {
 	float: left;
@@ -63,4 +68,40 @@
 	position: absolute;
 	bottom: 0px;
 	width: 90%;
+}
+
+.artist_battle .bar:hover
+{
+	background: #f6c25e;
+}
+
+
+.digga_artist_mini
+{
+	float: left;
+	width: 145px;
+	padding: 3px;
+	border: 1px solid #f2f2f2;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin: 3px;
+	overflow: hidden;
+}
+
+.digga_artist_mini h5
+{
+	margin: 0px;
+}
+
+.digga_start_latest
+{
+	height: 75px;
+}
+
+.digga_start_user_idols
+{
+	float: right;
+	height: 350px;
+	overflow: auto;
+	width: 161px;
 }
