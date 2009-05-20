@@ -3,10 +3,24 @@
 	{
 		function execute()
 		{
-			$recent_artists = artist::fetch(array('limit' => 10, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$top_artists = artist::fetch(array('limit' => 10, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$battle_artists = artist::fetch(array('limit' => 4, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$this->content = template('pages/misc/digga/start.php', array('recent_artists' => $recent_artists, 'top_artists' => $top_artists, 'battle_artists' => $battle_artists));
+			$passed = array();
+			
+			$passed['recent_artists'] = artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+			$passed['top_artists'] = artist::fetch(array('limit' => 6, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+			$passed['user_idols'] = artist::fetch(array('order-by' => 'name', 'order-direction' => 'ASC', 'has_fan' => $this->user), array('allow_multiple' => true));
+			$passed['user'] = $this->user;
+			
+			foreach($passed['user_idols'] AS $idol)
+			{
+				foreach($idol->get('classifications') AS $classification)
+				{
+					$music_taste[$classification['name']] += $classification['sum'] / $idol->get('fan_count');
+				}
+			}
+			arsort($music_taste);
+			tools::debug($music_taste);
+
+			$this->content = template('pages/misc/digga/start.php', $passed);
 		}
 	}
 	
@@ -22,7 +36,14 @@
 			}
 			if($artist = artist::fetch(array('name' => $_POST['artist'])))
 			{
-				$artist->add_fan($this->user);
+				if($artist->is_fan($user))
+				{
+					$this->content .= template('pages/misc/digga/already_fan.php');
+				}
+				else
+				{
+					$artist->add_fan($this->user);
+				}
 			}
 			elseif($_POST['create'] == 'true')
 			{
@@ -36,12 +57,12 @@
 			}
 			else
 			{
+				$this->content .= template('pages/misc/digga/add_notfound.php', array('name' => $_POST['artist']));
 				if($artists = artist::fetch(array('name_search' => $_POST['artist']), array('allow_multiple' => true)))
 				{
 					$this->content .= template('pages/misc/digga/related_matches.php', array('artists' => $artists));
 				}
 				$this->content .= template('pages/misc/digga/dig_form.php', array('create' => true, 'artist' => $_POST['artist']));
-				tools::debug('Artist not found');
 			}
 		}
 	}
@@ -177,7 +198,6 @@
 		
 		function fetch($search, $params)
 		{
-			tools::debug($search);
 			global $_PDO;
 
 			$search['limit'] = (is_numeric($search['limit'])) ? $search['limit'] : 30;
@@ -193,10 +213,13 @@
 
 			$artists = array();
 			$query = 'SELECT da.id, da.name, da.handle, da.fan_count, da.group_id';
-			$query .= ' FROM digga_artists AS da WHERE 1';
+			$query .= ' FROM digga_artists AS da';
+			$query .= (isset($search['has_fan'])) ? ', digga_fans AS df' : '';
+			$query .= ' WHERE 1';
 			
 			$query .= (is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
 			$query .= (is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
+			$query .= (isset($search['has_fan'])) ? ' AND df.user = "' . $search['has_fan']->get('id') . '" AND df.artist = da.id' : '';
 			
 			$query .= (isset($search['order-by'])) ? ' ORDER BY `' . $search['order-by'] . '`' : null;		
 			$query .= (isset($search['order-by']) && isset($search['order-direction'])) ? ' ' . $search['order-direction'] : null;

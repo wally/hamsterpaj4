@@ -8,28 +8,33 @@
 </p>
 
 <h2>Nya artister</h2>
-<p>
+<div class="digga_start_latest">
 	<?php foreach($recent_artists AS $artist) : ?>
-		<a href="<?php echo $artist->get('url'); ?>"><?php echo $artist->get('name'); ?></a>
+		<?php echo template('pages/misc/digga/artist_mini.php', array('artist' => $artist)); ?>
 	<?php endforeach; ?>
-</p>
+</div>
 
 <h2>Vilken musik <strong>diggas</strong> mest just nu?</h2>
-<?php echo template('pages/misc/digga/artist_battle.php', array('artists' => $battle_artists)); ?>
+<?php echo template('pages/misc/digga/artist_battle.php', array('artists' => $top_artists)); ?>
 
-<h2>Mest <strong>diggade</strong> artisterna</h2>
-<?php echo template('pages/misc/digga/top_list.php', array('artists' => $top_artists)); ?>
-
-<h2>Din musiksmak just nu</h2>
-<img src="http://images.hamsterpaj.net/photos/full/46/233787.jpg" />
-<p>
-	<stron style="color: red;">FUNKAR INTE!</strong>
-</p>
-<p>
-	<strong>BETA:</strong> Bilden visar en sammanställnign av de artister du diggar för tillfället.
-	Artisterna klassas av sina fans - är du inte helt nöjd kan du visa hur du tycker att artisten är
-	genom att gå in på artistens sida!
-</p>
+<?php if($user->exists()) : ?>
+	<h2>Din <strong>musiksmak</strong> just nu</h2>
+	<div class="digga_start_user_idols">
+		<?php foreach($user_idols AS $artist) : ?>
+			<?php echo template('pages/misc/digga/artist_mini.php', array('artist' => $artist)); ?>
+		<?php endforeach; ?>
+	</div>
+	
+	<img src="http://images.hamsterpaj.net/photos/full/46/233787.jpg" />
+	<p>
+		<strong style="color: red;">FUNKAR INTE!</strong>
+	</p>
+	<p>
+		<strong>BETA:</strong> Bilden visar en sammanställnign av de artister du diggar för tillfället.
+		Artisterna klassas av sina fans - är du inte helt nöjd kan du visa hur du tycker att artisten är
+		genom att gå in på artistens sida!
+	</p>
+<?php endif; ?>
 
 <h1>Vad tycker <strong>du</strong> om Digga?</h1>
 <ul>

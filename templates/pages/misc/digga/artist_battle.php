@@ -12,13 +12,13 @@
 	<?php foreach($artists AS $artist) : ?>
 		<?php $height = ($artist->get('fan_count') / $max_fans) * 100; ?>
 		<div class="container" style="width: <?php echo $width; ?>%;">
-			<h3><?php echo $artist->get('name'); ?></h3>
-			<div class="bar_wrapper">
-				<div class="bar" style="height: <?php echo $height; ?>%;">
-					
+			<a href="<?php echo $artist->get('url'); ?>">
+				<h3><?php echo $artist->get('name'); ?></h3>
+				<div class="bar_wrapper">
+					<div class="bar" style="height: <?php echo $height; ?>%;"></div>
 				</div>
-			</div>
-			<span><?php echo tools::cute_number($artist->get('fan_count')); ?> fans</span>
+				<span><?php echo tools::cute_number($artist->get('fan_count')); ?> fans</span>
+			</a>
 		</div>
 	<?php endforeach; ?>
 </div>
