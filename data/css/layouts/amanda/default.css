@@ -103,7 +103,7 @@ dd
 
 #hp #head
 {
-	background: #e3e3e3 url('http://img.hamsterpaj.net/framework/head_repeat.png') repeat-x;
+	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/head_repeat.png') repeat-x;
 	height: 73px;
 	-moz-border-radius-topright: 8px;
 	-webkit-border-radius-topright: 8px;
@@ -119,7 +119,7 @@ dd
 	text-indent: -500px;
 	margin: 0px;
 	margin-right: 20px;
-	background: url('http://img.hamsterpaj.net/framework/logo.png') no-repeat 10px;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/logo.png') no-repeat 10px;
 }
 
 #hp #head #login
