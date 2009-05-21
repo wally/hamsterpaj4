@@ -12,10 +12,12 @@
 				@import url('<?php echo URL_CSS . $stylesheet; ?>');
 			<?php endforeach ?>
 		</style>
-		<script src="/scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
-		<script src="/scripts/misc/alphabet_on_time.js" type="text/javascript"></script>
-		<script src="/scripts/debug.js" type="text/javascript"></script>
-		<script src="/scripts/swfobject.js" type="text/javascript"></script>
+		<?php
+			// Load all javascripts
+			$javascripts = javascript::get();
+			foreach($javascripts as $javascript): ?>
+				<script src="<?php echo URL_JAVASCRIPTS . $javascript; ?>" type="text/javascript"></script>
+		<?php endforeach ?>
 	</head> 
 	<body>
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>

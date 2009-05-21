@@ -5,8 +5,11 @@
 	define('PATH_WEBROOT', PATH_ROOT . 'data/');
 	define('PATH_CSS', PATH_WEBROOT . 'css/');
 	define('PATH_COMPRESSED_CSS', '/mnt/static/css/');
+	define('PATH_JAVASCRIPTS', PATH_WEBROOT . 'scripts/');
+	define('PATH_COMPRESSED_JAVASCRIPTS', '/mnt/static/javascripts/');
 
 	define('PATH_CACHE', '/storage/www/www.hamsterpaj.net/data/cache/');
 		
 	define('URL_CSS', '/css/');
+	define('URL_JAVASCRIPTS', '/javascripts/');
 ?>
