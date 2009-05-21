@@ -4,7 +4,7 @@
 
 body
 {
-	background: #8ec0e5 url(http://images.hamsterpaj.net/ui/ui_background_gradient.png) repeat-x;
+	background: #8ec0e5 url(http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png) repeat-x 0 -241px;
 	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
 	color: #454545;
 	font-size: 0.7em;
@@ -103,7 +103,7 @@ dd
 
 #hp #head
 {
-	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/head_repeat.png') repeat-x;
+	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') repeat-x 0 -168px;
 	height: 73px;
 	-moz-border-radius-topright: 8px;
 	-webkit-border-radius-topright: 8px;
@@ -119,7 +119,7 @@ dd
 	text-indent: -500px;
 	margin: 0px;
 	margin-right: 20px;
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/logo.png') no-repeat 10px;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
 }
 
 #hp #head #login
@@ -184,34 +184,47 @@ dd
 	display: block;
 	width: 60px;
 	padding-top: 36px;
-	background-repeat: no-repeat;
-	background-position: center top !important;
-}
 
-#hp #head #notices a:hover, #hp #head #notices .active a
-{
-	background-position: center bottom !important;
-	background-repeat: no-repeat;
 }
 
 #hp #head #notices #notices_guestbook a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_guestbook.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -72px;
+}
+
+#hp #head #notices #notices_guestbook a:hover, #hp #head #notices #notices_guestbook .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -125px;
 }
 
 #hp #head #notices #notices_forum a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_forum.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -72px;
+}
+
+#hp #head #notices #notices_forum a:hover, #hp #head #notices #notices_forum .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -125px;
 }
 
 #hp #head #notices #notices_groups a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_groups.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -72px;
+}
+
+#hp #head #notices #notices_groups a:hover, #hp #head #notices #notices_groups .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -125px;
 }
 
 #hp #head #notices #notices_events a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_events.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -72px;
+}
+
+#hp #head #notices #notices_events a:hover, #hp #head #notices #notices_events .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -125px;
 }
 
 #hp #head #notices ul li ul
