@@ -11,5 +11,5 @@
 	define('PATH_CACHE', '/storage/www/www.hamsterpaj.net/data/cache/');
 		
 	define('URL_CSS', '/css/');
-	define('URL_JAVASCRIPTS', '/javascripts/');
+	define('URL_JAVASCRIPTS', '/scripts/');
 ?>
