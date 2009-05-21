@@ -10,7 +10,7 @@
 			// If we are in dev environment, DON'T compress css
 			if(ENVIRONMENT == 'development')
 			{
-				//return $javascripts;
+				return $javascripts;
 			}
 			
 			// If files arn't updated, load cached merge
@@ -24,7 +24,7 @@
 			
 			if($need_update == false)
 			{
-				//return array(0 => cache::load('latest_javascript_merge'));
+				return array(0 => cache::load('latest_javascript_merge'));
 			}
 			
 			// Load and merge files
@@ -70,11 +70,6 @@
 		function compress($data)
 		{
 			$data = JSMin::minify($data);
-			// remove comments
-	    //$data = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $data);
-	    
-	    // remove tabs, spaces, newlines, etc.
-	   // $data = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $data);
 	    
 	    return $data;
 		}
