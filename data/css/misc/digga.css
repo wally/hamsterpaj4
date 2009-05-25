@@ -76,6 +76,14 @@
 }
 
 
+.artist_battle .digga_artist_mini
+{
+	width: auto;
+	float: none;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
 .digga_artist_mini
 {
 	float: left;
@@ -104,4 +112,22 @@
 	height: 350px;
 	overflow: auto;
 	width: 161px;
+}
+
+.digga_spotify_search
+{
+	padding: 3px;
+	border: 1px solid #f2f2f2;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	height: 32px;
+	width: 200px;
+	line-height: 32px;
+	
+}
+
+.digga_spotify_search img
+{
+	float: left;
+	margin-right: 3px;
 }
