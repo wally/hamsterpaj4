@@ -164,6 +164,9 @@
 					{
 						if($_POST['classification_' . $i] > 0 && !in_array($_POST['classification_' . $i], $used))
 						{
+							$_POST['value_' . $i] = ($_POST['value_' . $i] < 0) ? 0 : $_POST['value_' . $i];
+							$_POST['value_' . $i] = ($_POST['value_' . $i] > 5) ? 5 : $_POST['value_' . $i];
+							
 							$used[] = $_POST['classification_' . $i];
 							
 							$query = 'INSERT INTO digga_user_classifications (user, artist, classification, value)';
