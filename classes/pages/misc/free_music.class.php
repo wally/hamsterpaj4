@@ -2,6 +2,13 @@
 	class page_free_music extends page
 	{
 		protected $songs;
+		
+		function url_hook($url)
+		{
+			tools::debug($url);
+			return ($url == '/gratis-musik') ? 10 : 0;
+		}
+		
 		function execute()
 		{
 			$this->songs['bazooka_circus'][] = array('title' => 'Blackout', 'url' => 'http://music.t67.se/mp3/bazooka_circus_-_blackout.mp3');

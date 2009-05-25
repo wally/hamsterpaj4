@@ -32,8 +32,6 @@
 	$_GET = $new_get;
 	unset($new_post, $new_get);
 
-
-
 	try
 	{
 		// Load all classes
@@ -60,53 +58,26 @@
 			parse_str(substr($uri, strpos($uri, '?')+1), $_GET);
 			$uri = substr($uri, 0, strpos($uri, '?'));			
 		}
+		$uri = (substr($uri, -1) == '/') ? substr($uri, 0, -1) : $uri;
 	
-		if($uri == '/digga')
+		$page = false;
+		$classes = get_declared_classes();
+		$top_match = 0;
+		foreach($classes AS $class)
 		{
-			$page_handler = 'digga_start';
-		}
-		if($uri == '/digga/ny-digga')
-		{
-			$page_handler = 'digga_add';
-		}
-		if(substr($uri, 0, 13) == '/digga/artist')
-		{
-			$page_handler = 'digga_artist';
-		}
-		if(substr($uri, 0, 12) == '/digga/graph')
-		{
-			tools::debug('Found graph!');
-			$page_handler = 'digga_graph';
-		}
-		if(substr($uri, 0, 7) == '/log-in')
-		{
-			$page_handler = 'login';
-		}
-		if(substr($uri, 0, 7) == '/logout')
-		{
-			$page_handler = 'logout';
-		}
-		if(substr($uri, 0, 12) == '/skattjakten')
-		{
-			$page_handler = 'treasurehunt';
-		}
-		if(substr($uri, 1, 17) == 'alfabetet-paa-tid')
-		{
-			$page_handler = 'alphabet_on_time';
-		}
-		if(substr($uri, 1, 12) == 'gratis-musik')
-		{
-			$page_handler = 'free_music';
-		}
-
-		$page_class = 'page_' . $page_handler;
-		if(class_exists($page_class))
-		{
-			$page = new $page_class();
-		}
-		else
-		{
-			$page = new page_404();
+			if(substr($class, 0, 5) == 'page_')
+			{
+				if(method_exists($class, 'url_hook'))
+				{
+					$match = call_user_func(array($class, 'url_hook'), $uri);
+					tools::debug($class . ': ' . $match);
+					if($match > $top_match)
+					{
+						$page = new $class();
+						$top_match = $match;
+					}
+				}
+			}
 		}
 	
 		$page->pdo = $_PDO;

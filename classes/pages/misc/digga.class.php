@@ -1,6 +1,11 @@
 <?php
 	class page_digga_start extends page
 	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga') ? 10 : 0;
+		}
+		
 		function execute()
 		{
 			$passed = array();
@@ -25,8 +30,6 @@
 			{
 				$passed['music_taste_graph'] .= '&' . urlencode($label) . '=' . urlencode($value);
 			}
-
-			tools::debug($passed);
 			
 			$this->content = template('pages/misc/digga/start.php', $passed);
 		}
@@ -35,6 +38,11 @@
 	
 	class page_digga_add extends page
 	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/ny-digga') ? 10 : 0;
+		}
+		
 		function execute()
 		{
 			if(!$this->user->exists())
@@ -80,6 +88,11 @@
 	
 	class page_digga_graph extends page
 	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/graph') ? 10 : 0;
+		}
+		
 		function execute($uri)
 		{
 			include(PATH_ROOT . 'external/pchart/pChart/pData.class');
@@ -119,6 +132,11 @@
 	
 	class page_digga_artist extends page
 	{
+		function url_hook($uri)
+		{
+			return (substr($uri, 0, 14) == '/digga/artist/') ? 10 : 0;
+		}
+		
 		function execute($uri)
 		{
 			global $_PDO;
@@ -235,8 +253,6 @@
 			$query .= (isset($search['order-by'])) ? ' ORDER BY `' . $search['order-by'] . '`' : null;		
 			$query .= (isset($search['order-by']) && isset($search['order-direction'])) ? ' ' . $search['order-direction'] : null;
 			$query .= ' LIMIT ' . $search['limit'];
-			
-			tools::debug($query);
 			
 			foreach($_PDO->query($query) AS $row)
 			{

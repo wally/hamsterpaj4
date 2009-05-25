@@ -179,6 +179,22 @@
 			return $this->visitors;
 		}
 		
+		function privilegied($privilegie, $value = NULL)
+		{
+			if(isset($this->user->privilegies->igotgodmode))
+			{
+				return true;
+			}
+			
+			if($value == NULL)
+			{
+				return isset($this->user->privilegies->$privilegie);
+			}
+			else
+			{
+				return (isset($this->user->privilegie->$privilegie->$value)  || $this->user->privilegie->$privilegie == 0);
+			}
+		}
 		
 		function profile_mini()
 		{
