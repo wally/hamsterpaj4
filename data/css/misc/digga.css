@@ -37,6 +37,11 @@
 	float: left;
 }
 
+.digga_start h2
+{
+	margin-top: 40px;
+}
+
 .artist_radar
 {
 
@@ -103,6 +108,16 @@
 	margin: 0px;
 }
 
+.digga_artist_mini a
+{
+	color: #565656;
+}
+
+.digga_artist_mini a:hover
+{
+	color: black;
+}
+
 .digga_start_latest
 {
 	height: 75px;
@@ -113,7 +128,7 @@
 	float: right;
 	height: 350px;
 	overflow: auto;
-	width: 161px;
+	width: 175px;
 }
 
 .digga_spotify_search
@@ -132,4 +147,20 @@
 {
 	float: left;
 	margin-right: 3px;
+}
+
+
+
+.digga_form
+{
+	padding: 10px;
+	border: 1px solid #f2f2f2;
+	background: #fff9ed;
+}
+
+
+
+.artist .fans
+{
+	height: 100px;
 }

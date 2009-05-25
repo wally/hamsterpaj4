@@ -18,8 +18,16 @@
 				}
 			}
 			arsort($music_taste);
-			tools::debug($music_taste);
+			$music_taste = array_slice($music_taste, 0, 8);
+			
+			$passed['music_taste_graph'] = '';
+			foreach($music_taste AS $label => $value)
+			{
+				$passed['music_taste_graph'] .= '&' . urlencode($label) . '=' . urlencode($value);
+			}
 
+			tools::debug($passed);
+			
 			$this->content = template('pages/misc/digga/start.php', $passed);
 		}
 	}

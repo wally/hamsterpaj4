@@ -1,4 +1,4 @@
-<form action="/digga/ny-digga" method="post">
+<form action="/digga/ny-digga" method="post" class="digga_form">
 	<fieldset>
 		<?php if($create == true) : ?>
 			<legend>Lägg till artist i Digga</legend>

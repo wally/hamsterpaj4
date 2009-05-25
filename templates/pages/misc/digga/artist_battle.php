@@ -13,7 +13,7 @@
 		<?php $height = ($artist->get('fan_count') / $max_fans) * 100; ?>
 		<div class="container" style="width: <?php echo $width; ?>%;">
 			<a href="<?php echo $artist->get('url'); ?>">
-				<h3><?php echo $artist->get('name'); ?></h3>
+				<?php echo template('pages/misc/digga/artist_mini.php', array('artist' => $artist)); ?>
 				<div class="bar_wrapper">
 					<div class="bar" style="height: <?php echo $height; ?>%;"></div>
 				</div>
