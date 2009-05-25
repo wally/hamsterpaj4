@@ -4,7 +4,7 @@
 
 body
 {
-	background: #8ec0e5 url(http://images.hamsterpaj.net/ui/ui_background_gradient.png) repeat-x;
+	background: #8ec0e5 url(http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png) repeat-x 0 -241px;
 	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
 	color: #454545;
 	font-size: 0.7em;
@@ -41,9 +41,24 @@ h1, h2
 	font-weight: normal;
 }
 
+h2, h3, h4, h5, h6
+{
+	margin-top: 10px;
+}
+
 h2
 {
 	font-size: 1.5em;
+}
+
+h3
+{
+		font-size: 1.3em;
+}
+
+h5
+{
+	font-weight: 800;
 }
 
 label
@@ -56,34 +71,18 @@ label:after
 	content: ':';
 }
 
-
-#daniella
+ul
 {
-	position: absolute;
-	float: left;
+	padding-left: 30px;
 }
 
-/**
-* Framework
-*/
-#debug
+dd
 {
-	position: absolute;
-	margin: 0px;
-	right: 0px;
-	width: 250px;
-	padding: 20px;
-	opacity: 0.5;
-	background: white;
-	-moz-border-radius-bottomleft: 8px;
-	max-height: 90%;
-	overflow: auto;
-	float: right;
+	margin-left: 20px;
 }
 
-#debug dt
-{
-	font-weight: bold;
+.clear{
+	clear: both;
 }
 
 #wrapper
@@ -104,7 +103,7 @@ label:after
 
 #hp #head
 {
-	background: #e3e3e3 url('http://img.hamsterpaj.net/framework/head_repeat.png') repeat-x;
+	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') repeat-x 0 -168px;
 	height: 73px;
 	-moz-border-radius-topright: 8px;
 	-webkit-border-radius-topright: 8px;
@@ -120,7 +119,7 @@ label:after
 	text-indent: -500px;
 	margin: 0px;
 	margin-right: 20px;
-	background: url('http://img.hamsterpaj.net/framework/logo.png') no-repeat 10px;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
 }
 
 #hp #head #login
@@ -160,6 +159,7 @@ label:after
 */
 #hp #head #notices
 {
+	margin-top: 12px;
 	float: left;
 	width: 300px;
 }
@@ -167,6 +167,7 @@ label:after
 #hp #head #notices ul
 {
 	padding: 0px;
+	margin-left: 0;
 }
 
 #hp #head #notices ul li
@@ -175,38 +176,55 @@ label:after
 	float: left;
 	width: 75px;
 	height: 50px;
+	text-align: center
 }
 
 #hp #head #notices a
 {
 	display: block;
-	width: 39px;
-	padding-top: 40px;
-}
+	width: 60px;
+	padding-top: 36px;
 
-#hp #head #notices a:hover, #hp #head #notices .active a
-{
-	background-position: center bottom !important;
 }
 
 #hp #head #notices #notices_guestbook a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_guestbook.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -72px;
+}
+
+#hp #head #notices #notices_guestbook a:hover, #hp #head #notices #notices_guestbook .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -125px;
 }
 
 #hp #head #notices #notices_forum a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_forum.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -72px;
+}
+
+#hp #head #notices #notices_forum a:hover, #hp #head #notices #notices_forum .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -125px;
 }
 
 #hp #head #notices #notices_groups a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_groups.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -72px;
+}
+
+#hp #head #notices #notices_groups a:hover, #hp #head #notices #notices_groups .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -125px;
 }
 
 #hp #head #notices #notices_events a
 {
-	background-image: url('http://images.hamsterpaj.net/ui/ui_notices_events.png');
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -72px;
+}
+
+#hp #head #notices #notices_events a:hover, #hp #head #notices #notices_events .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -125px;
 }
 
 #hp #head #notices ul li ul
@@ -236,6 +254,7 @@ label:after
 {
 	padding: 10px;
 	width: 636px;
+	float: left;
 }
 
 /**
@@ -246,14 +265,13 @@ label:after
 	background: #F0F0F0;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding: 10px;
-	padding-bottom: 0px;
 	-moz-border-radius-topleft: 8px;
 	-moz-border-radius-bottomleft: 8px;
 	-webkit-border-radius-topleft: 8px;
 	-webkit-border-radius-bottomleft: 8px;
 	width: 200px;
-	float: right;
+	margin-left: 660px;
+	padding: 10px 10px 1px;
 }
 
 #hp #modules .module

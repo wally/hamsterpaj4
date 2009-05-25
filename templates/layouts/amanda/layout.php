@@ -5,21 +5,19 @@
 		<title><?php echo $title; ?></title>
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 		<style type="text/css">
-			@import url('/css/framework.css');
-			@import url('/css/framework/menu.css');
-			@import url('/css/framework/user_profile_mini.css');
-			@import url('/css/side_modules/search.css');
-			@import url('/css/side_modules/forum_posts.css');
-			@import url('/css/side_modules/profile_visitors.css');
-			@import url('/css/misc/alphabet_on_time.css');
-			@import url('/css/misc/free_music.css');
-			@import url('/css/misc/digga.css');
-			@import url('/css/misc/treasurehunt.css');
+			<?php
+			// Load all css
+			$stylesheets = css::get();
+			foreach($stylesheets as $stylesheet): ?>
+				@import url('<?php echo URL_CSS . $stylesheet; ?>');
+			<?php endforeach ?>
 		</style>
-		<script src="/scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
-		<script src="/scripts/misc/alphabet_on_time.js" type="text/javascript"></script>
-		<script src="/scripts/debug.js" type="text/javascript"></script>
-		<script src="/scripts/swfobject.js" type="text/javascript"></script>
+		<?php
+			// Load all javascripts
+			$javascripts = javascript::get();
+			foreach($javascripts as $javascript): ?>
+				<script src="<?php echo URL_JAVASCRIPTS . $javascript; ?>" type="text/javascript"></script>
+		<?php endforeach ?>
 	</head> 
 	<body>
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
@@ -35,15 +33,15 @@
 					<?php endif; ?>
 				</div>
 				<?php echo template('layouts/amanda/main_menu.php'); ?>
+				<div id="content">
+					<?php echo $page->content; ?>
+				</div>
 				<div id="modules">
 					<?php foreach($page->side_modules AS $module) : ?>
 						<div class="module" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
 							<?php echo $module->execute($page); ?>
 						</div>
 					<?php endforeach; ?>
-				</div>
-				<div id="content">
-					<?php echo $page->content; ?>
 				</div>
 
 				<!-- Nielsen Netratings -->

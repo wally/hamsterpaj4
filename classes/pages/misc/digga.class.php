@@ -36,13 +36,16 @@
 			}
 			if($artist = artist::fetch(array('name' => $_POST['artist'])))
 			{
-				if($artist->is_fan($user))
+				if($artist->is_fan($this->user))
 				{
 					$this->content .= template('pages/misc/digga/already_fan.php');
 				}
 				else
 				{
 					$artist->add_fan($this->user);
+					$this->content .= '<h1>Du diggar nu artisten</h1>';
+					$this->content .= '<p>Hade Daniella haft ett routing-system så hade du kommit till artistens sida automatiskt nu.';
+					$this->content .= '<a href="' . $artist->get('url') . '">Till artistens sida</a></p>' . "\n";
 				}
 			}
 			elseif($_POST['create'] == 'true')
