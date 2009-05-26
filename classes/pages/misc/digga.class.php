@@ -264,7 +264,7 @@
 				$artist->set(array('name' => $row['name']));
 				$artist->set(array('handle' => $row['handle']));
 				$artist->set(array('fan_count' => $row['fan_count']));
-				$artist->set(array('group' => array('id' => $row['group_id'])));
+				$artist->set(array('group_id' => $row['group_id']));
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -330,13 +330,18 @@
 			}
 		}
 		
-		function add_fan($user)
+		function add_fan($user, $options = array())
 		{
 			global $_PDO;
 			$query = 'INSERT INTO digga_fans(artist, user) VALUES("' . $this->id . '", "' . $user->id . '")';
 			$_PDO->query($query);
 			$this->fan_count++;
 			$this->save();
+			
+			if($option['disable_group_join'] !== true)
+			{
+				$this->get('group')->join($user);
+			}
 		}
 		
 		function user_classifications($user)
@@ -390,30 +395,39 @@
 		function get_group()
 		{
 			global $_PDO;
-			if($this->group['id'] > 0)
+			if(is_object($this->group) && $this->group->exists())
 			{
 				return $this->group;
 			}
-			$name = $this->name;
-			$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
-			$i = 0;
-			foreach($_PDO->query($query) AS $row)
+			elseif($this->group_id > 0)
 			{
-				$i++;
-				$name = $this->get('name') . ' ' . $i;
+				$this->group = group::fetch(array('id' => $this->group_id));
+				return $this->group;
+			}
+			else
+			{
+				$name = $this->name;
 				$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+				$i = 0;
+				foreach($_PDO->query($query) AS $row)
+				{
+					$i++;
+					$name = $this->get('name') . ' ' . $i;
+					$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+				}
+	
+				$query = 'INSERT INTO groups_list(owner, take_new_members, name, description, presentation, not_member_read_presentation, not_member_read_messages)';
+				$query .= ' VALUES(3, 1, "' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", 1, 1)';
+				
+				if($_PDO->query($query))
+				{
+					echo $_PDO->lastInsertId();
+					$this->group = group::fetch(array('id' => $_PDO->lastInsertId()));
+					$query = 'UPDATE digga_artists SET group_id = "' . $this->group->get('id') . '" WHERE id = "' . $this->id . '" LIMIT 1';
+					$_PDO->query($query);
+					return $this->group;
+				}	
 			}
-
-			$query = 'INSERT INTO groups_list(owner, take_new_members, name, description, presentation, not_member_read_presentation, not_member_read_messages)';
-			$query .= ' VALUES(3, 1, "' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", 1, 1)';
-			
-			if($_PDO->query($query))
-			{
-				$this->group['id'] = $_PDO->lastInsertId();
-				$query = 'UPDATE digga_artists SET group_id = "' . $this->group['id'] . '" WHERE id = "' . $this->id . '" LIMIT 1';
-				$_PDO->query($query);
-				return $this->group;
-			}	
 		}
 		
 	}

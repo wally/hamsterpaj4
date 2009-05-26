@@ -24,12 +24,8 @@
 		<?php endif; ?>
 	<?php endif; ?>
 	
-	<?php
-		/*
-		<?php	$group = $artist->get('group'); ?>
-		<a href="/traffa/groups.php?action=goto&groupid=<?php echo $group['id']; ?>">Kolla in gruppen!</a>
-		*/
-	?>	
+	<h2>Gruppen <?php echo $artist->get('group')->get('name'); ?></h2>
+	<?php echo template('group/entry_list.php', array('entries' => $artist->get('group')->entries())); ?>	
 
 	
 	<a href="spotify:search:<?php echo $artist->get('name'); ?>">

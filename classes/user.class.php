@@ -82,7 +82,12 @@
 
 			// Bug, only allows one entry
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
-			$search['limit'] = (isset($search['limit'])) ? $search['limit'] : 1;
+			if(isset($search['id']))
+			{
+				$search['id'] = (is_array($search['id'])) ? $search['id'] : array($search['id']);
+			}
+			$search['limit'] = (isset($search['limit'])) ? $search['limit'] : 9999;
+			
 			$search['order-by'] = (isset($search['order-by'])) ? $search['order-by'] : 'l.id';
 			$search['order-direction'] = (isset($search['order-direction'])) ? $search['order-direction'] : 'ASC';
 			
@@ -98,6 +103,7 @@
 
 			$query .= ' WHERE u.userid = l.id';
 			$query .= (count($search['username']) > 0) ? ' AND l.username IN ("' . implode('", "', $search['username']) . '")' : null;
+			$query .= (count($search['id']) > 0) ? ' AND l.id IN ("' . implode('", "', $search['id']) . '")' : null;
 			$query .= ($search['has_image'] == true) ? ' AND (u.image = 1 OR u.image = 2)' : null;
 			$query .= ($search['has_visited'] > 0) ? ' AND l.id = uv.item_id AND uv.type = "profile_visit" AND uv.user_id = "' . $search['has_visited'] . '"' : null;
 
