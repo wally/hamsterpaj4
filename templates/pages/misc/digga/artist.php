@@ -14,8 +14,16 @@
 		</form>
 	<?php endif; ?>
 	
+	<h2>Musikstil</h2>
 	<img src="<?php echo $artist->graph_url(); ?>" class="artist_radar" />
-	
+	<ul class="digga_classifications">
+		<?php foreach($artist->get_classifications() AS $class) : ?>
+			<li>
+				<h4><a href="/digga/musikstilar/<?php echo $class['handle']; ?>"><?php echo $class['name']; ?></a></h4>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+		
 	<?php	if($user->exists()) : ?>
 		<?php if($artist->is_fan($user)) : ?>
 			<?php echo template('pages/misc/digga/classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
@@ -24,7 +32,11 @@
 		<?php endif; ?>
 	<?php endif; ?>
 	
-	<h2>Gruppen <?php echo $artist->get('group')->get('name'); ?></h2>
+	<?php $group = $artist->get('group'); ?>
+	<h2><a href="/traffa/groups.php?action=goto&groupid=<?php echo $group->get('id'); ?>">
+		Gruppen <?php echo $group->get('name'); ?>
+	</a></h2>
+	
 	<?php echo template('group/entry_list.php', array('entries' => $artist->get('group')->entries())); ?>	
 
 	

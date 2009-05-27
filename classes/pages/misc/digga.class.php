@@ -1,4 +1,43 @@
 <?php
+
+	class page_digga_classification extends page
+	{
+		function url_hook($uri)
+		{
+			return (substr($uri, 0, 19) == '/digga/musikstilar/') ? 10 : 0;			
+		}
+			
+		function execute($uri)
+		{
+			global $_PDO;
+			
+			$handle = substr($uri, 19);
+			
+			$query = 'SELECT id, name, handle FROM digga_classifications WHERE handle LIKE "' . $handle . '" LIMIT 1';
+			foreach($_PDO->query($query) AS $row)
+			{
+				
+				$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name', 'has_classification' => $row['id']), array('allow_multiple' => true));
+				$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+			}
+		}	
+	}	
+
+
+	class page_digga_all_artists extends page
+	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/alla-artister') ? 10 : 0;			
+		}
+
+		function execute($uri)
+		{
+			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
+			$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+		}
+	}
+
 	class page_digga_start extends page
 	{
 		function url_hook($uri)
@@ -11,7 +50,11 @@
 			$passed = array();
 			
 			$passed['recent_artists'] = artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$passed['top_artists'] = artist::fetch(array('limit' => 6, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+
+			$top_search['limit'] = 6;
+			$top_search['order-by'] = 'fan_count';
+			$top_search['order-direction'] = 'DESC';
+			$passed['top_artists'] = artist::fetch($top_search, array('allow_multiple' => true));
 			$passed['user_idols'] = artist::fetch(array('order-by' => 'name', 'order-direction' => 'ASC', 'has_fan' => $this->user), array('allow_multiple' => true));
 			$passed['user'] = $this->user;
 			
@@ -247,11 +290,13 @@
 			$query = 'SELECT da.id, da.name, da.handle, da.fan_count, da.group_id';
 			$query .= ' FROM digga_artists AS da';
 			$query .= (isset($search['has_fan'])) ? ', digga_fans AS df' : '';
+			$query .= (isset($search['has_classification'])) ? ', digga_artist_classifications AS dac' : '';
 			$query .= ' WHERE 1';
 			
 			$query .= (is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
 			$query .= (is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
 			$query .= (isset($search['has_fan'])) ? ' AND df.user = "' . $search['has_fan']->get('id') . '" AND df.artist = da.id' : '';
+			$query .= (isset($search['has_classification'])) ? ' AND dac.classification = "' . $search['has_classification'] . '" AND dac.artist = da.id' : '';
 			
 			$query .= (isset($search['order-by'])) ? ' ORDER BY `' . $search['order-by'] . '`' : null;		
 			$query .= (isset($search['order-by']) && isset($search['order-direction'])) ? ' ' . $search['order-direction'] : null;
@@ -367,14 +412,14 @@
 			if(count($this->classifications) < 1 || true)
 			{
 				global $_PDO;
-				$query = 'SELECT dc.name, dac.classification, dac.sum';
+				$query = 'SELECT dc.name, dc.handle, dac.classification, dac.sum';
 				$query .= ' FROM digga_classifications AS dc, digga_artist_classifications AS dac';
 				$query .= ' WHERE dc.id = dac.classification';
 				$query .= ' AND dac.artist = "' . $this->get('id') . '"';
 				$query .= ' ORDER BY dac.sum DESC LIMIT 8';
 				foreach($_PDO->query($query) AS $row)
 				{
-					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum']);
+					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum'], 'handle' => $row['handle']);
 				}
 			}
 			return $this->classifications;

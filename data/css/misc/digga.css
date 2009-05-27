@@ -164,3 +164,13 @@
 {
 	height: 100px;
 }
+
+
+.digga_all_artists h1
+{
+	clear: both;
+	border-bottom: 1px solid #efefef;
+	padding-top: 15px;
+	padding-left: 15px;
+	margin-bottom: 5px;
+}

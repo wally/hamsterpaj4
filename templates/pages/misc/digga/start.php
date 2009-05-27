@@ -10,6 +10,7 @@
 			<?php echo template('pages/misc/digga/artist_mini.php', array('artist' => $artist)); ?>
 		<?php endforeach; ?>
 	</div>
+	<a href="/digga/alla-artister">Visa alla artister</a>
 	
 	
 	<h2>Vilken musik <strong>diggas</strong> mest just nu?</h2>
@@ -30,13 +31,5 @@
 			på artistens sida!
 		</p>
 	<?php endif; ?>
-	
-	<h1>Vad tycker <strong>du</strong> om Digga?</h1>
-	<ul>
-		<li><a href="/">Skriv i forumet</a></li>
-		<li><a href="/traffa/guestbook.php?user_id=3">Skriv i Johans gästbok</a> (Inte säkert att du får svar...)</li>
-	</ul>
-	
-	<h2>Stor, fet BETA-varning på detta!</h2>
 </div>
 
