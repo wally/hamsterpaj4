@@ -10,7 +10,7 @@
 	{
 		public function load($handle)
 		{
-			if(!$serialized = file_get_contents(PATH_CACHE . $handle . '.phpserialized')) throw new Exception('Cache file "' . $handle . '.phpserialized" could not be opened');
+			$serialized = file_get_contents(PATH_CACHE . $handle . '.phpserialized');
 			return unserialize($serialized);
 		}
 		
