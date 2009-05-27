@@ -15,11 +15,17 @@
 	<?php endif; ?>
 	
 	<h2>Musikstil</h2>
-	<img src="<?php echo $artist->graph_url(); ?>" class="artist_radar" />
 	<ul class="digga_classifications">
 		<?php foreach($artist->get_classifications() AS $class) : ?>
 			<li>
 				<h4><a href="/digga/musikstilar/<?php echo $class['handle']; ?>"><?php echo $class['name']; ?></a></h4>
+				<span class="meter_filled">
+				<?php for($i = 0; $i < 50; $i++)
+					{
+						echo '|';
+						echo ($i > $class['sum']) ? '</span><span class="meter_grey">' : null;
+					}
+				?>
 			</li>
 		<?php endforeach; ?>
 	</ul>

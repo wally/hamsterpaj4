@@ -195,7 +195,7 @@
 					$query = 'SELECT * FROM digga_user_classifications WHERE user = "' . $this->user->get('id') . '" AND artist = "' . $artist->get('id') . '"';
 					foreach($_PDO->query($query) AS $row)
 					{
-						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '"';
+						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '", votes = votes - 1, average = sum / votes';
 						$update .= ' WHERE artist = "' . $row['artist'] . '" AND classification = "' . $row['classification'] . '"';
 						$_PDO->query($update);
 					}
@@ -216,10 +216,10 @@
 							$query .= ' VALUES("' . $this->user->get('id') . '", "' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
 							$_PDO->query($query);
 
-							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum)';
-							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
+							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum, votes)';
+							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '", 1, "' . $_POST['value_' . $i] . '")';
 
-							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '"';
+							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '", votes = votes + 1, average = sum / votes';
 							$update .= ' WHERE artist = "' .  $artist->get('id') . '" AND classification = "' . $_POST['classification_' . $i] . '" LIMIT 1';
 
 							if(!$_PDO->query($insert))

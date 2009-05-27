@@ -174,3 +174,24 @@
 	padding-left: 15px;
 	margin-bottom: 5px;
 }
+
+
+.digga_classifications li
+{
+	display: block;
+	border: 1px solid #ababab;
+	margin-bottom: 3px;
+	padding: 3px;
+	width: 280px;
+	float: left;
+}
+
+.digga_classifications .meter_filled
+{
+	color: black;
+}
+
+.digga_classifications .meter_grey
+{
+	color: #ababab;
+}
