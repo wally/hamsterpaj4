@@ -185,21 +185,26 @@
 	border: 1px solid #efefef;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	margin-bottom: 3px;
-	margin-right: 10px;
+	margin-bottom: 6px;
+	margin-right: 6px;
 	padding: 3px;
-	width: 280px;
+	width: 145px;
 	float: left;
+}
+
+.digga_classifications li h4
+{
+	margin: 0px;
 }
 
 .digga_classifications .meter_filled
 {
-	color: black;
+	color: #323232;
 	letter-spacing: 1px;
 }
 
 .digga_classifications .meter_grey
 {
 	letter-spacing: 1px;
-	color: #ababab;
+	color: #cdcdcd;
 }

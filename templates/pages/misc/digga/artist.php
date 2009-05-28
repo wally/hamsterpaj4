@@ -20,7 +20,7 @@
 			<li>
 				<h4><a href="/digga/musikstilar/<?php echo $class['handle']; ?>"><?php echo $class['name']; ?></a></h4>
 				<span class="meter_filled">
-				<?php for($i = 0; $i < 5; $i += 0.1)
+				<?php for($i = 0; $i < 5; $i += 0.2)
 					{
 						echo '|';
 						echo ($i > $class['average']) ? '</span><span class="meter_grey">' : null;
