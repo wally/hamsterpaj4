@@ -81,6 +81,7 @@
 			global $_PDO;
 
 			// Bug, only allows one entry
+			$search['id'] = (isset($search['id']) && !is_array($search['id'])) ? array($search['id']) : array();
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
 			if(isset($search['id']))
 			{
@@ -158,7 +159,14 @@
 		
 		function avatar_thumb_url()
 		{
-			return 'http://images.hamsterpaj.net/images/users/thumb/' . $this->id . '.jpg';
+			if(file_exists('/mnt/images/images/users/thumb/' . $this->id . '.jpg'))
+			{
+				return 'http://images.hamsterpaj.net/images/users/thumb/' . $this->id . '.jpg';
+			}
+			else
+			{
+				return 'http://images.hamsterpaj.net/user_no_image.png';
+			}
 		}
 		
 		function get_age()

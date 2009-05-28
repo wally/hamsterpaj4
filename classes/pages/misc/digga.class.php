@@ -195,7 +195,7 @@
 					$query = 'SELECT * FROM digga_user_classifications WHERE user = "' . $this->user->get('id') . '" AND artist = "' . $artist->get('id') . '"';
 					foreach($_PDO->query($query) AS $row)
 					{
-						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '"';
+						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '", votes = votes - 1, average = sum / votes';
 						$update .= ' WHERE artist = "' . $row['artist'] . '" AND classification = "' . $row['classification'] . '"';
 						$_PDO->query($update);
 					}
@@ -216,10 +216,10 @@
 							$query .= ' VALUES("' . $this->user->get('id') . '", "' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
 							$_PDO->query($query);
 
-							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum)';
-							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
+							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum, votes)';
+							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '", 1, "' . $_POST['value_' . $i] . '")';
 
-							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '"';
+							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '", votes = votes + 1, average = sum / votes';
 							$update .= ' WHERE artist = "' .  $artist->get('id') . '" AND classification = "' . $_POST['classification_' . $i] . '" LIMIT 1';
 
 							if(!$_PDO->query($insert))
@@ -276,7 +276,11 @@
 			global $_PDO;
 
 			$search['limit'] = (is_numeric($search['limit'])) ? $search['limit'] : 30;
-			
+
+			if(array_key_exists('id', $search))
+			{
+				$search['id'] = (is_array($search['id'])) ? $search['id'] : array($search['id']);
+			}
 			if(array_key_exists('name', $search))
 			{
 				$search['name'] = (is_array($search['name'])) ? $search['name'] : array($search['name']);
@@ -293,6 +297,7 @@
 			$query .= (isset($search['has_classification'])) ? ', digga_artist_classifications AS dac' : '';
 			$query .= ' WHERE 1';
 			
+			$query .= (is_array($search['id'])) ? ' AND da.id IN ("' . implode('", "', $search['id']) . '")' : null;
 			$query .= (is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
 			$query .= (is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
 			$query .= (isset($search['has_fan'])) ? ' AND df.user = "' . $search['has_fan']->get('id') . '" AND df.artist = da.id' : '';
@@ -412,14 +417,14 @@
 			if(count($this->classifications) < 1 || true)
 			{
 				global $_PDO;
-				$query = 'SELECT dc.name, dc.handle, dac.classification, dac.sum';
+				$query = 'SELECT dc.name, dc.handle, dac.average, dac.classification, dac.sum';
 				$query .= ' FROM digga_classifications AS dc, digga_artist_classifications AS dac';
 				$query .= ' WHERE dc.id = dac.classification';
 				$query .= ' AND dac.artist = "' . $this->get('id') . '"';
-				$query .= ' ORDER BY dac.sum DESC LIMIT 8';
+				$query .= ' ORDER BY dac.average DESC LIMIT 8';
 				foreach($_PDO->query($query) AS $row)
 				{
-					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum'], 'handle' => $row['handle']);
+					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum'], 'handle' => $row['handle'], 'average' => $row['average']);
 				}
 			}
 			return $this->classifications;
@@ -474,6 +479,25 @@
 				}	
 			}
 		}
+	}
+	
+	class page_digga_external_battle extends page
+	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/external/battle') ? 10 : 0;
+		}
 		
+		function execute($uri)
+		{
+			$artists = artist::fetch(array('handle' => $_GET['artists']), array('allow_multiple' => true));
+			
+			$this->content = template('pages/misc/digga/artist_battle.php', array('artists' => $artists));
+			$this->content .= '<style type="text/css">@import url("/css/misc/digga.css");</style>';
+			
+			$this->content = str_replace('<a href=', '<a target="_top" href=', $this->content);
+			
+			$this->raw_output = true;
+		}
 	}
 ?>

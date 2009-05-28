@@ -48,19 +48,10 @@
 			require_once PATH_CONFIGS . $config;
 		}
 		
-		try {
-			$_PDO = new PDO( DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET, DB_USER, DB_PASS );
-			$_PDO -> setAttribute( PDO::ATTR_PERSISTENT, true );
-			$_PDO -> setAttribute( PDO::ATTR_CASE, PDO::CASE_LOWER );
-			$_PDO -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-			$_PDO -> setAttribute( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true );
-			$_PDO -> setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC );
-			
-			$_PDO -> query( 'SET NAMES utf8' );
-		} catch ( PDOException $e ){
-			exit( '[DBASE]: Error!' );
-		}
-		
+		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;
+		$_PDO = new PDO($dns, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true));
+		$_PDO->query('SET NAMES utf8');
+	
 		$uri = $_SERVER['REQUEST_URI'];
 		if(strpos($uri, '?'))
 		{
@@ -102,9 +93,14 @@
 		}
 		else
 		{
-			$out = template('layouts/amanda/layout.php', array('page' => $page));
-			// If the session is damaged when visiting a Daniella page, please add mapping data in conf/session_map.conf.php
-			// ONLY fields present in the session_map-config will be saved to session!
+			if(isset($page->template))
+			{
+				$out = template($page->template, array('page' => $page));
+			}
+			else
+			{
+				$out = template('layouts/amanda/layout.php', array('page' => $page));
+			}
 			 $_SESSION = $page->user->to_session();
 			$debug = template('framework/debug.php');
 			echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
