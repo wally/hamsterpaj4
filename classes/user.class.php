@@ -81,6 +81,7 @@
 			global $_PDO;
 
 			// Bug, only allows one entry
+			$search['id'] = (isset($search['id']) && !is_array($search['id'])) ? array($search['id']) : array();
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
 			$search['limit'] = (isset($search['limit'])) ? $search['limit'] : 1;
 			$search['order-by'] = (isset($search['order-by'])) ? $search['order-by'] : 'l.id';
@@ -98,6 +99,7 @@
 
 			$query .= ' WHERE u.userid = l.id';
 			$query .= (count($search['username']) > 0) ? ' AND l.username IN ("' . implode('", "', $search['username']) . '")' : null;
+			$query .= (count($search['id']) > 0) ? ' AND l.id IN ("' . implode('", "', $search['id']) . '")' : null;
 			$query .= ($search['has_image'] == true) ? ' AND (u.image = 1 OR u.image = 2)' : null;
 			$query .= ($search['has_visited'] > 0) ? ' AND l.id = uv.item_id AND uv.type = "profile_visit" AND uv.user_id = "' . $search['has_visited'] . '"' : null;
 
@@ -152,7 +154,14 @@
 		
 		function avatar_thumb_url()
 		{
-			return 'http://images.hamsterpaj.net/images/users/thumb/' . $this->id . '.jpg';
+			if(file_exists('/mnt/images/images/users/thumb/' . $this->id . '.jpg'))
+			{
+				return 'http://images.hamsterpaj.net/images/users/thumb/' . $this->id . '.jpg';
+			}
+			else
+			{
+				return 'http://images.hamsterpaj.net/user_no_image.png';
+			}
 		}
 		
 		function get_age()
