@@ -1,0 +1,32 @@
+.group_entry_list
+{
+	list-style-type: none;
+	padding: 0px;
+	margin-left: 0px;
+}
+
+.group_entry_list li
+{
+	clear: both;
+	background: #f1f5ff;
+	border: 1px solid #d0e3f2;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+.group_entry_list .user_profile_mini
+{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: #f7faff;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.group_entry_list p
+{
+	
+}

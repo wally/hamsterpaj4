@@ -164,3 +164,42 @@
 {
 	height: 100px;
 }
+
+
+.digga_all_artists h1
+{
+	clear: both;
+	border-bottom: 1px solid #efefef;
+	padding-top: 15px;
+	padding-left: 15px;
+	margin-bottom: 5px;
+}
+
+.digga_classifications
+{
+	padding: 0px;
+}
+.digga_classifications li
+{
+	display: block;
+	border: 1px solid #efefef;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	margin-bottom: 3px;
+	margin-right: 10px;
+	padding: 3px;
+	width: 280px;
+	float: left;
+}
+
+.digga_classifications .meter_filled
+{
+	color: black;
+	letter-spacing: 1px;
+}
+
+.digga_classifications .meter_grey
+{
+	letter-spacing: 1px;
+	color: #ababab;
+}

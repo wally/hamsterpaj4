@@ -83,7 +83,12 @@
 			// Bug, only allows one entry
 			$search['id'] = (isset($search['id']) && !is_array($search['id'])) ? array($search['id']) : array();
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
-			$search['limit'] = (isset($search['limit'])) ? $search['limit'] : 1;
+			if(isset($search['id']))
+			{
+				$search['id'] = (is_array($search['id'])) ? $search['id'] : array($search['id']);
+			}
+			$search['limit'] = (isset($search['limit'])) ? $search['limit'] : 9999;
+			
 			$search['order-by'] = (isset($search['order-by'])) ? $search['order-by'] : 'l.id';
 			$search['order-direction'] = (isset($search['order-direction'])) ? $search['order-direction'] : 'ASC';
 			

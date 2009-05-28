@@ -70,7 +70,6 @@
 				if(method_exists($class, 'url_hook'))
 				{
 					$match = call_user_func(array($class, 'url_hook'), $uri);
-					tools::debug($class . ': ' . $match);
 					if($match > $top_match)
 					{
 						$page = new $class();

@@ -1,4 +1,43 @@
 <?php
+
+	class page_digga_classification extends page
+	{
+		function url_hook($uri)
+		{
+			return (substr($uri, 0, 19) == '/digga/musikstilar/') ? 10 : 0;			
+		}
+			
+		function execute($uri)
+		{
+			global $_PDO;
+			
+			$handle = substr($uri, 19);
+			
+			$query = 'SELECT id, name, handle FROM digga_classifications WHERE handle LIKE "' . $handle . '" LIMIT 1';
+			foreach($_PDO->query($query) AS $row)
+			{
+				
+				$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name', 'has_classification' => $row['id']), array('allow_multiple' => true));
+				$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+			}
+		}	
+	}	
+
+
+	class page_digga_all_artists extends page
+	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/alla-artister') ? 10 : 0;			
+		}
+
+		function execute($uri)
+		{
+			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
+			$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+		}
+	}
+
 	class page_digga_start extends page
 	{
 		function url_hook($uri)
@@ -11,7 +50,11 @@
 			$passed = array();
 			
 			$passed['recent_artists'] = artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
-			$passed['top_artists'] = artist::fetch(array('limit' => 6, 'order-by' => 'fan_count', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+
+			$top_search['limit'] = 6;
+			$top_search['order-by'] = 'fan_count';
+			$top_search['order-direction'] = 'DESC';
+			$passed['top_artists'] = artist::fetch($top_search, array('allow_multiple' => true));
 			$passed['user_idols'] = artist::fetch(array('order-by' => 'name', 'order-direction' => 'ASC', 'has_fan' => $this->user), array('allow_multiple' => true));
 			$passed['user'] = $this->user;
 			
@@ -152,7 +195,7 @@
 					$query = 'SELECT * FROM digga_user_classifications WHERE user = "' . $this->user->get('id') . '" AND artist = "' . $artist->get('id') . '"';
 					foreach($_PDO->query($query) AS $row)
 					{
-						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '"';
+						$update = 'UPDATE digga_artist_classifications SET sum = sum - "' . $row['value'] . '", votes = votes - 1, average = sum / votes';
 						$update .= ' WHERE artist = "' . $row['artist'] . '" AND classification = "' . $row['classification'] . '"';
 						$_PDO->query($update);
 					}
@@ -173,10 +216,10 @@
 							$query .= ' VALUES("' . $this->user->get('id') . '", "' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
 							$_PDO->query($query);
 
-							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum)';
-							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '")';
+							$insert = 'INSERT INTO digga_artist_classifications (artist, classification, sum, votes)';
+							$insert .= ' VALUES("' . $artist->get('id') . '", "' . $_POST['classification_' . $i] . '", "' . $_POST['value_' . $i] . '", 1, "' . $_POST['value_' . $i] . '")';
 
-							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '"';
+							$update = 'UPDATE digga_artist_classifications SET sum = sum + "' . $_POST['value_' . $i] . '", votes = votes + 1, average = sum / votes';
 							$update .= ' WHERE artist = "' .  $artist->get('id') . '" AND classification = "' . $_POST['classification_' . $i] . '" LIMIT 1';
 
 							if(!$_PDO->query($insert))
@@ -233,7 +276,11 @@
 			global $_PDO;
 
 			$search['limit'] = (is_numeric($search['limit'])) ? $search['limit'] : 30;
-			
+
+			if(array_key_exists('id', $search))
+			{
+				$search['id'] = (is_array($search['id'])) ? $search['id'] : array($search['id']);
+			}
 			if(array_key_exists('name', $search))
 			{
 				$search['name'] = (is_array($search['name'])) ? $search['name'] : array($search['name']);
@@ -247,11 +294,14 @@
 			$query = 'SELECT da.id, da.name, da.handle, da.fan_count, da.group_id';
 			$query .= ' FROM digga_artists AS da';
 			$query .= (isset($search['has_fan'])) ? ', digga_fans AS df' : '';
+			$query .= (isset($search['has_classification'])) ? ', digga_artist_classifications AS dac' : '';
 			$query .= ' WHERE 1';
 			
+			$query .= (is_array($search['id'])) ? ' AND da.id IN ("' . implode('", "', $search['id']) . '")' : null;
 			$query .= (is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
 			$query .= (is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
 			$query .= (isset($search['has_fan'])) ? ' AND df.user = "' . $search['has_fan']->get('id') . '" AND df.artist = da.id' : '';
+			$query .= (isset($search['has_classification'])) ? ' AND dac.classification = "' . $search['has_classification'] . '" AND dac.artist = da.id' : '';
 			
 			$query .= (isset($search['order-by'])) ? ' ORDER BY `' . $search['order-by'] . '`' : null;		
 			$query .= (isset($search['order-by']) && isset($search['order-direction'])) ? ' ' . $search['order-direction'] : null;
@@ -264,7 +314,7 @@
 				$artist->set(array('name' => $row['name']));
 				$artist->set(array('handle' => $row['handle']));
 				$artist->set(array('fan_count' => $row['fan_count']));
-				$artist->set(array('group' => array('id' => $row['group_id'])));
+				$artist->set(array('group_id' => $row['group_id']));
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -330,13 +380,18 @@
 			}
 		}
 		
-		function add_fan($user)
+		function add_fan($user, $options = array())
 		{
 			global $_PDO;
 			$query = 'INSERT INTO digga_fans(artist, user) VALUES("' . $this->id . '", "' . $user->id . '")';
 			$_PDO->query($query);
 			$this->fan_count++;
 			$this->save();
+			
+			if($option['disable_group_join'] !== true)
+			{
+				$this->get('group')->join($user);
+			}
 		}
 		
 		function user_classifications($user)
@@ -362,14 +417,14 @@
 			if(count($this->classifications) < 1 || true)
 			{
 				global $_PDO;
-				$query = 'SELECT dc.name, dac.classification, dac.sum';
+				$query = 'SELECT dc.name, dc.handle, dac.average, dac.classification, dac.sum';
 				$query .= ' FROM digga_classifications AS dc, digga_artist_classifications AS dac';
 				$query .= ' WHERE dc.id = dac.classification';
 				$query .= ' AND dac.artist = "' . $this->get('id') . '"';
-				$query .= ' ORDER BY dac.sum DESC LIMIT 8';
+				$query .= ' ORDER BY dac.average DESC LIMIT 8';
 				foreach($_PDO->query($query) AS $row)
 				{
-					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum']);
+					$this->classifications[$row['classification']] = array('name' => $row['name'], 'sum' => $row['sum'], 'handle' => $row['handle'], 'average' => $row['average']);
 				}
 			}
 			return $this->classifications;
@@ -390,31 +445,59 @@
 		function get_group()
 		{
 			global $_PDO;
-			if($this->group['id'] > 0)
+			if(is_object($this->group) && $this->group->exists())
 			{
 				return $this->group;
 			}
-			$name = $this->name;
-			$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
-			$i = 0;
-			foreach($_PDO->query($query) AS $row)
+			elseif($this->group_id > 0)
 			{
-				$i++;
-				$name = $this->get('name') . ' ' . $i;
+				$this->group = group::fetch(array('id' => $this->group_id));
+				return $this->group;
+			}
+			else
+			{
+				$name = $this->name;
 				$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+				$i = 0;
+				foreach($_PDO->query($query) AS $row)
+				{
+					$i++;
+					$name = $this->get('name') . ' ' . $i;
+					$query = 'SELECT groupid FROM groups_list WHERE name LIKE "' . $name . '" LIMIT 1';
+				}
+	
+				$query = 'INSERT INTO groups_list(owner, take_new_members, name, description, presentation, not_member_read_presentation, not_member_read_messages)';
+				$query .= ' VALUES(3, 1, "' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", 1, 1)';
+				
+				if($_PDO->query($query))
+				{
+					echo $_PDO->lastInsertId();
+					$this->group = group::fetch(array('id' => $_PDO->lastInsertId()));
+					$query = 'UPDATE digga_artists SET group_id = "' . $this->group->get('id') . '" WHERE id = "' . $this->id . '" LIMIT 1';
+					$_PDO->query($query);
+					return $this->group;
+				}	
 			}
-
-			$query = 'INSERT INTO groups_list(owner, take_new_members, name, description, presentation, not_member_read_presentation, not_member_read_messages)';
-			$query .= ' VALUES(3, 1, "' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", "En Digga-grupp för musikgruppen/artisten ' . $name . '", 1, 1)';
-			
-			if($_PDO->query($query))
-			{
-				$this->group['id'] = $_PDO->lastInsertId();
-				$query = 'UPDATE digga_artists SET group_id = "' . $this->group['id'] . '" WHERE id = "' . $this->id . '" LIMIT 1';
-				$_PDO->query($query);
-				return $this->group;
-			}	
+		}
+	}
+	
+	class page_digga_external_battle extends page
+	{
+		function url_hook($uri)
+		{
+			return ($uri == '/digga/external/battle') ? 10 : 0;
 		}
 		
+		function execute($uri)
+		{
+			$artists = artist::fetch(array('handle' => $_GET['artists']), array('allow_multiple' => true));
+			
+			$this->content = template('pages/misc/digga/artist_battle.php', array('artists' => $artists));
+			$this->content .= '<style type="text/css">@import url("/css/misc/digga.css");</style>';
+			
+			$this->content = str_replace('<a href=', '<a target="_top" href=', $this->content);
+			
+			$this->raw_output = true;
+		}
 	}
 ?>

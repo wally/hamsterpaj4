@@ -14,8 +14,22 @@
 		</form>
 	<?php endif; ?>
 	
-	<img src="<?php echo $artist->graph_url(); ?>" class="artist_radar" />
-	
+	<h2>Musikstil</h2>
+	<ul class="digga_classifications">
+		<?php foreach($artist->get_classifications() AS $class) : ?>
+			<li>
+				<h4><a href="/digga/musikstilar/<?php echo $class['handle']; ?>"><?php echo $class['name']; ?></a></h4>
+				<span class="meter_filled">
+				<?php for($i = 0; $i < 5; $i += 0.1)
+					{
+						echo '|';
+						echo ($i > $class['average']) ? '</span><span class="meter_grey">' : null;
+					}
+				?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+		
 	<?php	if($user->exists()) : ?>
 		<?php if($artist->is_fan($user)) : ?>
 			<?php echo template('pages/misc/digga/classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
@@ -24,12 +38,12 @@
 		<?php endif; ?>
 	<?php endif; ?>
 	
-	<?php
-		/*
-		<?php	$group = $artist->get('group'); ?>
-		<a href="/traffa/groups.php?action=goto&groupid=<?php echo $group['id']; ?>">Kolla in gruppen!</a>
-		*/
-	?>	
+	<?php $group = $artist->get('group'); ?>
+	<h2><a href="/traffa/groups.php?action=goto&groupid=<?php echo $group->get('id'); ?>">
+		Gruppen <?php echo $group->get('name'); ?>
+	</a></h2>
+	
+	<?php echo template('group/entry_list.php', array('entries' => $artist->get('group')->entries())); ?>	
 
 	
 	<a href="spotify:search:<?php echo $artist->get('name'); ?>">

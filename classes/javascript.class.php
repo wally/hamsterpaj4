@@ -6,6 +6,15 @@
 		{
 			// Get array off css files
 			$javascripts = tools::fetch_files_from_folder(PATH_JAVASCRIPTS);
+			
+			foreach($javascripts AS $key => $value)
+			{
+				if($value == 'jquery-1.3.2.min.js')
+				{
+					unset($javascripts[$key]);
+				}
+			}
+			array_unshift($javascripts, 'jquery-1.3.2.min.js');
 
 			// If we are in dev environment, DON'T compress css
 			if(ENVIRONMENT == 'development')
