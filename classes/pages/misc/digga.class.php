@@ -495,6 +495,8 @@
 			$this->content = template('pages/misc/digga/artist_battle.php', array('artists' => $artists));
 			$this->content .= '<style type="text/css">@import url("/css/misc/digga.css");</style>';
 			
+			$this->content = str_replace('<a href=', '<a target="_top" href=', $this->content);
+			
 			$this->raw_output = true;
 		}
 	}
