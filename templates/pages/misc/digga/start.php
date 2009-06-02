@@ -16,6 +16,8 @@
 	<h2>Vilken musik <strong>diggas</strong> mest just nu?</h2>
 	<?php echo template('pages/misc/digga/artist_battle.php', array('artists' => $top_artists)); ?>
 	
+	<div style="clear: both;"></div>
+	
 	<?php if($user->exists()) : ?>
 		<h2>Din <strong>musiksmak</strong> just nu</h2>
 		<div class="digga_start_user_idols">
