@@ -1,0 +1,83 @@
+.comment_list
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.comment_list li
+{
+	border-top: 2px dotted #F2F2F2;
+	padding: 10px;
+	min-height: 50px;
+}
+
+.comment_list li .user_avatar
+{
+	width: 40px;
+	height: 53px;
+	margin-right: 10px;
+	float: left;
+}
+
+.comment_list li .content
+{
+	margin-left: 55px;
+}
+.comment_list li h2
+{
+	margin-top: 0;
+	font-size: 1.2em;
+}
+
+.comment_list li .timestamp
+{
+	color: #878787;
+}
+
+.comment_list li .remove
+{
+	display: none;
+}
+
+.comment_form
+{
+	border-top: 2px dotted #F2F2F2;
+	border-bottom: 2px dotted #F2F2F2;
+	padding: 10px;
+}
+
+.comment_form .text
+{
+	width: 300px;
+	margin-right: 10px;
+	padding-left: 20px;
+	background: url(http://images.hamsterpaj.net/famfamfam_icons/comment_add.png) no-repeat 2px 1px;
+}
+
+.comment_form .submit
+{
+	width: 87px;
+}
+
+.comment_form .error
+{
+	background: url(http://images.hamsterpaj.net/famfamfam_icons/exclamation.png) no-repeat;
+	padding: 2px 0 0 20px;
+	color: red;
+	margin-top: 10px;
+	display: none;
+}
+
+.comment_error_not_member
+{
+	border-top: 2px dotted #F2F2F2;
+	border-bottom: 2px dotted #F2F2F2;
+	padding: 10px;
+}
+
+.comment_error_not_member span
+{
+	background: url(http://images.hamsterpaj.net/famfamfam_icons/exclamation.png) no-repeat;
+	padding: 2px 0 0 20px;
+}
