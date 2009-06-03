@@ -113,6 +113,7 @@
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
 			
+
 			foreach($_PDO->query($query) AS $row)
 			{
 				$user = new user();
@@ -130,7 +131,7 @@
 				{
 					$user->privileges[$privileges[$i]][] = $privilege_values[$i];
 				}
-				
+
 				if($params['allow_multiple'] == true)
 				{
 					$users[] = $user;
