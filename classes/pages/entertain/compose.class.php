@@ -21,8 +21,16 @@
 					switch($_POST['type'])
 					{
 						case 'html':
+							$item->set(array('data' => html_entity_decode($_POST['data'])));
+							break;
 						case 'url':
 							$item->set(array('data' => $_POST['data']));				
+							break;
+						case 'iframe':
+							$item->set(array('data' => html_entity_decode($_POST['data'])));
+							break;
+						case 'web':
+							$item->set(array('data' => html_entity_decode($_POST['data'])));
 							break;
 					}
 					
