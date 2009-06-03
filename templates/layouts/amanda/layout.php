@@ -33,6 +33,9 @@
 					<?php endif; ?>
 				</div>
 				<?php echo template('layouts/amanda/main_menu.php'); ?>
+				<div id="xxl">
+					<?php echo $page->xxl; ?>
+				</div>
 				<div id="content">
 					<?php echo $page->content; ?>
 				</div>
@@ -69,5 +72,6 @@
 				</script>
 			</div>
 		</div>
+		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
 	</body>
 </html>
