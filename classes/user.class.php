@@ -120,6 +120,7 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->last_visit = $row['last_visit'];
+				$user->load_privilegies();
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -193,20 +194,34 @@
 			return $this->visitors;
 		}
 		
+		function load_privilegies()
+    {
+      global $_PDO;
+      
+      $stmt = $_PDO->prepare('SELECT privilegie, value FROM privilegies WHERE user = :userid');
+      $stmt->bindParam(':userid', $this->id, PDO::PARAM_INT);
+      $stmt->execute();
+      while($data = $stmt->fetch())
+      {
+        $this->privilegies[$data['privilegie']][$data['value']] = true;
+      }
+    }
+		
 		function privilegied($privilegie, $value = NULL)
 		{
-			if(isset($this->user->privilegies->igotgodmode))
+			
+			if(isset($this->privilegies['igotgodmode']))
 			{
 				return true;
 			}
 			
 			if($value == NULL)
 			{
-				return isset($this->user->privilegies->$privilegie);
+				return isset($this->privilegies[$privilegie]);
 			}
 			else
 			{
-				return (isset($this->user->privilegie->$privilegie->$value)  || $this->user->privilegie->$privilegie == 0);
+				return ($this->privilegies[$privilegie][$value] == $value || isset($this->privilegies[$privilegie][0]));
 			}
 		}
 		
