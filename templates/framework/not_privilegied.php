@@ -1,0 +1,1 @@
+<h1>Du har inte rättighet att besöka denna sida</h1>
