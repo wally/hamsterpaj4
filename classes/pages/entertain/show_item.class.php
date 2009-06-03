@@ -26,7 +26,7 @@
 
 			$this->content = $game->preview_full();
 			$items = array($game, $game);
-			$this->content .= template('pages/entertain/previews.php', array('items' => $items));
+			$this->content .= entertain::previews($items);
 		}
 	}
 

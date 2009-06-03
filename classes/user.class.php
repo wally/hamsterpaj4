@@ -113,7 +113,7 @@
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
 			
-			tools::debug($query);
+			#tools::debug($query);
 
 			foreach($_PDO->query($query) AS $row)
 			{
@@ -134,7 +134,7 @@
 					$user->privilegies[$privilegies[$i]] = $previligie_values[$i];
 				}
 				
-				tools::debug($user);
+				#tools::debug($user);
 				
 				if($params['allow_multiple'] == true)
 				{
