@@ -1,0 +1,11 @@
+.notification_not_found
+{
+	padding-left: 160px;
+	height: 128px;
+	background: url(http://static.hamsterpaj.net/images/icons/128x128/warning.png) no-repeat;
+}
+
+.notification_not_found h1
+{
+	padding-top: 25px;
+}
