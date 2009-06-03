@@ -113,8 +113,6 @@
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
 			
-			tools::debug($query);
-
 			foreach($_PDO->query($query) AS $row)
 			{
 				$user = new user();
@@ -124,17 +122,14 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->last_visit = $row['last_visit'];
-				$user->load_privilegies();
-				
+
 				// Explode privilegies and privilegie_values, add them to the object
-				$privilegies = explode(',', $row['privilegies']);
-				$privilegie_values = explode(',', $row['privilegie_values']);
-				for($i = 0; $i < count($privilegies); $i++)
+				$privileges = explode(',', $row['privilegies']);
+				$privilege_values = explode(',', $row['privilegie_values']);
+				for($i = 0; $i < count($privileges); $i++)
 				{
-					$user->privilegies[$privilegies[$i]] = $previligie_values[$i];
+					$user->privileges[$privileges[$i]][] = $privilege_values[$i];
 				}
-				
-				tools::debug($user);
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -208,33 +203,20 @@
 			return $this->visitors;
 		}
 		
-		function load_privilegies()
-    {
-      global $_PDO;
-      
-      $stmt = $_PDO->prepare('SELECT privilegie, value FROM privilegies WHERE user = :userid');
-      $stmt->bindParam(':userid', $this->id, PDO::PARAM_INT);
-      $stmt->execute();
-      while($data = $stmt->fetch())
-      {
-        $this->privilegies[$data['privilegie']][$data['value']] = true;
-      }
-    }
-		
 		function privilegied($privilegie, $value = NULL)
 		{
-			if(isset($this->privilegies['igotgodmode']))
+			if(isset($this->privileges['igotgodmode']))
 			{
 				return true;
 			}
 			
 			if($value == NULL)
 			{
-				return isset($this->privilegies[privilegie]);
+				return isset($this->privileges[privilegie]);
 			}
 			else
 			{
-				return (isset($this->privilegies[privilegie][$value])) ? true : false;
+				return (isset($this->privileges[privilege][$value])) ? true : false;
 			}
 		}
 		
