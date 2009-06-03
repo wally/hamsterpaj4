@@ -95,10 +95,11 @@
 			$user = new user();
 			$query = 'SELECT l.id, l.username, l.password, l.lastlogon';
 			$query .= ', u.user_status';
+			$query .= ', GROUP_CONCAT(p.privilegie) AS privilegies, GROUP_CONCAT(p.value) AS privilegie_values';
 			
 			$query .= ($search['has_visited'] > 0) ? ', uv.timestamp AS last_visit, uv.count AS visit_count' : null;
 			
-			$query .= ' FROM login AS l, userinfo AS u';
+			$query .= ' FROM login AS l LEFT OUTER JOIN privilegies AS p ON l.id = p.user, userinfo AS u';
 
 			$query .= ($search['has_visited'] > 0) ? ', user_visits AS uv' : null;
 
@@ -108,8 +109,11 @@
 			$query .= ($search['has_image'] == true) ? ' AND (u.image = 1 OR u.image = 2)' : null;
 			$query .= ($search['has_visited'] > 0) ? ' AND l.id = uv.item_id AND uv.type = "profile_visit" AND uv.user_id = "' . $search['has_visited'] . '"' : null;
 
+			$query .= ' GROUP BY l.id';
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
+			
+			tools::debug($query);
 
 			foreach($_PDO->query($query) AS $row)
 			{
@@ -120,6 +124,16 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->last_visit = $row['last_visit'];
+				
+				// Explode privilegies and privilegie_values, add them to the object
+				$privilegies = explode(',', $row['privilegies']);
+				$privilegie_values = explode(',', $row['privilegie_values']);
+				for($i = 0; $i < count($privilegies); $i++)
+				{
+					$user->privilegies[$privilegies[$i]] = $previligie_values[$i];
+				}
+				
+				tools::debug($user);
 				
 				if($params['allow_multiple'] == true)
 				{
@@ -195,18 +209,18 @@
 		
 		function privilegied($privilegie, $value = NULL)
 		{
-			if(isset($this->user->privilegies->igotgodmode))
+			if(isset($this->privilegies['igotgodmode']))
 			{
 				return true;
 			}
 			
 			if($value == NULL)
 			{
-				return isset($this->user->privilegies->$privilegie);
+				return isset($this->privilegies[privilegie]);
 			}
 			else
 			{
-				return (isset($this->user->privilegie->$privilegie->$value)  || $this->user->privilegie->$privilegie == 0);
+				return (isset($this->privilegies[privilegie][$value])) ? true : false;
 			}
 		}
 		
