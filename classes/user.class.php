@@ -94,7 +94,7 @@
 			
 			$user = new user();
 			$query = 'SELECT l.id, l.username, l.password, l.lastlogon';
-			$query .= ', u.user_status';
+			$query .= ', u.user_status, u.cell_phone';
 			$query .= ', GROUP_CONCAT(p.privilegie) AS privilegies, GROUP_CONCAT(p.value) AS privilegie_values';
 			
 			$query .= ($search['has_visited'] > 0) ? ', uv.timestamp AS last_visit, uv.count AS visit_count' : null;
@@ -122,6 +122,7 @@
 				$user->password = $row['password'];
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
+				$user->cell_phone = $row['cell_phone'];
 				$user->last_visit = $row['last_visit'];
 
 				// Explode privilegies and privilegie_values, add them to the object
