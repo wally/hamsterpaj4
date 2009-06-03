@@ -124,6 +124,7 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->last_visit = $row['last_visit'];
+				$user->load_privilegies();
 				
 				// Explode privilegies and privilegie_values, add them to the object
 				$privilegies = explode(',', $row['privilegies']);
@@ -206,6 +207,19 @@
 			}
 			return $this->visitors;
 		}
+		
+		function load_privilegies()
+    {
+      global $_PDO;
+      
+      $stmt = $_PDO->prepare('SELECT privilegie, value FROM privilegies WHERE user = :userid');
+      $stmt->bindParam(':userid', $this->id, PDO::PARAM_INT);
+      $stmt->execute();
+      while($data = $stmt->fetch())
+      {
+        $this->privilegies[$data['privilegie']][$data['value']] = true;
+      }
+    }
 		
 		function privilegied($privilegie, $value = NULL)
 		{
