@@ -9,20 +9,38 @@
 		
 		function previews($items)
 		{
-			return template('pages/entertain/previews.php', array('items' => $items));
+			return template('entertain/previews.php', array('items' => $items));
 		}
 		
-		function display()
+		function render()
 		{
 			switch ($this->type) {
 				case 'flash':
-					return template('pages/entertain/flash.php', array('item' => $this));
+					return template('entertain/views/flash.php', array('item' => $this));
 					break;
 				case 'web':
-					
+					return template('entertain/views/web.php', array('item' => $this));
+					break;
+				case 'iframe':
+					return template('entertain/views/iframe.php', array('item' => $this));
+					break;
+				case 'html':
+					return template('entertain/views/html.php', array('item' => $this));
 					break;
 				case 'text':
-					
+					return template('entertain/views/text.php', array('item' => $this));
+					break;
+				case 'preformatted':
+					return template('entertain/views/preformatted.php', array('item' => $this));
+					break;
+				case 'file':
+					return template('entertain/views/file.php', array('item' => $this));
+					break;
+				case 'image':
+					return template('entertain/views/image.php', array('item' => $this));
+					break;
+				case 'mp3':
+					return template('entertain/views/mp3.php', array('item' => $this));
 					break;
 				default:
 					tools::debug('Fatal error, no entertain type set.');
@@ -47,7 +65,6 @@
 			$this->has_image = $result['has_image'];
 			$this->published_at = $result['published_at'];
 			$this->uploaded_by = $result['uploaded_by'];
-			tools::debug($this);
 		}
 
 		function __construct()
