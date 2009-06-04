@@ -1,7 +1,7 @@
 <div class="entertain_view">
-	<h1>I Love Death</h1>
+	<h1><?php echo $item->get('title'); ?></h1>
 	<!--[if !IE]> -->
-	<object type="application/x-shockwave-flash" data="<?php echo $item->get('url'); ?>">
+	<object type="application/x-shockwave-flash" data="<?php echo $item->get('data'); ?>">
 	<!-- <![endif]-->
 	
 	<!--[if IE]>

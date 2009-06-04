@@ -25,7 +25,7 @@
 
 	$session_map['location'] = array('userinfo', 'geo_location');
 
-	$session_map['privilegies'] = array('privilegies');
+	$session_map['privileges'] = array('privileges');
 	
 	$session_map['groups'] = array('groups_members');
 ?>

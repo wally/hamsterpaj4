@@ -6,9 +6,9 @@
 			$comment_list = new comment_list;
 			$comment_list->user = $this->user;
 			$comment_list->type = 'photos';
-			$comment_list->id = $id;
+			$comment_list->item_id = $id;
 			$comment_list->limit = 22;
-			
+			$comment_list->fetch_comments();
 			$comment_list->render();
 		*/
 		function fetch_comments()
@@ -24,7 +24,6 @@
 			$query->bindParam(':type', $this->type, PDO::PARAM_STR, 20);
 			$query->execute();
 			$comments = $query->fetchAll(PDO::FETCH_ASSOC);
-
 			$this->comments = array();
 			foreach($comments as $comment_data)
 			{

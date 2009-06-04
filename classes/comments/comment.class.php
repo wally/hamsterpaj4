@@ -22,12 +22,13 @@
 			
 			$query = 'INSERT INTO comments
 								SET 
-									item_id = ' . $this->item_id . ', 
+									item_id = "' . $this->item_id . '", 
 									type = "' . $this->type . '", 
 									timestamp = UNIX_TIMESTAMP(), 
 									text = "' . $this->text . '", 
 									user_id = ' . $this->user->get('id') . '
 							 ';
+			tools::debug($query);
 			$_PDO->exec($query);
 		}
 		

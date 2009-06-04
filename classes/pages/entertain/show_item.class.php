@@ -16,18 +16,32 @@
 		
 		function execute($uri)
 		{
-			$game = new entertain();
-			$game->set(array('type' => 'flash'));
-			$game->set(array('name' => 'Bloons Tower Defense 3'));
-			$game->set(array('url' => 'http://amuse.hamsterpaj.net/distribute/game/learn_to_fly.swf'));
-			$game->set(array('class' => 'onlinegame'));
-			
 			$uri_explode = explode('/', $uri);
+			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
+			{
+				$this->content = template('framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
+				return;
+			}
+			$item->render();
+
+			// Fetch two items of the same type
+			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true));
+
+			// Fetch three items with random type
+			$random_items = entertain::fetch(array('limit' => 5, 'allow_multiple' => true));
 			
-			$item = new entertain();
-			$item->fetch($uri_explode[2]);
+			$related = array_merge($same_type, $random_items);
 			
-			$this->content = $item->render();
+			$comment_list = new comment_list;
+			$comment_list->user = $this->user;
+			$comment_list->type = 'entertain';
+			$comment_list->item_id = $item->get('id');
+			$comment_list->limit = 10;
+			$comment_list->fetch_comments();
+			
+			$this->content .= $comment_list->render();
+			
+			$this->content = template('pages/entertain/show_item.php', array('item' => $item, 'related' => $related, 'comment_list' => $comment_list));
 		}
 	}
 

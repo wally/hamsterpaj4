@@ -1,2 +1,5 @@
 <h1>Text view</h1>
-<?php echo $item->get('data'); ?>
+
+<p>
+	<?php echo $item->get('data'); ?>
+</p>

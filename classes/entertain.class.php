@@ -48,28 +48,55 @@
 			}
 		}
 		
-		function fetch($handle)
+		function preview_image($dimension)
+		{
+			return 'http://static.hamsterpaj.net/images/entertain/default_previews/' . $this->category . '_medium.png';
+		}
+		
+		function fetch($search)
 		{
 			global $_PDO;
-			$stmt = $_PDO->prepare('SELECT * FROM entertain WHERE handle = :handle');
-			$stmt->bindParam(':handle', $handle, PDO::PARAM_STR);
-			$stmt->execute();
-			$result = $stmt->fetch();
-			$this->id = $result['id'];
-			$this->type = $result['type'];
-			$this->category = $result['category'];
-			$this->title = $result['title'];
-			$this->handle = $result['handle'];
-			$this->click = $result['click'];
-			$this->data = $result['data'];
-			$this->has_image = $result['has_image'];
-			$this->published_at = $result['published_at'];
-			$this->uploaded_by = $result['uploaded_by'];
+			
+			$query = 'SELECT * FROM entertain WHERE 1';
+			$query .= (isset($search['handle'])) ? ' AND handle = "' . $search['handle'] . '"' : '';
+			$query .= (isset($search['type'])) ? ' AND type = "' . $search['type'] . '"' : '';
+			$query .= (isset($search['limit'])) ? ' LIMIT ' . $search['limit'] : '';
+			
+			foreach($_PDO->query($query) AS $row)
+			{
+				$item = new entertain();				
+
+				$item->id = $row['id'];
+				$item->type = $row['type'];
+				$item->category = $row['category'];
+				$item->title = $row['title'];
+				$item->handle = $row['handle'];
+				$item->click = $row['click'];
+				$item->data = $row['data'];
+				$item->has_image = $row['has_image'];
+				$item->published_at = $row['published_at'];
+				$item->uploaded_by = $row['uploaded_by'];
+				
+				if($search['allow_multiple'] == true)
+				{
+					$items[] = $item;
+				}
+				else
+				{
+					return $item;
+				}
+			}
+			return $items;
 		}
 
 		function __construct()
 		{
 			$this->published_at = time();
+		}
+		
+		function get_url()
+		{
+			return '/flash/' . $this->handle;
 		}
 		
 		function set_title($title)

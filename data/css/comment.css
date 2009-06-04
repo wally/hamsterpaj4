@@ -49,8 +49,7 @@
 
 .comment_form .text
 {
-	width: 300px;
-	margin-right: 10px;
+	width: 100%;
 	padding-left: 20px;
 	background: url(http://images.hamsterpaj.net/famfamfam_icons/comment_add.png) no-repeat 2px 1px;
 }

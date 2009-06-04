@@ -5,8 +5,14 @@
 	<label>Innehållstyp</label>
 	<select name="type">
 		<option value="text">Text</option>
-		<option value="url">URL</option>
+		<option value="web">Webb-länk</option>
+		<option value="iframe">Iframe</option>
 		<option value="html">HTML-kod</option>
+		<option value="flash">Flash</option>
+		<option value="image">Bild</option>
+		<option value="preformatted">För-formatterad</option>
+		<option value="file">Nedladdningsbar fil</option>
+		<option value="mp3">Musik</option>
 	</select>
 	
 	<label>Kategori</label>
