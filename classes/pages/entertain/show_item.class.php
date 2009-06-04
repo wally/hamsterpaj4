@@ -22,11 +22,12 @@
 			$game->set(array('url' => 'http://amuse.hamsterpaj.net/distribute/game/learn_to_fly.swf'));
 			$game->set(array('class' => 'onlinegame'));
 			
-//			$this->content = template('pages/entertain/flash.php', array('item' => $game));
-
-			$this->content = $game->preview_full();
-			$items = array($game, $game);
-			$this->content .= entertain::previews($items);
+			$uri_explode = explode('/', $uri);
+			
+			$item = new entertain();
+			$item->fetch($uri_explode[2]);
+			
+			$this->content = $item->render();
 		}
 	}
 
