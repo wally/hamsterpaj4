@@ -1,0 +1,52 @@
+#cellphone_lookup_form form {
+	background: #F9EDFF;
+	padding: 10px;
+	border: 1px solid #F2F2F2;
+	font-family: Georgia, serif; 
+	font-size: 1.5em;
+	margin: 10px;
+}
+#operator_container {
+	background: #7b7b7b url(http://images.hamsterpaj.net/alpha_gradients/gradient_100h_10a.png) repeat-x;
+	border: 1px solid #F2F2F2;
+	color: #FFF;
+	width: 200px;
+	text-align: center;
+	padding: 10px;
+	margin: 10px;
+}
+#cellphone_submit, #cellphone_number, #cellphone_lookup_form form label {
+	font-family: Georgia, serif; 
+	font-size: 1.2em;
+}
+.no_abonnent {
+	background: #F00 !important;
+	color: #FFF !important;
+}
+.telia {
+	background: #cf0566 !important;
+	color: #fff !important;
+}
+.tre {
+	background: #f07c0f !important;
+	color: #fff !important;
+	border-color: #7b7b7b !important;
+}
+.comviq {
+	background: #000 !important;
+	color: #FFF !important;
+	border-color: red !important;
+}
+.glocalnet {
+	background: #f46f21 !important;
+	color: #fff !important;
+	border-color: black !important;
+}
+.telenor {
+	background: #000 !important;
+	color: #28a5e6 !important;
+	border-color: #28a5e6 !important;
+}
+#operator_container {
+	background: inherit url(http://images.hamsterpaj.net/alpha_gradients/gradient_100h_10a.png) repeat-x;
+}

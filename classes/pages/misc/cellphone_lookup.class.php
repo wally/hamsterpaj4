@@ -1,0 +1,35 @@
+<?php
+class page_cellphone_lookup extends page
+{
+	function url_hook($uri)
+	{
+		return preg_match('#^/mobilnummer(/)?(.*?)?$#', $uri) ? 10 : 0;
+	}
+	
+	function execute($uri) 
+	{
+		global $_CELLPHONE_LOOKUP_OPERATOR_ALIASES, $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT;
+		
+		$uri_explode = explode('/', $uri);
+		
+		if (preg_match('#^(46|0046|\+46)?07(0|3|6)([0-9]{7})$#', $uri_explode[2], $matches))
+		{
+			$phone_number['country_code'] = $matches[1];
+			$phone_number['offset_3'] = $matches[2];
+			$phone_number['offset_4'] = $matches[3];
+			$phone_number_formatted = '467' . $phone_number['offset_3'] . $phone_number['offset_4'];
+			$data['phone_number_readable'] = '07' . $phone_number['offset_3'] . $phone_number['offset_4'];
+			
+			$data['raw'] = utf8_encode(exec('/home/joar/mob.sh ' . escapeshellarg($phone_number_formatted)));
+			$data['raw'] = str_replace(array('å', 'ä', 'ö'), NULL, $data['raw']);
+			preg_match('#\sr\s(.*?)\s\[#', $data['raw'], $matches);
+			$data['operator'] = $matches[1];
+			
+			$data['operator_alias'] = $_CELLPHONE_LOOKUP_OPERATOR_ALIASES[$data['operator']] == NULL ? $data['operator'] : $_CELLPHONE_LOOKUP_OPERATOR_ALIASES[trim($data['operator'])];
+			$data['operator_short'] = $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT[$data['operator']] == NULL ? NULL : $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT[$data['operator']];
+		}
+		
+		$this->content = template('pages/misc/cellphone_lookup.php', array('data' => $data));
+	}
+}
+?>
