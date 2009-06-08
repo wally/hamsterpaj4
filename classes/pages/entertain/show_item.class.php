@@ -22,7 +22,6 @@
 				$this->content = template('framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
-			$item->render();
 
 			// Fetch two items of the same type
 			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true));
@@ -39,9 +38,15 @@
 			$comment_list->limit = 10;
 			$comment_list->fetch_comments();
 			
-			$this->content .= $comment_list->render();
-			
-			$this->content = template('pages/entertain/show_item.php', array('item' => $item, 'related' => $related, 'comment_list' => $comment_list));
+			$out['item'] = $item;
+			$out['related'] = $related;
+			$out['comment_list'] = $comment_list;
+			if($this->user->privilegied('entertain_edit'))
+			{
+				$out['admin'] = template('entertain/item_admin_puff.php');
+			}
+						
+			$this->content = template('pages/entertain/show_item.php', $out);
 		}
 	}
 

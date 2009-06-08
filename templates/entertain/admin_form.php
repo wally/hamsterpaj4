@@ -1,9 +1,10 @@
-<h1>Nytt objekt i Entertain</h1>
+<h1>Skapa nytt objekt <em>Entertain</em></h1>
+<form method="post">
+	<label for="entertain_create_name">Namn</label>
+	<input type="text" name="title" id="entertain_create_name" />
 
-<form class="entertain_admin_form" method="post">
-	<input type="hidden" name="action" value="create" />
-	<label>Innehållstyp</label>
-	<select name="type">
+	<label for="entertain_create_type">Typ</label>
+	<select name="type" id="entertain_create_type">
 		<option value="text">Text</option>
 		<option value="web">Webb-länk</option>
 		<option value="iframe">Iframe</option>
@@ -15,26 +16,15 @@
 		<option value="mp3">Musik</option>
 	</select>
 	
-	<label>Kategori</label>
-	<select name="category">
-		<option value="flash">Flashfilm</option>
-		<option value="onlinegame">Onlinespel</option>
-		<option value="web">Webbsida (iframe)</option>
-	</select>
-	
-	<label>Namn</label>
-	<input type="text" name="title" />
-	
-	<label>Data</label>
-	<textarea name="data"></textarea>
-	<input type="file" name="image" />
-	
-	<label>Bild</label>
-	<input type="file" name="image" />
-	
-	<label>Publiceringstid</label>
-	<input type="text" name="release" />
-
-	<input type="submit" value="Spara" />
+	<input type="submit" value="Skapa" />
 </form>
 
+<p>
+	Här skapar du ett objekt i Entertain och väljer vad för typ av objekt det är.
+	Objektets handle (som används i webbadressen) kommer också att skapas.
+	Varken handle eller typ kommer att kunna ändras längre fram.
+</p>
+
+<p>
+	Objektet som skapas kommer markeras som dolt, på nästa sida får du möjlighet att redigera det.
+</p>

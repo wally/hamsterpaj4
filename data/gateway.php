@@ -87,7 +87,15 @@
 	
 		$page->user->lastaction();
 
-		if($page->get('raw_output') === true)
+		if(strlen($page->get('route')) > 0)
+		{
+			
+		}
+		elseif(strlen($page->get('redirect')) > 0)
+		{
+			header('Location: ' . $page->get('redirect'));
+		}
+		elseif($page->get('raw_output') === true)
 		{
 			echo $page->content;
 		}
