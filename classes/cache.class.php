@@ -14,6 +14,11 @@
 			return unserialize($serialized);
 		}
 		
+		public function save($handle, $data)
+		{
+			cache::cache_save($handle, $data);
+		}
+		
 		public function cache_save($handle, $data)
 		{
 			$serialized = serialize($data);
