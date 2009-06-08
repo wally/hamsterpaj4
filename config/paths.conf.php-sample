@@ -7,6 +7,7 @@
 	define('PATH_COMPRESSED_CSS', '/mnt/static/css/');
 	define('PATH_JAVASCRIPTS', PATH_WEBROOT . 'scripts/');
 	define('PATH_COMPRESSED_JAVASCRIPTS', '/mnt/static/javascripts/');
+	define('PATH_TEMP', '/tmp/hamsterpaj/');
 
 	define('PATH_CACHE', '/storage/www/www.hamsterpaj.net/data/cache/');
 		
