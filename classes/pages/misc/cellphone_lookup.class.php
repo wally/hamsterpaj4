@@ -34,11 +34,13 @@ class page_cellphone_lookup extends page
 				
 				$data['operator_alias'] = $_CELLPHONE_LOOKUP_OPERATOR_ALIASES[$data['operator']] == NULL ? $data['operator'] : $_CELLPHONE_LOOKUP_OPERATOR_ALIASES[trim($data['operator'])];
 				$data['operator_short'] = $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT[$data['operator']] == NULL ? NULL : $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT[$data['operator']];
-				cache::save('cellphone_lookup_numbers', $data);
+				$phone_number_cache[$phone_number_formatted] = $data;
+				cache::save('cellphone_lookup_numbers', $phone_number_cache);
 			}
 			else
 			{
 				tools::debug('Laddade från cache');
+				
 				$data = $data_cached;
 			}
 		}
