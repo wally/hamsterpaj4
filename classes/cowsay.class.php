@@ -103,6 +103,8 @@
 			system($cmd);
 			tools::debug(posix_getpwnam('www-data'));
 			tools::debug($lines);
+			
+			return shell_exec('/usr/games/cowsay Noob-joar! :D');
 		}
 	}
 ?>
