@@ -2,85 +2,84 @@
 * Menu
 */
 #main_menu
-{
-	margin: 0;
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png');
-	height: 44px;
-	padding: 0;
+{ 
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -73px repeat-x;
+	height: 41px;
+	list-style: none;
+  margin: 0;
+  padding-left: 16px;
 }
-
-#main_menu a
-{
-	color: #5e553c;	
-}
-
+  
 #main_menu li
 {
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') right -81px no-repeat;
-	display: block;
-	float: left;
-	height: 44px;
-	padding-left: 10px;
-	padding-right: 10px;
+  float: left;
+  width: auto;
+  height: 41px;
+  display: block;
+  padding-left: 1px;
+  margin-left:-1px;
+  background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -114px no-repeat;
 }
-
-#main_menu #active
-{
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') -0 -124px;
+  
+#main_menu li a
+{ 
+  display: block;
+  padding: 13px 12px 9px 12px;
+  height: 19px;
+  color: #634b2f;
+  background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") right bottom;
 }
-
-#main_menu .arrow
+  
+#main_menu .big a
 {
-	background: transparent url(http://static.hamsterpaj.net/images/layouts/amanda/main_menu/arrow.png) no-repeat center center;
-	height: 5px;
-	width: 100%;
-	position: relative;
-}
-
-#main_menu .small
-{
-	padding-top: 15px;
-	height: 29px;
-}
-
-#main_menu .small .arrow
-{
-	top: 12px;
-}
-
-#main_menu .big
-{
-	font-size: 20px;
-	padding-top: 8px;
-	height: 34px;
-}
-
-#main_menu .big .arrow
-{
-	top: 6px;
+  font-size: 20px;
+  letter-spacing: -1px;
+  padding: 6px 12px 16px 12px;
 }
 	
-/**
-* Sub-menu
-*/
+#main_menu li:hover
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -155px no-repeat;
+}
+
+#main_menu li a:hover
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") top right;
+	color: #383838;
+	position: relative;
+}
+	
+#main_menu #active
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -155px no-repeat;
+}
+
+#main_menu #active a
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") top right;
+	color: #383838;
+	position: relative;
+}	
+
 #main_menu_sub
 {
+	list-style: none;
 	margin: 0;
-	background: url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') -0 -44px;
-	height: 25px;
-	padding: 11px 20px 0 0;
-	font-size: 13px;
+	padding: 0 0 0 6px;
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -196px repeat-x;
+	height: 36px;
 }
 
-#main_menu_sub a
-{
-	color: #5e553c;	
-}
-
-#main_menu_sub li
-{
+#main_menu_sub li a
+{ 
 	display: block;
-	list-style-type: none;
-	margin-left: 20px;
 	float: left;
+	height: 20px;
+	padding: 11px 10px 0 10px;
+	width: auto;
+}
+
+#main_menu_sub li a:hover
+{
+	color: #333;
 }
