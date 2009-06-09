@@ -74,6 +74,7 @@
 					{
 						$page = new $class();
 						$top_match = $match;
+						event_log::log($class);
 					}
 				}
 			}
