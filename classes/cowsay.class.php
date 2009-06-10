@@ -84,7 +84,7 @@
 			$cmd .= $this->mode == NULL ? NULL : ' -' . $this->mode;
 			$cmd .= $this->message == NULL ? ' "Eftersom du inte skrev in någon text så har jag inget mer att säga dig än detta."' : ' ' . $this->message . '';
 			
-			return htmlentities(utf8_encode(shell_exec($cmd)));
+			return utf8_encode(htmlentities(shell_exec($cmd)));
 		}
 	}
 ?>
