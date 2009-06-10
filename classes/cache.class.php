@@ -27,7 +27,14 @@
 			fclose($file);
 		}
 		
+		# This method should not be used. Not at all. Do not use it.
 		public function lastUpdate($handle)
+		{
+			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
+		}
+		
+		# This method provides you cookies
+		public function last_update($handle)
 		{
 			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
 		}
