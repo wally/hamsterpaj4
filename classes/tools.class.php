@@ -101,5 +101,11 @@
 			$string = strtolower(str_replace($healthy, $yummy, $string));
 			return preg_replace('/[^a-zA-Z0-9\-\/]/', '', $string);		
 		}
+		
+		function array_pop_key($array, $key)
+		{
+			return $array[$key];
+		}
+		
 	}
 ?>

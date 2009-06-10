@@ -6,7 +6,7 @@ body
 {
 	background: #8ec0e5 url(http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png) repeat-x 0 -241px;
 	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
-	color: #454545;
+	color: #323232;
 	font-size: 0.7em;
 	overflow-x: hidden;
 	margin: 0px;
@@ -36,7 +36,7 @@ img
 
 h1, h2
 {
-	font-family: Georgia, serif;
+	font-family: tahoma, ms trebuchet, arial, verdana, helvetica;
 	font-size: 2em;
 	font-weight: normal;
 }

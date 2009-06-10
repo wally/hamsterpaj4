@@ -43,7 +43,7 @@
 			$out['comment_list'] = $comment_list;
 			if($this->user->privilegied('entertain_edit'))
 			{
-				$out['admin'] = template('entertain/item_admin_puff.php');
+				$out['admin'] = template('entertain/item_admin_puff.php', array('item' => $item));
 			}
 						
 			$this->content = template('pages/entertain/show_item.php', $out);

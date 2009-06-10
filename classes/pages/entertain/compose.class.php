@@ -9,7 +9,7 @@
 		
 		function execute($uri)
 		{
-			if($this->user->privilegied('entertain_add'))
+			if($this->user->privilegied('entertain_admin'))
 			{
 				if(isset($_POST['title']))
 				{
