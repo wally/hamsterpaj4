@@ -3,7 +3,6 @@
 	{
 		function set_name($name)
 		{
-			tools::debug('This is set_name!');
 			$this->name = $name;
 		}
 		
@@ -19,7 +18,6 @@
 		
 		function render()
 		{
-			tools::debug($this);
 			$o = '<select';
 			$o .= (isset($this->name)) ? ' name="' . $this->name . '"' : null;
 			$o .= '>' . "\n";

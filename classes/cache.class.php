@@ -30,6 +30,7 @@
 		# This method should not be used. Not at all. Do not use it.
 		public function lastUpdate($handle)
 		{
+			tools::debug('<span style="color: red; font-weight: bold;">Please use cache::last_update() instead of tools::lastUpdate()</span>');
 			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
 		}
 		

@@ -1,6 +1,6 @@
 <h1>Redigerar entertain-objekt #<?php echo $item->get('id'); ?>, <?php echo $item->get('handle'); ?></h1>
 
-<form method="post" class="entertain_edit">
+<form method="post" class="entertain_edit" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="update" />
 	
 	<label for="entertain_edit_title">Namn</label>

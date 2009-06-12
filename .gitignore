@@ -18,6 +18,7 @@ data/*
 !data/.htaccess
 !data/css/
 !data/scripts/
+log/*
  
 # Files to exclude
 secrets/secret.class.php

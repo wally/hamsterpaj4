@@ -92,7 +92,6 @@
 			$search['order-by'] = (isset($search['order-by'])) ? $search['order-by'] : 'l.id';
 			$search['order-direction'] = (isset($search['order-direction'])) ? $search['order-direction'] : 'ASC';
 			
-			$user = new user();
 			$query = 'SELECT l.id, l.username, l.password, l.lastlogon';
 			$query .= ', u.user_status, u.cell_phone';
 			$query .= ', GROUP_CONCAT(p.privilegie) AS privilegies, GROUP_CONCAT(p.value) AS privilegie_values';
@@ -112,7 +111,6 @@
 			$query .= ' GROUP BY l.id';
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
-			
 
 			foreach($_PDO->query($query) AS $row)
 			{
