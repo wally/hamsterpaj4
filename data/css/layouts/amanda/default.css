@@ -87,7 +87,12 @@ dd
 
 #wrapper
 {
-	width: 1000px;
+	width: 1200px;
+}
+
+#column_ads
+{
+	padding-top: 50px;
 }
 
 #hp
