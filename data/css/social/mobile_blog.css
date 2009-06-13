@@ -3,6 +3,7 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	clear: both;
 }
 
 .mobile_blog_list > li
@@ -94,4 +95,49 @@
 .mobile_blog_form .text
 {
 	width: 300px;	
+}
+
+.mobile_blog_menu
+{
+	padding: 10px 10px 10px 20px;
+	margin: 10px 0;
+	background: url(http://static.hamsterpaj.net/images/gradients/orange.png);
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.mobile_blog_menu ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+.mobile_blog_menu li
+{
+	display: inline;
+	margin-right: 20px;
+}
+
+.mobile_blog_register_number
+{
+	background: #FFF9ED;
+	border: 1px solid #F2F2F2;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.mobile_blog_register_number h2
+{
+	margin: 0;
+}
+
+.mobile_blog_register_number .sms
+{
+	margin-top: 0;
+}
+
+.mobile_blog_register_number .number
+{
+	margin-top: 0;
 }
