@@ -40,6 +40,16 @@
 		{
 			require_once PATH_CLASSES . $class;
 		}
+
+		// Load all package classes
+		$files = tools::fetch_files_from_folder(PATH_PACKAGES);
+		foreach($files as $file)
+		{
+			if(substr($file, -10) == '.class.php')
+			{
+				require_once PATH_PACKAGES . $file;
+			}
+		}
 		
 		// Load all configs
 		$configs = tools::fetch_files_from_folder(PATH_CONFIGS);
@@ -74,6 +84,7 @@
 					{
 						$page = new $class();
 						$top_match = $match;
+						event_log::log($class);
 					}
 				}
 			}

@@ -16,12 +16,14 @@
 			
 			$query .= ' FROM groups_list AS l LEFT OUTER JOIN groups_members AS m ON m.groupid = l.groupid';
 			$query .= ' WHERE 1';
-			$query .= (isset($search['id'])) ? ' AND l.groupid = "' . $search['id'] . '"' : null;
-			
+			$query .= (isset($search['id'])) ? ' AND l.groupid = :groupid' : null;
 			$query .= ' LIMIT 10';
 			
-		
-			foreach($_PDO->query($query) AS $row)
+			$stmt = $_PDO->prepare($query);
+			(isset($search['id'])) ? $stmt->bindValue(':groupid', $search['id']) : null;
+			$stmt->execute();
+			
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$group = new group();
 				$group->set(array('id' => $row['groupid']));
@@ -46,13 +48,20 @@
 		function join($user)
 		{
 			global $_PDO;
-			$query = 'SELECT COUNT(*) AS is_member FROM groups_members WHERE groupid = "' . $this->id . '" AND userid = "' . $user->get('id') . '" LIMIT 1';
-			$data = array_pop($_PDO->query($query));
+			$query = 'SELECT COUNT(*) AS is_member FROM groups_members WHERE groupid = :groupid AND userid = :userid LIMIT 1';
+			$stmt = $_PDO->prepare($query);
+			$stmt->bindValue(':groupid', $this->id);
+			$stmt->bindValue(':userid', $user->get('id'));
+			$stmt->execute();
+			$data = $stmt->fetch();
 			if($data['is_member'] == 0)
 			{
 				$query = 'INSERT INTO groups_members(groupid, userid, approved, own_group, read_msg, notices) VALUES(';
-				$query .= '"' . $this->id . '", "' . $user->get('id') . '", 1, 0, 0, "Y")';
-				$_PDO->query($query);
+				$query .= ':groupid, :userid, 1, 0, 0, "Y")';
+				$stmt = $_PDO->prepare($query);
+				$stmt->bindValue(':groupid', $this->id);
+				$stmt->bindValue(':userid', $user->get('id'));
+				$stmt->execute();
 				
 				$this->new_entry(array('author' => $user, 'body' => $user->get('username') . ' har gått med i gruppen!'));
 			}
@@ -61,11 +70,15 @@
 		function new_entry($arg)
 		{
 			global $_PDO;
-			$query = 'INSERT INTO groups_scribble (userid, groupid, timestamp, text, deleted) VALUES("' . $arg['author']->get('id') . '"';
-			$query .= ', "' . $this->get('id') . '", "' . time() . '", "' . $arg['body'] . '", 0)';
-			$_PDO->query($query);
-			
-			tools::debug($query);
+			$query = 'INSERT INTO groups_scribble (userid, groupid, timestamp, text, deleted)';
+			$query .= ' VALUES(:userid, "' . $this->get('id') . '", "' . time() . '", "' . $arg['body'] . '", 0)';
+
+			$stmt = $_PDO->prepare($query);
+			$stmt->bindValue(':userid', $arg['author']->get('id'));
+			$stmt->bindValue(':groupid', $this->get('id'));
+			$stmt->bindValue(':timestamp', time());
+			$stmt->bindValue(':text', $arg['body']);
+			$stmt->execute();
 			
 			$this->message_count++;
 			$this->save();
@@ -77,10 +90,16 @@
 			$options['offset'] = 0;
 			$options['limit'] = 25;
 			
-			$query .= 'SELECT id, userid, timestamp, text, deleted FROM groups_scribble WHERE groupid = "' . $this->id . '"';
-			$query .= ' ORDER BY id DESC LIMIT ' . $options['offset'] . ', ' . $options['limit'];
-
-			foreach($_PDO->query($query) AS $row)
+			$query .= 'SELECT id, userid, timestamp, text, deleted FROM groups_scribble WHERE groupid = :groupid';
+			$query .= ' ORDER BY id DESC LIMIT :offset, :limit';
+			
+			$stmt = $_PDO->prepare($query);
+			$stmt->bindValue(':groupid', $this->id);
+			$stmt->bindValue('offset', $options['offset']);
+			$stmt->bindValue('limit', $options['limit']);
+			$stmt->execute();
+			
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$entry = new group_entry();
 				$entry->set(array('text' => $row['text'], 'id' => $row['id'], 'timestamp' => $row['timestamp']));

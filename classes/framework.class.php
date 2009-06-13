@@ -37,12 +37,6 @@
 		public $side_modules = array();
 		private $user;
 		
-		function __construct()
-		{
-			global $_PDO;
-			$this->pdo = $_PDO;
-		}
-		
 		function load_side_modules()
 		{
 			$modules['search'] = new side_module_search();

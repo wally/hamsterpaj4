@@ -46,17 +46,6 @@
 						</div>
 					<?php endforeach; ?>
 				</div>
-
-				<!-- Nielsen Netratings -->
-				<script type="text/javascript">
-					var _rsCI="hamsterpaj-se";	 /* client ID */
-					var _rsCG="0";	 /* content group */
-					var _rsDN="//secure-dk.imrworldwide.com/";	 /* data node */
-				</script>
-				<script type="text/javascript" src="//secure-dk.imrworldwide.com/v52.js"></script>
-				<noscript>
-					<img src="//secure-dk.imrworldwide.com/cgi-bin/m?ci=hamsterpaj-se&amp;cg=0&amp;cc=1" alt=""/>
-				</noscript>
 			
 				<!-- Google Analytics -->
 				<script type="text/javascript">
@@ -71,6 +60,20 @@
 					catch(err) {}
 				</script>
 			</div>
+			<div id="column_ads">
+				<script type="text/javascript"><!--
+				google_ad_client = "pub-3110640362329253";
+				/* hamsterpaj 160x600, skapad 2009-06-08 */
+				google_ad_slot = "0695149486";
+				google_ad_width = 160;
+				google_ad_height = 600;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</div>
+
 		</div>
 		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
 	</body>

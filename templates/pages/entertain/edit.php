@@ -1,19 +1,29 @@
 <h1>Redigerar entertain-objekt #<?php echo $item->get('id'); ?>, <?php echo $item->get('handle'); ?></h1>
 
-<form method="post" class="entertain_edit">
+<form method="post" class="entertain_edit" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="update" />
 	
 	<label for="entertain_edit_title">Namn</label>
 	<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
 	
 	<label>Kategori</label>
-	<select name="category">
-		<?php foreach(entertain::categories() AS $category) : ?>
-			<option value="<?php echo $category['handle']; ?>"><?php echo $category['label']; ?></option>
-		<?php endforeach; ?>
-	</select>
-	
+	<?php echo $dropdown->render(); ?>
+
 	<h2>Bild</h2>
+	<img src="<?php echo $item->preview_image('medium'); ?>" name="<?php echo $item->get('handle'); ?>" id="entertain_admin_preview_image" />
+	<div id="entertain_preview_upload">
+		<button id="entertain_edit_preview_upload_submit" name="<?php echo $item->get('handle'); ?>">Ladda upp bild</button>
+	</div>
+	<div id="entertain_edit_preview_confirm">
+		<p>Fungerade det bra att ladda upp bilden?</p>
+		<button id="entertain_edit_preview_confirm_success">Ja</button>
+		<button id="entertain_edit_preview_confirm_fail">Nej</button>
+	</div>
+	
+	<input type="radio" name="has_image" value="0" id="entertain_admin_has_image_0" />
+	<label for="entertain_admin_has_image_0">Standard-bild</label>
+	<input type="radio" name="has_image" value="1" id="entertain_admin_has_image_1" />
+	<label for="entertain_admin_has_image_1">Egen screenshot</label>
 	
 	<h2>Data</h2>
 	<?php echo template($item->get('data_edit_template'), array('item' => $item)); ?>

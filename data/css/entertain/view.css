@@ -26,13 +26,14 @@
 */
 .entertain_preformatted
 {
-	color: black;
 	font-family: courier new;
+	font-size: 13px;
 	font-weight: bold;
 	display: block;
 	padding: 15px;
-	border: 1px solid #ababab;
-	background: #f2f2f2;
+	border: 1px solid #060c13;
+	background: #102034;
+	color: white;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
