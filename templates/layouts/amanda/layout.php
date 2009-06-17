@@ -18,10 +18,16 @@
 			foreach($javascripts as $javascript): ?>
 				<script src="<?php echo URL_JAVASCRIPTS . $javascript; ?>" type="text/javascript"></script>
 		<?php endforeach ?>
-	</head> 
+		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
+		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
+	</head>
 	<body>
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
 		<div id="wrapper">
+			<script type='text/javascript'><!--//<![CDATA[
+				Ads.insert(250, 'banner980x120 noprint');
+				//]]>-->
+			</script>
 			<div id="hp">
 				<div id="head">
 				<a href="/"><h1>Hamsterpaj.net</h1></a>
@@ -61,6 +67,15 @@
 				</script>
 			</div>
 			<div id="column_ads">
+			<script type='text/javascript'><!--//<![CDATA[
+				Ads.insert(251, '');
+				//]]>-->
+			</script>
+			<script type='text/javascript'><!--//<![CDATA[
+				Ads.insert(252, '');
+				//]]>-->
+			</script>
+			
 				<script type="text/javascript"><!--
 				google_ad_client = "pub-3110640362329253";
 				/* hamsterpaj 160x600, skapad 2009-06-08 */
