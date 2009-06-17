@@ -9,10 +9,19 @@
 		function execute()
 		{
 			$this->content = template('pages/social/mobile_blog/start.php');
+			$this->content .= template('pages/social/mobile_blog/menu.php', array('user' => $this->user));
 			$this->content .= template('pages/social/mobile_blog/form.php');
-			$this->content .= template('pages/social/mobile_blog/howto.php');
+			if(strlen($this->user->get('cell_phone')) < 3)
+			{
+				$this->content .= template('pages/social/mobile_blog/register_number.php', array('user' => $this->user, 'control_number' => mobile_blog::get_control_number($this->user->username)));
+			}
+			else
+			{
+				$this->content .= template('pages/social/mobile_blog/howto.php');
+			}
 			
-			$mobile_blogs = mobile_blog::fetch();
+			$options['user_id'] = $this->user->get('id');
+			$mobile_blogs = mobile_blog::fetch($options);
 			
 			$entries = array();
 			foreach($mobile_blogs as $entry)
@@ -25,6 +34,7 @@
 				$entries[] = $entry;
 			}
 			
+			$this->content .= '<h2>Dina senaste inlägg</h2>';
 			$this->content .= template('pages/social/mobile_blog/list.php', array('entries' => $entries));
 		}
 	}

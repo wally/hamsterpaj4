@@ -8,35 +8,23 @@
 		
 		function execute()
 		{
-			$request = split('/', $_SERVER['REQUEST_URI']);
-			$object = $request[3];
+			$this->content = template('pages/social/mobile_blog/list_header.php');
+			$this->content .= template('pages/social/mobile_blog/menu.php', array('user' => $this->user));
 			
-			switch($object)
+			$mobile_blogs = mobile_blog::fetch();
+			
+			$entries = array();
+			foreach($mobile_blogs as $entry)
 			{
-				case 'dig-sjalv':
-					// hämta dina
-					$owner = 'dina';
-					$this->content = template('pages/mobile_blog/list.php', array('posts' => $posts, 'user' => $this->user, 'owner' => $owner));
-				break;
-				
-				case 'anvandare':
-					if(!$user = user::fetch(array('username' => $request[4])))
-					{
-						$this->content = '<h1>Användaren kunde inte hittas</h1>';
-						break;
-					}
-					
-					tools::debug($user);
-					$owner = $user->username . '\'s';
-					$this->content = template('pages/mobile_blog/list.php', array('posts' => $posts, 'user' => $user, 'owner' => $owner));
-				break;
-				
-				default:
-					// Hämta vänners
-					$owner = 'dina vänners';
-					$this->content = template('pages/mobile_blog/list.php', array('posts' => $posts, 'owner' => $owner));
-				break;
+				$entry->comment_list = new comment_list();
+				$entry->comment_list->user = $this->user;
+				$entry->comment_list->item_id = $entry->id;
+				$entry->comment_list->type = 'mobile_blog';
+				$entry->comment_list->fetch_comments();
+				$entries[] = $entry;
 			}
+			
+			$this->content .= template('pages/social/mobile_blog/list.php', array('entries' => $entries));
 		}
 	}
 ?>

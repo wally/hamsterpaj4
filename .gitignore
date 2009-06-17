@@ -23,6 +23,7 @@ log/*
 # Files to exclude
 secrets/secret.class.php
 secrets/db_config.php
+secrets/mobile_blog_config.php
 
 # Configuration files
 config/paths.conf.php

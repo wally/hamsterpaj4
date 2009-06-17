@@ -1,0 +1,1 @@
+<h1><a href="/mobilblogg">Mobilblogg</a> &raquo; <a href="/traffa/profile.php?user_id=<?php echo $user_id; ?>"><?php echo $username; ?></a></h1>
