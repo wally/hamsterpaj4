@@ -33,7 +33,6 @@
 
 	class page extends hp4
 	{
-		public $menu = array();
 		public $side_modules = array();
 		private $user;
 		
@@ -53,6 +52,13 @@
 				}
 			}
 		}
+		
+		function load_menu()
+		{
+			global $menu;
+			$this->menu = new menu;
+			$this->menu->data = $menu;
+		}
 	}
 	
 	class module extends hp4
@@ -60,12 +66,12 @@
 		protected $visible = true;
 		function execute($page)
 		{
-			return template('layouts/amanda/side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
+			return template(NULL, 'layouts/amanda/side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
 	
 	
-	function template($template_handle, $params = null)
+	function template($package = null, $template_handle, $params = null)
 	{
 		foreach($params as $key => $value)
 		{
@@ -76,7 +82,15 @@
 		}
 
 		ob_start();
-		include(PATH_TEMPLATES . $template_handle);
+		if($package == null)
+		{
+			include(PATH_TEMPLATES . $template_handle);
+		}
+		else
+		{
+			tools::debug($package);
+			include(PATH_PACKAGES . $package . '/templates/' . $template_handle);
+		}
 		$html = ob_get_contents();
 		ob_end_clean();
 		return $html;

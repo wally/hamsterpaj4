@@ -28,7 +28,7 @@
 						<?php echo template('layouts/amanda/loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
-				<?php echo template('layouts/amanda/main_menu.php'); ?>
+				<?php echo $page->menu->render(); ?>
 				<div id="xxl">
 					<?php echo $page->xxl; ?>
 				</div>
