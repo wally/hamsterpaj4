@@ -92,7 +92,7 @@
 			$search['order-by'] = (isset($search['order-by'])) ? $search['order-by'] : 'l.id';
 			$search['order-direction'] = (isset($search['order-direction'])) ? $search['order-direction'] : 'ASC';
 			
-			$query = 'SELECT l.id, l.username, l.password, l.lastlogon';
+			$query = 'SELECT l.id, l.username, l.password, l.lastlogon, l.quality_level, l.quality_level_expire';
 			$query .= ', u.user_status, u.cell_phone';
 			$query .= ', GROUP_CONCAT(p.privilegie) AS privilegies, GROUP_CONCAT(p.value) AS privilegie_values';
 			
@@ -122,6 +122,8 @@
 				$user->signature = $row['user_status'];
 				$user->cell_phone = $row['cell_phone'];
 				$user->last_visit = $row['last_visit'];
+				$user->quality_level = $row['quality_level'];
+				$user->quality_level_expire = $row['quality_level_expire'];
 
 				// Explode privilegies and privilegie_values, add them to the object
 				$privileges = explode(',', $row['privilegies']);
@@ -140,6 +142,7 @@
 					return $user;
 				}
 			}
+
 			return ($params['allow_multiple'] == true) ? $users : false;
 		}
 		
