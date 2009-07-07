@@ -1,0 +1,323 @@
+body
+{
+	background: #8ec0e5 url(http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png) repeat-x 0 -241px;
+	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
+	color: #323232;
+	font-size: 0.7em;
+	overflow-x: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+a
+{ 
+	color: #000;
+	text-decoration: none; 
+}
+
+a:hover
+{
+	text-decoration: underline; 
+}
+
+a img
+{
+	border: none;
+}
+
+img
+{
+	display: block;
+}
+
+h1, h2
+{
+	font-family: tahoma, ms trebuchet, arial, verdana, helvetica;
+	font-size: 2em;
+	font-weight: normal;
+}
+
+h2, h3, h4, h5, h6
+{
+	margin-top: 10px;
+}
+
+h2
+{
+	font-size: 1.5em;
+}
+
+h3
+{
+		font-size: 1.3em;
+}
+
+h5
+{
+	font-weight: 800;
+}
+
+label
+{
+	font-weight: bold;
+}
+
+label:after
+{
+	content: ':';
+}
+
+ul
+{
+	padding-left: 30px;
+}
+
+dd
+{
+	margin-left: 20px;
+}
+
+.clear{
+	clear: both;
+}
+
+.textarea_full
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+	-moz-border-radius: 3px;
+	width: 625px;
+	height: 500px;
+}
+
+#wrapper
+{
+	width: 1200px;
+}
+
+#column_ads
+{
+	padding-top: 50px;
+}
+
+#hp
+{
+	border: 1px solid #6188A4;
+	background: #fff;
+	width: 880px;
+	margin: 10px;
+	float: left; /* Makes it possible to have ad's floating on the right side of the page */
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#hp #head
+{
+	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') repeat-x 0 -168px;
+	height: 73px;
+	-moz-border-radius-topright: 8px;
+	-webkit-border-radius-topright: 8px;
+	-moz-border-radius-topleft: 8px;
+	-webkit-border-radius-topleft: 8px;
+}
+
+#hp #head h1
+{
+	float: left;
+	height: 73px;
+	width: 365px;
+	text-indent: -500px;
+	margin: 0px;
+	margin-right: 20px;
+	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
+}
+
+#hp #head #login
+{
+	float: left;
+	display: block;
+	padding-top: 20px;
+	width: 490px;
+}
+
+#hp #head #login span
+{
+	display: block;
+	float: left;
+	width: 120px;
+	margin-left: 10px;
+}
+
+#head #login input
+{
+	width: 110px;
+}
+
+#hp #head #login .buttons
+{
+	width: 180px;
+	padding-top: 12px;
+}
+
+#hp #head #login .buttons input
+{
+	width: auto;
+}
+
+/**
+*	Notice icons
+*/
+#hp #head #notices
+{
+	margin-top: 12px;
+	float: left;
+	width: 300px;
+}
+
+#hp #head #notices ul
+{
+	padding: 0px;
+	margin-left: 0;
+}
+
+#hp #head #notices ul li
+{
+	display: block;
+	float: left;
+	width: 75px;
+	height: 50px;
+	text-align: center
+}
+
+#hp #head #notices a
+{
+	display: block;
+	width: 60px;
+	padding-top: 36px;
+
+}
+
+#hp #head #notices #notices_guestbook a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -72px;
+}
+
+#hp #head #notices #notices_guestbook a:hover, #hp #head #notices #notices_guestbook .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -125px;
+}
+
+#hp #head #notices #notices_forum a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -72px;
+}
+
+#hp #head #notices #notices_forum a:hover, #hp #head #notices #notices_forum .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -125px;
+}
+
+#hp #head #notices #notices_groups a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -72px;
+}
+
+#hp #head #notices #notices_groups a:hover, #hp #head #notices #notices_groups .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -125px;
+}
+
+#hp #head #notices #notices_events a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -72px;
+}
+
+#hp #head #notices #notices_events a:hover, #hp #head #notices #notices_events .active a
+{
+	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -125px;
+}
+
+#hp #head #notices ul li ul
+{
+	display: none;
+}
+
+/**
+*	Login status
+*/
+#hp #head #status
+{
+	float: left;
+	width: 190px;
+	padding-top: 10px;
+}
+
+#hp #head #status .user_avatar
+{
+	width: 45px;
+	height: 58px;
+	float: left;
+	margin-right: 10px;
+}
+
+#content
+{
+	padding: 10px;
+	width: 636px;
+	float: left;
+}
+
+/**
+* Modules
+*/
+#hp #modules
+{
+	background: #F0F0F0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	-webkit-border-radius-topleft: 8px;
+	-webkit-border-radius-bottomleft: 8px;
+	width: 200px;
+	margin-left: 660px;
+	padding: 10px 10px 1px;
+}
+
+#hp #modules .module
+{
+	background: white;
+	padding: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+#daniella
+{
+	position: absolute;
+	float: left;
+}
+
+/**
+* Framework
+*/
+#debug
+{
+	position: absolute;
+	margin: 0px;
+	right: 0px;
+	width: 250px;
+	padding: 20px;
+	opacity: 0.5;
+	background: white;
+	-moz-border-radius-bottomleft: 8px;
+	max-height: 90%;
+	overflow: auto;
+	float: right;
+}
+
+#debug dt
+{
+	font-weight: bold;
+}

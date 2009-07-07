@@ -1,0 +1,85 @@
+/**
+* Menu
+*/
+#main_menu
+{ 
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -73px repeat-x;
+	height: 41px;
+	list-style: none;
+  margin: 0;
+  padding-left: 16px;
+}
+  
+#main_menu li
+{
+  float: left;
+  width: auto;
+  height: 41px;
+  display: block;
+  padding-left: 1px;
+  margin-left:-1px;
+  background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -114px no-repeat;
+}
+  
+#main_menu li a
+{ 
+  display: block;
+  padding: 13px 12px 9px 12px;
+  height: 19px;
+  color: #634b2f;
+  background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") right bottom;
+}
+  
+#main_menu .big a
+{
+  font-size: 20px;
+  letter-spacing: -1px;
+  padding: 6px 12px 16px 12px;
+}
+	
+#main_menu li:hover
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -155px no-repeat;
+}
+
+#main_menu li a:hover
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") top right;
+	color: #383838;
+	position: relative;
+}
+	
+#main_menu #active
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -155px no-repeat;
+}
+
+#main_menu #active a
+{
+	background: url("http://dump.birdy.nu/hp/des/Des6/menu_bg_sprites.png") top right;
+	color: #383838;
+	position: relative;
+}	
+
+#main_menu_sub
+{
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 6px;
+	background: url("http://dump.birdy.nu/hp/des/Des6/sprites.png") 0 -196px repeat-x;
+	height: 36px;
+}
+
+#main_menu_sub li a
+{ 
+	display: block;
+	float: left;
+	height: 20px;
+	padding: 11px 10px 0 10px;
+	width: auto;
+}
+
+#main_menu_sub li a:hover
+{
+	color: #333;
+}

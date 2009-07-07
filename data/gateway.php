@@ -98,6 +98,10 @@
 	
 		$page->user->lastaction();
 
+		if(strlen($page->get('content_type')) > 0 )
+		{
+			header('Content-type: ' . $page->get('content_type'));
+		} 
 		if(strlen($page->get('route')) > 0)
 		{
 			
