@@ -1,5 +1,10 @@
 #side_module_forum_posts ul
 {
 	list-style-type: none;
-	padding: 2px;
+	padding: 0px;
 }
+
+.ui_module_latest_posts_written {
+	color: #818181;
+	font-size: 11px;
+}/*Hello*/
