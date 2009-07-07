@@ -5,6 +5,21 @@
 	float: left;
 }
 
+.digga_start h1
+{
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: -0.5px;
+	color: #585858;
+}
+
+.digga_start { margin-left: 2px; width: 636px; }
+ 
+.digga_start strong {
+	font-size: 20px;
+	color: #343434;
+}
+
 .classification_label
 {
 	width: 165px !important;
@@ -39,37 +54,55 @@
 
 .digga_start h2
 {
-	margin-top: 40px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: -0.5px;
+	color: #585858;
 }
 
 .artist_radar
 {
-
 }
 
+.show_new
+{
+	float: right;
+	margin-top: -20px;
+	font-size: 12px;
+}
 .artist_battle
 {
 	padding-bottom: 50px;
+	margin-top: 14px;
+	margin-left: -6px;
+}
+
+.artist_battle .fans {
+	margin-top: -13px;
+	position: absolute;
+	color: #4f6c18;
 }
 
 .artist_battle .container
 {
 	float: left;
 	text-align: center;
+	margin-left: 1px;
 }
 
 .artist_battle .bar_wrapper
 {
-	margin-top: 10px;
+	margin-top: 15px;
 	height: 150px;
 	position: relative;
+	padding-left: 5px;
 }
 
 .artist_battle .bar
 {
-	margin: 5px;
-	background: #f5ba4d;
-	border: 1px solid #bd842b;
+	background: #ddef96;
+	border: 1px solid #c2e243;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	position: absolute;
@@ -79,38 +112,53 @@
 
 .artist_battle .bar:hover
 {
-	background: #f6c25e;
+	background: #d1e581;
 }
 
 
 .artist_battle .digga_artist_mini
 {
-	width: auto;
+	width: 93px;
 	float: none;
-	height: 20px;
-	margin-bottom: 5px;
+	height: 18px;
+	background-color: #dcdcbb;
+	border-color: #c7c796;
+	color: #4c4c0e;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 5px;
+}
+
+.artist_battle .digga_artist_mini:hover
+{
+	background-color: #e2e2c7;
 }
 
 .digga_artist_mini
 {
 	float: left;
-	width: 145px;
+	width: 147.2px;
 	padding: 3px;
-	border: 1px solid #f2f2f2;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	margin: 3px;
+	background-color: #fada9d;
+	border: 1px solid #e6c38c;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 	overflow: hidden;
+	margin: 5px 0 0 5px;
+	height: 18px;
 }
+
+.digga_artist_mini:hover { background-color: #ffeac2; }
 
 .digga_artist_mini h5
 {
 	margin: 0px;
+	font-weight: normal;
 }
 
 .digga_artist_mini a
 {
-	color: #565656;
+	color: #483716;
 }
 
 .digga_artist_mini a:hover
@@ -120,7 +168,9 @@
 
 .digga_start_latest
 {
-	height: 75px;
+	height: 64px;
+	margin-top: 9px;
+	margin-left: -5px;
 }
 
 .digga_start_user_idols
@@ -128,7 +178,7 @@
 	float: right;
 	height: 350px;
 	overflow: auto;
-	width: 175px;
+	width: 160px;
 }
 
 .digga_spotify_search
@@ -153,16 +203,59 @@
 
 .digga_form
 {
-	padding: 10px;
-	border: 1px solid #f2f2f2;
-	background: #fff9ed;
+	padding: 8px;
+	background: #e7e7e7;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-top: 13px;
+	margin-bottom: 12px;
 }
 
+.digga_form label { display: none; }
 
+.digga_form input[type="text"]
+{
+	border: 1px solid #b9b9b9;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	font-size: 16px;
+	color: #6a6a6a;
+	padding: 7px;
+	width: 495px;
+}
+
+.digga_form input[type="text"]:focus
+{
+	color: #333;
+}
+
+.digga_form input[type="submit"]
+{
+	font-size: 19px;
+	letter-spacing: -0.5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: url("http://static.hamsterpaj.net/images/layouts/amanda/button_bg.png") top left transparent no-repeat;
+	border: 0;
+	padding: 5px;
+	position: absolute;
+	width: 118px;
+	color: #634b2f;
+	margin-left: -10px;
+}
+
+.digga_form input[type="submit"]:hover
+{
+	color: #523d24;
+	background: url("http://static.hamsterpaj.net/images/layouts/amanda/button_bg.png") bottom left transparent no-repeat;
+}
 
 .artist .fans
 {
 	height: 100px;
+	text-align: center;
 }
 
 
