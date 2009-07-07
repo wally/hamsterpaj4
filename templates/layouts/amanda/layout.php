@@ -7,7 +7,7 @@
 		<style type="text/css">
 				@import url('/style.css');
 		</style>
-		<script src="/scritps.js" type="text/javascript"></script>
+		<script src="/scripts.js" type="text/javascript"></script>
 		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
 		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
 	</head>
@@ -22,10 +22,10 @@
 				<div id="head">
 				<a href="/"><h1>Hamsterpaj.net</h1></a>
 					<?php if($page->user->exists()) : ?>
-						<?php echo template('layouts/amanda/noticebar.php', array('user' => $page->user)); ?>
-						<?php echo template('layouts/amanda/statusbar.php', array('user' => $page->user)); ?>
+						<?php echo template(NULL, 'layouts/amanda/noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template(NULL, 'layouts/amanda/statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
-						<?php echo template('layouts/amanda/loginbar.php'); ?>
+						<?php echo template(NULL, 'layouts/amanda/loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
 				<?php echo $page->menu->render(); ?>
