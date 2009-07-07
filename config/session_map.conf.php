@@ -11,6 +11,8 @@
 	$session_map['session_id'] = array('login', 'session_id');
 	$session_map['username'] = array('login', 'username');
 	$session_map['password'] = array('login', 'password');
+	$session_map['quality_level'] = array('login', 'quality_level');
+	$session_map['quality_level_expire'] = array('login', 'quality_level_expire');
 
 	$session_map['DEPRECATED_userlevel'] = array('login', 'userlevel');
 
@@ -25,7 +27,7 @@
 
 	$session_map['location'] = array('userinfo', 'geo_location');
 
-	$session_map['privileges'] = array('privileges');
+	$session_map['privileges'] = array('privilegies');
 	
 	$session_map['groups'] = array('groups_members');
 ?>

@@ -40,7 +40,17 @@
 		{
 			require_once PATH_CLASSES . $class;
 		}
-
+		
+		// Load all package configs
+		$files = tools::fetch_files_from_folder(PATH_PACKAGES);
+		foreach($files as $file)
+		{
+			if(substr($file, -9) == '.conf.php')
+			{
+				require_once PATH_PACKAGES . $file;
+			}
+		}
+		
 		// Load all package classes
 		$files = tools::fetch_files_from_folder(PATH_PACKAGES);
 		foreach($files as $file)
@@ -94,10 +104,15 @@
 		$page->user = new user;
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
+		$page->load_menu();
 		$page->execute($uri);
 	
 		$page->user->lastaction();
 
+		if(strlen($page->get('content_type')) > 0 )
+		{
+			header('Content-type: ' . $page->get('content_type'));
+		} 
 		if(strlen($page->get('route')) > 0)
 		{
 			
@@ -114,14 +129,14 @@
 		{
 			if(isset($page->template))
 			{
-				$out = template($page->template, array('page' => $page));
+				$out = template(NULL, $page->template, array('page' => $page));
 			}
 			else
 			{
-				$out = template('layouts/amanda/layout.php', array('page' => $page));
+				$out = template(NULL, 'layouts/amanda/layout.php', array('page' => $page));
 			}
 			 $_SESSION = $page->user->to_session();
-			$debug = template('framework/debug.php');
+			$debug = template(NULL, 'framework/debug.php');
 			echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 		}
 	}

@@ -1,6 +1,38 @@
 <?php
 	class tools
 	{
+		function find_files($dir, $options)
+		{
+			$options['recursive'] = ($options['recursive'] === false) ? false : true;
+
+			$files = scandir($dir);
+			foreach($files AS $key => $file)
+			{
+				$extension = substr($file, strrpos($file, '.') + 1);
+				if($file == '.' || $file == '..')
+				{
+					unset($files[$key]);
+					continue;
+				}
+				
+				if(is_dir($dir . $file))
+		    {
+		    	$subfiles = tools::find_files($dir . $file . '/', $options);
+		    	foreach($subfiles AS $subfile)
+		    	{
+		    		$files[] = $file . '/' . $subfile;
+		    	}
+		    	unset($files[$key]);
+		    }
+				elseif(isset($options['extension']) && $extension != $options['extension'])
+				{
+					unset($files[$key]);
+					continue;
+				}
+			}
+			return $files;
+		}
+
 		function fetch_files_from_folder($dir)
 		{
 			$files = scandir($dir);

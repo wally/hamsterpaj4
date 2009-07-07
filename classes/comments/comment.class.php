@@ -13,7 +13,7 @@
 		{
 			$this->remove_privilegied = $user->privilegied('comments_admin', $this->type);
 			
-			return template('comment/comment.php', $this);
+			return template(NULL, 'comment/comment.php', $this);
 		}
 		
 		function add()

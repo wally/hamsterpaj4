@@ -19,7 +19,7 @@
 				}
 				else
 				{
-					$this->content = template('pages/login/user_not_found.php', $_POST['username']);
+					$this->content = template(NULL, 'pages/login/user_not_found.php', $_POST['username']);
 				}
 			}
 		}

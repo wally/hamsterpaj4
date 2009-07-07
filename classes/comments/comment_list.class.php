@@ -38,8 +38,8 @@
 		
 		function render()
 		{
-			$comment_list->out = template('comment/list.php', $this);
-			$comment_list->out .= (isset($this->user) && $this->user->exists()) ? template('comment/form.php', $this) :  template('comment/error_not_member.php');
+			$comment_list->out = template(NULL, 'comment/list.php', $this);
+			$comment_list->out .= (isset($this->user) && $this->user->exists()) ? template(NULL, 'comment/form.php', $this) :  template('comment/error_not_member.php');
 			
 			return $comment_list->out;
 		}
