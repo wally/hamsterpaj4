@@ -5,6 +5,6 @@
 			<h1><?php echo strtoupper(mb_substr($artist->get('name'), 0, 1, 'UTF8')); ?></h1>
 			<?php $lead_letter = strtoupper(mb_substr($artist->get('name'), 0, 1, 'UTF8')); ?>
 		<?php endif; ?>
-		<?php echo template('pages/misc/digga/artist_mini.php', array('artist' => $artist)); ?>
+		<?php echo template('digga', 'artist_mini.php', array('artist' => $artist)); ?>
 	<?php endforeach; ?>
 </div>

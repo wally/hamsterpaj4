@@ -32,19 +32,11 @@
 		
 	<?php	if($user->exists()) : ?>
 		<?php if($artist->is_fan($user)) : ?>
-			<?php echo template('pages/misc/digga/classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
+			<?php echo template('digga', 'classification_form.php', array('classifications' => $user_classifications, 'artist' => $artist)); ?>
 		<?php else : ?>
 		
 		<?php endif; ?>
 	<?php endif; ?>
-	
-	<?php $group = $artist->get('group'); ?>
-	<h2><a href="/traffa/groups.php?action=goto&groupid=<?php echo $group->get('id'); ?>">
-		Gruppen <?php echo $group->get('name'); ?>
-	</a></h2>
-	
-	<?php echo template('group/entry_list.php', array('entries' => $artist->get('group')->entries())); ?>	
-
 	
 	<a href="spotify:search:<?php echo $artist->get('name'); ?>">
 		<div class="digga_spotify_search">

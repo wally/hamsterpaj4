@@ -12,13 +12,12 @@
 			global $_PDO;
 			
 			$handle = substr($uri, 19);
-			
 			$query = 'SELECT id, name, handle FROM digga_classifications WHERE handle LIKE "' . $handle . '" LIMIT 1';
 			foreach($_PDO->query($query) AS $row)
 			{
 				
 				$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name', 'has_classification' => $row['id']), array('allow_multiple' => true));
-				$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+				$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
 			}
 		}	
 	}	
@@ -34,7 +33,7 @@
 		function execute($uri)
 		{
 			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
-			$this->content = template('pages/misc/digga/all_artists.php', array('artists' => $artists));
+			$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
 		}
 	}
 
@@ -74,7 +73,7 @@
 				$passed['music_taste_graph'] .= '&' . urlencode($label) . '=' . urlencode($value);
 			}
 			
-			$this->content = template('pages/misc/digga/start.php', $passed);
+			$this->content = template('digga', 'start.php', $passed);
 		}
 	}
 	
@@ -97,7 +96,7 @@
 			{
 				if($artist->is_fan($this->user))
 				{
-					$this->content .= template('pages/misc/digga/already_fan.php');
+					$this->content .= template('digga', 'already_fan.php');
 				}
 				else
 				{
@@ -119,12 +118,12 @@
 			}
 			else
 			{
-				$this->content .= template('pages/misc/digga/add_notfound.php', array('name' => $_POST['artist']));
+				$this->content .= template('digga',  'add_notfound.php', array('name' => $_POST['artist']));
 				if($artists = artist::fetch(array('name_search' => $_POST['artist']), array('allow_multiple' => true)))
 				{
-					$this->content .= template('pages/misc/digga/related_matches.php', array('artists' => $artists));
+					$this->content .= template('digga', 'related_matches.php', array('artists' => $artists));
 				}
-				$this->content .= template('pages/misc/digga/dig_form.php', array('create' => true, 'artist' => $_POST['artist']));
+				$this->content .= template('digga', 'dig_form.php', array('create' => true, 'artist' => $_POST['artist']));
 			}
 		}
 	}
@@ -245,7 +244,7 @@
 				}
 				
 				$user_classifications = ($this->user->exists()) ? $artist->user_classifications($this->user) : array();
-				$this->content = template('pages/misc/digga/artist.php', array('artist' => $artist, 'user' => $this->user, 'fans' => $fans, 'user_classifications' => $user_classifications));
+				$this->content = template('digga', 'artist.php', array('artist' => $artist, 'user' => $this->user, 'fans' => $fans, 'user_classifications' => $user_classifications));
 			}
 			else
 			{
@@ -325,6 +324,7 @@
 					return $artist;
 				}
 			}
+
 			return $artists;
 		}
 		
@@ -492,7 +492,7 @@
 		{
 			$artists = artist::fetch(array('handle' => $_GET['artists']), array('allow_multiple' => true));
 			
-			$this->content = template('pages/misc/digga/artist_battle.php', array('artists' => $artists));
+			$this->content = template('digga', 'artist_battle.php', array('artists' => $artists));
 			$this->content .= '<style type="text/css">@import url("/css/misc/digga.css");</style>';
 			
 			$this->content = str_replace('<a href=', '<a target="_top" href=', $this->content);
