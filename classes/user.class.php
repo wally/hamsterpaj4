@@ -222,7 +222,7 @@
 		
 		function profile_mini()
 		{
-			return template('framework/user_profile_mini.php', array('user' => $this));
+			return template(NULL, 'framework/user_profile_mini.php', array('user' => $this));
 		}
 	}
 ?>

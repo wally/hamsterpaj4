@@ -8,7 +8,7 @@
 		
 		function execute()
 		{
-			$this->content = template('pages/misc/alphabet_on_time.php');
+			$this->content = template(NULL, 'pages/misc/alphabet_on_time.php');
 		}
 	}
 ?>
