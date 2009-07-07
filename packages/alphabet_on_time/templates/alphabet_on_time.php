@@ -5,7 +5,7 @@
 
 <p id="alphabet_rating_4" class="alphabet_rating">
 	<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" />
-	Försök att inte använda fingrarna, inte handflatan, när du skriver!
+	Försök att använda fingrarna, inte handflatan, när du skriver!
 </p>
 
 <p id="alphabet_rating_3" class="alphabet_rating">
@@ -51,7 +51,7 @@
 			<li>G-H-I-J</li>
 			<li>K-L-M-N-O-P</li>
 			<li>Q-R-S-T</li>
-			<li>U-V-X-Y-Z</li>
+			<li>U-V-W-X-Y-Z</li>
 			<li>Å-Ä-Ö</li>
 		</ul>
 		</li>
