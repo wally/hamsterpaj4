@@ -5,12 +5,12 @@
 	<?php echo template('digga', 'dig_form.php'); ?>
 	
 	<h2>Nya artister</h2>
+	<a class="show_new" href="/digga/alla-artister">Visa alla artister</a>
 	<div class="digga_start_latest">
 		<?php foreach($recent_artists AS $artist) : ?>
 			<?php echo template('digga', 'artist_mini.php', array('artist' => $artist)); ?>
 		<?php endforeach; ?>
 	</div>
-	<a href="/digga/alla-artister">Visa alla artister</a>
 	
 	
 	<h2>Vilken musik <strong>diggas</strong> mest just nu?</h2>
