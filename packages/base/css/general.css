@@ -309,12 +309,13 @@ dd
 	right: 0px;
 	width: 250px;
 	padding: 20px;
-	opacity: 0.5;
+	opacity: 0.8;
 	background: white;
 	-moz-border-radius-bottomleft: 8px;
 	max-height: 90%;
 	overflow: auto;
 	float: right;
+	z-index: 1000;
 }
 
 #debug dt

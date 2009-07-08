@@ -4,7 +4,7 @@
 	{
 		function render()
 		{
-			return template('entertain/views/image.php', array('item' => $this));
+			return template('entertain' , 'views/image.php', array('item' => $this));
 		}
 		
 		
@@ -30,7 +30,7 @@
 		
 		function get_data_edit_template()
 		{
-			return('entertain/data_edit/image.php');
+			return('admin/edit/image.php');
 		}
 	}
 

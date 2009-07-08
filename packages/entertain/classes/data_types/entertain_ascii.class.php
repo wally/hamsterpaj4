@@ -4,7 +4,7 @@
 	{
 		function render()
 		{
-			return template('entertain/views/preformatted.php', array('item' => $this));
+			return template('entertain', 'views/preformatted.php', array('item' => $this));
 		}
 		
 		

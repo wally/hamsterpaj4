@@ -20,11 +20,11 @@
 					
 					$this->redirect = '/entertain/redigera/' . $item->get('handle');
 				}
-				$this->content .= template('entertain/admin_form.php');
+				$this->content .= template('entertain', 'admin/compose.php');
 			}
 			else
 			{
-				$this->content .= template('framework/not_privilegied.php');
+				$this->content .= template('base', 'notifications/not_privilegied.php');
 			}
 		}
 	}
