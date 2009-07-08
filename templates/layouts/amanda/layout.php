@@ -7,7 +7,7 @@
 		<style type="text/css">
 				@import url('/style.css');
 		</style>
-		<script src="/scritps.js" type="text/javascript"></script>
+		<script src="/scripts.js" type="text/javascript"></script>
 		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
 		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
 	</head>

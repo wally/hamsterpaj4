@@ -81,15 +81,6 @@ dd
 	clear: both;
 }
 
-.textarea_full
-{
-	border: 1px solid #ababab;
-	padding: 5px;
-	-moz-border-radius: 3px;
-	width: 625px;
-	height: 500px;
-}
-
 #wrapper
 {
 	width: 1200px;
@@ -102,7 +93,7 @@ dd
 
 #hp
 {
-	border: 1px solid #6188A4;
+	/*border: 1px solid #6188A4;*/
 	background: #fff;
 	width: 880px;
 	margin: 10px;
@@ -116,19 +107,18 @@ dd
 	background: #e3e3e3 url('http://static.hamsterpaj.net/images/layouts/amanda/repeat-x-sprites.png') repeat-x 0 -168px;
 	height: 73px;
 	-moz-border-radius-topright: 8px;
-	-webkit-border-radius-topright: 8px;
+	-webkit-border-top-right-radius: 8px;
 	-moz-border-radius-topleft: 8px;
-	-webkit-border-radius-topleft: 8px;
+	-webkit-border-top-left-radius: 8px;
 }
 
 #hp #head h1
 {
 	float: left;
 	height: 73px;
-	width: 365px;
+	width: 357px;
 	text-indent: -500px;
-	margin: 0px;
-	margin-right: 20px;
+	margin: 0 0 0 10px;
 	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
 }
 
@@ -136,7 +126,7 @@ dd
 {
 	float: left;
 	display: block;
-	padding-top: 20px;
+	padding-top: 15px;
 	width: 490px;
 }
 
@@ -156,7 +146,7 @@ dd
 #hp #head #login .buttons
 {
 	width: 180px;
-	padding-top: 12px;
+	padding-top: 16px;
 }
 
 #hp #head #login .buttons input
@@ -164,83 +154,42 @@ dd
 	width: auto;
 }
 
-/**
-*	Notice icons
-*/
-#hp #head #notices
-{
-	margin-top: 12px;
-	float: left;
-	width: 300px;
+#notices { 
+	margin: 0;
 }
 
-#hp #head #notices ul
-{
-	padding: 0px;
-	margin-left: 0;
-}
+	#notices li {
+		list-style: none;
+		text-align: center;
+		float: left;
+		width: 70px;
+		height: 23px;
+	}
+	
+	#notices ul { margin: 0; padding: 0;}
+		
+	#notices li a{
+		display: block;
+		width: 70px;
+		height: 23px;
+		padding-top: 50px;
+		color: #717171;
+	}
+	
+	#notices li a:hover { color: #333; }
 
-#hp #head #notices ul li
-{
-	display: block;
-	float: left;
-	width: 75px;
-	height: 50px;
-	text-align: center
-}
-
-#hp #head #notices a
-{
-	display: block;
-	width: 60px;
-	padding-top: 36px;
-
-}
-
-#hp #head #notices #notices_guestbook a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -72px;
-}
-
-#hp #head #notices #notices_guestbook a:hover, #hp #head #notices #notices_guestbook .active a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll 9px -125px;
-}
-
-#hp #head #notices #notices_forum a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -72px;
-}
-
-#hp #head #notices #notices_forum a:hover, #hp #head #notices #notices_forum .active a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -88px -125px;
-}
-
-#hp #head #notices #notices_groups a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -72px;
-}
-
-#hp #head #notices #notices_groups a:hover, #hp #head #notices #notices_groups .active a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -213px -125px;
-}
-
-#hp #head #notices #notices_events a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -72px;
-}
-
-#hp #head #notices #notices_events a:hover, #hp #head #notices #notices_events .active a
-{
-	background: url(http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png) no-repeat scroll -307px -125px;
-}
-
-#hp #head #notices ul li ul
-{
-	display: none;
-}
+	#hp #head #notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") no-repeat; }
+		#hp #head #notices #notices_guestbook a:hover { background-position: 0 -73px; color: #333; }
+		#hp #head #notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #333;}
+	#hp #head #notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -70px 0 no-repeat; }
+		#hp #head #notices #notices_forum a:hover { background-position: -70px -73px; color: #333; }
+		#hp #head #notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #333;}
+	#hp #head #notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -140px 0 no-repeat; }
+		#hp #head #notices #notices_groups a:hover { background-position: -140px -73px; color: #333; }
+		#hp #head #notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #333; }
+	#hp #head #notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -210px 0 no-repeat;}
+		#hp #head #notices #notices_events a:hover { background-position: -210px -73px; color: #333; }
+		#hp #head #notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
 
 /**
 *	Login status
@@ -248,9 +197,18 @@ dd
 #hp #head #status
 {
 	float: left;
-	width: 190px;
-	padding-top: 10px;
+	width: 215px;
+	padding-top: 8px;
+	margin-left: 10px;
+	line-height: 18px;
+	color: #717171;
 }
+
+#hp #head #status a {
+	color: #333;
+}
+
+#hp #head #status #ui_statusbar_forumstatus { color: #333; }
 
 #hp #head #status .user_avatar
 {
@@ -277,8 +235,8 @@ dd
 	margin-bottom: 10px;
 	-moz-border-radius-topleft: 8px;
 	-moz-border-radius-bottomleft: 8px;
-	-webkit-border-radius-topleft: 8px;
-	-webkit-border-radius-bottomleft: 8px;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
 	width: 200px;
 	margin-left: 660px;
 	padding: 10px 10px 1px;
@@ -291,6 +249,30 @@ dd
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	margin-bottom: 10px;
+	padding-top: 0;
+}
+
+#hp #modules h5 { 
+	font-size: 11px;
+}
+
+.textarea_full
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+	-moz-border-radius: 3px;
+	width: 625px;
+	height: 500px;
+}
+
+#wrapper
+{
+	width: 1200px;
+}
+
+#column_ads
+{
+	padding-top: 50px;
 }
 
 #daniella
