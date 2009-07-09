@@ -28,10 +28,9 @@
 		
 		function render_edit_form()
 		{
-			tools::debug($this);
-			$this->type;
+			tools::debug('<span style="color: red;">Don\'t use this, put a render_edit_form() function in your specific object class instead</span>');
 			
-			return template('entertain', 'admin/edit/' . $this->type . '.php', array('item' => $this));
+			return template('entertain', 'admin/edit/text.php', array('item' => $this));
 		}
 		
 		function render()

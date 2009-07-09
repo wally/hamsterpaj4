@@ -10,7 +10,7 @@
 		{
 			if(!$this->user->privilegied('entertain_admin'))
 			{
-				$this->content .= template('framework/not_privilegied.php');
+				$this->content .= template(NULL, 'framework/not_privilegied.php');
 				return;
 			}
 			

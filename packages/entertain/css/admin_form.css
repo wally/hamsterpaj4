@@ -11,3 +11,12 @@
 {
 	display: none;
 }
+
+.entertain_edit_css
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+	-moz-border-radius: 3px;
+	width: 625px;
+	height: 200px;
+}
