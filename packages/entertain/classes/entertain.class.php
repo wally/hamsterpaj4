@@ -28,7 +28,10 @@
 		
 		function render_edit_form()
 		{
-			return template('entertain', 'admin/edit/text.php', array('item' => $this));
+			tools::debug($this);
+			$this->type;
+			
+			return template('entertain', 'admin/edit/' . $this->type . '.php', array('item' => $this));
 		}
 		
 		function render()
