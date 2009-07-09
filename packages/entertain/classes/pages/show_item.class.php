@@ -19,7 +19,7 @@
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
-				$this->content = template('framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
+				$this->content = template(NULL, 'framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
 
