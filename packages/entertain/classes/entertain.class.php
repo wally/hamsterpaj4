@@ -1,10 +1,12 @@
 <?php
-
+	# This is simply a base entertain class, to be extended by
+	# differend data types, such as entertain_text and entertain_image
+	
 	class entertain extends hp4
 	{
 		function preview_full()
 		{
-			return template('entertain/preview_full.php', array('item' => $this));
+			return template('entertain', 'preview_full.php', array('item' => $this));
 		}
 		
 		function previews($items)
@@ -14,6 +16,7 @@
 		
 		function categories()
 		{
+			# Move away from here
 			$categories[] = array('handle' => 'onlinespel', 'label' => 'Onlinespel');
 			$categories[] = array('handle' => 'flash', 'label' => 'Flashfilmer');
 			$categories[] = array('handle' => 'free_music', 'label' => 'Gratis musik');
@@ -23,103 +26,24 @@
 			return $categories;
 		}
 		
-		function set_data($data)
-		{
-			switch($this->type)
-			{
-				case 'flash':
-					return template('entertain/views/flash.php', array('item' => $this));
-					break;
-				case 'web':
-					return template('entertain/views/web.php', array('item' => $this));
-					break;
-				case 'iframe':
-					return template('entertain/views/iframe.php', array('item' => $this));
-					break;
-				case 'html':
-					return template('entertain/views/html.php', array('item' => $this));
-					break;
-				case 'text':
-					tools::debug($data);
-					$this->data['text'] = $data['text'];
-					$this->data['allow_html'] = $data['allow_html'];
-					break;
-				case 'preformatted':
-					tools::debug($data);
-					$this->data['text'] = $data['text'];
-					$this->data['allow_html'] = $data['allow_html'];
-					break;
-				case 'file':
-					return template('entertain/views/file.php', array('item' => $this));
-					break;
-				case 'image':
-					return template('entertain/views/image.php', array('item' => $this));
-					break;
-				case 'mp3':
-					return template('entertain/views/mp3.php', array('item' => $this));
-					break;
-				default:
-					tools::debug('Fatal error, no entertain type set.');
-					break;
-			}
-		}
-		
-		function update_from_post()
-		{
-			$this->set(array('title' => $_POST['title']));
-			$this->set(array('category' => $_POST['category']));
-			$this->set(array('has_image' => $_POST['has_image']));
-		}
-		
 		function render_edit_form()
 		{
-			return template('entertain', 'admin/edit/text.php');
+			return template('entertain', 'admin/edit/text.php', array('item' => $this));
 		}
 		
 		function render()
 		{
-			switch ($this->type) {
-				case 'flash':
-					return template('entertain', 'views/flash.php', array('item' => $this));
-					break;
-				case 'web':
-					return template('entertain', 'views/web.php', array('item' => $this));
-					break;
-				case 'iframe':
-					return template('entertain', 'views/iframe.php', array('item' => $this));
-					break;
-				case 'html':
-					return template('entertain', 'views/html.php', array('item' => $this));
-					break;
-				case 'text':
-					return template('entertain', 'views/text.php', array('item' => $this));
-					break;
-				case 'preformatted':
-					return template('entertain', 'views/preformatted.php', array('item' => $this));
-					break;
-				case 'file':
-					return template('entertain', 'views/file.php', array('item' => $this));
-					break;
-				case 'image':
-					tools::debug('Image :)');
-					return template('entertain', 'views/image.php', array('item' => $this));
-					break;
-				case 'mp3':
-					return template('entertain', 'views/mp3.php', array('item' => $this));
-					break;
-				default:
-					tools::debug('Fatal error, no entertain type set.');
-					break;
-			}
+			tools::debug('Render called on generic entertain class!');
 		}
 		
 		function preview_image($dimension)
 		{
+			$dimension = (in_array($dimension, array('full', 'medium'))) ? $dimension : 'medium';
 			if($this->has_image == true)
 			{
-				return 'http://static.hamsterpaj.net/images/entertain/items/' . $this->handle . '/medium.png';
+				return 'http://static.hamsterpaj.net/images/entertain/items/' . $this->handle . '/' . $dimension . '.png';
 			}
-			return 'http://static.hamsterpaj.net/images/entertain/default_previews/' . $this->category . '_medium.png';
+			return 'http://static.hamsterpaj.net/images/entertain/default_previews/' . $this->category . '_' . $dimension . '.png';
 		}
 		
 		function fetch($search)
@@ -148,6 +72,7 @@
 				}
 				else
 				{
+					tools::debug('ERROR: Class entertain_' . $row['type'] . ' does not exist!');
 					 $item = new entertain();				
 				}
 				
@@ -157,7 +82,7 @@
 				$item->title = $row['title'];
 				$item->handle = $row['handle'];
 				$item->click = $row['click'];
-				$item->set(array('data' =>unserialize($row['data'])));
+				$item->data = unserialize($row['data']);
 				$item->has_image = $row['has_image'];
 				$item->published_at = $row['published_at'];
 				$item->uploaded_by = $row['uploaded_by'];
@@ -185,14 +110,17 @@
 			$this->active = 0;
 		}
 		
+		function update_from_post()
+		{
+			$this->set(array('title' => $_POST['title']));
+			$this->set(array('category' => $_POST['category']));
+			$this->set(array('has_image' => $_POST['has_image']));
+			$this->update_data_from_post();
+		}
+		
 		function get_url()
 		{
 			return '/' . $this->category . '/' . $this->handle;
-		}
-		
-		function get_data_edit_template()
-		{
-			return 'entertain/data_edit/text.php';
 		}
 		
 		function set_title($title)
@@ -234,7 +162,6 @@
 			}
 			else
 			{
-				
 				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, active)';
 				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :active)';
 

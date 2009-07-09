@@ -1,3 +1,4 @@
 <p>
-	<?php echo $item->get('data'); ?>
+	<?php $data = $item->get('data'); ?>
+	<?php echo $data['text']; ?>
 </p>

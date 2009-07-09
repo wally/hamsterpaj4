@@ -20,7 +20,6 @@
 			
 			$this->content = '<h1>Entertain category start!</h1>';
 			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true));
-			tools::debug($items);
 			$this->content .= entertain::previews($items);
 
 		}

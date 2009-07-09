@@ -32,6 +32,7 @@
 				}
 				$dropdown->set(array('selected' => $item->get('category')));
 				
+				$this->content .= $item->render();
 				$this->content .= template('entertain', 'admin/edit.php', array('item' => $item, 'dropdown' => $dropdown));
 			}
 			else

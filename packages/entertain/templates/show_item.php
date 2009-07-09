@@ -1,8 +1,5 @@
-<h1><?php echo $item->get('title'); ?></h1>
-
 <div class="entertain_item">
 	<?php echo $item->render(); ?>
-	<?php tools::debug($item); ?>
 </div>
 
 <?php if(isset($admin)): ?>

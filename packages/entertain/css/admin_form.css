@@ -1,0 +1,13 @@
+#crop_previews li
+{
+	display: block;
+	width: 307px;
+	height: 72px;
+	border: 1px solid #565656;
+	overflow: hidden;
+}
+
+#entertain_edit_preview_confirm
+{
+	display: none;
+}

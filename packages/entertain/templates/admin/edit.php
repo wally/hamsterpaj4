@@ -8,6 +8,9 @@
 	
 	<label>Kategori</label>
 	<?php echo $dropdown->render(); ?>
+	
+	<label>Typ</label>
+	<?php echo $item->get('type'); ?>
 
 	<h2>Bild</h2>
 	<img src="<?php echo $item->preview_image('medium'); ?>" name="<?php echo $item->get('handle'); ?>" id="entertain_admin_preview_image" />
@@ -20,9 +23,11 @@
 		<button id="entertain_edit_preview_confirm_fail">Nej</button>
 	</div>
 	
-	<input type="radio" name="has_image" value="0" id="entertain_admin_has_image_0" />
+	<?php $check_0 = ($item->get('has_image')) ? null : ' checked="true"'; ?>
+	<?php $check_1 = ($item->get('has_image')) ? ' checked="true"' : null; ?>
+	<input type="radio" name="has_image" value="0" id="entertain_admin_has_image_0"<?php echo $check_0; ?> />
 	<label for="entertain_admin_has_image_0">Standard-bild</label>
-	<input type="radio" name="has_image" value="1" id="entertain_admin_has_image_1" />
+	<input type="radio" name="has_image" value="1" id="entertain_admin_has_image_1"<?php echo $check_1; ?> />
 	<label for="entertain_admin_has_image_1">Egen screenshot</label>
 	
 	<h2>Data</h2>
