@@ -19,7 +19,7 @@
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
-				$this->content = template('framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
+				$this->content = template(NULL, 'framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
 
@@ -43,10 +43,10 @@
 			$out['comment_list'] = $comment_list;
 			if($this->user->privilegied('entertain_edit'))
 			{
-				$out['admin'] = template('entertain/item_admin_puff.php', array('item' => $item));
+				$out['admin'] = template('entertain', 'item_admin_puff.php', array('item' => $item));
 			}
 						
-			$this->content = template('pages/entertain/show_item.php', $out);
+			$this->content = template('entertain', 'show_item.php', $out);
 		}
 	}
 

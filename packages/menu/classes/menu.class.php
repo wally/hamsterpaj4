@@ -8,7 +8,7 @@
 			// Sort by priority
 			foreach ($menu as $key => $row)
 			{
-				$priority[$key]  = $row['priority'];
+				$priority[$key] = $row['priority'];
 			}
 			array_multisort($priority, SORT_DESC, $menu);
 

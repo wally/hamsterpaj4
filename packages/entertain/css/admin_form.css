@@ -1,0 +1,28 @@
+#crop_previews li
+{
+	display: block;
+	width: 307px;
+	height: 72px;
+	border: 1px solid #565656;
+	overflow: hidden;
+}
+
+#entertain_edit_preview_confirm
+{
+	display: none;
+}
+
+.entertain_edit_css
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+	-moz-border-radius: 3px;
+	width: 625px;
+	height: 200px;
+}
+
+.file_description
+{
+	width: 636px;
+	height: 200px;
+}

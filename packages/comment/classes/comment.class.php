@@ -1,6 +1,6 @@
 <?php
 	// comment_list class must be loaded beföre this.
-	require_once PATH_CLASSES . 'comments/comment_list.class.php';
+	require_once PATH_PACKAGES . 'comment/classes/comment_list.class.php';
 
 	class comment extends comment_list
 	{
@@ -13,7 +13,7 @@
 		{
 			$this->remove_privilegied = $user->privilegied('comments_admin', $this->type);
 			
-			return template(NULL, 'comment/comment.php', $this);
+			return template('comment', 'comment.php', $this);
 		}
 		
 		function add()

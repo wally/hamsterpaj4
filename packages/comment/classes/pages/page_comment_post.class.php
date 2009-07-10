@@ -22,7 +22,7 @@
 			
 			tools::debug($_GET);
 			
-			$this->content = template('comment/comment.php', array('user' => $this->user, 'text' => $_GET['text'], 'timestamp' => time()));
+			$this->content = template('comment', 'comment.php', array('user' => $this->user, 'text' => $_GET['text'], 'timestamp' => time()));
 			$this->raw_output = true;
 		}
 	}

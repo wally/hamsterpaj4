@@ -10,7 +10,7 @@
 		{
 			if(!$this->user->privilegied('entertain_admin'))
 			{
-				$this->content .= template('framework/not_privilegied.php');
+				$this->content .= template(NULL, 'framework/not_privilegied.php');
 				return;
 			}
 			
@@ -32,7 +32,8 @@
 				}
 				$dropdown->set(array('selected' => $item->get('category')));
 				
-				$this->content .= template('pages/entertain/edit.php', array('item' => $item, 'dropdown' => $dropdown));
+				$this->content .= $item->render();
+				$this->content .= template('entertain', 'admin/edit.php', array('item' => $item, 'dropdown' => $dropdown));
 			}
 			else
 			{

@@ -20,10 +20,15 @@
 					$format = '307x72';
 					mkdir(ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle']);
 					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle'] . '/medium.png';
-					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale ' . $format . '! ' . $out;
-					
+
+					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale ' . $format . '! ' . $out;					
 					system($cmd);
-					$this->content .= template('framework/notifications/success.php');
+
+					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle'] . '/full.png';
+					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale 634x150! ' . $out;
+					system($cmd);
+
+					$this->content .= template('base', 'notifications/success.php');
 					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . $_POST['handle'] . '/medium.png" />';
 					break;
 				case 'scale':
@@ -31,16 +36,15 @@
 					$cmd = 'convert ' . $_FILES['preview']['tmp_name'] . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
 					system($cmd);
 					
-					$this->content = template('entertain/admin/preview_upload_scale.php', array('filename' => $filename, 'handle' => $_POST['handle']));
+					$this->content = template('entertain', 'admin/preview_upload_scale.php', array('filename' => $filename, 'handle' => $_POST['handle']));
 					break;
 				case 'upload':
 				default:
-					$this->content = template('entertain/admin/preview_upload_form.php', array('handle' => $_GET['handle']));
+					$this->content = template('entertain', 'admin/preview_upload_form.php', array('handle' => $_GET['handle']));
 					break;
 			}
 			
 			$this->template = 'layouts/amanda/layout_blank.php';
-			$this->content .= 'Daft punk!';
 		}
 	}
 

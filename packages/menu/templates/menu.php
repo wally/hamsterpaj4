@@ -2,13 +2,13 @@
 <?php foreach($data AS $handle => $current_menu): ?>
 	<?php if($current_menu['type'] == 'big'): ?>
 		<li class="big">
-			<a href="/<?php echo $current_menu['url'] ?>">
+			<a href="<?php echo $current_menu['url'] ?>">
 				<?php echo $current_menu['label'] ?>
 			</a>	
 		</li>
 	<?php else: ?>
 		<li class="small">
-			<a href="/<?php echo $current_menu['url'] ?>">
+			<a href="<?php echo $current_menu['url'] ?>">
 				<?php echo $current_menu['label'] ?>
 			</a>
 		</li>

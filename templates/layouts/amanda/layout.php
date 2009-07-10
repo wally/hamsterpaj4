@@ -22,10 +22,10 @@
 				<div id="head">
 				<a href="/"><h1>Hamsterpaj.net</h1></a>
 					<?php if($page->user->exists()) : ?>
-						<?php echo template(NULL, 'layouts/amanda/noticebar.php', array('user' => $page->user)); ?>
-						<?php echo template(NULL, 'layouts/amanda/statusbar.php', array('user' => $page->user)); ?>
+						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
-						<?php echo template(NULL, 'layouts/amanda/loginbar.php'); ?>
+						<?php echo template('user', 'loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
 				<?php echo $page->menu->render(); ?>
