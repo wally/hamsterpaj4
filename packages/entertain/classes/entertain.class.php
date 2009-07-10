@@ -16,14 +16,9 @@
 		
 		function categories()
 		{
-			# Move away from here
-			$categories[] = array('handle' => 'onlinespel', 'label' => 'Onlinespel');
-			$categories[] = array('handle' => 'flash', 'label' => 'Flashfilmer');
-			$categories[] = array('handle' => 'free_music', 'label' => 'Gratis musik');
-			$categories[] = array('handle' => 'funny_images', 'label' => 'Roliga bilder');
-			$categories[] = array('handle' => 'ascii', 'label' => 'ASCII-konst');
+			global $_ENTERTAIN;
 
-			return $categories;
+			return $_ENTERTAIN['categories'];
 		}
 		
 		function render_edit_form()
