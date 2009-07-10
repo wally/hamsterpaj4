@@ -111,14 +111,19 @@
 			global $_DEBUG;
 			$backtrace = debug_backtrace();
 			$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
+			$function_file = substr($backtrace[1]['file'], strrpos($backtrace[1]['file'], '/')+1);
 			$message = (is_string($message)) ? $message : '<pre>' . print_r($message, true) . '</pre>';
+			if(!empty($function_file))
+			{
+				$message .= '<br /><span class="calling_function">Funktionen anropades utav: ' . $function_file . ' #' . $backtrace[1]['line'] . '</span>';
+			}
 			$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
 			
 			$log = date('Y-m-d H:i:s') . "\t"; 
 			$log .= $file . "\n";
 			$log .= (is_string($message)) ? $message : print_r($message, true);
 			$log .= "\n\n\n";
-			file_put_contents(PATH_DEBUG . date('Y-m-d') . '.log', $log, FILE_APPEND);			
+			file_put_contents(PATH_DEBUG . date('Y-m-d') . '.log', $log, FILE_APPEND);
 		}
 		
 		function timer($point)

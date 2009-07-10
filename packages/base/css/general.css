@@ -304,3 +304,8 @@ dd
 {
 	font-weight: bold;
 }
+
+#debug .calling_function
+{
+	color: #858585;
+}
