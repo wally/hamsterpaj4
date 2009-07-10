@@ -86,7 +86,8 @@
 			$return = ($days > 0) ? $days . ' d ' : '';
 			$return .= ($days > 0 || $hrs > 0) ? $hrs . ' tim ' : '';
 			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $min . ' min ' : '';
-			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $s . ' s ' : '';
+			$return .= ($days > 0 || $hrs > 0 || $min > 0 || $s > 0) ? $s . ' s ' : '';
+			$return .= ($duration == 0) ? 'ingen' : '';
 
 			return $return;
 		}
@@ -139,5 +140,38 @@
 			return $array[$key];
 		}
 		
+		function file_size_readable($bytes, $precision = 2)
+		{
+	    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+	  
+	    $bytes = max($bytes, 0);
+	    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+	    $pow = min($pow, count($units) - 1);
+	  
+	    $bytes /= pow(1024, $pow);
+	  
+	    return round($bytes, $precision) . ' ' . $units[$pow];
+		}
+		
+		function file_download_time($bytes, $type)
+		{
+			switch($type)
+			{
+				case 'adsl':
+				tools::debug('adsl');
+					$sec = $bytes/700000;
+				break;
+				
+				case '3g':
+					$sec = $bytes/200000;
+				break;
+				
+				case 'fiber':
+					$sec = $bytes/10000000;
+				break;
+			}
+			
+			return round($sec, 0);
+		}
 	}
 ?>
