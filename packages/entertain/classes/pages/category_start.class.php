@@ -19,7 +19,7 @@
 			$category = $uri_explode[1];
 			
 			$this->content = '<h1>Entertain category start!</h1>';
-			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true));
+			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true, 'status' => 'released'));
 			$this->content .= entertain::previews($items);
 
 		}

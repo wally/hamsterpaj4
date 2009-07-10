@@ -71,7 +71,7 @@
 	}
 	
 	
-	function template($package = null, $template_handle, $params = null)
+	function template($package, $template_handle, $params = null)
 	{
 		foreach($params as $key => $value)
 		{
@@ -88,7 +88,6 @@
 		}
 		else
 		{
-			tools::debug($package);
 			include(PATH_PACKAGES . $package . '/templates/' . $template_handle);
 		}
 		$html = ob_get_contents();

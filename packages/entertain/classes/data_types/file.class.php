@@ -5,10 +5,8 @@
 		{
 			$data = $this->get('data');
 			$data['file_path'] = URL_STATIC . 'entertain/files/' . $data['filename'];
-			tools::debug($data);
 			$icon_url = URL_STATIC . 'images/icons/256x256/' . strtoupper(end(explode(".", $data['filename']))) . '.png';
 			$icon_path = PATH_STATIC . 'images/icons/256x256/' . strtoupper(end(explode(".", $data['filename']))) . '.png';
-			tools::debug($icon_url);
 			
 			if(!file_exists($icon_path))
 			{

@@ -24,10 +24,10 @@
 			}
 
 			// Fetch two items of the same type
-			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true));
+			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released'));
 
 			// Fetch three items with random type
-			$random_items = entertain::fetch(array('limit' => 5, 'allow_multiple' => true));
+			$random_items = entertain::fetch(array('limit' => 5, 'allow_multiple' => true, 'status' => 'released'));
 			
 			$related = array_merge($same_type, $random_items);
 			
@@ -45,8 +45,31 @@
 			{
 				$out['admin'] = template('entertain', 'item_admin_puff.php', array('item' => $item));
 			}
-						
-			$this->content = template('entertain', 'show_item.php', $out);
+			
+
+			switch($item->get('status'))
+			{
+				case 'removed':
+					$this->content .= 'Objektet borttaget';
+				break;
+				
+				case 'queue':
+					$this->content .= 'Objektet väntar på att bli godkänt';
+				break;
+				
+				case 'preview':
+					$this->content .= 'Objektet är under utveckling';
+				break;
+				
+				case 'scheduled':
+					$this->content .= 'Objektet är på väg att bli publicerat';
+				break;
+				
+				default:
+					$this->content = template('entertain', 'show_item.php', $out);
+				break;
+			}
+			
 		}
 	}
 

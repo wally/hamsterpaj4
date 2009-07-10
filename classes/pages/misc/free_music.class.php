@@ -5,7 +5,6 @@
 		
 		function url_hook($url)
 		{
-			tools::debug($url);
 			return ($url == '/gratis-musik') ? 10 : 0;
 		}
 		
