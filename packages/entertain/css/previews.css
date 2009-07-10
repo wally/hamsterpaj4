@@ -1,6 +1,7 @@
 .entertain_preview
 {
 	padding: 0px;
+	margin-top: 0;
 }
 
 .entertain_preview li
@@ -60,6 +61,7 @@
 	-moz-border-radius: 5px;
 	height: 150px;
 	overflow: hidden;
+	clear: both;
 }
 
 .entertain_preview_full .label

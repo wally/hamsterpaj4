@@ -4,7 +4,6 @@
 	{
 		function url_hook($uri)
 		{
-			tools::debug(substr($uri, 0, 19));
 			return (substr($uri, 0, 19) == '/entertain/aktivera') ? 5 : 0;
 		}
 		

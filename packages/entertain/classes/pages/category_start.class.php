@@ -3,9 +3,10 @@
 	{
 		function url_hook($uri)
 		{
-			foreach(array('flash', 'onlinespel', 'bilder', 'filmklipp', 'spel', 'web', 'ascii') as $i)
+			global $_ENTERTAIN;
+			foreach($_ENTERTAIN['categories'] as $handle => $category)
 			{
-				if($uri == '/' . $i)
+				if($uri == '/' . $handle)
 				{
 					return 10;
 				}

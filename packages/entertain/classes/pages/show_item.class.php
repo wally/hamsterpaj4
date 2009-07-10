@@ -4,9 +4,12 @@
 	{
 		function url_hook($uri)
 		{
-			foreach(array('flash', 'onlinespel', 'bilder', 'filmklipp', 'spel', 'webb', 'ascii') as $i)
+			global $_ENTERTAIN;
+			
+			foreach($_ENTERTAIN['categories'] as $handle => $category)
 			{
-				if(substr($uri, 1, strlen($i)) == $i && strlen($uri) > strlen($i)+2)
+				tools::debug($handle);
+				if(substr($uri, 1, strlen($handle)) == $handle && strlen($uri) > strlen($handle)+2)
 				{
 					return 10;
 				}
@@ -27,7 +30,9 @@
 			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released'));
 
 			// Fetch three items with random type
-			$random_items = entertain::fetch(array('limit' => 5, 'allow_multiple' => true, 'status' => 'released'));
+			$random_items = entertain::fetch(array('limit' => 2, 'allow_multiple' => true, 'status' => 'released'));
+			
+			$big_related = entertain::fetch(array('limit' => 1,  'status' => 'released'));
 			
 			$related = array_merge($same_type, $random_items);
 			
@@ -38,6 +43,7 @@
 			$comment_list->limit = 10;
 			$comment_list->fetch_comments();
 			
+			$out['big_related'] = $big_related;
 			$out['item'] = $item;
 			$out['related'] = $related;
 			$out['comment_list'] = $comment_list;

@@ -13,3 +13,5 @@
 <div class="entertain_related">
 	<?php echo entertain::previews($related); ?>
 </div>
+
+<?php echo $big_related->preview_full(); ?>
