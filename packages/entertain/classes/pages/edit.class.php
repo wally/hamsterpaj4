@@ -40,11 +40,11 @@
 						
 						if($_POST['status'] == 'preview')
 						{
-							$this->location = $item->get('preview_url');
+							$this->redirect = $item->get('preview_url');
 						}
 						else
 						{
-							$this->location = $item->get('url');
+							$this->redirect = $item->get('url');
 						}
 					}
 					
@@ -72,7 +72,7 @@
 			{
 				$error['header'] = 'Entertain-objektet finns inte!';
 				$error['information'] = 'Objektet "' . $uri_explode[3] . '" finns inte i entertain-databasen.';
-				$this->content .= template(NULL, 'framework/notifications/not_found.php', $error);
+				$this->content .= template('base', 'notifications/not_found.php', $error);
 			}
 		}
 	}

@@ -14,6 +14,7 @@
 		<option value="preformatted">För-formatterad</option>
 		<option value="file">Nedladdningsbar fil</option>
 		<option value="mp3">Musik</option>
+		<option value="video">Video</option>
 	</select>
 	
 	<input type="submit" value="Skapa" />

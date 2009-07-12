@@ -9,6 +9,12 @@
 			return template('entertain', 'preview_full.php', array('item' => $this));
 		}
 		
+		function update_views()
+		{
+			$this->views++;
+			$this->save();
+		}
+		
 		function previews($items)
 		{
 			return template('entertain', 'previews.php', array('items' => $items));
@@ -93,6 +99,7 @@
 				$item->published_at = $row['published_at'];
 				$item->uploaded_by = $row['uploaded_by'];
 				$item->status = $row['status'];
+				$item->views = $row['views'];
 				
 				if($search['allow_multiple'] == true)
 				{
@@ -172,7 +179,7 @@
 			
 			if($this->id > 0)
 			{
-				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status WHERE id = :id LIMIT 1';
+				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, views = :views WHERE id = :id LIMIT 1';
 				
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':title', $this->title); 
@@ -181,6 +188,7 @@
 				$stmt->bindValue(':has_image', $this->has_image);
 				$stmt->bindValue(':id', $this->id);
 				$stmt->bindValue(':status', $this->status);
+				$stmt->bindValue(':views', $this->views);
 				$stmt->execute();
 			}
 			else

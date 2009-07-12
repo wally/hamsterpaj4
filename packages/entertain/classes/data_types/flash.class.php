@@ -18,14 +18,14 @@
 				case 'upload':
 					move_uploaded_file($_FILES['flashfile_upload']['tmp_name'], '/mnt/static/entertain/' . $this->handle . '.swf');
 					$this->data['flashfile'] = 'http://static.hamsterpaj.net/entertain/' . $this->handle . '.swf';
-					break;
+				break;
 			}
 			tools::debug('Updating from post!');
 		}
 		
 		function render_edit_form()
 		{
-			return template('entertain', 'admin/edit/flash.php');
+			return template('entertain', 'admin/edit/flash.php', array('item' => $this, 'data' => $this->get('data')));
 		}
 	}
 ?>

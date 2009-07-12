@@ -24,6 +24,9 @@
 				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
+			
+			// Update number of views
+			$item->update_views();
 
 			// Fetch two items of the same category
 			$same_category = entertain::fetch(array('category' => $item->get('category'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
