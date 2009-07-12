@@ -5,12 +5,19 @@
 	float: left;
 }
 
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
 .digga_start h1
 {
 	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: -0.5px;
 	color: #585858;
+	margin: 0;
 }
 
 .digga_start { margin-left: 2px; width: 636px; }
@@ -68,7 +75,7 @@
 .show_new
 {
 	float: right;
-	margin-top: -20px;
+	margin-top: -35px;
 	font-size: 12px;
 }
 .artist_battle
@@ -154,6 +161,7 @@
 {
 	margin: 0px;
 	font-weight: normal;
+	font-size: 11px;
 }
 
 .digga_artist_mini a
