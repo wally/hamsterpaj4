@@ -18,6 +18,7 @@
 		{
 			$uri_explode = explode('/', $uri);
 			$category = $uri_explode[1];
+			$this->menu_active = $category;
 			
 			$this->content = '<h1>Entertain category start!</h1>';
 			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true, 'status' => 'released'));
