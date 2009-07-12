@@ -1,6 +1,6 @@
 <h2>Flashfil</h2>
 <ul>
-	<?php if(file_exists('/mnt/static/entertain/' . $item->handle . '.swf')): ?>
+	<?php if(file_exists('/mnt/static/entertain/flash/' . $item->handle . '.swf')): ?>
 	<li>
 		<input type="radio" name="flashfile_action" value="noaction" id="flashfile_noaction" checked="true" />
 		<label for="flashfile_noaction">Behåll aktuell flashfil</label>
