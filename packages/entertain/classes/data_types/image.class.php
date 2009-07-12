@@ -28,9 +28,9 @@
 			}
 		}
 		
-		function get_data_edit_template()
+		function render_edit_form()
 		{
-			return('admin/edit/image.php');
+			return template('entertain', 'admin/edit/image.php', array('item' => $this, 'data' => $this->get('data')));
 		}
 	}
 

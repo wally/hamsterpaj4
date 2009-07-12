@@ -11,7 +11,13 @@
 		
 		function previews($items)
 		{
-			return template('entertain', 'previews.php', array('items' => $items));
+			global $_ENTERTAIN;
+			foreach($items AS $item)
+			{
+				$item->category = $_ENTERTAIN['categories'][$item->category]['label'];
+				$previews[] = $item;
+			}
+			return template('entertain', 'previews.php', array('items' => $previews));
 		}
 		
 		function categories()
