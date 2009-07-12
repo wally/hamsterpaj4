@@ -1,9 +1,11 @@
 <h2>Flashfil</h2>
 <ul>
+	<?php if(file_exists('/mnt/static/entertain/' . $item->handle . '.swf')): ?>
 	<li>
 		<input type="radio" name="flashfile_action" value="noaction" id="flashfile_noaction" checked="true" />
 		<label for="flashfile_noaction">Behåll aktuell flashfil</label>
 	</li>
+	<?php endif; ?>
 	<li>
 		<input type="radio" name="flashfile_action" value="upload" id="flashfile_upload" />
 		<label for="flashfile_upload">Ladda upp ny flashfil</label>

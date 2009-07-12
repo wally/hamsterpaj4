@@ -22,7 +22,7 @@
 			$this->content = '<h1>Entertain category start!</h1>';
 			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true, 'status' => 'released'));
 			$this->content .= entertain::previews($items);
-
+			$this->content .= '<br class="clear" /><a href="/entertain/ny">Ladda upp nya objekt</a>';
 		}
 	}
 

@@ -11,13 +11,7 @@
 		
 		function previews($items)
 		{
-			global $_ENTERTAIN;
-			foreach($items AS $item)
-			{
-				$item->category = $_ENTERTAIN['categories'][$item->category]['label'];
-				$previews[] = $item;
-			}
-			return template('entertain', 'previews.php', array('items' => $previews));
+			return template('entertain', 'previews.php', array('items' => $items));
 		}
 		
 		function categories()
@@ -25,6 +19,12 @@
 			global $_ENTERTAIN;
 
 			return $_ENTERTAIN['categories'];
+		}
+		
+		function get_category_label()
+		{
+			global $_ENTERTAIN;
+			return $_ENTERTAIN['categories'][$this->category]['label'];
 		}
 		
 		function render_edit_form()
@@ -58,6 +58,7 @@
 			$query .= (isset($search['type'])) ? ' AND type = :type' : null;
 			$query .= (isset($search['category'])) ? ' AND category = :category' : null;
 			$query .= (isset($search['status'])) ? ' AND status = :status' : null;
+			$query .= (isset($search['order_by'])) ? ' ORDER BY ' . $search['order_by'] : null;
 			$query .= (isset($search['limit'])) ? ' LIMIT :limit' : null;
 			
 			$stmt = $_PDO->prepare($query);
@@ -126,7 +127,7 @@
 		
 		function get_url()
 		{
-			return '/' . $this->category . '/' . $this->handle;
+			return '/' . $this->get('category') . '/' . $this->handle;
 		}
 		
 		function get_edit_url()

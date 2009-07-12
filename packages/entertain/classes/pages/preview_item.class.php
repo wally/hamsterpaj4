@@ -19,7 +19,7 @@
 				}
 				else
 				{
-					$this->content .= template(NULL, 'framework/not_privilegied.php');
+					$this->content .= template('base', 'notifications/not_privilegied.php');
 					return;
 				}
 			}
@@ -31,5 +31,4 @@
 			}
 		}
 	}
-
 ?>

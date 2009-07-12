@@ -17,16 +17,34 @@
 					if($_POST['action'] == 'update')
 					{
 						// Check input status privilegies
+						if(!$this->user->privilegied('entertain_admin') && $_POST['status'] == 'scheduled')
+						{
+							$this->content .= template('base', 'notifications/not_privilegied.php');
+							return;
+						}
+						
+						if(!$this->user->privilegied('entertain_admin') && $_POST['status'] == 'released')
+						{
+							$this->content .= template('base', 'notifications/not_privilegied.php');
+							return;
+						}
+						
+						if(!$this->user->privilegied('entertain_admin') && $_POST['status'] == 'removed')
+						{
+							$this->content .= template('base', 'notifications/not_privilegied.php');
+							return;
+						}
+						
 						$item->update_from_post();
 						$item->save();
 						
 						if($_POST['status'] == 'preview')
 						{
-							header('Location: ' . $item->get_preview_url());
+							$this->location = $item->get('preview_url');
 						}
 						else
 						{
-							header('Location: ' . $item->get_url());
+							$this->location = $item->get('url');
 						}
 					}
 					
@@ -46,7 +64,7 @@
 				}
 				else
 				{
-					$this->content = 'Du kan inte förhandsgranska objekt som redan är ställda i kö';
+					$this->content .= template('base', 'notifications/warning.php', array('header' => 'Du kan inte förhandsgranska objekt som redan är ställda i kö'));
 					return;
 				}
 			}

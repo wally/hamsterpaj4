@@ -4,7 +4,7 @@
 		<li>
 			<img src="<?php echo $item->preview_image('medium'); ?>" />
 			<h4><?php echo $item->get('title'); ?></h4>
-			<span class="type"><?php echo $item->get('category'); ?></span>
+			<span class="type"><?php echo $item->get('category_label'); ?></span>
 		</li>
 	</a>
 	<?php endforeach; ?>

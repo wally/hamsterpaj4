@@ -22,7 +22,7 @@
 			
 			if(is_uploaded_file($_FILES['image']['tmp_name']))
 			{
-				$cmd = 'convert ' . $_FILES['image']['tmp_name'] . ' -resize "637x1024" ' . PATH_STATIC . 'entertain/' . $this->handle . '.jpg';
+				$cmd = 'convert ' . $_FILES['image']['tmp_name'] . ' -resize "637x1024" ' . PATH_STATIC . 'entertain/' . escapeshellarg($this->handle) . '.jpg';
 				tools::debug($cmd);
 				system($cmd);
 			}

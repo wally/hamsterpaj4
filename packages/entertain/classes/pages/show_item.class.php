@@ -8,7 +8,6 @@
 			
 			foreach($_ENTERTAIN['categories'] as $handle => $category)
 			{
-				tools::debug($handle);
 				if(substr($uri, 1, strlen($handle)) == $handle && strlen($uri) > strlen($handle)+2)
 				{
 					return 10;
@@ -22,19 +21,19 @@
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
-				$this->content = template(NULL, 'framework/notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
+				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
 
-			// Fetch two items of the same type
-			$same_type = entertain::fetch(array('type' => $item->get('type'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released'));
+			// Fetch two items of the same category
+			$same_category = entertain::fetch(array('category' => $item->get('category'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 
 			// Fetch three items with random type
-			$random_items = entertain::fetch(array('limit' => 2, 'allow_multiple' => true, 'status' => 'released'));
+			$random_items = entertain::fetch(array('limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 			
-			$big_related = entertain::fetch(array('limit' => 1,  'status' => 'released'));
+			$big_related = entertain::fetch(array('limit' => 1,  'status' => 'released', 'order_by' => 'RAND()'));
 			
-			$related = array_merge($same_type, $random_items);
+			$related = array_merge($same_category, $random_items);
 			
 			$comment_list = new comment_list;
 			$comment_list->user = $this->user;

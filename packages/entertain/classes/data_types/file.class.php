@@ -24,23 +24,22 @@
 		
 		function update_data_from_post()
 		{
-			tools::debug($_POST);
 			switch($_POST['file_action'])
 			{
 				case 'wget':
-					$file_extension = end(explode(".", $_POST['url']));
+					$file_extension = escapeshellarg(end(explode(".", $_POST['url'])));
 				
 					$this->data['filename'] = $this->get('handle') . '.' . $file_extension;
 					
 					// delete file if it already exists
-					if(file_exists(PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension))
+					if(file_exists(PATH_STATIC . 'entertain/files/' . escapeshellarg($this->get('handle')) . '.' . $file_extension))
 					{
-						$cmd = 'rm ' . PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension;
+						$cmd = 'rm ' . PATH_STATIC . 'entertain/files/' . escapeshellarg($this->get('handle')) . '.' . $file_extension;
 						system($cmd);
 					}
 					
 					// Upload file
-					$cmd = 'wget ' . escapeshellarg($_POST['url']) . ' -O ' . PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension;
+					$cmd = 'wget ' . escapeshellarg($_POST['url']) . ' -O ' . PATH_STATIC . 'entertain/files/' . escapeshellarg($this->get('handle')) . '.' . $file_extension;
 					system($cmd);
 					
 					$this->data['size'] = filesize(PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension);
@@ -48,8 +47,7 @@
 				break;
 				
 				case 'upload':
-			
-					$file_extension = end(explode(".", $_FILES['file']['name']));
+					$file_extension = escapeshellarg(end(explode(".", $_FILES['file']['name'])));
 			
 					$this->data['filename'] = $this->get('handle') . '.' . $file_extension;
 					$this->data['size'] = $_FILES['file']['size'];
@@ -58,7 +56,7 @@
 					// delete file if it already exists
 					if(file_exists(PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension))
 					{
-						$cmd = 'rm ' . PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension;
+						$cmd = 'rm ' . PATH_STATIC . 'entertain/files/' . escapeshellarg($this->get('handle')) . '.' . $file_extension;
 						system($cmd);
 					}
 					
@@ -72,7 +70,7 @@
 					}
 					else
 					{
-						tools::debug('filen laddades inte upp');
+						tools::debug('Filen laddades inte upp');
 					}
 					
 				break;
