@@ -14,17 +14,23 @@
 			$this->data['allow_html'] = $data['allow_html'];
 		}
 		
-		function update_from_post()
+		function update_data_from_post()
 		{
-			$this->set(array('title' => $_POST['title']));
-			$this->set(array('category' => $_POST['category']));
-			$this->set(array('has_image' => $_POST['has_image']));
-			
-			if(is_uploaded_file($_FILES['image']['tmp_name']))
+			switch($_POST['image_action'])
 			{
-				$cmd = 'convert ' . $_FILES['image']['tmp_name'] . ' -resize "637x1024" ' . PATH_STATIC . 'entertain/' . escapeshellarg($this->handle) . '.jpg';
-				tools::debug($cmd);
-				system($cmd);
+				case 'wget':
+					$cmd = 'wget ' . escapeshellarg($_POST['image_url']) . ' -O /mnt/static/entertain/images/' . escapeshellarg($this->handle) . '.jpg';
+					shell_exec($cmd);
+					$cmd = 'convert /mnt/static/entertain/images/' . escapeshellarg($this->handle) . '.jpg -resize "637x1024" ' . PATH_STATIC . 'entertain/images/' . escapeshellarg($this->handle) . '.jpg';
+					system($cmd);
+				break;
+				case 'upload':
+					if(is_uploaded_file($_FILES['image_upload']['tmp_name']))
+					{
+						$cmd = 'convert ' . $_FILES['image_upload']['tmp_name'] . ' -resize "637x1024" ' . PATH_STATIC . 'entertain/images/' . escapeshellarg($this->handle) . '.jpg';
+						system($cmd);
+					}
+				break;
 			}
 		}
 		

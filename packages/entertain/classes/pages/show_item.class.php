@@ -42,7 +42,7 @@
 			$comment_list->user = $this->user;
 			$comment_list->type = 'entertain';
 			$comment_list->item_id = $item->get('id');
-			$comment_list->limit = 10;
+			$comment_list->limit = 3;
 			$comment_list->fetch_comments();
 			
 			$out['big_related'] = $big_related;

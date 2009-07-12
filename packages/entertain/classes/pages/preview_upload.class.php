@@ -33,8 +33,23 @@
 					break;
 				case 'scale':
 					$filename = rand(0, 99999999) . '.jpg';
-					$cmd = 'convert ' . $_FILES['preview']['tmp_name'] . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
-					system($cmd);
+					
+					switch($_POST['upload_action'])
+					{
+						case 'wget':
+							$cmd = 'wget ' . escapeshellarg($_POST['url']) . ' -O ' . PATH_WEBTEMP . '1-hour/' . $filename;
+							shell_exec($cmd);
+							$cmd = 'convert ' . PATH_WEBTEMP . '1-hour/' . $filename . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
+						system($cmd);
+						break;
+						case 'upload':
+							if(is_uploaded_file($_FILES['preview']['tmp_name']))
+							{
+								$cmd = 'convert ' . $_FILES['preview']['tmp_name'] . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
+								system($cmd);
+							}
+						break;
+					}
 					
 					$this->content = template('entertain', 'admin/preview_upload_scale.php', array('filename' => $filename, 'handle' => $_POST['handle']));
 					break;
