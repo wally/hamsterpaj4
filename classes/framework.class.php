@@ -66,7 +66,7 @@
 		protected $visible = true;
 		function execute($page)
 		{
-			return template(NULL, 'layouts/amanda/side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
+			return template('base', 'side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
 	
