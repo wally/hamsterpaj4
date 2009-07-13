@@ -3,7 +3,7 @@
 	{
 		function url_hook($uri)
 		{
-			foreach(array('flash', 'onlinespel', 'bilder', 'filmklipp', 'spel', 'web', 'ascii') as $i)
+			foreach(array('flash', 'onlinespel', 'bilder', 'filmklipp', 'spel', 'web', 'musik', 'ascii') as $i)
 			{
 				if($uri == '/' . $i)
 				{
