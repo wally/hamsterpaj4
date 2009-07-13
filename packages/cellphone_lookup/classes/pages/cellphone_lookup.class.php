@@ -45,7 +45,7 @@ class page_cellphone_lookup extends page
 			}
 		}
 		
-		$this->content = template(NULL, 'pages/misc/cellphone_lookup.php', array('data' => $data));
+		$this->content = template('cellphone_lookup', 'pages/cellphone_lookup.php', array('data' => $data));
 	}
 }
 ?>

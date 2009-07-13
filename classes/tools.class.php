@@ -163,7 +163,6 @@
 			switch($type)
 			{
 				case 'adsl':
-				tools::debug('adsl');
 					$sec = $bytes/700000;
 				break;
 				

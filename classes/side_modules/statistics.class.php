@@ -3,6 +3,7 @@
 	{
 		public $template = 'statistics';
 		public $visitors = 31337;
+		public $id = 'statistics';
 
 		function __construct()
 		{

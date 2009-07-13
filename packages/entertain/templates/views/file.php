@@ -14,5 +14,5 @@
 	</div>
 </div>
 <p>
-	<?php echo $data['description']; ?>
+	<?php echo nl2br($data['description']); ?>
 </p>

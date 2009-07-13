@@ -18,23 +18,38 @@
 					$x = escapeshellcmd($_POST['307x72_x1']);
 					$y = escapeshellcmd($_POST['307x72_y1']);
 					$format = '307x72';
-					mkdir(ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle']);
-					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle'] . '/medium.png';
+					mkdir(ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']));
+					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/medium.png';
 
 					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale ' . $format . '! ' . $out;					
 					system($cmd);
 
-					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . $_POST['handle'] . '/full.png';
+					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/full.png';
 					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale 634x150! ' . $out;
 					system($cmd);
 
 					$this->content .= template('base', 'notifications/success.php');
-					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . $_POST['handle'] . '/medium.png" />';
+					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . escapeshellcmd($_POST['handle']) . '/medium.png" />';
 					break;
 				case 'scale':
 					$filename = rand(0, 99999999) . '.jpg';
-					$cmd = 'convert ' . $_FILES['preview']['tmp_name'] . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
-					system($cmd);
+					
+					switch($_POST['upload_action'])
+					{
+						case 'wget':
+							$cmd = 'wget ' . escapeshellarg($_POST['url']) . ' -O ' . PATH_WEBTEMP . '1-hour/' . $filename;
+							shell_exec($cmd);
+							$cmd = 'convert ' . PATH_WEBTEMP . '1-hour/' . $filename . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
+						system($cmd);
+						break;
+						case 'upload':
+							if(is_uploaded_file($_FILES['preview']['tmp_name']))
+							{
+								$cmd = 'convert ' . $_FILES['preview']['tmp_name'] . ' -resize "1024x1024>" ' . PATH_WEBTEMP . '1-hour/' . $filename;
+								system($cmd);
+							}
+						break;
+					}
 					
 					$this->content = template('entertain', 'admin/preview_upload_scale.php', array('filename' => $filename, 'handle' => $_POST['handle']));
 					break;

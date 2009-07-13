@@ -1,1 +1,0 @@
-<div class="comment_error_not_member"><span>Du måste vara medlem för att kunna kommentera</span></div>

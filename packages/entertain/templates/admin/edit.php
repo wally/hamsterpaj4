@@ -32,24 +32,39 @@
 	
 	<h2>Data</h2>
 	<?php echo $item->render_edit_form(); ?>
+	
 
 	<h2>Aktivering</h2>
 	<ul>
+		<?php if($privilegies['release']): ?>
 		<li>
-			<input type="radio" name="active" value="true" id="entertain_edit_active_true" />
-			<label for="entertain_edit_active_true">Aktivt</label>
+			<input type="radio" name="status" <?php echo ($item->get('status') == 'released' ? 'checked="checked"' : ''); ?> value="released" id="entertain_edit_status_released" />
+			<label for="entertain_edit_status_released">Aktiverad</label>
 		</li>
+		<?php endif; ?>
+		<?php if($privilegies['schedule']): ?>
 		<li>
-			<input type="radio" name="active" value="schedule" id="entertain_edit_active_schedule" />
-			<label for="entertain_edit_active_schedule">Schemalagt</label>
+			<input type="radio" name="status" <?php echo ($item->get('status') == 'scheduled' ? 'checked="checked"' : ''); ?> value="scheduled" id="entertain_edit_status_scheduled" />
+			<label for="entertain_edit_status_scheduled">Schemalagd</label>
 			<input type="text" name="release" value="<?php echo date('Y-m-d H:i', $item->get('release')); ?>" />
 		</li>
+		<?php endif; ?>
 		<li>
-			<input type="radio" name="active" value="false" id="entertain_edit_active_false" />
-			<label for="entertain_edit_active_false">Ej aktivt (borttaget)</label>
+			<input type="radio" name="status" <?php echo ($item->get('status') == 'preview' ? 'checked="checked"' : ''); ?> value="preview" id="entertain_edit_status_preview" />
+			<label for="entertain_edit_status_preview">Förhandsgranska objektet</label>
 		</li>
+		<li>
+			<input type="radio" name="status" <?php echo ($item->get('status') == 'queue' ? 'checked="checked"' : ''); ?> value="queue" id="entertain_edit_status_queue" />
+			<label for="entertain_edit_status_queue">Ställ objektet i kö för validering</label>
+		</li>
+		<?php if($privilegies['remove']): ?>
+		<li>
+			<input type="radio" name="status" <?php echo ($item->get('status') == 'removed' ? 'checked="checked"' : ''); ?> value="removed" id="entertain_edit_status_removed" />
+			<label for="entertain_edit_status_removed">Borttagen</label>
+		</li>
+		<?php endif; ?>
 	</ul>
 	
 	
-	<input type="submit" value="Uppdatera" />
+	<input type="submit" value="Spara" />
 </form>

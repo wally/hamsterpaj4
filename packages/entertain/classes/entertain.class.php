@@ -9,6 +9,12 @@
 			return template('entertain', 'preview_full.php', array('item' => $this));
 		}
 		
+		function update_views()
+		{
+			$this->views++;
+			$this->save();
+		}
+		
 		function previews($items)
 		{
 			return template('entertain', 'previews.php', array('items' => $items));
@@ -19,6 +25,12 @@
 			global $_ENTERTAIN;
 
 			return $_ENTERTAIN['categories'];
+		}
+		
+		function get_category_label()
+		{
+			global $_ENTERTAIN;
+			return $_ENTERTAIN['categories'][$this->category]['label'];
 		}
 		
 		function render_edit_form()
@@ -46,17 +58,20 @@
 		function fetch($search)
 		{
 			global $_PDO;
-			tools::debug($search);		
+
 			$query = 'SELECT * FROM entertain WHERE 1';
 			$query .= (isset($search['handle'])) ? ' AND handle = :handle' : null;
 			$query .= (isset($search['type'])) ? ' AND type = :type' : null;
 			$query .= (isset($search['category'])) ? ' AND category = :category' : null;
+			$query .= (isset($search['status'])) ? ' AND status = :status' : null;
+			$query .= (isset($search['order_by'])) ? ' ORDER BY ' . $search['order_by'] : null;
 			$query .= (isset($search['limit'])) ? ' LIMIT :limit' : null;
 			
 			$stmt = $_PDO->prepare($query);
 			(isset($search['handle'])) ? $stmt->bindValue(':handle', $search['handle']) : null;
 			(isset($search['type'])) ? $stmt->bindValue(':type', $search['type']) : null;
 			(isset($search['category'])) ? $stmt->bindValue(':category', $search['category']) : null;
+			(isset($search['status'])) ? $stmt->bindValue(':status', $search['status']) : null;
 			(isset($search['limit'])) ? $stmt->bindValue(':limit', $search['limit'], PDO::PARAM_INT) : null;
 			$stmt->execute();
 			
@@ -83,7 +98,8 @@
 				$item->has_image = $row['has_image'];
 				$item->published_at = $row['published_at'];
 				$item->uploaded_by = $row['uploaded_by'];
-				$item->active = $row['active'];
+				$item->status = $row['status'];
+				$item->views = $row['views'];
 				
 				if($search['allow_multiple'] == true)
 				{
@@ -112,14 +128,30 @@
 			$this->set(array('title' => $_POST['title']));
 			$this->set(array('category' => $_POST['category']));
 			$this->set(array('has_image' => $_POST['has_image']));
+			$this->set(array('status' => $_POST['status']));
 			$this->update_data_from_post();
 		}
 		
 		function get_url()
 		{
-			return '/' . $this->category . '/' . $this->handle;
+			return '/' . $this->get('category') . '/' . $this->handle;
 		}
 		
+		function get_edit_url()
+		{
+			return '/entertain/redigera/' . $this->handle;
+		}
+		
+		function get_preview_url()
+		{
+			return '/entertain/forhandsgranska/' . $this->handle;
+		}	
+		
+		function get_remove_url()
+		{
+				return '/entertain/radera/' . $this->handle;
+		}
+
 		function set_title($title)
 		{
 			$this->title = $title;
@@ -147,7 +179,7 @@
 			
 			if($this->id > 0)
 			{
-				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image WHERE id = :id LIMIT 1';
+				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, views = :views WHERE id = :id LIMIT 1';
 				
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':title', $this->title); 
@@ -155,12 +187,14 @@
 				$stmt->bindValue(':category', $this->category);
 				$stmt->bindValue(':has_image', $this->has_image);
 				$stmt->bindValue(':id', $this->id);
+				$stmt->bindValue(':status', $this->status);
+				$stmt->bindValue(':views', $this->views);
 				$stmt->execute();
 			}
 			else
 			{
-				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, active)';
-				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :active)';
+				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status)';
+				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status)';
 
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':type', $this->type); 
@@ -171,12 +205,18 @@
 				$stmt->bindValue(':has_image', $this->has_image);
 				$stmt->bindValue(':published_at', $this->published_at);
 				$stmt->bindValue(':uploaded_by', $this->uploaded_by);
-				$stmt->bindValue(':active', $this->active);
+				$stmt->bindValue(':status', $this->status);
 				if(!$stmt->execute())
 				{
 					tools::debug($stmt->errorInfo());
 				}
 			}
+		}
+		
+		function remove()
+		{
+			$this->status = 'removed';
+			$this->save();
 		}
 	}
 

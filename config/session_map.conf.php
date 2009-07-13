@@ -17,7 +17,7 @@
 	$session_map['DEPRECATED_userlevel'] = array('login', 'userlevel');
 
 	$session_map['birthday'] = array('userinfo', 'birthday');
-	$session_map['signature'] = array('userinfo', 'signature');
+	$session_map['signature'] = array('userinfo', 'user_status');
 	$session_map['contact1'] = array('userinfo', 'contact1');
 	$session_map['contact2'] = array('userinfo', 'contact2');
 	$session_map['gender'] = array('userinfo', 'gender');

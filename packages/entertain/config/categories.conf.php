@@ -1,7 +1,8 @@
 <?php
-	$_ENTERTAIN['categories'] = array('handle' => 'onlinespel', 'label' => 'Onlinespel');
-	$_ENTERTAIN['categories'] = array('handle' => 'flash', 'label' => 'Flashfilmer');
-	$_ENTERTAIN['categories'] = array('handle' => 'free_music', 'label' => 'Gratis musik');
-	$_ENTERTAIN['categories'] = array('handle' => 'funny_images', 'label' => 'Roliga bilder');
-	$_ENTERTAIN['categories'] = array('handle' => 'ascii', 'label' => 'ASCII-konst');
+	$_ENTERTAIN['categories']['onlinespel'] = array('handle' => 'onlinespel', 'label' => 'Onlinespel');
+	$_ENTERTAIN['categories']['animerat'] = array('handle' => 'animerat', 'label' => 'Animerat');
+	$_ENTERTAIN['categories']['gratis_musik'] = array('handle' => 'gratis_musik', 'label' => 'Gratis musik');
+	$_ENTERTAIN['categories']['roliga_bilder'] = array('handle' => 'roliga_bilder', 'label' => 'Roliga bilder');
+	$_ENTERTAIN['categories']['ascii'] = array('handle' => 'ascii', 'label' => 'ASCII-konst');
+	$_ENTERTAIN['categories']['filmklipp'] = array('handle' => 'filmklipp', 'label' => 'Filmklipp');
 ?>

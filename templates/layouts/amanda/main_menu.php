@@ -29,6 +29,6 @@
 
 <ul id="main_menu_sub">
 	<li><a href="/alfabetet-paa-tid">&raquo; Alfabetet på tid</a></li>
-	<li><a href="/digga">&raquo; Digga</a></li>
+	<li><a href="/digga">&raquo; sDigga</a></li>
 	<li><a href="/gratis-musik">&raquo; Gratis musik</a></li>
 </ul>

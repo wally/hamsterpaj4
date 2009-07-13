@@ -14,15 +14,16 @@
 		<option value="preformatted">För-formatterad</option>
 		<option value="file">Nedladdningsbar fil</option>
 		<option value="mp3">Musik</option>
+		<option value="video">Video</option>
 	</select>
 	
 	<input type="submit" value="Skapa" />
 </form>
 
 <p>
-	Här skapar du ett objekt i Entertain och väljer vad för typ av objekt det är.
-	Objektets handle (som används i webbadressen) kommer också att skapas.
-	Varken handle eller typ kommer att kunna ändras längre fram.
+	Här skapar du ett objekt i vårt underhållningssystem och väljer vad för typ av objekt det är.
+	Du kommer inte att kunna ändra vilken typ av objekt det är längre fram. Nedan kan du läsa lite om de olika
+	objekten. Tänk på att det vilket objekt du väljer inte har någon koppling till vad för kategori den ska ligga i.
 </p>
 
 <p>

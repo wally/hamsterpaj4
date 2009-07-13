@@ -9,22 +9,24 @@
 		
 		function execute($uri)
 		{
-			if($this->user->privilegied('entertain_admin'))
+			if($this->user->exists())
 			{
 				if(isset($_POST['title']))
 				{
 					$item = new entertain();
 					$item->set(array('type' => $_POST['type']));
 					$item->set(array('title' => $_POST['title']));					
+					$item->set(array('status' => 'preview'));	
+					$item->set(array('uploaded_by' => $this->user->get('id')));		
 					$item->save();
-					
+
 					$this->redirect = '/entertain/redigera/' . $item->get('handle');
 				}
 				$this->content .= template('entertain', 'admin/compose.php');
 			}
 			else
 			{
-				$this->content .= template('base', 'notifications/not_privilegied.php');
+				$this->content .= 'Du måste vara inloggad för att kunna skicka in objekt i entertain';
 			}
 		}
 	}

@@ -28,7 +28,7 @@
 						<?php echo template('user', 'loginbar.php'); ?>
 					<?php endif; ?>
 				</div>
-				<?php echo $page->menu->render(); ?>
+				<?php echo $page->menu->render($page); ?>
 				<div id="xxl">
 					<?php echo $page->xxl; ?>
 				</div>

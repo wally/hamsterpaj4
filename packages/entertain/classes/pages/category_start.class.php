@@ -3,9 +3,10 @@
 	{
 		function url_hook($uri)
 		{
-			foreach(array('flash', 'onlinespel', 'bilder', 'filmklipp', 'spel', 'web', 'musik', 'ascii') as $i)
+			global $_ENTERTAIN;
+			foreach($_ENTERTAIN['categories'] as $handle => $category)
 			{
-				if($uri == '/' . $i)
+				if($uri == '/' . $handle)
 				{
 					return 10;
 				}
@@ -17,11 +18,12 @@
 		{
 			$uri_explode = explode('/', $uri);
 			$category = $uri_explode[1];
+			$this->menu_active = $category;
 			
 			$this->content = '<h1>Entertain category start!</h1>';
-			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true));
+			$items = entertain::fetch(array('category' => $category, 'limit' => 10, 'allow_multiple' => true, 'status' => 'released'));
 			$this->content .= entertain::previews($items);
-
+			$this->content .= '<br class="clear" /><a href="/entertain/ny">Ladda upp nya objekt</a>';
 		}
 	}
 
