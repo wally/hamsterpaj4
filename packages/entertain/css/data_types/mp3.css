@@ -1,11 +1,23 @@
 .entertain_preview_full .mp3_player
 {
-	margin-top: 35px;
+	margin-top: 82px;
+	margin-left: 65px;
+}
+
+.entertain_preview_full .mp3_player .info
+{
+	background: black;
+	height: 60px;
+	margin-left: 390px;
+	padding-left: 10px;
+	opacity: 0.7;
+	-moz-border-radius-topleft: 5px;
 }
 
 .entertain_preview_full .mp3_player dl dd
 {
 	border-right: 1px solid #ababab;
+	border: none;
 }
 
 .entertain_preview_full .mp3_player dl dt, .entertain_preview_full .mp3_player dl dd
@@ -14,4 +26,12 @@
 	display: block;
 	padding-right: 5px;
 	padding-left: 5px;
+	padding-top: 5px;
+	color: #fff;
+	margin-left: 0;
+}
+
+.entertain_preview_full .mp3_player dl dt a
+{
+	color: #fff;
 }
