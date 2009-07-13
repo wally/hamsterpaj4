@@ -12,3 +12,13 @@
 	width: 307px;
 	padding-left: 25px;
 }
+
+.entertain_iframe
+{
+	width: 638px;
+	height: 638px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: solid;
+	scroll: auto;
+}

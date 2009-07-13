@@ -1,4 +1,4 @@
 <h1>Iframe view</h1>
-<iframe src="<?php echo $item->get('data'); ?>" class="entertain_iframe"></iframe>
+<iframe src="<?php echo $data['url']; ?>" class="entertain_iframe"></iframe>
 
-<a href="<?php echo $item->get('data'); ?>">Öppna i nytt fönster</a>
+<a href="<?php echo $data['url']; ?>">Öppna i nytt fönster</a>

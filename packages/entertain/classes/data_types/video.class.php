@@ -16,12 +16,12 @@
 					shell_exec($cmd);
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
 					$this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
-					mpwplayer::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 				case 'upload':
 					move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video/' . $this->handle . '.flv');
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
-					mpwplayer::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 			}
 			tools::debug('Updating from post!');

@@ -9,6 +9,7 @@
 			
 		function execute($uri)
 		{
+			$this->active_menu = 'under_mattan';
 			global $_PDO;
 			
 			$handle = substr($uri, 19);
@@ -32,6 +33,8 @@
 
 		function execute($uri)
 		{
+			$this->active_menu = 'under_mattan';
+			
 			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
 			$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
 		}
@@ -46,6 +49,8 @@
 		
 		function execute()
 		{
+			$this->active_menu = 'under_mattan';
+			
 			$passed = array();
 			
 			$passed['recent_artists'] = artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
@@ -87,6 +92,8 @@
 		
 		function execute()
 		{
+			$this->active_menu = 'under_mattan';
+			
 			if(!$this->user->exists())
 			{
 				$this->content = '<h1>Du måste vara inloggad!</h1>';
@@ -137,6 +144,8 @@
 		
 		function execute($uri)
 		{
+			$this->active_menu = 'under_mattan';
+			
 			include(PATH_ROOT . 'external/pchart/pChart/pData.class');
 			include(PATH_ROOT . 'external/pchart/pChart/pChart.class');
 			
@@ -181,6 +190,8 @@
 		
 		function execute($uri)
 		{
+			$this->active_menu = 'under_mattan';
+			
 			global $_PDO;
 			if($artist = artist::fetch(array('handle' => substr($uri, 14))))
 			{

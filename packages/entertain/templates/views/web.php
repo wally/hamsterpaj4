@@ -1,2 +1,1 @@
-Öppna <a href="<?php echo $item->get('data'); ?>" class="entertain_web"><?php echo $item->get('data'); ?></a> i nytt fönster
-
+Öppna <a href="<?php echo $data['url']; ?>" class="entertain_web"><?php echo $data['link']; ?></a> i nytt fönster

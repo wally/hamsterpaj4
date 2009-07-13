@@ -1,0 +1,17 @@
+.entertain_preview_full .mp3_player
+{
+	margin-top: 35px;
+}
+
+.entertain_preview_full .mp3_player dl dd
+{
+	border-right: 1px solid #ababab;
+}
+
+.entertain_preview_full .mp3_player dl dt, .entertain_preview_full .mp3_player dl dd
+{
+	float: left;
+	display: block;
+	padding-right: 5px;
+	padding-left: 5px;
+}
