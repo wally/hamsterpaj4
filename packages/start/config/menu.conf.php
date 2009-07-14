@@ -1,4 +1,4 @@
 <?php
 	// Main menu object (Menu items in orange
-	$menu['start'] = array('label' => 'Startsidan', 'priority' => '50', 'url' => '/', 'type' => 'small');
+	$menu['start'] = array('label' => 'Startsidan', 'priority' => '90', 'url' => '/', 'type' => 'small');
 ?>
