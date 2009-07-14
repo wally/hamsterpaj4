@@ -30,6 +30,9 @@
 	<input type="radio" name="has_image" value="1" id="entertain_admin_has_image_1"<?php echo $check_1; ?> />
 	<label for="entertain_admin_has_image_1">Egen screenshot</label>
 	
+	<h2>Taggar</h2>
+	<?php echo tag::render_form('entertain'); ?>
+	
 	<h2>Data</h2>
 	<?php echo $item->render_edit_form(); ?>
 	

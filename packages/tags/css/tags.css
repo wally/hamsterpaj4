@@ -1,0 +1,27 @@
+.tagMatches
+{
+	display: block;
+	height: 20px;
+	margin-left: 40px;
+	margin-top: 10px;
+}
+
+.tagMatches span 
+{
+	padding: 4px;
+	margin-right: 4px;
+	background-color: green;
+	color: #fff;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+#tags
+{
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 4px;
+	width: 300px;
+}
