@@ -24,7 +24,4 @@
 			</a>
 		</li>
 	<?php endforeach; ?>
-	<li><a href="/alfabetet-paa-tid">Alfabetet på tid</a></li>
-	<li><a href="/digga">Digga</a></li>
-	<li><a href="/gratis-musik">Gratis musik</a></li>
 </ul>

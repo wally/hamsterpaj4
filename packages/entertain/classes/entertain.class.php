@@ -100,6 +100,7 @@
 				$item->uploaded_by = $row['uploaded_by'];
 				$item->status = $row['status'];
 				$item->views = $row['views'];
+				$item->release = $row['release'];
 				
 				if($search['allow_multiple'] == true)
 				{
@@ -129,6 +130,11 @@
 			$this->set(array('category' => $_POST['category']));
 			$this->set(array('has_image' => $_POST['has_image']));
 			$this->set(array('status' => $_POST['status']));
+			if(isset($_POST['release']))
+			{
+				// Some schedule stuff
+				$this->set(array('release' => strtotime($_POST['release'])));
+			}
 			$this->update_data_from_post();
 		}
 		
@@ -179,7 +185,7 @@
 			
 			if($this->id > 0)
 			{
-				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, views = :views WHERE id = :id LIMIT 1';
+				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, views = :views, release = :release WHERE id = :id LIMIT 1';
 				
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':title', $this->title); 
@@ -189,12 +195,13 @@
 				$stmt->bindValue(':id', $this->id);
 				$stmt->bindValue(':status', $this->status);
 				$stmt->bindValue(':views', $this->views);
+				$stmt->bindValue(':release', $this->release);
 				$stmt->execute();
 			}
 			else
 			{
-				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status)';
-				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status)';
+				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status, release)';
+				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status, :release)';
 
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':type', $this->type); 
@@ -206,6 +213,7 @@
 				$stmt->bindValue(':published_at', $this->published_at);
 				$stmt->bindValue(':uploaded_by', $this->uploaded_by);
 				$stmt->bindValue(':status', $this->status);
+				$stmt->bindValue(':release', $this->release);
 				if(!$stmt->execute())
 				{
 					tools::debug($stmt->errorInfo());

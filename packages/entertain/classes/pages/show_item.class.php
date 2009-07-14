@@ -59,18 +59,22 @@
 			{
 				case 'removed':
 					$this->content .= 'Objektet borttaget';
+					$this->user->privilegied('entertain_admin') ? $this->content .= ' <a href="' . $item->get('edit_url') . '">Redigera</a>' : '';
 				break;
 				
 				case 'queue':
-					$this->content .= 'Objektet väntar på att bli godkänt';
+					$this->content .= 'Objektet väntar på att bli godkänt.';
+					$this->user->privilegied('entertain_admin') ? $this->content .= ' <a href="' . $item->get('edit_url') . '">Redigera</a>' : '';
 				break;
 				
 				case 'preview':
 					$this->content .= 'Objektet är under utveckling';
+					$this->user->privilegied('entertain_admin') ? $this->content .= ' <a href="' . $item->get('edit_url') . '">Redigera</a>' : '';
 				break;
 				
 				case 'scheduled':
 					$this->content .= 'Objektet är på väg att bli publicerat';
+					$this->user->privilegied('entertain_admin') ? $this->content .= ' <a href="' . $item->get('edit_url') . '">Redigera</a>' : '';
 				break;
 				
 				default:

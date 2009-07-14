@@ -27,7 +27,14 @@
 .comment_list li h2
 {
 	margin-top: 0;
+	margin-bottom: 0;
 	font-size: 1.2em;
+}
+
+.comment_list li p
+{
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .comment_list li .timestamp

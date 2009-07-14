@@ -9,7 +9,7 @@
 			
 		function execute($uri)
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			global $_PDO;
 			
 			$handle = substr($uri, 19);
@@ -33,7 +33,7 @@
 
 		function execute($uri)
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			
 			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
 			$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
@@ -49,7 +49,7 @@
 		
 		function execute()
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			
 			$passed = array();
 			
@@ -92,7 +92,7 @@
 		
 		function execute()
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			
 			if(!$this->user->exists())
 			{
@@ -144,7 +144,7 @@
 		
 		function execute($uri)
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			
 			include(PATH_ROOT . 'external/pchart/pChart/pData.class');
 			include(PATH_ROOT . 'external/pchart/pChart/pChart.class');
@@ -190,7 +190,7 @@
 		
 		function execute($uri)
 		{
-			$this->active_menu = 'under_mattan';
+			$this->menu_active = 'digga';
 			
 			global $_PDO;
 			if($artist = artist::fetch(array('handle' => substr($uri, 14))))

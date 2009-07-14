@@ -40,7 +40,7 @@
 						
 						if($_POST['status'] == 'preview')
 						{
-							$this->redirect = $item->get('preview_url');
+							//$this->redirect = $item->get('preview_url');
 						}
 						else
 						{
@@ -59,6 +59,13 @@
 					$privilegies['schedule'] = ($this->user->privilegied('entertain_admin') ? true : false);
 					$privilegies['release'] = ($this->user->privilegied('entertain_admin') ? true : false);
 					$privilegies['remove'] = ($this->user->privilegied('entertain_admin') ? true : false);
+					
+					// Put up a releasetime in schedule
+					if(!isset($item->release))
+					{
+						$schedule = new schedule('entertain');
+						$item->release = $schedule->suggest();
+					}
 					
 					$this->content .= template('entertain', 'admin/edit.php', array('item' => $item, 'dropdown' => $dropdown, 'privilegies' => $privilegies));
 				}

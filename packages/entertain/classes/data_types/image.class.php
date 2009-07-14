@@ -27,7 +27,7 @@
 				case 'upload':
 					if(is_uploaded_file($_FILES['image_upload']['tmp_name']))
 					{
-						$cmd = 'convert ' . $_FILES['image_upload']['tmp_name'] . ' -resize "637x1024" ' . PATH_STATIC . 'entertain/images/' . escapeshellarg($this->handle) . '.jpg';
+						$cmd = 'convert ' . $_FILES['image_upload']['tmp_name'] . ' -resize "638x1024" ' . PATH_STATIC . 'entertain/images/' . escapeshellarg($this->handle) . '.jpg';
 						system($cmd);
 					}
 				break;
