@@ -8,11 +8,13 @@
 		
 		function execute()
 		{
-			$this->content = 'Schedule test';
+			$this->content = '<h1>Schedule test</h1>';
 			
 			$schedule = new schedule('test');
 			$release = $schedule->suggest();
+			$this->content .= '<p>Scheduling system suggested release at ' . date('Y-m-d H:i:s', $release) . '</p>';
 			$schedule->book(array('timestamp' => $release));
+			$this->content .= '<p>Booked release at ' . date('Y-m-d H:i:s', $release) . '</p>';			
 			
 		}
 	}
