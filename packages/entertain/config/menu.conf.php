@@ -4,11 +4,10 @@
 	$menu['animerat'] = array('label' => 'Animerat', 'priority' => '100', 'url' => '/animerat', 'type' => 'big');
 	$menu['filmklipp'] = array('label' => 'Filmklipp', 'priority' => '100', 'url' => '/filmklipp', 'type' => 'big');
 	
-	// Sub menu choices (Menu items in grey)
-	$menu['onlinespel']['sub']['start'] = array('label' => 'Startsidan', 'url' => '/');
+	$menu['underhallning'] = array('label' => 'Filmklipp', 'priority' => '100', 'url' => '/filmklipp', 'type' => 'big');
 	
-	$menu['under_mattan']['sub']['musik'] = array('label' => 'Musik', 'url' => '/musik');
-	$menu['under_mattan']['sub']['filer'] = array('label' => 'Filer', 'url' => '/filer');
-	$menu['under_mattan']['sub']['ascii'] = array('label' => 'Ascii', 'url' => '/ascii');
-	$menu['under_mattan']['sub']['roliga_bilder'] = array('label' => 'Roliga bilder', 'url' => '/roliga_bilder');
+	$menu['musik'] = array('parent' => 'underhallning', 'label' => 'Musik', 'url' => '/musik');
+	$menu['filer'] = array('label' => 'Filer', 'url' => '/filer');
+	$menu['ascii'] = array('label' => 'Ascii', 'url' => '/ascii');
+	$menu['roliga_bilder'] = array('label' => 'Roliga bilder', 'url' => '/roliga_bilder');
 ?>

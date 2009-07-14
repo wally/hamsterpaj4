@@ -17,15 +17,17 @@
 			</dl>
 		</div>
 		<div class="clear"></div>
+		<?php if(count($item->tags) > 0): ?>
 		<div class="tags">
 			<h4>Taggar: </h4>
 			<ul>
-				<li><a href="/">Tenacious D</a></li>
-				<li><a href="/">Musikvideor</a></li>
-				<li><a href="/">Animerat</a></li>
+				<?php foreach($item->tags as $tag): ?>
+					<li><a href="/entertain/taggar/<?php echo $tag->handle; ?>"><?php echo $tag->title; ?></a></li>
+				<?php endforeach; ?>
 			</ul>
 			<div class="clear"></div>
 		</div>
+		<?php endif; ?>
 	</div>
 	
 	<div class="clear"></div>
