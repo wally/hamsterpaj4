@@ -102,6 +102,8 @@
 				$item->views = $row['views'];
 				$item->release = $row['release'];
 				
+				$item->tags = tag::fetch(array('system' => 'entertain', 'item_id' => $item->id));
+				
 				if($search['allow_multiple'] == true)
 				{
 					$items[] = $item;
@@ -200,8 +202,8 @@
 			}
 			else
 			{
-				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status, release)';
-				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status, :release)';
+				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status)';
+				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status)';
 
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':type', $this->type); 
@@ -213,7 +215,6 @@
 				$stmt->bindValue(':published_at', $this->published_at);
 				$stmt->bindValue(':uploaded_by', $this->uploaded_by);
 				$stmt->bindValue(':status', $this->status);
-				$stmt->bindValue(':release', $this->release);
 				if(!$stmt->execute())
 				{
 					tools::debug($stmt->errorInfo());
