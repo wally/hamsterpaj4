@@ -1,4 +1,4 @@
-<h5>Statistik</h5>
+<a class="minimize" href="#">+</a><h5>Statistik</h5>
 	<!--<dl>
 		<dt>Besökare</dt>
 			<dd><?php echo $module->visitors; ?></dd>

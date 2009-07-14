@@ -7,4 +7,12 @@
 .ui_module_latest_posts_written {
 	color: #818181;
 	font-size: 11px;
-}/*Hello*/
+}
+  
+#hp #modules #side_module_forum_posts li {
+	height: 20px;
+	padding-top: 2px;
+	padding-left: 10px;
+}
+
+#hp #modules #side_module_forum_posts ul li:nth-child(odd) { background-color: #edf5fa !important; }
