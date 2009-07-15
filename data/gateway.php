@@ -11,29 +11,9 @@
 	$new_post = array();
 	$new_get = array();
 	
-	foreach($_POST AS $key => $value)
-	{
-		if(!is_array($value))
-		{
-			$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
-		}
-		else
-		{
-			foreach($value AS $key2 => $value2)
-			{
-				$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
-				$new_post[htmlspecialchars($key)][htmlspecialchars($key2)] = htmlspecialchars($value2);
-			}
-		}
-	}
+	$new_post = array_map("htmlspecialchars", $_POST)
 	
-	foreach($_GET AS $key => $value)
-	{
-		if(!is_array($value))
-		{
-			$new_get[htmlspecialchars($key)] = htmlspecialchars($value);
-		}
-	}
+	$new_get = array_map("htmlspecialchars", $_GET)
 	
 	$_OLD_POST = $_POST;
 	$_POST = $new_post;
