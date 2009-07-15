@@ -51,7 +51,7 @@
             'tags' : null,
             'url' : null,
             'delay' : 0,
-            'separator' : ' '
+            'separator' : ','
         };
 
         var i, tag, userTags = [], settings = $.extend({}, defaults, options);
@@ -265,3 +265,20 @@
         });
     };
 })(jQuery);
+
+$(document).ready(function(){
+	// Empty input field
+	$('.mastertags label').click(function() 
+	{
+		if($(this).hasClass('inactive'))
+		{
+			$(this).removeClass('inactive');
+			$(this).addClass('active');
+		}
+		else
+		{
+			$(this).removeClass('active');
+			$(this).addClass('inactive');
+		}
+	});
+});

@@ -134,6 +134,9 @@
 			$this->set(array('status' => $_POST['status']));
 			//$this->set(array('release' => strtotime($_POST['release'])));
 			$this->update_data_from_post();
+			
+			// add tags
+			tag::save(array('mastertags' => $_POST['mastertags'], 'subtags' => $_POST['subtags'], 'system' => 'entertain', 'item_id' => $this->id));
 		}
 		
 		function get_url()

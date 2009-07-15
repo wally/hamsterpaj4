@@ -177,5 +177,15 @@
 			
 			return round($sec, 0);
 		}
+		
+		function array_map_multidimensional($func, $arr)
+    {
+    	$newArr = array();
+    	foreach( $arr as $key => $value )
+    	{
+    		$newArr[ $key ] = ( is_array( $value ) ? tools::array_map_multidimensional( $func, $value ) : $func( $value ) );
+    	}
+   		return $newArr;
+    }
 	}
 ?>

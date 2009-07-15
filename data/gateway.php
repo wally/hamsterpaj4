@@ -11,9 +11,9 @@
 	$new_post = array();
 	$new_get = array();
 	
-	$new_post = array_map("htmlspecialchars", $_POST);
+	$new_post = tools::array_map_multidimensional('htmlspecialchars', $_POST);
 	
-	$new_get = array_map("htmlspecialchars", $_GET);
+	$new_get = tools::array_map_multidimensional('htmlspecialchars', $_GET);
 	
 	$_OLD_POST = $_POST;
 	$_POST = $new_post;

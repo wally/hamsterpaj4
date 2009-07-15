@@ -31,7 +31,7 @@
 	<label for="entertain_admin_has_image_1">Egen screenshot</label>
 	
 	<h2>Taggar</h2>
-	<?php echo tag::render_form('entertain'); ?>
+	<?php global $_ENTERTAIN; echo tag::render_form('entertain', $_ENTERTAIN['master_tags'][$item->category], $item->id); ?>
 	
 	<h2>Data</h2>
 	<?php echo $item->render_edit_form(); ?>

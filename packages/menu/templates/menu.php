@@ -16,6 +16,7 @@
 <?php endforeach ?>
 </ul>
 
+<?php if(count($submenu) > 0): ?>
 <ul id="main_menu_sub">
 	<?php foreach($submenu AS $current_submenu): ?>
 		<li>
@@ -27,3 +28,4 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+<?php endif; ?>

@@ -41,7 +41,7 @@
 						
 						if($_POST['status'] == 'preview')
 						{
-							$this->redirect = $item->get('preview_url');
+							//$this->redirect = $item->get('preview_url');
 						}
 						else
 						{
