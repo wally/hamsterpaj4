@@ -17,6 +17,14 @@
 		{
 			$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
 		}
+		else
+		{
+			foreach($value AS $key2 => $value2)
+			{
+				$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
+				$new_post[htmlspecialchars($key)][htmlspecialchars($key2)] = htmlspecialchars($value2);
+			}
+		}
 	}
 	
 	foreach($_GET AS $key => $value)
