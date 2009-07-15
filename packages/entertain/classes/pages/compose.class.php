@@ -16,14 +16,21 @@
 				{
 					$item = new entertain();
 					$item->set(array('type' => $_POST['type']));
-					$item->set(array('title' => $_POST['title']));					
+					$item->set(array('title' => $_POST['title']));				
+					$item->set(array('category' => $_POST['category']));		
 					$item->set(array('status' => 'preview'));	
 					$item->set(array('uploaded_by' => $this->user->get('id')));		
 					$item->save();
 
 					$this->redirect = '/entertain/redigera/' . $item->get('handle');
 				}
-				$this->content .= template('entertain', 'admin/compose.php');
+				$dropdown = new html_dropdown();
+				$dropdown->set(array('name' => 'category'));
+				foreach(entertain::categories() AS $category)
+				{
+					$dropdown->add_option(array('label' => $category['label'], 'value' => $category['handle']));
+				}
+				$this->content .= template('entertain', 'admin/compose.php', array('dropdown' => $dropdown));
 			}
 			else
 			{

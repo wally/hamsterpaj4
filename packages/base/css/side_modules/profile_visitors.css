@@ -2,6 +2,7 @@
 {
 	list-style-type: none;
 	padding: 0px;
+	height: 122px;
 }
 
 #side_module_profile_visitors ul li
@@ -12,13 +13,25 @@
 	-webkit-border-radius: 2px;
 	float: left;
 	display: block;
-	margin-right: 4px;
-	margin-bottom: 4px;
+	margin-right: 3.5px;
+	margin-bottom: 3.5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 #side_module_profile_visitors img
 {
 	width: 37px;
 	height: 50px;
+}
+
+#side_module_profile_visitors a.show_more_link {
+	display: block;
+	height: 21px;
+	width: 186px;
+	margin: 0;
+	padding: 3px 0 0 0;
+	text-align: center;
+	background: url('http://images.birdy.nu/images/visitor_button.png') no-repeat;
 }
 

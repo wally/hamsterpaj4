@@ -1,4 +1,4 @@
-<h5>Besökare</h5>
+<a class="minimize" href="#">+</a><h5>Besökare</h5>
 <ul>
 	<?php foreach($module->visitors AS $visitor) : ?>
 		<li>
@@ -8,4 +8,4 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
-<a href="/traffa/my_visitors.php" class="show_more_link">Visa fler &raquo;</a>
+<a href="/traffa/my_visitors.php" class="show_more_link">Visa fler</a>

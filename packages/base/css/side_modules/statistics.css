@@ -1,0 +1,30 @@
+#hp #modules #side_module_statistics {
+	background: url('http://images.birdy.nu/images/stats2.png') no-repeat #000;
+	color: #fff;
+	padding: 3px 0 8px 0;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	height: 90px;
+        border: 0;
+}
+
+#hp #modules #side_module_statistics h5 {
+	margin-left: 19px;
+}
+
+#hp #modules #side_module_statistics ul {
+	list-style: none;
+	padding: 0 0 0 6px;
+	margin: 0 0 10px 0;
+}
+
+#hp #modules #side_module_statistics li {
+	width: 95px;
+	float: left;
+}
+
+#hp #modules #side_module_statistics a.minimize {
+    margin-left: 6px;
+}
