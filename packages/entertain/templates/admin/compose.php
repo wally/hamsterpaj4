@@ -10,32 +10,34 @@
 	Objektet som skapas kommer markeras som dolt, på nästa sida får du möjlighet att redigera det.
 </p>
 
-<form class="entertain_form" method="post">
-	<div id="object_name">
-		<label for="entertain_create_name">Namn</label><br />
-		<input type="text" name="title" id="entertain_create_name" /><br />
-	</div>
-
-	<div id="object_type">
-		<label for="entertain_create_type">Typ</label><br />
-	<select name="type" id="entertain_create_type">
-		<option value="text">Text</option>
-		<option value="web">Webb-länk</option>
-		<option value="iframe">Iframe</option>
-		<option value="html">HTML-kod</option>
-		<option value="flash">Flash</option>
-		<option value="image">Bild</option>
-		<option value="preformatted">För-formatterad</option>
-		<option value="file">Nedladdningsbar fil</option>
-		<option value="mp3">Musik</option>
-		<option value="video">Video</option>
-	</select>
-</div><br />
-
-	<div id="object_name">
-		<label>Kategori</label>
-		<?php echo $dropdown->render(); ?>
-	</div>
+<div id="step">
+	<form class="entertain_form" method="post">
+		<div id="object_name">
+			<label for="entertain_create_name">Namn</label><br />
+			<input type="text" name="title" id="entertain_create_name" /><br />
+		</div>
 	
-	<input type="submit" value="Skapa" />
-</form>
+		<div id="object_type">
+			<label for="entertain_create_type">Typ</label><br />
+		<select name="type" id="entertain_create_type">
+			<option value="text">Text</option>
+			<option value="web">Webb-länk</option>
+			<option value="iframe">Iframe</option>
+			<option value="html">HTML-kod</option>
+			<option value="flash">Flash</option>
+			<option value="image">Bild</option>
+			<option value="preformatted">För-formatterad</option>
+			<option value="file">Nedladdningsbar fil</option>
+			<option value="mp3">Musik</option>
+			<option value="video">Video</option>
+		</select>
+		</div>
+		<div id="object_category">
+			<label>Kategori</label><br />
+			<?php echo $dropdown->render(); ?>
+		</div>
+		
+		<input class="hp_button" type="submit" value="Skapa" />
+	</form>
+
+</div>

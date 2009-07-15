@@ -2,29 +2,31 @@
 
 <form method="post" class="entertain_edit" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="update" />
-	
-	<div id="object_name">
-		<label for="entertain_edit_title">Namn</label>
-		<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
-	</div>
-	
-	<div id="object_type">
-		<label>Kategori</label>
-		<?php echo $dropdown->render(); ?>
-	</div>
-	
-	<label>Typ av objekt</label>
+	<div id="step">
+		<h2>Allm&auml;nt</h2>
+		<div id="object_name">
+			<label for="entertain_edit_title">Namn</label>
+			<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
+		</div>
+		
+		<div id="object_type">
+			<label>Kategori</label>
+			<?php echo $dropdown->render(); ?>
+		</div>
+		
+		<label>Typ av objekt</label>
 	<?php echo $item->get('type'); ?>
-
-	<h2>Bild</h2>
-	<img src="<?php echo $item->preview_image('medium'); ?>" name="<?php echo $item->get('handle'); ?>" id="entertain_admin_preview_image" />
-	<div id="entertain_preview_upload">
-		<button id="entertain_edit_preview_upload_submit" name="<?php echo $item->get('handle'); ?>">Ladda upp bild</button>
 	</div>
-	<div id="entertain_edit_preview_confirm">
-		<p>Fungerade det bra att ladda upp bilden?</p>
-		<button id="entertain_edit_preview_confirm_success">Ja</button>
-		<button id="entertain_edit_preview_confirm_fail">Nej</button>
+	<div id="step">
+		<h2>Bild</h2>
+		<img src="<?php echo $item->preview_image('medium'); ?>" name="<?php echo $item->get('handle'); ?>" id="entertain_admin_preview_image" />
+		<div id="entertain_preview_upload">
+			<button id="entertain_edit_preview_upload_submit" name="<?php echo $item->get('handle'); ?>">Ny bild</button>
+		</div>
+		<div id="entertain_edit_preview_confirm">
+			<p>Fungerade det bra att ladda upp bilden?</p>
+			<button id="entertain_edit_preview_confirm_success">Ja</button>
+			<button id="entertain_edit_preview_confirm_fail">Nej</button>
 	</div>
 	
 	<?php $check_0 = ($item->get('has_image')) ? null : ' checked="true"'; ?>
@@ -33,14 +35,18 @@
 	<label for="entertain_admin_has_image_0">Standard-bild</label>
 	<input type="radio" name="has_image" value="1" id="entertain_admin_has_image_1"<?php echo $check_1; ?> />
 	<label for="entertain_admin_has_image_1">Egen screenshot</label>
-	
+</div>
+<div id="step">
 	<h2>Taggar</h2>
 	<?php global $_ENTERTAIN; echo tag::render_form('entertain', $_ENTERTAIN['master_tags'][$item->category], $item->id); ?>
-	
+</div>	
+
+<div id="step">
 	<h2>Data</h2>
 	<?php echo $item->render_edit_form(); ?>
+</div>
 	
-
+<div id="step">
 	<h2>Aktivering</h2>
 	<ul>
 		<?php if($privilegies['release']): ?>
@@ -71,7 +77,7 @@
 		</li>
 		<?php endif; ?>
 	</ul>
+</div>	
 	
-	
-	<input type="submit" value="Spara" />
+	<input class="hp_button" type="submit" value="Spara" />
 </form>

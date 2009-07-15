@@ -1,52 +1,60 @@
 h1.entertain_head { 
 	margin: 0; 
 	font-size: 25px; 
-	}
+	margin-bottom: 10px;
+}
 
 #object_name { width: 300px; }
+
+label:after { content: ''; }
 
 #object_name input[type='text'] { 
 	border: 1px solid #898989;
 	font-size: 20px;
 	color: #333;
 	padding: 5px;
-	width: 300px;
+	width: 280px;
 	margin-top: 6px;
 	-moz-border-radius: 2px;
-}
-
-.entertain_form { 
-	padding: 10px;
-	background-color: #f0f0f0;
-	-moz-border-radius: 6px; 
+	-webkit-border-radius: 2px;
 }
 
 #object_name input[type='text']:focus { 
 	border: 1px solid #e09000;
 }
 
-#object_type {
-	width: 310px;
-	float: right;
-	margin-top: -60px;
-}
-
-#object_type select { 
+#object_type select, #object_category select { 
 	width: 312px;
 	padding: 4px;
 	border: 1px solid #898989;
 	font-size: 20px;
 	color: #333;
 	margin-top: 6px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
-#object_type select:focus { border: 1px solid #e09000; }
+#object_type select:focus, #object_category select:focus { border: 1px solid #e09000; }
 
-#object_type option:nth-child(odd) { 
+#object_type option:nth-child(odd), #object_category option:nth-child(odd) { 
 	background-color: #EDF5FA;
 }
 
-.entertain_form input[type="submit"]
+#object_type {
+	float: right;
+	margin-top: -60px;
+	width: 310px;
+}
+
+#object_category select {
+	width: 292px;	
+}
+
+#object_category {
+	margin-top: 10px;
+}
+
+.hp_button
 {
 	font-size: 19px;
 	letter-spacing: -0.5px;
@@ -57,10 +65,27 @@ h1.entertain_head {
 	padding: 5px;
 	width: 118px;
 	color: #634b2f;
+	margin: 12px 0 0 0;
 }
 
-.entertain_form input[type="submit"]:hover
+.hp_button:hover
 {
 	color: #523d24;
 	background: url("http://static.hamsterpaj.net/images/layouts/amanda/button_bg.png") bottom left transparent no-repeat;
+}
+
+#step h2 {
+	margin: -2px 0 0 0;			
+}
+
+#step { 
+	padding: 8px 10px 10px 10px;
+	background-color: #f0f0f0;
+	border-top: 1px solid #d4d4d4;
+}
+
+#step:nth-child(odd) { background-color: #e2e2e2; }
+
+.textarea_full {
+	width: 600px !important;
 }
