@@ -1,9 +1,23 @@
-<h1>Skapa nytt objekt <em>Entertain</em></h1>
-<form method="post">
-	<label for="entertain_create_name">Namn</label>
-	<input type="text" name="title" id="entertain_create_name" />
+<h1 class="entertain_head">Skapa nytt objekt <strong>Entertain</strong></h1>
 
-	<label for="entertain_create_type">Typ</label>
+<p>
+	Här skapar du ett objekt i vårt underhållningssystem och väljer vad för typ av objekt det är.
+	Du kommer inte att kunna ändra vilken typ av objekt det är längre fram. Nedan kan du läsa lite om de olika
+	objekten. Tänk på att det vilket objekt du väljer inte har någon koppling till vad för kategori den ska ligga i.
+</p>
+
+<p>
+	Objektet som skapas kommer markeras som dolt, på nästa sida får du möjlighet att redigera det.
+</p>
+
+<form class="entertain_form" method="post">
+	<div id="object_name">
+		<label for="entertain_create_name">Namn</label><br />
+		<input type="text" name="title" id="entertain_create_name" /><br />
+	</div>
+
+	<div id="object_type">
+		<label for="entertain_create_type">Typ</label><br />
 	<select name="type" id="entertain_create_type">
 		<option value="text">Text</option>
 		<option value="web">Webb-länk</option>
@@ -16,16 +30,12 @@
 		<option value="mp3">Musik</option>
 		<option value="video">Video</option>
 	</select>
+</div><br />
+
+	<div id="object_type">
+		<label>Kategori</label>
+		<?php echo $dropdown->render(); ?>
+	</div>
 	
 	<input type="submit" value="Skapa" />
 </form>
-
-<p>
-	Här skapar du ett objekt i vårt underhållningssystem och väljer vad för typ av objekt det är.
-	Du kommer inte att kunna ändra vilken typ av objekt det är längre fram. Nedan kan du läsa lite om de olika
-	objekten. Tänk på att det vilket objekt du väljer inte har någon koppling till vad för kategori den ska ligga i.
-</p>
-
-<p>
-	Objektet som skapas kommer markeras som dolt, på nästa sida får du möjlighet att redigera det.
-</p>

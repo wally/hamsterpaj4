@@ -1,0 +1,66 @@
+h1.entertain_head { 
+	margin: 0; 
+	font-size: 25px; 
+	}
+
+#object_name { width: 300px; }
+
+#object_name input[type='text'] { 
+	border: 1px solid #898989;
+	font-size: 20px;
+	color: #333;
+	padding: 5px;
+	width: 300px;
+	margin-top: 6px;
+	-moz-border-radius: 2px;
+}
+
+.entertain_form { 
+	padding: 10px;
+	background-color: #f0f0f0;
+	-moz-border-radius: 6px; 
+}
+
+#object_name input[type='text']:focus { 
+	border: 1px solid #e09000;
+}
+
+#object_type {
+	width: 310px;
+	float: right;
+	margin-top: -60px;
+}
+
+#object_type select { 
+	width: 312px;
+	padding: 4px;
+	border: 1px solid #898989;
+	font-size: 20px;
+	color: #333;
+	margin-top: 6px;
+}
+
+#object_type select:focus { border: 1px solid #e09000; }
+
+#object_type option:nth-child(odd) { 
+	background-color: #EDF5FA;
+}
+
+.entertain_form input[type="submit"]
+{
+	font-size: 19px;
+	letter-spacing: -0.5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: url("http://static.hamsterpaj.net/images/layouts/amanda/button_bg.png") top left transparent no-repeat;
+	border: 0;
+	padding: 5px;
+	width: 118px;
+	color: #634b2f;
+}
+
+.entertain_form input[type="submit"]:hover
+{
+	color: #523d24;
+	background: url("http://static.hamsterpaj.net/images/layouts/amanda/button_bg.png") bottom left transparent no-repeat;
+}

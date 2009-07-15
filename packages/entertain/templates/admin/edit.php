@@ -1,15 +1,19 @@
-<h1>Redigerar entertain-objekt #<?php echo $item->get('id'); ?>, <?php echo $item->get('handle'); ?></h1>
+<h1 class="entertain_head">Redigerar entertain-objekt #<?php echo $item->get('id'); ?>, <?php echo $item->get('handle'); ?></h1>
 
 <form method="post" class="entertain_edit" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="update" />
 	
-	<label for="entertain_edit_title">Namn</label>
-	<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
+	<div id="object_name">
+		<label for="entertain_edit_title">Namn</label>
+		<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
+	</div>
 	
-	<label>Kategori</label>
-	<?php echo $dropdown->render(); ?>
+	<div id="object_type">
+		<label>Kategori</label>
+		<?php echo $dropdown->render(); ?>
+	</div>
 	
-	<label>Typ</label>
+	<label>Typ av objekt</label>
 	<?php echo $item->get('type'); ?>
 
 	<h2>Bild</h2>
