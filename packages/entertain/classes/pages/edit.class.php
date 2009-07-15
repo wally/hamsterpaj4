@@ -8,6 +8,7 @@
 		
 		function execute($uri)
 		{
+			$this->menu_active = 'entertain_admin';
 			$uri_explode = explode('/', $uri);
 			
 			if($item = entertain::fetch(array('handle' => $uri_explode[3])))
@@ -40,7 +41,7 @@
 						
 						if($_POST['status'] == 'preview')
 						{
-							//$this->redirect = $item->get('preview_url');
+							$this->redirect = $item->get('preview_url');
 						}
 						else
 						{

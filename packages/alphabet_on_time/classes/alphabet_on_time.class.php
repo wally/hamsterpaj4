@@ -8,6 +8,7 @@
 		
 		function execute()
 		{
+			$this->menu_active = 'alfabetet-paa-tid';
 			$this->content = template('alphabet_on_time', 'alphabet_on_time.php');
 		}
 	}

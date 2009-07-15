@@ -9,6 +9,7 @@
 		
 		function execute($uri)
 		{
+			$this->menu_active = 'entertain_admin_ny';
 			if($this->user->exists())
 			{
 				if(isset($_POST['title']))

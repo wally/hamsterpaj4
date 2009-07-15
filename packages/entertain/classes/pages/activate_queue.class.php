@@ -9,6 +9,7 @@
 		
 		function execute($uri)
 		{
+			$this->menu_active = 'entertain_admin_aktivera';
 			// Fetch items which is in queue
 			$items = entertain::fetch(array('limit' => 20, 'allow_multiple' => true, 'status' => 'queue'));
 

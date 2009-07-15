@@ -8,6 +8,8 @@
 		
 		function execute()
 		{
+			$this->menu_active = 'start';
+			
 			$this->content = '<h1>Startsida!</h1>';
 			
 			$entertain = entertain::fetch(array('limit' => 3, 'allow_multiple' => true, 'category' => 'onlinespel', 'status' => 'released'));

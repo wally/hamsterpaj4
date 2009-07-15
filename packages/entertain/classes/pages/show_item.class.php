@@ -18,12 +18,15 @@
 		
 		function execute($uri)
 		{
+			
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
 				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
 			}
+			
+			$this->menu_active = $item->get('category');
 			
 			// Update number of views
 			$item->update_views();

@@ -8,6 +8,7 @@ class page_cellphone_lookup extends page
 	
 	function execute($uri) 
 	{
+		$this->menu_active = 'mobilnummer';
 		global $_CELLPHONE_LOOKUP_OPERATOR_ALIASES, $_CELLPHONE_LOOKUP_OPERATOR_ALIASES_SHORT;
 		
 		$uri_explode = explode('/', $uri);
