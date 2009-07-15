@@ -32,7 +32,7 @@
 	</select>
 </div><br />
 
-	<div id="object_type">
+	<div id="object_name">
 		<label>Kategori</label>
 		<?php echo $dropdown->render(); ?>
 	</div>
