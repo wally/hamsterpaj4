@@ -6,6 +6,6 @@
 	</div>
 	<span>Online <?php echo tools::duration_readable(time() - $user->last_logon); ?></span>
 	<div id="ui_statusbar_forumstatus">
-		<span title="<?php echo $user->signature; ?>"><?php echo $user->signature; ?></span>
+		<span title="<?php echo $user->signature; ?>"><?php echo ((strlen(trim($user->signature)) > 0) ? ((mb_strlen($user->signature, 'UTF8') > 22) ? mb_substr($user->signature, 0, 19, 'UTF8') . '...' : $user->signature) : 'Ingen status'); ?></span>
 	</div>
 </div>

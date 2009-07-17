@@ -8,8 +8,8 @@
 		</li>
 	<?php else: ?>
 		<li class="small" <?php echo $current_menu['active'] ? 'id="active"' : ''; ?>>
-			<a href="<?php echo $current_menu['url'] ?>">
-				<?php echo $current_menu['label'] ?>
+			<a href="<?php echo $current_menu['url']; ?>">
+				<?php echo $current_menu['label']; ?>
 			</a>
 		</li>
 	<?php endif ?>
@@ -20,9 +20,9 @@
 <ul id="main_menu_sub">
 	<?php foreach($submenu AS $current_submenu): ?>
 		<li>
-			<a href="<?php echo $current_submenu['url'] ?>">
+			<a href="<?php echo $current_submenu['url']; ?>">
 				<?php echo $current_submenu['active'] ? '<strong>' : ''; ?>
-					<?php echo $current_submenu['label'] ?>
+					<?php echo $current_submenu['label']; ?>
 				<?php echo $current_submenu['active'] ? '</strong>' : ''; ?>
 			</a>
 		</li>

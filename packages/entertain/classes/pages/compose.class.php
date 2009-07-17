@@ -34,7 +34,7 @@
 			}
 			else
 			{
-				$this->content .= 'Du måste vara inloggad för att kunna skicka in objekt i entertain';
+				$this->content .= 'Du mÃ¥ste vara inloggad fÃ¶r att kunna skicka in objekt i entertain';
 			}
 		}
 	}
