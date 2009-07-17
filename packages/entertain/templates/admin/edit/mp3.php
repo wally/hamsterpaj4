@@ -1,4 +1,4 @@
-<h2>MP3-fil</h2>
+<h3>Datatyp: MP3-fil</h3>
 <ul>
 	<?php if(file_exists('/mnt/static/entertain/mp3/' . $item->handle . '.mp3')): ?>
 	<li>

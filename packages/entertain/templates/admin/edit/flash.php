@@ -1,4 +1,4 @@
-<h2>Flashfil</h2>
+<h3>Datatyp: Flashfil</h3>
 <ul>
 	<?php if(file_exists('/mnt/static/entertain/flash/' . $item->handle . '.swf')): ?>
 	<li>

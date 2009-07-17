@@ -1,4 +1,4 @@
-<h2>Datatyp: HTML</h2>
+<h3>Datatyp: HTML</h3>
 <label>Kod</label>
 <textarea name="html" class="textarea_full"><?php echo html_entity_decode($data['html']); ?></textarea>
 

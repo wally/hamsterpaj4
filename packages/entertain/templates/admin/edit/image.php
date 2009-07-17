@@ -1,4 +1,4 @@
-<h2>Bild</h2>
+<h3>Datatyp: Bild</h3>
 <ul>
 	<?php if(file_exists('/mnt/static/entertain/images/' . $item->handle . '.jpg')): ?>
 	<li>
