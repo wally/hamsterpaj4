@@ -19,14 +19,23 @@
 		function execute($uri)
 		{
 			$uri_explode = explode('/', $uri);
-			$this->menu_active = $uri_explode[1];
+			
+			if(menu::exists($uri_explode[1] . '_' . $uri_explode[3]))
+			{
+				$this->menu_active = $uri_explode[1] . '_' . $uri_explode[3];
+			}
+			else
+			{
+				tools::debug('hej');
+				$this->menu_active = $uri_explode[1];
+			}
 			
 			if(!$tags = tag::fetch(array('handle' => $uri_explode[3])))
 			{
 				$this->content .= 'Den här taggen finns inte';
 				return;
 			}
-			$this->menu_active = $uri_explode[1] . '_' . $uri_explode[3];
+			
 			
 			foreach($tags AS $tag)
 			{

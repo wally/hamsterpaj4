@@ -1,6 +1,12 @@
 <?php
 	class menu extends page
 	{
+		function exists($menu_item)
+		{
+			global $menu;
+			return isset($menu[$menu_item]);
+		}
+		
 		function render($page)
 		{
 			$menu = $this->data;

@@ -20,9 +20,9 @@
 					$new_width = 314;
 				break;
 			}
-			
+			tools::debug($infile);
 			// Get size of video
-			$info_output = shell_exec('/usr/bin/ffmpeg -i /home/patrick/test.avi 2>&1');
+			$info_output = shell_exec('/usr/bin/ffmpeg -i ' . $infile . ' 2>&1');
 			$info = explode(':', $info_output); 
 			$info[17] = explode(',', $info[17]); 
 			$info[17][2] = explode('[', $info[17][2]); 
@@ -33,6 +33,7 @@
 			$width = $size[0];
 			tools::debug('width=' . $width);
 			$height = $size[1];
+			tools::debug($height);
 			$aspect_ratio = $width/$height;
 			$new_height = round($new_width/$aspect_ratio, 0);
 			$new_height = $new_height&1 ?  $new_height+1 : $new_height;
