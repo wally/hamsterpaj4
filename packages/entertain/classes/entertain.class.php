@@ -20,6 +20,11 @@
 			return template('entertain', 'previews.php', array('items' => $items));
 		}
 		
+		function previews_small($items)
+		{
+			return template('entertain', 'previews_small.php', array('items' => $items));
+		}
+		
 		function categories()
 		{
 			global $_ENTERTAIN;
@@ -27,10 +32,17 @@
 			return $_ENTERTAIN['categories'];
 		}
 		
-		function get_category_label()
+		function get_category_label($category = NULL)
 		{
 			global $_ENTERTAIN;
-			return $_ENTERTAIN['categories'][$this->category]['label'];
+			if(isset($category))
+			{
+				return $_ENTERTAIN['categories'][$category]['label'];
+			}
+			else
+			{
+				return $_ENTERTAIN['categories'][$this->category]['label'];
+			}
 		}
 		
 		function render_edit_form()
@@ -58,7 +70,7 @@
 		function fetch($search)
 		{
 			global $_PDO;
-tools::debug($search);
+
 			$query = 'SELECT * FROM entertain WHERE 1';
 			$query .= (isset($search['handle'])) ? ' AND handle = :handle' : null;
 			$query .= (isset($search['type'])) ? ' AND type = :type' : null;
@@ -67,7 +79,7 @@ tools::debug($search);
 			$query .= (isset($search['status'])) ? ' AND status = :status' : null;
 			$query .= (isset($search['order_by'])) ? ' ORDER BY ' . $search['order_by'] : null;
 			$query .= (isset($search['limit'])) ? ' LIMIT :limit' : null;
-			tools::debug($query);
+
 			$stmt = $_PDO->prepare($query);
 			(isset($search['handle'])) ? $stmt->bindValue(':handle', $search['handle']) : null;
 			(isset($search['type'])) ? $stmt->bindValue(':type', $search['type']) : null;

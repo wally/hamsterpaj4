@@ -1,3 +1,8 @@
+.entertain_item
+{
+	margin: 10px 0 10px 0;
+}
+
 .entertain_comments
 {
 	margin-top: 25px;
@@ -31,6 +36,7 @@
 	opacity: 0.9;
 	width: 638px;
 	padding: 2px 0 2px 0;
+	clear: both;
 }
 
 .entertain_div h1

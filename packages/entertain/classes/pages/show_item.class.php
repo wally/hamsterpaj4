@@ -30,6 +30,12 @@
 			
 			// Update number of views
 			$item->update_views();
+			
+			// Fetch items with tags matching
+			$matching_tag_items = entertain::fetch(array('category' => $item->get('category'), 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
+			$matching_tag_items1 = array_slice($matching_tag_items, 0, 4);
+			$matching_tag_items2 = array_splice($matching_tag_items, 5, 8);
+			$matching_tag_items2 = entertain::fetch(array('category' => $item->get('category'), 'limit' => 4, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 
 			// Fetch two items of the same category
 			$same_category = entertain::fetch(array('category' => $item->get('category'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
@@ -51,6 +57,8 @@
 			$out['big_related'] = $big_related;
 			$out['item'] = $item;
 			$out['related'] = $related;
+			$out['matching_tag_items1'] = $matching_tag_items1;
+			$out['matching_tag_items2'] = $matching_tag_items2;
 			$out['comment_list'] = $comment_list;
 			if($this->user->privilegied('entertain_edit'))
 			{

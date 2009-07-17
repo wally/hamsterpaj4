@@ -1,3 +1,18 @@
+.entertain_preview_container
+{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: #ccc;
+	padding-bottom: 3px;
+	margin: 10px 0;
+}
+
+.entertain_preview_container h2
+{
+	margin: 0 0 2px 7px;
+	padding-top: 7px;
+}
+
 .entertain_preview
 {
 	padding: 0px;
@@ -83,4 +98,63 @@
 	width: 100%;
 	padding: 0px;
 	text-indent: 15px;
+}
+
+.entertain_preview_small
+{
+	padding: 0px;
+	margin-top: 0;
+}
+
+.entertain_preview_small li
+{
+	position: relative;
+	border: 1px solid #373737;
+	-moz-border-radius: 3px;
+	height: 40px;
+	width: 150px;
+	overflow: hidden;
+	float: left;
+	margin-left: 9px;
+}
+
+.entertain_preview_small > li:first-child
+{
+	margin-left: 0;
+}
+
+.entertain_preview_small li img
+{
+	position: absolute;
+}
+
+.entertain_preview_small li h4
+{
+	position: absolute;
+	background: black;
+	color: white;
+	width: 100%;
+	opacity: 0.75;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	display: block;
+	margin-top: 0px;
+	padding-top: 0px;
+	text-indent: 5px;
+	font-weight: bold;
+}
+
+.entertain_preview_small li .type
+{
+	background: black;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: white;
+	opacity: 0.7;
+	-moz-border-radius-topleft: 3px;
 }
