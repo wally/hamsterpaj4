@@ -2,7 +2,7 @@
 <div id="entertain_preview_cropper">
 	<img src="/temp/1-hour/<?php echo $filename; ?>" id="entertain_preview_cropper_photo" />
 
-	<ul id="crop_previews">
+	<ul id="crop_previews" class="entertain_preview">
 		<li id="crop_307x72">
 			<img alt="Thumbnail Preview" style="position: relative; width: 236px;" src="/temp/1-hour/<?php echo $filename; ?>"/>
 		</li>

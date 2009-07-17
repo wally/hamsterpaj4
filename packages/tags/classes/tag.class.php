@@ -8,7 +8,7 @@
 			$query = 'SELECT t.id, t.title, t.handle, t.popularity, tao.item_id, tao.tag_id FROM tags as t, tags_ownage as tao WHERE 1';
 			$query .= (isset($search['system'])) ? ' AND tao.system = :system AND t.system = tao.system' : null;
 			$query .= (isset($search['item_id'])) ? ' AND tao.item_id = :item_id AND tao.tag_id = t.id' : null;
-			$query .= (isset($search['handle'])) ? ' AND t.handle = :handle' : null;
+			$query .= (isset($search['handle'])) ? ' AND t.handle = :handle  AND tao.tag_id = t.id' : null;
 			$query .= (isset($search['order_by'])) ? ' ORDER BY ' . $search['order_by'] : null;
 			$query .= (isset($search['limit'])) ? ' LIMIT :limit' : null;
 
@@ -24,14 +24,22 @@
 				$tag = new tag();				
 				
 				$tag->id = $row['id'];
+				$tag->item_id = $row['item_id'];
 				$tag->title = $row['title'];
 				$tag->handle = $row['handle'];
 				$tag->popularity = $row['popularity'];
 
 				$tags[] = $tag;
 			}
-
-			return $tags;
+			
+			if(isset($tags[0]->id))
+			{
+				return $tags;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 		function save($data)
@@ -42,10 +50,23 @@
 			
 			$mastertags = $data['mastertags'];
 			
-			$tags = array_merge($subtags, $mastertags);
+			if(count($mastertags) > 0 && count($subtags) > 0)
+			{
+				$tags = array_merge($subtags, $mastertags);
+			}
+			elseif(count($mastertags) > 0)
+			{
+				$tags = $mastertags;
+			}
+			else
+			{
+				$tags = $subtags;
+			}
+			
+			
 			
 			$tags = array_filter($tags);
-			
+			tools::debug($tags);
 			$tags_lowcase = array_map('strtolower', $tags);
 			
 			$tags = array_map('trim', $tags);
@@ -59,15 +80,15 @@
 				tools::debug($stmt->errorInfo());
 			}
 			
-			$query = 'SELECT id FROM tags WHERE LOWER(title) = IN ("' . implode('", "', $tags_lowcase) . '"), system = "' . $data['system'] . '"';
+			$query = 'SELECT id, title FROM tags WHERE LOWER(title) IN ("' . implode('", "', $tags_lowcase) . '") AND system = "' . $data['system'] . '"';
 			tools::debug($query);
 			foreach($_PDO->query($query) AS $row)
 			{
 				tag::create_relationship(array('tag_id' => $row['id'], 'item_id' => $data['item_id'], 'system' => $data['system']));
 				
-				$existing_tags = $row['title'];
+				$existing_tags[] = strtolower($row['title']);
 			}
-			
+			tools::debug($existing_tags);
 			foreach($tags as $tag)
 			{
 				if(!in_array(strtolower($tag), $existing_tags))

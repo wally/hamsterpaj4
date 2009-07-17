@@ -5,19 +5,9 @@
 		<title></title>
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 		<style type="text/css">
-			<?php
-			// Load all css
-			$stylesheets = css::get();
-			foreach($stylesheets as $stylesheet): ?>
-				@import url('<?php echo URL_CSS . $stylesheet; ?>');
-			<?php endforeach ?>
+				@import url('/style.css');
 		</style>
-		<?php
-			// Load all javascripts
-			$javascripts = javascript::get();
-			foreach($javascripts as $javascript): ?>
-				<script src="<?php echo URL_JAVASCRIPTS . $javascript; ?>" type="text/javascript"></script>
-		<?php endforeach ?>
+		<script src="/scripts.js" type="text/javascript"></script>
 	</head> 
 	<body class="layout_blank">
 		<div id="content">

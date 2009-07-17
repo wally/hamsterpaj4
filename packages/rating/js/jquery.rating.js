@@ -96,7 +96,7 @@
 				
 				// Create 'cancel' button
 				rater.append(
-					control.cancel = $('<div class="rating-cancel"><a title="' + control.cancel + '">' + control.cancelValue + '</a></div>')
+					control.cancel = $('<div class="rating-cancel"><a title="' + control.cancel + '" class="star" id="star-0">' + control.cancelValue + '</a></div>')
 					.mouseover(function(){
 						$(this).rating('drain');
 						$(this).addClass('star-rating-hover');
@@ -320,7 +320,7 @@
 	*/
 	$.fn.rating.options = { //$.extend($.fn.rating, { options: {
 			cancel: 'Cancel Rating',   // advisory title for the 'cancel' link
-			cancelValue: '',           // value to submit when user click the 'cancel' link
+			cancelValue: '0',           // value to submit when user click the 'cancel' link
 			split: 0,                  // split the star into how many parts?
 			
 			// Width of star image in case the plugin can't work it out. This can happen if

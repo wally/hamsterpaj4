@@ -10,7 +10,6 @@
 	margin-bottom: 10px;
 	margin-top: 10px;
 	display: block;
-	height: 20px;
 }
 
 .mastertags input
@@ -21,12 +20,14 @@
 .tagMatches span, .mastertags label
 {
 	padding: 4px;
-	margin-right: 4px;
+	margin: 4px;
 	background-color: green;
 	color: #fff;
 	cursor: pointer;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	display: block;
+	float: left;
 	
 }
 

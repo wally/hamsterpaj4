@@ -33,7 +33,7 @@
 			<h4>Taggar: </h4>
 			<ul>
 				<?php foreach($item->tags as $tag): ?>
-					<li><a href="/entertain/taggar/<?php echo $tag->handle; ?>"><?php echo $tag->title; ?></a></li>
+					<li><a href="/<?php echo $item->category; ?>/taggar/<?php echo $tag->handle; ?>"><?php echo $tag->title; ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 			<div class="clear"></div>

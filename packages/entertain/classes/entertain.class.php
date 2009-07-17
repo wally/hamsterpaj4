@@ -58,15 +58,16 @@
 		function fetch($search)
 		{
 			global $_PDO;
-
+tools::debug($search);
 			$query = 'SELECT * FROM entertain WHERE 1';
 			$query .= (isset($search['handle'])) ? ' AND handle = :handle' : null;
 			$query .= (isset($search['type'])) ? ' AND type = :type' : null;
+			$query .= (isset($search['ids'])) ? ' AND id IN ("' . implode('", "', $search['ids']) . '")' : null;
 			$query .= (isset($search['category'])) ? ' AND category = :category' : null;
 			$query .= (isset($search['status'])) ? ' AND status = :status' : null;
 			$query .= (isset($search['order_by'])) ? ' ORDER BY ' . $search['order_by'] : null;
 			$query .= (isset($search['limit'])) ? ' LIMIT :limit' : null;
-			
+			tools::debug($query);
 			$stmt = $_PDO->prepare($query);
 			(isset($search['handle'])) ? $stmt->bindValue(':handle', $search['handle']) : null;
 			(isset($search['type'])) ? $stmt->bindValue(':type', $search['type']) : null;
@@ -227,6 +228,11 @@
 		{
 			$this->status = 'removed';
 			$this->save();
+		}
+		
+		function item_list($items, $view = 'default')
+		{
+			return template('entertain', 'item_list.php', array('items' => $items));
 		}
 	}
 

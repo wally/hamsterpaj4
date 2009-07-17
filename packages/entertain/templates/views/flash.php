@@ -4,11 +4,11 @@
 	<h1><?php echo $item->get('title'); ?></h1>
 	<div class="rating">
 		<h2>Rösta här:</h2>
-		<input name="star2" type="radio" class="star" title="Värdelös"/>
-		<input name="star2" type="radio" class="star" title="Okej"/>
-		<input name="star2" type="radio" class="star" checked="checked" title="Bra"/>
-		<input name="star2" type="radio" class="star" title="Väldigt bra"/>
-		<input name="star2" type="radio" class="star" title="Bäst"/>
+		<input name="star2" type="radio" class="star" id="star-1" title="Värdelös"/>
+		<input name="star2" type="radio" class="star" id="star-2" title="Okej"/>
+		<input name="star2" type="radio" class="star" id="star-3" checked="checked" title="Bra"/>
+		<input name="star2" type="radio" class="star" id="star-4" title="Väldigt bra"/>
+		<input name="star2" type="radio" class="star" id="star-5" title="Bäst"/>
 	</div>
 	<object width="638" height="432px">
 		<param name="movie" value="<?php echo $data['flashfile']; ?>">
@@ -27,7 +27,7 @@
 			<h4>Taggar: </h4>
 			<ul>
 				<?php foreach($item->tags as $tag): ?>
-					<li><a href="/entertain/taggar/<?php echo $tag->handle; ?>"><?php echo $tag->title; ?></a></li>
+					<li><a href="/<?php echo $item->category; ?>/taggar/<?php echo $tag->handle; ?>"><?php echo $tag->title; ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 			<div class="clear"></div>

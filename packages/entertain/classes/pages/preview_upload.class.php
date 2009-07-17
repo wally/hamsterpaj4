@@ -12,24 +12,50 @@
 			switch($_POST['action'])
 			{
 				case 'save':
-					$in = PATH_WEBTEMP . '1-hour/' . escapeshellcmd($_POST['filename']);
-					$width = escapeshellcmd($_POST['307x72_x2'] - $_POST['307x72_x1']);
-					$height = escapeshellcmd($_POST['307x72_y2'] - $_POST['307x72_y1']);
-					$x = escapeshellcmd($_POST['307x72_x1']);
-					$y = escapeshellcmd($_POST['307x72_y1']);
-					$format = '307x72';
-					mkdir(ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']));
-					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/medium.png';
-
-					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale ' . $format . '! ' . $out;					
-					system($cmd);
-
-					$out = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/full.png';
-					$cmd = 'convert ' . $in . ' -crop ' . $width . 'x' . $height . '+' . $x . '+' . $y . ' -scale 634x150! ' . $out;
-					system($cmd);
+					$out_medium = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/medium.png';
+					
+					shell_exec('mkdir ' . ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']));
+					
+					$this->content .= tools::preint_r($_POST);
+					
+					if($src_medium = imagecreatefromjpeg(PATH_WEBTEMP . '1-hour/' . $_POST['filename']))
+					{
+						$this->content .= 'imagecreatefromjpeg<br />';
+					}
+					if($tmp_medium = imagecreatetruecolor(307, 72))
+					{
+						$this->content .= 'imagecreatetruecolor<br />';
+					}
+					if(imagecopyresampled($tmp_medium, $src_medium, 0,0,$_POST['307x72_x1'],$_POST['307x72_y1'],307,72,$_POST['307x72_x2'],$_POST['307x72_y2']))
+					{
+						$this->content .= 'imagecopyresampled<br />';
+					}
+					$this->content .= $tmp_medium;
+					$this->content .= $out_medium;
+					if(imagejpeg($tmp_medium, $out_medium, 100))
+					{
+						$this->content .= 'imagejpeg<br />';
+					}
+					imagedestroy($tmp_medium);
+					imagedestroy($src_medium);
+					
+					$out_full = ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']) . '/full.png';
+					$src_full = imagecreatefromjpeg(PATH_WEBTEMP . '1-hour/' . $_POST['filename']);
+					$tmp_full = imagecreatetruecolor(634, 150);
+					imagecopyresampled($tmp_full, $src_full, 0,0,$_POST['307x72_x1'],$_POST['307x72_y1'],634,150,$_POST['307x72_x2'],$_POST['307x72_y2']);
+					imagejpeg($tmp_full, $out_full,100);
+					imagedestroy($tmp_full);
+					imagedestroy($src_full);
+					
 
 					$this->content .= template('base', 'notifications/success.php');
 					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . escapeshellcmd($_POST['handle']) . '/medium.png" />';
+					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . escapeshellcmd($_POST['handle']) . '/full.png" />';
+					$this->content .= '
+					<script type="text/javascript">
+		window.close();
+	</script>
+														'; 
 					break;
 				case 'scale':
 					$filename = rand(0, 99999999) . '.jpg';
