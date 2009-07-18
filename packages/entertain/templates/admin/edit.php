@@ -6,7 +6,7 @@
 		<h2>Allm&auml;nt<div id="help_text"> Enkla saker</div></h2>
 		<div id="object_name">
 			<label for="entertain_edit_title">Namn</label>
-			<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
+			<input type="text" name="title" id="entertain_edit_title" value="<?php echo $item->get('title'); ?>" />
 		</div>
 		<div id="object_type">
 			<label>Kategori</label>
@@ -48,7 +48,7 @@
 	
 <div id="step">
 	<h2>Aktivering<div id="help_text"> S&aring; vi vet n&auml;r den ska upp </div></h2>
-	<ul>
+	<ul id="activate">
 		<?php if($privilegies['release']): ?>
 		<li>
 			<input type="radio" name="status" <?php echo ($item->get('status') == 'released' ? 'checked="checked"' : ''); ?> value="released" id="entertain_edit_status_released" />
@@ -58,7 +58,7 @@
 		<?php if($privilegies['schedule']): ?>
 		<li>
 			<input type="radio" name="status" <?php echo ($item->get('status') == 'scheduled' ? 'checked="checked"' : ''); ?> value="scheduled" id="entertain_edit_status_scheduled" />
-			<label for="entertain_edit_status_scheduled">Schemalagd</label>
+			<label style="display: inline-block; width: 175px;" for="entertain_edit_status_scheduled">Schemalagd</label>
 			<input type="text" name="release" value="<?php echo date('Y-m-d H:i', $item->get('release')); ?>" />
 		</li>
 		<?php endif; ?>
