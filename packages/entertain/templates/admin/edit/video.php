@@ -16,5 +16,10 @@
 		<label for="video_wget">Hämta videofil från webben</label>
 		<input type="text" name="video_url" />
 	</li>
+	<li>
+		<input type="radio" name="video_action" value="youtube" id="video_youtube" />
+		<label for="video_youtube">Hämta videofil från Youtube.com (URL till filmklippet)</label>
+		<input type="text" name="youtube_url" />
+	</li>
 </ul>
 	

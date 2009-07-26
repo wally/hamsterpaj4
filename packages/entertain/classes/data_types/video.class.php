@@ -13,43 +13,76 @@
 			{
 				case 'wget':
 					$file_extension = end(explode(".", $_POST['video_url']));
-					$cmd = 'wget ' . escapeshellarg($_POST['video_url']) . ' -O /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension;
-					shell_exec($cmd);
 					
-					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.' . $file_extension);
-					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '_high_quality.' . $file_extension);
+					if($file_extension == 'flv')
+					{
+						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
+					 $cmd = 'wget ' . escapeshellarg($_POST['video_url']) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
+					}
+					else
+					{
+						$cmd = 'wget ' . escapeshellarg($_POST['video_url']) . ' -O /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension;
+						shell_exec($cmd);
 					
-					// Low quality
-					video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv');
+						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
-					// High quality
-					video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '_high_quality.flv', 'high');
+						video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
-					shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
-					
+						shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
+					}
+		
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
 					$this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
 					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 				case 'upload':
 					$file_extension = end(explode(".", $_FILES['video_upload']['name']));
-					tools::debug($file_extension);
-					move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
 					
-					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.' . $file_extension);
-					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '_high_quality.' . $file_extension);
+					if($file_extension == 'flv')
+          {
+            shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
+						move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video/' . $this->handle . '.flv');
+          }
+          else
+          {
+						move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
 					
-					// Low quality
-					video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv');
+						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
-					// High quality
-					video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '_high_quality.flv', 'high');
+						video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
-					shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
-					
+						shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
+					}
 					$this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
 					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+				break;
+				case 'youtube':					
+					$youtube_page = @file_get_contents($_POST['youtube_url']);
+
+				  preg_match('#var fullscreenUrl = \'(.*?)\'#', $youtube_page, $fullscreen_url);
+				  $fullscreen_url = $fullscreen_url[1] . '&' ;
+
+				  preg_match('#video_id=([a-z0-9-_]+)&#i', $fullscreen_url, $video_id);
+				  $video_id = $video_id[1];
+
+				  preg_match('#l=([0-9]+)&#i', $fullscreen_url, $l);
+				  $l = $l[1];
+	
+				  preg_match('#t=(.*?)&#i', $fullscreen_url, $t);
+				  $t = $t[1];
+
+					$flash_url = 'http://www.youtube.com/get_video?video_id=' . $video_id . '&l=' . $l . '&t=' . $t;
+
+          shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
+
+					$cmd = 'wget ' . escapeshellarg($flash_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
+          shell_exec($cmd);
+
+          $this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
+          $this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
+          video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+					
 				break;
 			}
 			tools::debug('Updating from post!');
