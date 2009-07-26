@@ -1,4 +1,4 @@
-<h2>Datatyp: web</h2>
+<h3>Datatyp: Web</h3>
 <label for="url">Webbadressen till länken</label>
 <input type="text" name="url" value="<?php echo (isset($data['url']) ? $data['url'] : 'http://'); ?>" />
 <br />

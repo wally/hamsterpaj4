@@ -3,22 +3,22 @@
 <form method="post" class="entertain_edit" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="update" />
 	<div id="step">
-		<h2>Allm&auml;nt</h2>
+		<h2>Allm&auml;nt<div id="help_text"> Enkla saker</div></h2>
 		<div id="object_name">
 			<label for="entertain_edit_title">Namn</label>
-			<input type="text" name="title" id="etnertain_edit_title" value="<?php echo $item->get('title'); ?>" />
+			<input type="text" name="title" id="entertain_edit_title" value="<?php echo $item->get('title'); ?>" />
 		</div>
-		
 		<div id="object_type">
 			<label>Kategori</label>
 			<?php echo $dropdown->render(); ?>
 		</div>
 		
+		<br />
 		<label>Typ av objekt</label>
-	<?php echo $item->get('type'); ?>
+		<?php echo $item->get('type'); ?>
 	</div>
 	<div id="step">
-		<h2>Bild</h2>
+		<h2>Bild<div id="help_text"> En bild för den lilla modulen</div></h2>
 		<img src="<?php echo $item->preview_image('medium'); ?>" name="<?php echo $item->get('handle'); ?>" id="entertain_admin_preview_image" />
 		<div id="entertain_preview_upload">
 			<button id="entertain_edit_preview_upload_submit" name="<?php echo $item->get('handle'); ?>">Ny bild</button>
@@ -37,18 +37,18 @@
 	<label for="entertain_admin_has_image_1">Egen screenshot</label>
 </div>
 <div id="step">
-	<h2>Taggar</h2>
+	<h2>Taggar<div id="help_text"> S&aring; vi kan kategorisera ditt objekt</div></h2>
 	<?php global $_ENTERTAIN; echo tag::render_form('entertain', $_ENTERTAIN['master_tags'][$item->category], $item->id); ?>
 </div>	
 
 <div id="step">
-	<h2>Data</h2>
+	<h2>Data<div id="help_text"> S&aring; vi har n&aring;got att ladda upp</div></h2>
 	<?php echo $item->render_edit_form(); ?>
 </div>
 	
 <div id="step">
-	<h2>Aktivering</h2>
-	<ul>
+	<h2>Aktivering<div id="help_text"> S&aring; vi vet n&auml;r den ska upp </div></h2>
+	<ul id="activate">
 		<?php if($privilegies['release']): ?>
 		<li>
 			<input type="radio" name="status" <?php echo ($item->get('status') == 'released' ? 'checked="checked"' : ''); ?> value="released" id="entertain_edit_status_released" />
@@ -58,7 +58,7 @@
 		<?php if($privilegies['schedule']): ?>
 		<li>
 			<input type="radio" name="status" <?php echo ($item->get('status') == 'scheduled' ? 'checked="checked"' : ''); ?> value="scheduled" id="entertain_edit_status_scheduled" />
-			<label for="entertain_edit_status_scheduled">Schemalagd</label>
+			<label style="display: inline-block; width: 175px;" for="entertain_edit_status_scheduled">Schemalagd</label>
 			<input type="text" name="release" value="<?php echo date('Y-m-d H:i', $item->get('release')); ?>" />
 		</li>
 		<?php endif; ?>

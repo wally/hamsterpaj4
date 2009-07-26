@@ -1,4 +1,4 @@
-<label>Fil</label>
+<h3>Datatyp: Fil</h3>
 
 <ul>
 	<li>

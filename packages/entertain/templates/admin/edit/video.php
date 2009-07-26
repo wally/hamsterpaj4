@@ -1,4 +1,4 @@
-<h2>Video</h2>
+<h3>Datatyp: Video</h3>
 <ul>
 	<?php if(file_exists('/mnt/static/entertain/video/' . $item->handle . '.flv')): ?>
 	<li>

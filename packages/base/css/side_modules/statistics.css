@@ -1,13 +1,13 @@
 #hp #modules #side_module_statistics {
-	background: url('http://images.birdy.nu/images/stats2.png') no-repeat #000;
+	/*background: url('http://images.birdy.nu/images/stats2.png') no-repeat #000;
 	color: #fff;
-	padding: 3px 0 8px 0;
+        border: 0;
 	-moz-border-radius-topright: 0;
 	-moz-border-radius-topleft: 0;
 	-webkit-border-top-left-radius: 0;
-	-webkit-border-top-right-radius: 0;
+	-webkit-border-top-right-radius: 0;*/
+	padding: 3px 0 8px 0;
 	height: 90px;
-        border: 0;
 }
 
 #hp #modules #side_module_statistics h5 {
