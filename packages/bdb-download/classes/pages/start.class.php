@@ -10,8 +10,10 @@
     {
 		$this->menu_active = 'bilddagboken';
 		
-		// Any post data?
-		if(isset($_POST['url']))
+		$this->content .= template('bdb-download', 'start.php', array('image_url' => $image_url));	
+				
+		// Running fetch for one image?
+		if(isset($_POST['one_image']))
 		{
 			// Check valid url
 			if(!preg_match('#http://(.*?).bilddagboken.se#', $_POST['url'], $username))
@@ -24,70 +26,126 @@
 			// Get username
 			$username = $username[1];
 			
-			// Path to cookie
-			$cookie_file_path = '/home/patrick/cookie.txt';
+			// Connect
+			$ch = page_bdb_download::connect();
 			
-			// Settings for inlog curl
-			$ch = curl_init('http://bilddagboken.se/p/frontpage.html?');
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 'action=login&ajaxlogin=1&pass=humledumle&user=hamster123');
-			curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file_path);
-			curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file_path);  
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			// Fetch page
+			$page = page_bdb_download::fetch_page($ch, $_POST['url']);
 			
-			// Do login
-			if($ce1 = curl_exec($ch))
+			// Image url
+			$image_url = page_bdb_download::url($page, $username);
+			
+			// Close curl
+			curl_close($ch);
+	
+			$this->content .= template('bdb-download', 'one_image.php', array('image_url' => $image_url));	
+		}
+		
+		// Running fetch for all images?
+		if(isset($_POST['all_images']))
+		{
+			$username = $_POST['username'];
+			
+			// Connect
+			$ch = page_bdb_download::connect();
+			
+			// Get first image id and build url
+			curl_setopt($ch, CURLOPT_URL, 'http://' . $username . '.bilddagboken.se/p/rss/rss.xml');
+			$rss = curl_exec($ch);
+			preg_match('#&id=(.*?)]#', $rss, $first_image_id);
+			$first_image_id = $first_image_id[1];
+			$first_image_url = 'http://' . $username . '.bilddagboken.se/p/show.html?id=' . $first_image_id;
+
+			
+			$page = page_bdb_download::fetch_page($ch, $first_image_url);
+			$images[] = page_bdb_download::url($page, $username);
+			
+			// Fetch page
+			while(preg_match('#<a href="(.*?)">(Föregående dag|Föregående bild)</a>#', $page))
 			{
-				tools::debug('Loggar in på Bilddagboken');
-				if($ce1 == 1)
-				{
-					tools::debug('Inloggningen lyckades');
-				}
-				else
-				{
-					tools::debug('Inloggningen misslyckades');
-				}
-			}
-			
-			// Settings for imagepage fetch
-			curl_setopt($ch, CURLOPT_POST, 0);
-			curl_setopt($ch, CURLOPT_URL, $_POST['url']);
-			
-			// Do fetch code fore imagepage
-			if($ce2 = curl_exec($ch))
-			{
-				tools::debug('Kapar bilden...');
-				
+				// Download prev image
+				preg_match('#show.html(.*?)">(Föregående dag|Föregående bild)</a>#', $page, $prev_url);
+				$prev_url = 'http://' . $username . '.bilddagboken.se/p/show.html' . $prev_url[1];
+				$page = page_bdb_download::fetch_page($ch, $prev_url);
+				$images[] = page_bdb_download::url($page, $username);
 			}
 			
 			// Close curl
 			curl_close($ch);
+	
+			$this->content .= template('bdb-download', 'all_images.php', array('images' => $images));	
+		}
+	
+
+	}
+	
+	function connect()
+	{
+		// Path to cookie
+		$cookie_file_path = '/home/patrick/cookie.txt';
+		
+		// Settings for inlog curl
+		$ch = curl_init('http://bilddagboken.se/p/frontpage.html?');
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'action=login&ajaxlogin=1&pass=humledumle&user=hamster123');
+		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file_path);
+		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file_path);  
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			
-			// Check if image exists
-			if(preg_match('#<img src="(.*?)" id="picture" />#', $ce2, $image))
+		// Do login
+		if($ce1 = curl_exec($ch))
+		{
+			tools::debug('Loggar in på Bilddagboken');
+			if($ce1 == 1)
 			{
-				// Image exists, steal image
-				tools::debug('Sidan är rätt inslagen, bilden kapas.');
-				
-				// Create folder for user
-				shell_exec('mkdir /mnt/static/bdb-download/' . escapeshellarg($username));
-				
-				// Get image to Hamsterpajs server
-				shell_exec('wget ' . escapeshellarg($image[1]) . ' -O /mnt/static/bdb-download/' . escapeshellarg($username) . '/' . md5($image[1]) . '.jpg');
-				
-				// Url to image on hamsterpajs server
-				$image_url = 'http://static.hamsterpaj.net/bdb-download/' . $username . '/' . md5($image[1]) . '.jpg';
+				tools::debug('Inloggningen lyckades');
 			}
 			else
 			{
-				// Image is not found, error message
-				$this->content .= template('bdb-download', 'start.php');	
-				$this->content .= '<span style="color: red;">Det finns ingen bild på sidan, eller så kräver användaren att du är vän med honom/henne för att få se bilder.</span>';
-				return;
+				tools::debug('Inloggningen misslyckades');
 			}
 		}
+			
+		// Settings for imagepage fetch
+		curl_setopt($ch, CURLOPT_POST, 0);
+		
+		return $ch;
+	}
 	
-		$this->content .= template('bdb-download', 'start.php', array('image_url' => $image_url));	
+	function fetch_page($ch, $url)
+	{
+		curl_setopt($ch, CURLOPT_URL, $url);
+			
+		// Do fetch code fore imagepage
+		if($ce = curl_exec($ch))
+		{
+			// tools::debug('Kapar bilden...');
+		}
+		
+		return $ce;
+	}
+	
+	function url($data)
+	{
+		if(preg_match('#<img src="(.*?)" id="picture" />#', $data, $image))
+		{
+			return $image[1];
+		}	
+	}
+	
+	function download($url, $username)
+	{
+		if(preg_match('#<img src="(.*?)" id="picture" />#', $data, $image))
+		{
+			// Create folder for user
+			shell_exec('mkdir /mnt/static/bdb-download/' . escapeshellarg($username));
+			
+			// Get image to Hamsterpajs server
+			shell_exec('wget ' . escapeshellarg($url) . ' -O /mnt/static/bdb-download/' . escapeshellarg($username) . '/' . md5($url) . '.jpg');
+				
+			// Url to image on hamsterpajs server
+			return 'http://static.hamsterpaj.net/bdb-download/' . $username . '/' . md5($url) . '.jpg';
+		}	
 	}
   }
 ?>

@@ -1,15 +1,15 @@
 <p>Det här fungerar bara på bilddagböcker där användaren inte kräver vänskap</p>
 
+<h2>Hämta bilden trots kopieringsskydd</h2>
 <form method="post">
   <label for="text">Länk till sidan med bilden på Bilddagboken</label>
   <input type="text" name="url" />
-  <input type="submit" value="Hämta bilden" />
+  <input type="submit" name="one_image" value="Hämta bilden" />
 </form>
 
-<?php if(isset($image_url)): ?>
-<h2>Bilden</h2>
-<img src="<?php echo $image_url; ?>" />
-
-<h2>Länk till bilden</h2>
-<a href="<?php echo $image_url; ?>"><?php echo $image_url; ?></a>
-<?php endif; ?>
+<h2>Hämta -ALLA- bilder från en användare</h2>
+<form method="post">
+  <label for="text">Användarnamn på Bilddagboken</label>
+  <input type="text" name="username" />
+  <input type="submit" name="all_images" value="Hämta bilder" />
+</form>
