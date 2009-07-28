@@ -13,3 +13,10 @@
   <input type="text" name="username" />
   <input type="submit" name="all_images" value="Hämta bilder" />
 </form>
+
+<h2>Hämta en komprimerad fil med alla bilder från en användare</h2>
+<form method="post">
+  <label for="text">Användarnamn på Bilddagboken</label>
+  <input type="text" name="username" />
+  <input type="submit" name="download_zip" value="Hämta bilder" />
+</form>

@@ -76,7 +76,58 @@
 			$this->content .= template('bdb-download', 'all_images.php', array('images' => $images));	
 		}
 	
+		// Download zip?
+		if(isset($_POST['download_zip']))
+		{
+			$username = $_POST['username'];
+			
+			// Connect
+			$ch = page_bdb_download::connect();
+			
+			// Get first image id and build url
+			curl_setopt($ch, CURLOPT_URL, 'http://' . $username . '.bilddagboken.se/p/rss/rss.xml');
+			$rss = curl_exec($ch);
+			preg_match('#&id=(.*?)]#', $rss, $first_image_id);
+			$first_image_id = $first_image_id[1];
+			$first_image_url = 'http://' . $username . '.bilddagboken.se/p/show.html?id=' . $first_image_id;
 
+			
+			$page = page_bdb_download::fetch_page($ch, $first_image_url);
+			$images[] = page_bdb_download::url($page, $username);
+			
+			// Fetch page
+			while(preg_match('#<a href="(.*?)">(Föregående dag|Föregående bild)</a>#', $page))
+			{
+				// Download prev image
+				preg_match('#show.html(.*?)">(Föregående dag|Föregående bild)</a>#', $page, $prev_url);
+				$prev_url = 'http://' . $username . '.bilddagboken.se/p/show.html' . $prev_url[1];
+				$page = page_bdb_download::fetch_page($ch, $prev_url);
+				$images[] = page_bdb_download::url($page, $username);
+			}
+			
+			// Close curl
+			curl_close($ch);
+			
+			
+			
+			$zip = new ZipArchive();
+			$filename = '/mnt/static/bdb-download/' . $username . '.zip';
+			file_exists($filename) ? unlink($filename) : NULL;
+			if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
+				exit("cannot open <$filename>\n");
+			}
+			
+			foreach($images as $image)
+			{
+				$path = page_bdb_download::download($image, $username, 'path');
+				
+				$zip->addFile($path, end(split('/', $path)));
+			}
+			
+			$zip->close();
+	
+			$this->content .= '<p>-------------> <a href="http://static.hamsterpaj.net/bdb-download/' . $username . '.zip">Ladda ner: ' . $username . '.zip</a></p>';	
+		}
 	}
 	
 	function connect()
@@ -133,19 +184,23 @@
 		}	
 	}
 	
-	function download($url, $username)
+	function download($url, $username, $return = NULL)
 	{
-		if(preg_match('#<img src="(.*?)" id="picture" />#', $data, $image))
-		{
-			// Create folder for user
-			shell_exec('mkdir /mnt/static/bdb-download/' . escapeshellarg($username));
+		// Create folder for user
+		shell_exec('mkdir /mnt/static/bdb-download/' . escapeshellarg($username));
+		
+		// Get image to Hamsterpajs server
+		shell_exec('wget ' . escapeshellarg($url) . ' -O /mnt/static/bdb-download/' . escapeshellarg($username) . '/' . md5($url) . '.jpg');
 			
-			// Get image to Hamsterpajs server
-			shell_exec('wget ' . escapeshellarg($url) . ' -O /mnt/static/bdb-download/' . escapeshellarg($username) . '/' . md5($url) . '.jpg');
-				
+		if($return == 'path')
+		{
+			return '/mnt/static/bdb-download/' . $username . '/' . md5($url) . '.jpg';
+		}
+		else
+		{
 			// Url to image on hamsterpajs server
 			return 'http://static.hamsterpaj.net/bdb-download/' . $username . '/' . md5($url) . '.jpg';
-		}	
+		}
 	}
   }
 ?>
