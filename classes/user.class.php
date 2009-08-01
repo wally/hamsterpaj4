@@ -213,13 +213,18 @@
 				return true;
 			}
 			
-			if($value == NULL)
+			if(in_array(0, $this->privileges[$privilegie]))
 			{
-				return isset($this->privileges[privilegie]);
+				return true;
+			}
+			
+			if($item_id == NULL)
+			{
+				return isset($this->privileges[$privilegie]);
 			}
 			else
 			{
-				return (isset($this->privileges[privilege][$value])) ? true : false;
+				return (in_array($item_id, $this->privileges[$privilegie])) ? true : false;
 			}
 		}
 		

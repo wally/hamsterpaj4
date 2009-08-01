@@ -11,8 +11,8 @@
 		<input name="star2" type="radio" class="star" id="star-5" title="Bäst"/>
 	</div>
 	<object width="638" height="432px">
-		<param name="movie" value="<?php echo $data['flashfile']; ?>">
-		<embed src="<?php echo $data['flashfile']; ?>" width="638" height="432px"></embed>
+		<param name="movie" value="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf">
+		<embed src="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf" width="638" height="432px"></embed>
 	</object>
 	<div class="info">
 		<div class="extrainfo">
@@ -34,6 +34,6 @@
 		</div>
 		<?php endif; ?>
 	</div>
-	<input type="button" id="fullscreen_button" onclick="javascript: open_fullscreen_window('<?php echo $data['flashfile']; ?>');" value="Visa i fullskärm" />
+	<input type="button" id="fullscreen_button" onclick="javascript: open_fullscreen_window('http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf');" value="Visa i fullskärm" />
 	<div class="clear"></div>
 </div>
