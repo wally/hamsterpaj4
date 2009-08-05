@@ -37,6 +37,10 @@
 				$url = '/ajax/bilddagboken/' . $uri_explode[2];
 				$this->content .= template('bdb-download', 'ajax_load.php', array('url' => $url));	
 			}
+			else
+			{
+				$this->content .= template('bdb-download', 'form.php');	
+			}
 		}
   }
 ?>
