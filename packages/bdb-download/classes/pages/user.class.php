@@ -28,14 +28,16 @@
 			$page = bilddagboken::fetch_page($ch, $first_image_url);
 			$images[] = bilddagboken::url($page, $username);
 				
+				$i = 0;
 			// Fetch page
-			while(preg_match('#<a href="(.*?)">(Föregående dag|Föregående bild)</a>#', $page))
+			while(preg_match('#<a href="(.*?)">(Föregående dag|Föregående bild)</a>#', $page) && $i < 500)
 			{
 				// Download prev image
 				preg_match('#show.html(.*?)">(Föregående dag|Föregående bild)</a>#', $page, $prev_url);
 				$prev_url = 'http://' . $username . '.bilddagboken.se/p/show.html' . $prev_url[1];
 				$page = bilddagboken::fetch_page($ch, $prev_url);
 				$images[] = bilddagboken::url($page, $username);
+				$i++;
 			}
 				
 			// Close curl

@@ -1,4 +1,4 @@
-<h1>Objekt som behövs godkännas</h1>
+<h1>Objekt som behövs godkännas, Antal: <?php echo count($items); ?></h1>
 <ul>
 	<?php foreach($items AS $item): ?>
 	<li>
