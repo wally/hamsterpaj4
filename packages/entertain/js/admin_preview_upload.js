@@ -5,7 +5,7 @@
 $(document).ready(function() {
 	if($('#entertain_edit_preview_upload_submit')) {
 		$('#entertain_edit_preview_upload_submit').click(function() {
-			window.open('/entertain/preview_upload?handle=' + this.name, 'fullscreen_window', 'width=' + screen.width + ', height=' + screen.height + ', toolbar=no, location=no');
+			window.open('/entertain-admin/preview_upload?handle=' + this.name, 'fullscreen_window', 'width=' + screen.width + ', height=' + screen.height + ', toolbar=no, location=no');
 			$('#entertain_edit_preview_confirm').show();
 			
 			return false;

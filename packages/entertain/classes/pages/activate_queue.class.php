@@ -4,7 +4,7 @@
 	{
 		function url_hook($uri)
 		{
-			return (substr($uri, 0, 19) == '/entertain/aktivera') ? 5 : 0;
+			return (substr($uri, 0, 25) == '/entertain-admin/aktivera') ? 5 : 0;
 		}
 		
 		function execute($uri)
