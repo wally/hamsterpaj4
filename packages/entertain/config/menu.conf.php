@@ -19,7 +19,7 @@
 	$menu['animerat_musikvideor'] = array('parent' => 'animerat', 'label' => 'Musikvideor', 'url' => '/animerat/taggar/musikvideor');
 	$menu['animerat_valgjort'] = array('parent' => 'animerat', 'label' => 'Välgjort', 'url' => '/animerat/taggar/valgjort');
 	
-	$menu['animerat_topplista'] = array('parent' => 'animerat', 'label' => 'Topplista', 'url' => '/onlinespel/topplista');
+	$menu['animerat_topplista'] = array('parent' => 'animerat', 'label' => 'Topplista', 'url' => 'animerat/topplista');
 	
 	
 	$menu['filmklipp'] = array('label' => 'Filmklipp', 'priority' => '100', 'url' => '/filmklipp', 'type' => 'big');
@@ -30,7 +30,7 @@
 	$menu['filmklipp_reklamfilmer'] = array('parent' => 'filmklipp', 'label' => 'Reklamfilmer', 'url' => '/filmklipp/taggar/reklamfilmer');
 	$menu['filmklipp_parodier'] = array('parent' => 'filmklipp', 'label' => 'Parodier', 'url' => '/filmklipp/taggar/parodier');
 
-	$menu['filmklipp_topplista'] = array('parent' => 'filmklipp', 'label' => 'Topplista', 'url' => '/onlinespel/topplista');
+	$menu['filmklipp_topplista'] = array('parent' => 'filmklipp', 'label' => 'Topplista', 'url' => '/filmklipp/topplista');
 	
 	$menu['under_mattan'] = array('label' => 'Under mattan', 'priority' => '70', 'url' => '/under_mattan', 'type' => 'small');
 	
