@@ -125,7 +125,14 @@
 			}
 			 $_SESSION = $page->user->to_session();
 			$debug = template(NULL, 'framework/debug.php');
-			echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
+			if(ENVIRONMENT == 'production')
+			{
+				echo $out;
+			}
+			else
+			{
+				echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
+			}
 		}
 	}
 	catch (Exception $e)
