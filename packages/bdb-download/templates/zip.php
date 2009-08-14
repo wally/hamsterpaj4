@@ -1,0 +1,1 @@
+<p>-------------> <a href="http://static.hamsterpaj.net/bdb-download/<?php echo $username; ?>.zip">Ladda ner: <?php echo $username; ?>.zip</a></p>

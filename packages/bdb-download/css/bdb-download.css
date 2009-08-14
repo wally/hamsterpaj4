@@ -1,0 +1,59 @@
+#bdb-download-h1 {
+	margin: 0 0 10px 0;
+	font-size: 25px;
+}
+
+#bdb-download-form {
+	background-color: #F0F0F0;
+	border-top: 1px solid #D4D4D4;
+	margin-top: 0;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+#bdb-download-form h2 {
+	background-color: #E1EBF2;
+	border-bottom: 1px solid #BFD1DD;
+	border-top: 1px solid #BFD1DD;
+	font-weight: bold;
+	margin: -1px 0 0 0;
+	padding: 5px 5px 5px 10px;
+	cursor: pointer;
+}
+
+#bdb-download-form h2 + form {
+	display: none;
+}
+
+#bdb-download-form form {
+	margin: 0;
+	padding: 15px 5px 15px 10px;
+}
+
+#bdb-download-form label { 
+	display: block;
+}
+
+#bdb-download-form input[type='text'] { 
+	border: 1px solid #898989;
+	font-size: 20px;
+	color: #333;
+	padding: 5px;
+	width: 280px;
+	margin-top: 6px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+#ajax_loader {
+	background-color: #F0F0F0;
+	border: 1px solid #D4D4D4;
+	margin: 40px;
+	padding: 20px;
+	text-align: center;
+}
+
+#ajax_loader img {
+	margin: 0 auto;
+	display: block;
+}

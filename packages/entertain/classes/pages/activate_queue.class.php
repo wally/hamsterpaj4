@@ -11,7 +11,7 @@
 		{
 			$this->menu_active = 'entertain_admin_aktivera';
 			// Fetch items which is in queue
-			$items = entertain::fetch(array('limit' => 20, 'allow_multiple' => true, 'status' => 'queue'));
+			$items = entertain::fetch(array('limit' => 3000, 'allow_multiple' => true, 'status' => 'queue'));
 
 			$this->content = template('entertain', 'admin/activate_queue.php', array('items' => $items));
 		}
