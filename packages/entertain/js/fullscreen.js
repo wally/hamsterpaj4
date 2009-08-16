@@ -3,6 +3,8 @@ $(document).ready(function() {
 		$('#entertain_flash_object').addClass('entertain_flash_object_fullscreen');
 		$('#entertain_flash_object').removeClass('entertain_flash_object');
 		
+		$('body').toggleClass('remove_scroll');
+		
 		var winWidth = $(window).width();
 		var winHeight  = $(window).height() - 40;
 		

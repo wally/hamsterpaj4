@@ -25,3 +25,8 @@
 	display: none;
 	z-index: 1000;
 }
+
+.remove_scroll
+{
+	overflow: hidden;
+}
