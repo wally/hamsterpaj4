@@ -1,4 +1,5 @@
 <form action="/traffa/quicksearch.php">
-	<input type="text" id="ui_multisearch" value="Sök tjockis..." name="username" onblur="if(this.value.length == 0) this.value='S&ouml;k tjockis...';" onclick="if(this.value == 'S&ouml;k tjockis...') this.value='';" />
+	<input type="text" id="ui_multisearch" class="livesearch" value="Sök underhållning..." name="username" autocomplete="off" />
 	<input type="submit" value="" class="button_magnifier" />
+	<div id="livesearch_suggestions"></div>
 </form>
