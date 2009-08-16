@@ -159,17 +159,17 @@
 		
 		function get_edit_url()
 		{
-			return '/entertain/redigera/' . $this->handle;
+			return '/entertain-admin/redigera/' . $this->handle;
 		}
 		
 		function get_preview_url()
 		{
-			return '/entertain/forhandsgranska/' . $this->handle;
+			return '/entertain-admin/forhandsgranska/' . $this->handle;
 		}	
 		
 		function get_remove_url()
 		{
-				return '/entertain/radera/' . $this->handle;
+				return '/entertain-admin/radera/' . $this->handle;
 		}
 
 		function set_title($title)

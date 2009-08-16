@@ -3,7 +3,7 @@
 	{
 		function url_hook($uri)
 		{
-			return (substr($uri, 0, 20) == '/entertain/redigera/') ? 10 : 0;
+			return (substr($uri, 0, 26) == '/entertain-admin/redigera/') ? 10 : 0;
 		}
 		
 		function execute($uri)
