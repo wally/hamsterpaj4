@@ -1,7 +1,25 @@
-function open_fullscreen_window(target_url)
-{
-  alert('För att få riktig fullskärm trycker du på F11 på ditt tangentbord, när du vill tillbaks till fönsterläge håller du inne ALT-knappen och trycker på F4!');
-  var sc_width = screen.width;
-  var sc_height = screen.height;
-  window.open(target_url, 'fullscreen_window', 'width=' + sc_width + ', height=' + sc_height + ', toolbar=no, location=no');
-}
+$(document).ready(function() {
+	$('#fullscreen_button').click(function() {
+		$('#entertain_flash_object').addClass('entertain_flash_object_fullscreen');
+		$('#entertain_flash_object').removeClass('entertain_flash_object');
+		
+		var winWidth = $(window).width();
+		var winHeight  = $(window).height() - 40;
+		
+		$('#entertain_flash_object').width(winWidth);
+		$('#entertain_flash_object').height(winHeight);
+		
+		$('#entertain_close_fullscreen_bar').css('display', 'block');
+	});
+	
+	// Close fullscreen
+	$('#fullscreen_button_close').click(function() {
+
+		$('#entertain_flash_object').removeClass('entertain_flash_object_fullscreen');
+		$('#entertain_flash_object').addClass('entertain_flash_object');
+		
+		$('body').toggleClass('remove_scroll');
+		$('#entertain_flash_object').removeAttr('style');
+		$('#entertain_close_fullscreen_bar').css('display', 'none');
+	});
+});
