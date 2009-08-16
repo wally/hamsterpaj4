@@ -32,7 +32,7 @@ $(document).ready(function(){
 		$.ajax(
 		{
 			url: '/kommentar/skicka',
-			type: 'GET',
+			type: 'POST',
 			data: 'text=' + text + '&item_id=' + item_id + '&type=' + type,
 			success: function(result)
 			{

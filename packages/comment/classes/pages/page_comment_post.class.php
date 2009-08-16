@@ -14,15 +14,15 @@
 			}
 			
 			$comment = new comment;
-			$comment->item_id = $_GET['item_id'];
-			$comment->text = $_GET['text'];
-			$comment->type = $_GET['type'];
+			$comment->item_id = $_POST['item_id'];
+			$comment->text = $_POST['text'];
+			$comment->type = $_POST['type'];
 			$comment->user = $this->user;
 			$comment->add();
 			
 			tools::debug($_GET);
 			
-			$this->content = template('comment', 'comment.php', array('user' => $this->user, 'text' => $_GET['text'], 'timestamp' => time()));
+			$this->content = template('comment', 'comment.php', array('user' => $this->user, 'text' => $_POST['text'], 'timestamp' => time()));
 			$this->raw_output = true;
 		}
 	}
