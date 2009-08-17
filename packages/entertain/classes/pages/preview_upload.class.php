@@ -51,11 +51,7 @@
 					$this->content .= template('base', 'notifications/success.php');
 					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . escapeshellcmd($_POST['handle']) . '/medium.png" />';
 					$this->content .= '<img src="http://static.hamsterpaj.net/images/entertain/items/' . escapeshellcmd($_POST['handle']) . '/full.png" />';
-					$this->content .= '
-					<script type="text/javascript">
-		window.close();
-	</script>
-														'; 
+					$this->content .= '<script type="text/javascript">window.close();</script>';
 					break;
 				case 'scale':
 					$filename = rand(0, 99999999) . '.jpg';
