@@ -1,5 +1,9 @@
 <?php $data = $item->get('data'); ?>
-<?php tools::debug($item); ?>
+
+<?php if($item->get('category') == 'onlinespel'): ?>
+<div class="entertain_missing_game">Saknar du ett spel? Efterfråga spelet <a href="/diskussionsforum/hamsterpaj/spel_och_film/saknar_du_spel_paa_hamsterpaj/sida_1.php#post_2399772"><strong>Här</strong></a> eller ladda upp det själv <a href="/entertain-admin/ny"><strong>Här.</strong></a></div>
+<?php endif; ?>
+
 <div class="entertain_view entertain_div" id="entertain_flash">
 	<h1><?php echo $item->get('title'); ?></h1>
 	<div class="rating">

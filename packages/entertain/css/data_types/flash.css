@@ -30,3 +30,11 @@
 {
 	overflow: hidden;
 }
+
+.entertain_missing_game
+{
+	background:transparent url(http://static.hamsterpaj.net/images/layouts/amanda/main_menu/sprites.png) repeat-x scroll 0 -85px;
+	-moz-border-radius: 5px;
+	padding: 3px 3px 3px 10px;
+	margin-bottom: 10px;
+}
