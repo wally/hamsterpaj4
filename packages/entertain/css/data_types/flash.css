@@ -5,10 +5,10 @@
 }
 .entertain_flash_object_fullscreen
 {
-	top: 0;
+	left: 0;
 	right: 0;
 	bottom: 40px;
-	position: absolute;
+	position: fixed;
 }
 
 #entertain_close_fullscreen_bar
@@ -19,7 +19,7 @@
 	width: 100%;
 	height: 20px;
 	padding: 10px;
-	position: absolute;
+	position: fixed;
 	background: #000;
 	opacity: 0.9;
 	display: none;

@@ -1,1 +1,1 @@
-<embed quality="high" flashvars="flashVarText=" type="application/x-shockwave-flash" height="230" src="http://www.24medianetwork.com/flash/250x300.swf" bgcolor="#FFFFFF" id="clickTAG" width="190" scale="scale" name="clickTAG"/></embed>
+<embed quality="high" wmode="transparent" flashvars="flashVarText=" type="application/x-shockwave-flash" height="230" src="http://www.24medianetwork.com/flash/250x300.swf" bgcolor="#FFFFFF" id="clickTAG" width="190" scale="scale" name="clickTAG"/></embed>
