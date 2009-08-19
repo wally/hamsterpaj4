@@ -39,6 +39,7 @@
 		function load_side_modules()
 		{
 			$modules['search'] = new side_module_search();
+			$modules['n24'] = new side_module_n24();
 			$modules['profile_visitors'] = new side_module_profile_visitors($this->get('user'));
 			$modules['statistics'] = new side_module_statistics();
 			$modules['forum_posts'] = new side_module_forum_posts();
