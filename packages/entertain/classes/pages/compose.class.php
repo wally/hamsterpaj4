@@ -4,7 +4,7 @@
 	{
 		function url_hook($uri)
 		{
-			return ($uri == '/entertain/ny') ? 10 : 0;
+			return ($uri == '/entertain-admin/ny') ? 10 : 0;
 		}
 		
 		function execute($uri)
