@@ -14,9 +14,9 @@
 		<input name="star2" type="radio" class="star" id="star-4" title="Väldigt bra"/>
 		<input name="star2" type="radio" class="star" id="star-5" title="Bäst"/>
 	</div>
-	<object>
+	<object class="entertain_flash_object entertain_flash_object_small" class="entertain_flash_object_small">
 		<param name="movie" value="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf">
-		<embed id="entertain_flash_object" class="entertain_flash_object" src="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf"></embed>
+		<embed class="entertain_flash_object entertain_flash_object_small" class="entertain_flash_object_small" src="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf"></embed>
 	</object>
 	<div class="info">
 		<div class="extrainfo">
