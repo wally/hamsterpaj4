@@ -22,7 +22,7 @@
 					$item->set(array('uploaded_by' => $this->user->get('id')));		
 					$item->save();
 
-					$this->redirect = '/entertain/redigera/' . $item->get('handle');
+					$this->redirect = $item->get('edit_url');
 				}
 				$dropdown = new html_dropdown();
 				$dropdown->set(array('name' => 'category'));
