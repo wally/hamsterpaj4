@@ -1,7 +1,8 @@
-.entertain_flash_object
+.entertain_flash_object_small
 {
 	 width: 638px;
 	 height: 432px;
+	 position: relative;
 }
 .entertain_flash_object_fullscreen
 {

@@ -24,4 +24,14 @@ $(document).ready(function() {
 		$('.entertain_flash_object').removeAttr('style');
 		$('#entertain_close_fullscreen_bar').css('display', 'none');
 	});
+	
+	
+	$(window).bind('resize', function() {
+		var winWidth = $(window).width();
+		var winHeight  = $(window).height() - 40;
+		
+		$('.entertain_flash_object_fullscreen').width(winWidth);
+		$('.entertain_flash_object_fullscreen').height(winHeight);
+		
+	});
 });
