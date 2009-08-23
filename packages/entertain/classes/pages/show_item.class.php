@@ -65,7 +65,9 @@
 				$out['admin'] = template('entertain', 'item_admin_puff.php', array('item' => $item));
 			}
 			
-
+			// Search tip
+			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
+			
 			switch($item->get('status'))
 			{
 				case 'removed':
@@ -89,7 +91,7 @@
 				break;
 				
 				default:
-					$this->content = template('entertain', 'show_item.php', $out);
+					$this->content .= template('entertain', 'show_item.php', $out);
 				break;
 			}
 			

@@ -1,0 +1,8 @@
+.entertain_search_tip
+{
+	background: #D5E3FF url(http://static.hamsterpaj.net/images/icons/16x16/help.png) no-repeat 10px center;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 3px 3px 3px 35px;
+	margin-bottom: 10px;
+}

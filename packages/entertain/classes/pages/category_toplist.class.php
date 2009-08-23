@@ -25,6 +25,9 @@
 
 			$best_rating = entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
 			
+			// Search tip
+			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
+			
 			$this->content .= template('entertain', 'category_toplist.php', array('category_label' => $category_label, 'best_rating' => $best_rating, 'most_views' => $most_views));
 		}
 	}

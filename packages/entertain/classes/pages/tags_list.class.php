@@ -45,6 +45,9 @@
 			
 			tools::debug($items_id);
 			
+			// Search tip
+			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
+			
 			$items = entertain::fetch(array('ids' => $items_id, 'allow_multiple' => true, 'status' => 'released', 'category' => $uri_explode[1]));
 			$this->content .= '<h1>Föremål med taggen: ' . $tag_title . '</h1>';
 			$this->content .= entertain::item_list($items);
