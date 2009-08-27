@@ -45,6 +45,7 @@
 	top: 6px;
 	border: 1px solid #c2d6ff;
 	border-left: 0;
+	cursor: pointer;
 }
 
 #side_module_search input[type="submit"]:hover {

@@ -8,6 +8,8 @@
 			
 			$items = array_merge($items, livesearch::fetch_users($search_query));
 			
+			$items = array_merge($items, livesearch::fetch_forum($search_query));
+			
 			foreach($items as $item)
 			{
 				
@@ -54,6 +56,28 @@
 					$item['category_name'] = 'Användare';
 					$item['item_name'] = $row['username'];
 					$item['item_url'] = '/traffa/profile.php?id=' . $row['id'];
+					$items[] = $item;
+				}
+			}
+			
+			return $items;
+		}
+		
+		function fetch_forum($search_query)
+		{
+			global $_PDO;
+			$query = 'SELECT title, id FROM forum_posts WHERE removed = 0 AND title LIKE "%' . $search_query . '%"  ORDER BY id DESC LIMIT 10';
+
+			$stmt = $_PDO->prepare($query);
+			
+			$items = array();
+			if($stmt->execute())
+			{
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+				{
+					$item['category_name'] = 'Forumtråd';
+					$item['item_name'] = $row['title'];
+					$item['item_url'] = '/diskussionsforum/gaa_till_post.php?post_id=' . $row['id'];
 					$items[] = $item;
 				}
 			}
