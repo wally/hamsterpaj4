@@ -8,7 +8,7 @@
 			
 			$items = array_merge($items, livesearch::fetch_users($search_query));
 			
-			$items = array_merge($items, livesearch::fetch_forum($search_query));
+//			$items = array_merge($items, livesearch::fetch_forum($search_query));
 			
 			foreach($items as $item)
 			{
