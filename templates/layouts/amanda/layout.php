@@ -9,9 +9,18 @@
 		</style>
 		<script src="/scripts.js" type="text/javascript"></script>
 		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
-		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
+		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>		
 	</head>
 	<body>
+		<!-- Adtoma crap -->
+		<script type="text/javascript">
+			var CM8Server = "ad.adtoma.com";
+			var CM8Cat = "hp.start";
+			var CM8Profile = "hp_age=&hp_birthyear=&hp_gender=xx"
+		</script>
+		<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
+
+
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
 		<div id="wrapper">
 			<script type='text/javascript'><!--//<![CDATA[
@@ -57,6 +66,7 @@
 				</script>
 			</div>
 			<div id="column_ads">
+				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
 			<script type='text/javascript'><!--//<![CDATA[
 				Ads.insert(251, '');
 				//]]>-->
