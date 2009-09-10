@@ -122,6 +122,8 @@
 					return false;
 				}
 			}
+			
+			return true;
 		}
 	}
 ?>
