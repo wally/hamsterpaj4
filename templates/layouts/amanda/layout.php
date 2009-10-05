@@ -42,6 +42,7 @@
 					<?php echo $page->xxl; ?>
 				</div>
 				<div id="content">
+					<script type="text/javascript">CM8ShowAd("635x50");</script>
 					<?php echo $page->content; ?>
 				</div>
 				<div id="modules">
