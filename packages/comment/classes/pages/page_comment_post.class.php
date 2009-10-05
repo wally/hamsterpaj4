@@ -10,7 +10,7 @@
 		{
 			if(!$this->user->exists())
 			{
-				throw new Exception('Du m�ste vara inloggad f�r att anv�nda den h�r funktionen');
+				throw new Exception('Du måste vara inloggad för att använda den här funktionen');
 			}
 			
 			$comment = new comment;
@@ -18,11 +18,17 @@
 			$comment->text = $_POST['text'];
 			$comment->type = $_POST['type'];
 			$comment->user = $this->user;
-			$comment->add();
 			
-			tools::debug($_GET);
+			if($comment->content_check())
+			{
+				$comment->add();
+				$this->content = template('comment', 'comment.php', array('user' => $this->user, 'text' => $_POST['text'], 'timestamp' => time()));
+			}
+			else
+			{
+				$this->content = '<div class="error">Usch, vi på Hamsterpaj blir så trötta på alla dessa spam-länkar. Det här spam-försöket loggades och du kommer att bli blockerade från sidan vid upprepade försök.</div>';
+			}
 			
-			$this->content = template('comment', 'comment.php', array('user' => $this->user, 'text' => $_POST['text'], 'timestamp' => time()));
 			$this->raw_output = true;
 		}
 	}

@@ -6,6 +6,9 @@
 
 <div class="entertain_view entertain_div" id="entertain_flash">
 	<h1><?php echo $item->get('title'); ?></h1>
+	<div class="share">
+		<?php echo template('share', 'share.php'); ?>
+	</div>
 	<div class="rating">
 		<h2>Rösta här:</h2>
 		<input name="star2" type="radio" class="star" id="star-1" title="Värdelös"/>
@@ -16,7 +19,7 @@
 	</div>
 	<object class="entertain_flash_object entertain_flash_object_small">
 		<param name="movie" value="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf">
-		<embed class="entertain_flash_object entertain_flash_object_small" src="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf"></embed>
+		<embed class="entertain_flash_object entertain_flash_object_small" src="http://static.hamsterpaj.net/entertain/flash/<?php echo $item->get('handle'); ?>.swf" wmode="transparent"></embed>
 	</object>
 	<div class="info">
 		<div class="extrainfo">

@@ -47,6 +47,14 @@
 	display: none;
 }
 
+.comment_list .error
+{
+	background: url(http://images.hamsterpaj.net/famfamfam_icons/exclamation.png) no-repeat 0 center;
+	padding-left: 20px;
+	color: red;
+	margin-top: 10px;
+}
+
 .comment_form
 {
 	border-top: 2px dotted #F2F2F2;
@@ -68,8 +76,8 @@
 
 .comment_form .error
 {
-	background: url(http://images.hamsterpaj.net/famfamfam_icons/exclamation.png) no-repeat;
-	padding: 2px 0 0 20px;
+	background: url(http://images.hamsterpaj.net/famfamfam_icons/exclamation.png) no-repeat 0 center;
+	padding-left: 20px;
 	color: red;
 	margin-top: 10px;
 	display: none;
