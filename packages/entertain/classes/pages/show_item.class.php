@@ -22,7 +22,12 @@
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
-				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
+				$searchquery = $uri_explode[2];
+				
+				$searchquery = str_replace('_', ' ', $searchquery);
+				
+				
+				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Föremålet hittades inte', 'information' => '<a href="/soek?searchquery=' . $searchquery . '" />Klicka här för att söka efter det istället</a>'));
 				return;
 			}
 			
