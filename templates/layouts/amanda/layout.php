@@ -42,6 +42,7 @@
 					<?php echo $page->xxl; ?>
 				</div>
 				<div id="content">
+					<script type="text/javascript">CM8ShowAd("635x50");</script>
 					<?php echo $page->content; ?>
 				</div>
 				<div id="modules">
@@ -51,19 +52,6 @@
 						</div>
 					<?php endforeach; ?>
 				</div>
-			
-				<!-- Google Analytics -->
-				<script type="text/javascript">
-					var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-					document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-					</script>
-					<script type="text/javascript">
-					try {
-						var pageTracker = _gat._getTracker("UA-7987100-1");
-						pageTracker._trackPageview();
-					}
-					catch(err) {}
-				</script>
 			</div>
 			<div id="column_ads">
 				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
@@ -91,5 +79,17 @@
 
 		</div>
 		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
+		<!-- Piwik -->
+		<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.hamsterpaj.net/piwik/" : "http://www.hamsterpaj.net/piwik/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script type="text/javascript">
+		try {
+		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+		piwikTracker.trackPageView();
+		piwikTracker.enableLinkTracking();
+		} catch( err ) {}
+		</script><noscript><p><img src="http://www.hamsterpaj.net/piwik/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
+		<!-- End Piwik Tag -->
 	</body>
 </html>
