@@ -7,7 +7,7 @@
 <div class="entertain_view entertain_div" id="entertain_flash">
 	<h1><?php echo $item->get('title'); ?></h1>
 	<div class="share">
-		<?php echo template('share', 'share.php'); ?>
+		<?php echo template('share', 'share.php', array('description' => $item->get('title') . ' är ett utav Hamsterpaj.net\'s abnsolut roligaste spel! Helt klart värt att testa!', 'title' => 'Hamsterpaj.net Spel - ' . $item->get('title'))); ?>
 	</div>
 	<div class="rating">
 		<h2>Rösta här:</h2>

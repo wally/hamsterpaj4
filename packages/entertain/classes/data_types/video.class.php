@@ -60,25 +60,41 @@
 				case 'youtube':					
 					$youtube_page = @file_get_contents($_POST['youtube_url']);
 
-				  preg_match('#var fullscreenUrl = \'(.*?)\'#', $youtube_page, $fullscreen_url);
+				  preg_match('#var swfArgs = {(.*?)}#', $youtube_page, $fullscreen_url);
 				  $fullscreen_url = $fullscreen_url[1] . '&' ;
 
-				  preg_match('#video_id=([a-z0-9-_]+)&#i', $fullscreen_url, $video_id);
+				  preg_match('#"video_id": "([a-z0-9-_]+)"#i', $fullscreen_url, $video_id);
 				  $video_id = $video_id[1];
 
-				  preg_match('#l=([0-9]+)&#i', $fullscreen_url, $l);
+				  preg_match('#"l": ([0-9]+),#i', $fullscreen_url, $l);
 				  $l = $l[1];
 	
-				  preg_match('#t=(.*?)&#i', $fullscreen_url, $t);
+				  preg_match('#"t": "(.*?)"#i', $fullscreen_url, $t);
 				  $t = $t[1];
 
+          preg_match('#"fmt_map": "(.*?)(/|%)#i', $fullscreen_url, $fmt);
+          $fmt = $fmt[1];
+
+					// MP4
+					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.mp4');
+
+					if(strlen($fmt) >= 1)
+					{
+          	$mp4_url = 'http://www.youtube.com/get_video?video_id=' . $video_id . '&l=' . $l . '&t=' . $t . '&fmt=' . $fmt;
+         	 $cmd = '/usr/bin/wget --read-timeout=0.4 ' . escapeshellarg($mp4_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.mp4';
+          	tools::debug($cmd);
+						shell_exec($cmd);
+					}
+					
+					// FLASH
 					$flash_url = 'http://www.youtube.com/get_video?video_id=' . $video_id . '&l=' . $l . '&t=' . $t;
 
-          shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
+					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 
-					$cmd = 'wget ' . escapeshellarg($flash_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
+          $cmd = '/usr/bin/wget --read-timeout=0.4 ' . escapeshellarg($flash_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
           shell_exec($cmd);
-
+          
+          
           $this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
           $this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
           video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
