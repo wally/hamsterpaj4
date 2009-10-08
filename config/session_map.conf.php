@@ -22,12 +22,33 @@
 	$session_map['contact2'] = array('userinfo', 'contact2');
 	$session_map['gender'] = array('userinfo', 'gender');
 	$session_map['image'] = array('userinfo', 'image');
+	$session_map['image_ban_expire'] = array('userinfo', 'image_ban_expire');
 	$session_map['zip_code'] = array('userinfo', 'zip_code');
 	$session_map['location'] = array('userinfo', 'geo_location');
-
-	$session_map['location'] = array('userinfo', 'geo_location');
+	$session_map['x_rt90'] = array('userinfo', 'x_rt90');
+	$session_map['y_rt90'] = array('userinfo', 'y_rt90');
+	$session_map['firstname'] = array('userinfo', 'firstname');
+	$session_map['surname'] = array('userinfo', 'surname');
+	$session_map['email'] = array('userinfo', 'email');
+	
 
 	$session_map['privileges'] = array('privilegies');
 	
 	$session_map['groups'] = array('groups_members');
+	
+	$session_map['preferences'] = array('preferences');
+	
+	$session_map['photoblog_preferences'] = array('photoblog_preferences');
+	
+	$session_map['module_states'] = array('module_states');
+	
+	$session_map['module_order'] = array('module_order');
+	
+	$session_map['cache'] = array('cache');
+	
+	$session_map['notices'] = array('notices');
+	
+	$session_map['visitors_with_image'] = array('visitors_with_image');
+	
+	$session_map['forum'] = array('forum');
 ?>
