@@ -1,7 +1,48 @@
 <?php
 	class user extends hp4
 	{
-		public $last_action, $last_logon, $signature, $visitors, $username;
+		// Die die die
+		public $last_action,
+			$last_logon,
+			$signature,
+			$visitors,
+			$username,
+			$id,
+			$ip,
+			$last_ip,
+			$last_username_change,
+			$password,
+			$quality_level,
+			$quality_level_expire,
+			$reg_ip,
+			$DEPRECATED_userlevel,
+			$contact1,
+			$contact2,
+			$gender,
+			$image,
+			$image_ban_expire,
+			$created,
+			$session_id,
+			$groups,
+			$photoblog_preferences,
+			$module_states,
+			$module_order,
+			$firstname,
+			$surname,
+			$birthday,
+			$notices,
+			$cache,
+			$visitors_with_image,
+			$forum,
+			$email,
+			$preferences,
+			$x_rt90,
+			$y_rt90,
+			$zip_code,
+			$location,
+			$privileges,
+			$geo_location;
+		
 		protected $unread_gb_entries;
 		
 		public function online()
@@ -83,6 +124,12 @@
 			// Bug, only allows one entry
 			$search['id'] = (isset($search['id']) && !is_array($search['id'])) ? array($search['id']) : array();
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
+			
+			tools::pick_inplace($search['has_visited'], 0);
+			tools::pick_inplace($search['has_image'], false);
+			
+			tools::pick_inplace($params['allow_multiple'], false);
+			
 			if(isset($search['id']))
 			{
 				$search['id'] = (is_array($search['id'])) ? $search['id'] : array($search['id']);
@@ -121,7 +168,7 @@
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->cell_phone = $row['cell_phone'];
-				$user->last_visit = $row['last_visit'];
+				$user->last_visit = tools::pick($row['last_visit'], null);
 				$user->quality_level = $row['quality_level'];
 				$user->quality_level_expire = $row['quality_level_expire'];
 
@@ -213,12 +260,12 @@
 				return true;
 			}
 			
-			if(in_array(0, $this->privileges[$privilegie]))
+			if(isset($this->privileges[$privilegie]) && in_array(0, $this->privileges[$privilegie]))
 			{
 				return true;
 			}
 			
-			if($item_id == NULL)
+			if(@$item_id == NULL) // item_id is never defined?
 			{
 				return isset($this->privileges[$privilegie]);
 			}

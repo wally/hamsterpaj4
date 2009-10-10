@@ -1,5 +1,7 @@
 <?php
+	//error_reporting(E_ALL);
 	session_start();
+	
 	require_once '../classes/framework.class.php';
 	require_once '../classes/tools.class.php';
 	require_once '../classes/user.class.php';
@@ -12,7 +14,6 @@
 	$new_get = array();
 	
 	$new_post = tools::array_map_multidimensional('htmlspecialchars', $_POST);
-	
 	$new_get = tools::array_map_multidimensional('htmlspecialchars', $_GET);
 	
 	$_OLD_POST = $_POST;
@@ -115,7 +116,7 @@
 		}
 		else
 		{
-			if(isset($page->template))
+			if( isset($page->template) )
 			{
 				$out = template(NULL, $page->template, array('page' => $page));
 			}

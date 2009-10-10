@@ -15,7 +15,7 @@
 			{
 				if(($item->get('uploaded_by') == $this->user->get('id') && $item->get('status') == 'preview') || $this->user->privilegied('entertain_admin'))
 				{
-					if($_POST['action'] == 'update')
+					if(isset($_POST['action']) && $_POST['action'] == 'update')
 					{
 						// Check input status privilegies
 						if(!$this->user->privilegied('entertain_admin') && $_POST['status'] == 'scheduled')

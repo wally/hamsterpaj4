@@ -71,6 +71,8 @@
 		{
 			global $_PDO;
 
+			tools::pick_inplace($search['allow_multiple'], false);
+			
 			$query = 'SELECT * FROM entertain WHERE 1';
 			$query .= (isset($search['handle'])) ? ' AND handle = :handle' : null;
 			$query .= (isset($search['type'])) ? ' AND type = :type' : null;
@@ -87,6 +89,8 @@
 			(isset($search['status'])) ? $stmt->bindValue(':status', $search['status']) : null;
 			(isset($search['limit'])) ? $stmt->bindValue(':limit', $search['limit'], PDO::PARAM_INT) : null;
 			$stmt->execute();
+			
+			$items = array();
 			
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
@@ -106,7 +110,7 @@
 				$item->category = $row['category'];
 				$item->title = $row['title'];
 				$item->handle = $row['handle'];
-				$item->click = $row['click'];
+				$item->click = (isset($row['click']) ? $row['click'] : false); // Does click even exist?
 				$item->data = unserialize($row['data']);
 				$item->has_image = $row['has_image'];
 				$item->published_at = $row['published_at'];

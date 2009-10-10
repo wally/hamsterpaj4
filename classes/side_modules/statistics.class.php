@@ -11,7 +11,7 @@
 			$this->visitors = $stats['visitors'];
 			$this->logged_in = $stats['logged_in'];
 			$this->members = $stats['members'];
-			$this->pageviews = $stats['pageviews'];
+			$this->pageviews = (isset($stats['pageviews'])) ? $stats['pageviews'] : false; // Does this even exist?
 		}
 	}
 

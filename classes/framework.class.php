@@ -22,7 +22,9 @@
 			$function = 'get_' . $var;
 			if(is_callable(array($this, $function)))
 			{
-				return $this->$function($value);
+			    return $this->$function();
+				// Why are we calling $function with $value when $value does not exist?
+				//return $this->$function($value);
 			}
 			else
 			{
@@ -33,7 +35,7 @@
 
 	class page extends hp4
 	{
-		public $side_modules = array();
+		public $side_modules = array(), $content_type, $route, $redirect, $raw_output, $menu_active, $content;
 		private $user;
 		
 		function load_side_modules()
@@ -74,14 +76,21 @@
 	
 	function template($package, $template_handle, $params = null)
 	{
-		foreach($params as $key => $value)
+		if ( is_array($params) )
 		{
-			if($key != 'template_handle')
-			{
-				$$key = $value;
-			}
+		    extract($params);
 		}
-
+		else
+		{
+		    foreach((array)$params as $key => $value)
+		    {
+			    if($key != 'template_handle')
+			    {
+				    $$key = $value;
+			    }
+		    }
+		}
+		
 		ob_start();
 		if($package == null)
 		{

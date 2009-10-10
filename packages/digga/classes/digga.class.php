@@ -64,8 +64,9 @@
 			
 			foreach($passed['user_idols'] AS $idol)
 			{
-				foreach($idol->get('classifications') AS $classification)
+				foreach(tools::ensure_array($idol->get('classifications')) AS $classification)
 				{
+					tools::pick_inplace($music_taste[$classification['name']], 0);
 					$music_taste[$classification['name']] += $classification['sum'] / $idol->get('fan_count');
 				}
 			}
@@ -195,7 +196,7 @@
 			global $_PDO;
 			if($artist = artist::fetch(array('handle' => substr($uri, 14))))
 			{
-				if($_POST['action'] == 'classify' && $this->user->exists())
+				if(isset($_POST['action']) && $_POST['action'] == 'classify' && $this->user->exists())
 				{
 					// Fetch all old classifications, remove those and decrease the sums in artist classifications
 					// Insert new classifications and increase the sums
@@ -266,7 +267,7 @@
 	
 	class artist extends hp4
 	{
-		protected $url, $name, $handle;
+		protected $url, $name, $handle, $classifications;
 		protected $group = array();
 		
 		function is_fan($user)
@@ -281,11 +282,11 @@
 			return false;
 		}
 		
-		function fetch($search, $params)
+		function fetch($search, $params = array())
 		{
 			global $_PDO;
 
-			$search['limit'] = (is_numeric($search['limit'])) ? $search['limit'] : 30;
+			$search['limit'] = (isset($search['limit']) && is_numeric($search['limit'])) ? $search['limit'] : 30;
 
 			if(array_key_exists('id', $search))
 			{
@@ -299,7 +300,9 @@
 			{
 				$search['handle'] = (is_array($search['handle'])) ? $search['handle'] : array($search['handle']);
 			}
-
+			
+			tools::pick_inplace($params['allow_multiple'], false);
+			
 			$artists = array();
 			$query = 'SELECT da.id, da.name, da.handle, da.fan_count, da.group_id';
 			$query .= ' FROM digga_artists AS da';
@@ -307,9 +310,9 @@
 			$query .= (isset($search['has_classification'])) ? ', digga_artist_classifications AS dac' : '';
 			$query .= ' WHERE 1';
 			
-			$query .= (is_array($search['id'])) ? ' AND da.id IN ("' . implode('", "', $search['id']) . '")' : null;
-			$query .= (is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
-			$query .= (is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
+			$query .= (isset($search['id']) && is_array($search['id'])) ? ' AND da.id IN ("' . implode('", "', $search['id']) . '")' : null;
+			$query .= (isset($search['name']) && is_array($search['name'])) ? ' AND da.name IN ("' . implode('", "', $search['name']) . '")' : null;
+			$query .= (isset($search['handle']) && is_array($search['handle'])) ? ' AND da.handle IN ("' . implode('", "', $search['handle']) . '")' : null;
 			$query .= (isset($search['has_fan'])) ? ' AND df.user = "' . $search['has_fan']->get('id') . '" AND df.artist = da.id' : '';
 			$query .= (isset($search['has_classification'])) ? ' AND dac.classification = "' . $search['has_classification'] . '" AND dac.artist = da.id' : '';
 			

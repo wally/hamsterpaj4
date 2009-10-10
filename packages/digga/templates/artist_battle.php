@@ -2,10 +2,10 @@
 	<?php $width = 100 / count($artists); ?>
 
 	<?php
+		$max_fans = 0;
 		// Find the highest fan count
-		foreach($artists AS $artist) :
-			$max_fans = ($max_fans > $artist->get('fan_count')) ? $max_fans : $artist->get('fan_count');
-		endforeach;
+		foreach($artists AS $artist)
+			$max_fans = max($max_fans, $artist->get('fan_count'));
 		shuffle($artists);
 	?>
 

@@ -27,14 +27,16 @@
 		function next_slot($day, $slot_id, $day_offset = 0)
 		{
 			$slot_id++;
+			
 			if(!isset($this->slots[$day][$slot_id]))
 			{
 				$slot_id = 0;
+				$day_offset = 0;
 				for($i = 0; $i <= 7; $i++)
 				{
 					$day = ($day == 6) ? 0 : $day += 1;
 					$day_offset++;
-					if(count($this->slots[$day]) > 0)
+					if(isset($this->slots[$day]) && count($this->slots[$day]) > 0)
 					{
 						break;
 					}
@@ -57,15 +59,21 @@
 			$slot_id = -1;
 			$day = date('N');
 			$since_midnight = time() - strtotime(date('Y-m-d 00:00:00'));
-
-			foreach($this->slots[$day] AS $key => $slot)
+			
+			if ( isset($this->slots['day']) )
 			{
-				if($slot['end'] > $since_midnight)
-				{
-					$slot_id = $key;
-				}
+			    foreach($this->slots[$day] AS $key => $slot)
+			    {
+				    if($slot['end'] > $since_midnight)
+				    {
+					    $slot_id = $key;
+				    }
+			    }
 			}
-			if($slot_id = -1)
+			
+			// WARNINGWARNINGWARNING
+			// this was $slot_id = -1 before
+			if($slot_id == -1)
 			{
 				tools::debug('No valid slot found today');
 				$next = $this->next_slot($day, 0);

@@ -15,7 +15,8 @@
 			if(isset($_POST['queryString']) && strlen($_POST['queryString']) > 0)
 			{		
 				$categories = livesearch::search($_POST['queryString']);
-				$this->content .= tools::preint_r($items);
+				// This items does not exist?
+				//$this->content .= tools::preint_r($items);
 			}
 			
 			$this->content .= template('livesearch', 'result.php', array('categories' => $categories));
