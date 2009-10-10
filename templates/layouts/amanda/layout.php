@@ -29,7 +29,7 @@
 			</script>
 			<div id="hp">
 				<div id="head">
-				<a href="/"><h1>Hamsterpaj.net</h1></a>
+				<h1><a href="/">Hamsterpaj.net</a></h1>
 					<?php if($page->user->exists()) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>

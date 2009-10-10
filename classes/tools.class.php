@@ -209,7 +209,7 @@
 		
 		static function ensure_array(&$test)
 		{
-		    return isset($test) && is_array($test) ? $test : array();
+		    return tools::pick($test, array());
 		}
 		
 		static function is_true(&$test)

@@ -1,6 +1,6 @@
 <?php
-	//error_reporting(E_ALL);
-	session_start();
+	error_reporting(E_ALL);
+	//session_start();
 	
 	require_once '../classes/framework.class.php';
 	require_once '../classes/tools.class.php';

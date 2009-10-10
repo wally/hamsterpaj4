@@ -2,11 +2,12 @@
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']); 
 	$uri = $uri_parts[1]; 
 ?>
-	
+HEHEJEJEHEJHJEHJE
 <ul id="main_menu">
-<?php global $menu; foreach($menu AS $handle => $current_menu): ?>
+<?php global $menu;
+    foreach($menu AS $handle => $current_menu): ?>
 	<?php if($current_menu['type'] == 'big'): ?>
-		<li class="big" <?php if($current_menu['url'] == $uri): ?> id="active"<?php endif ?>>
+		<li class="small" <?php if($current_menu['url'] == $uri): ?> id="active"<?php endif ?>>
 			<a href="/<?php echo $current_menu['url'] ?>">
 				<?php echo $current_menu['label'] ?>
 			</a>	

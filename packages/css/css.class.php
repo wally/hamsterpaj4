@@ -9,8 +9,10 @@
 		function execute($uri)
 		{
 			$files = tools::find_files(PATH_PACKAGES, array('extension' => 'css'));
+			
 			foreach($files AS $file)
 			{
+				$this->content .= sprintf("/* %s */\n", $file);
 				$this->content .= file_get_contents(PATH_PACKAGES . $file);
 			}
 			

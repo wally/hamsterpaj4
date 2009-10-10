@@ -126,6 +126,13 @@ dd
 	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
 }
 
+    #hp #head h1 a
+    {
+	height: 73px;
+	width: 357px;
+	display: block;
+    }
+
 #hp #head #login
 {
 	float: left;

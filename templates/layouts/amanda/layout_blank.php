@@ -12,7 +12,7 @@
 	<body class="layout_blank">
 		<div id="content">
 			<div id="top">
-				<img src="http://images.hamsterpaj.net/ui/ui_logo.png" />
+				<img src="http://images.hamsterpaj.net/ui/ui_logo.png" alt="Hamsterpaj.net" />
 			</div>
 			<?php echo $page->content; ?>
 		</div>
