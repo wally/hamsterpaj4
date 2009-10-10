@@ -81,15 +81,36 @@
 		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
 		<!-- Piwik -->
 		<script type="text/javascript">
-		var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.hamsterpaj.net/piwik/" : "http://www.hamsterpaj.net/piwik/");
-		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-		</script><script type="text/javascript">
-		try {
-		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-		piwikTracker.trackPageView();
-		piwikTracker.enableLinkTracking();
-		} catch( err ) {}
-		</script><noscript><p><img src="http://www.hamsterpaj.net/piwik/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
+			var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.hamsterpaj.net/piwik/" : "http://www.hamsterpaj.net/piwik/");
+			document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try
+			{
+				var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+				piwikTracker.trackPageView();
+				piwikTracker.enableLinkTracking();
+			} catch( err ) {}
+		</script>
+		<noscript>
+			<p>
+				<img src="http://www.hamsterpaj.net/piwik/piwik.php?idsite=1" style="border:0" alt=""/>
+			</p>
+		</noscript>
 		<!-- End Piwik Tag -->
+		
+		<?php if(isset($page->clickheat)): ?>
+		<!-- Clickheat -->
+		<script type="text/javascript" src="http://www.hamsterpaj.net/clickheat/js/clickheat.js"></script>
+		<noscript><p><a href="http://www.labsmedia.com/index.html">Traffic monetization</a></p></noscript>
+		<script type="text/javascript"><!--
+			clickHeatSite = 'hamsterpaj';
+			clickHeatGroup = '<?php echo $page->clickheat; ?>';
+			clickHeatQuota = 3;
+			clickHeatServer = 'http://www.hamsterpaj.net/clickheat/click.php';
+			initClickHeat(); //-->
+		</script>
+		<!-- End Clickheat Tag -->
+		<?php endif; ?>
 	</body>
 </html>

@@ -19,6 +19,7 @@
 		function execute($uri)
 		{
 			
+			
 			$uri_explode = explode('/', $uri);
 			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
 			{
@@ -32,6 +33,7 @@
 			}
 			
 			$this->menu_active = $item->get('category');
+			// $this->clickheat = 'Entertain-' . $item->get('category');
 			
 			// Update number of views
 			$item->update_views();
