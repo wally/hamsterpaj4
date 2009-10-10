@@ -54,7 +54,10 @@
 		$configs = tools::fetch_files_from_folder(PATH_CONFIGS);
 		foreach($configs as $config)
 		{
-			require_once PATH_CONFIGS . $config;
+			if (substr($config, -4) == '.php' )
+			{
+				require_once PATH_CONFIGS . $config;
+			}
 		}
 		
 		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;
