@@ -33,7 +33,7 @@
 			}
 			
 			$this->menu_active = $item->get('category');
-			$this->clickheat = 'Entertain-' . $item->get('category');
+			// $this->clickheat = 'Entertain-' . $item->get('category');
 			
 			// Update number of views
 			$item->update_views();
