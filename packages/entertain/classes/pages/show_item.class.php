@@ -75,6 +75,12 @@
 			// Search tip
 			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
 			
+			$this->title = $item->get('title') . ' på Hamsterpaj.net - ' . entertain::get_category_label($item->get('category'));
+			foreach($item->tags as $tag)
+			{
+				$this->title .= ' - ' . $tag->title;
+			}
+			
 			switch($item->get('status'))
 			{
 				case 'removed':

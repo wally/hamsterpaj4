@@ -43,7 +43,9 @@
 				$items_id[] = $tag->item_id;
 			}
 			
-			tools::debug($items_id);
+			$category_label = entertain::get_category_label($uri_explode[1]);
+			
+			$this->title = $category_label . ' - ' . $tag_title . ' på Hamsterpaj.net';
 			
 			// Search tip
 			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));

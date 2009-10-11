@@ -20,6 +20,7 @@
 			$category = $uri_explode[1];
 			$this->menu_active = $category . '_topplista';
 			$category_label = entertain::get_category_label($category);
+			$this->title = $category_label . 's topplista på Hamsterpaj.net - Mest visningar - Bäst betyg - Roligast';
 			
 			$most_views = entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
 

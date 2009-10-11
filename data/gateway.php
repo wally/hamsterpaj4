@@ -97,6 +97,10 @@
 	
 		$page->user->lastaction();
 
+		if(strlen($page->get('title')) == 0)
+		{
+			$page->title = 'Hamsterpaj.net - Underhållning - Onlinespel - Diskussionsforum - Träffa - Fotoblogg - Roliga Bilder - Filmklipp - Animerat - Flashfilmer - Sex och Sinne';
+		}
 		if(strlen($page->get('content_type')) > 0 )
 		{
 			header('Content-type: ' . $page->get('content_type'));
