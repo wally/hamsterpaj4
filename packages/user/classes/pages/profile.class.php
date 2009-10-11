@@ -5,6 +5,10 @@
 		{
 			
 			preg_match('#^/(.*?)(/|$)#', $uri, $username);
+			if ( ! isset($username[1]) )
+			{
+			    return 1;
+			}
 			$username = $username[1];
 			tools::debug($username);
 			

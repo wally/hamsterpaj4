@@ -172,11 +172,15 @@
 				tools::debug($stmt->errorInfo());
 			}
 
+			$active_tags = array();
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$active_tags[] = $row['title'];
 			}
 			tools::debug($active_tags);
+			
+			$active_subtags = array();
+			$active_mastertags = array();
 			
 			foreach($active_tags as $active_tag)
 			{

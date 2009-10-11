@@ -5,15 +5,15 @@
     {
     	$uri_explode = explode('/', $uri);
  
-	    if($uri_explode[1] == 'ajax' && $uri_explode[2] == 'bilddagboken' && isset($uri_explode[3]) && $uri_explode[4] == 'zip')
-	    {
-	      return 9;
-	    }
-	    else
-	    {
-	    	return 0;
-	    }
-		}
+	if(count($uri_explode) >= 4 && $uri_explode[1] == 'ajax' && $uri_explode[2] == 'bilddagboken' && isset($uri_explode[3]) && $uri_explode[4] == 'zip')
+	{
+	  return 9;
+	}
+	else
+	{
+	    return 0;
+	}
+    }
 
     function execute($uri)
     {

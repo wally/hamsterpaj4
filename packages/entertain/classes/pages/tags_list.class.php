@@ -6,12 +6,15 @@
 		{
 			global $_ENTERTAIN;
 			$uri_explode = explode('/', $uri);
-			foreach($_ENTERTAIN['categories'] as $handle => $category)
+			if ( count($uri_explode) >= 3 )
 			{
-				if($uri_explode[1] == $handle && $uri_explode[2] == 'taggar')
-				{
-					return 15;
-				}
+			    foreach($_ENTERTAIN['categories'] as $handle => $category)
+			    {
+				    if($uri_explode[1] == $handle && $uri_explode[2] == 'taggar')
+				    {
+					    return 15;
+				    }
+			    }
 			}
 			return 0;
 		}

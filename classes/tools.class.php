@@ -3,8 +3,8 @@
 	{
 		function find_files($dir, $options)
 		{
-			$options['recursive'] = ($options['recursive'] === false) ? false : true;
-
+			tools::pick_inplace($options['recursive'], true);
+			
 			$files = scandir($dir);
 			foreach($files AS $key => $file)
 			{
@@ -111,10 +111,10 @@
 			global $_DEBUG;
 			$backtrace = debug_backtrace();
 			$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
-			$function_file = substr($backtrace[1]['file'], strrpos($backtrace[1]['file'], '/')+1);
 			$message = (is_string($message)) ? $message : '<pre>' . print_r($message, true) . '</pre>';
-			if(!empty($function_file))
+			if(isset($backtrace[1]['file']))
 			{
+				$function_file = substr($backtrace[1]['file'], strrpos($backtrace[1]['file'], '/')+1);
 				$message .= '<br /><span class="calling_function">Funktionen anropades utav: ' . $function_file . ' #' . $backtrace[1]['line'] . '</span>';
 			}
 			$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
@@ -123,7 +123,12 @@
 			$log .= $file . "\n";
 			$log .= (is_string($message)) ? $message : print_r($message, true);
 			$log .= "\n\n\n";
-			file_put_contents(PATH_DEBUG . date('Y-m-d') . '.log', $log, FILE_APPEND);
+			$filename = PATH_DEBUG . date('Y-m-d') . '.log';
+			if ( ! file_exists($filename) )
+			{
+			    fclose(fopen($filename, 'x'));
+			}
+			file_put_contents($filename, $log, FILE_APPEND);
 		}
 		
 		function timer($point)
@@ -179,13 +184,37 @@
 		}
 		
 		function array_map_multidimensional($func, $arr)
-    {
-    	$newArr = array();
-    	foreach( $arr as $key => $value )
-    	{
-    		$newArr[ $key ] = ( is_array( $value ) ? tools::array_map_multidimensional( $func, $value ) : $func( $value ) );
-    	}
-   		return $newArr;
-    }
+		{
+			$newArr = array();
+			foreach( $arr as $key => $value )
+			{
+			        $newArr[ $key ] = ( is_array( $value ) ? tools::array_map_multidimensional( $func, $value ) : $func( $value ) );
+			}
+			   return $newArr;
+		}
+		
+		static function pick(&$test, $else)
+		{
+		    if ( ! isset($test) )
+		    {
+			return $else;
+		    }
+		    return $test;
+		}
+		
+		static function pick_inplace(&$test, $else)
+		{
+		    $test = tools::pick($test, $else);
+		}
+		
+		static function ensure_array(&$test)
+		{
+		    return isset($test) && is_array($test) ? $test : array();
+		}
+		
+		static function is_true(&$test)
+		{
+		    return isset($test) && $test;
+		}
 	}
 ?>

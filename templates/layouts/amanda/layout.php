@@ -39,7 +39,7 @@
 				</div>
 				<?php echo $page->menu->render($page); ?>
 				<div id="xxl">
-					<?php echo $page->xxl; ?>
+					<?php echo isset($page->xxl) ? $page->xxl : ''; ?>
 				</div>
 				<div id="content">
 					<script type="text/javascript">CM8ShowAd("635x50");</script>

@@ -5,6 +5,6 @@
 		<p>
 			<?php echo $text ?>
 		</p>
-		<span class="timestamp"><?php echo tools::date_readable($timestamp); ?></span><?php if($remove_privilegied): ?> | <a href="" class="remove">Radera</a><?php endif; ?>
+		<span class="timestamp"><?php echo tools::date_readable($timestamp); ?></span><?php if(tools::is_true($remove_privilegied)): ?> | <a href="" class="remove">Radera</a><?php endif; ?>
 	</div>
 </li>

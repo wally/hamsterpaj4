@@ -4,7 +4,7 @@
 
 	class comment extends comment_list
 	{
-		function build_comment($data)
+		function build_comment($data = array())
 		{
 			$this->user = user::fetch(array('id' => $this->user_id));
 		}

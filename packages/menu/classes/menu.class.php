@@ -11,12 +11,13 @@
 		{
 			$menu = $this->data;
 			
-			$submenu = $menu[$page->menu_active]['sub'];
+			$submenu = (isset($menu[$page->menu_active]['sub']) ? $menu[$page->menu_active]['sub'] : null);
 			
+			$priority = array();
 			// Sort by priority
 			foreach ($menu as $key => $row)
 			{
-				$priority[$key] = $row['priority'];
+				$priority[$key] = isset($row['priority']) ? $row['priority'] : null;
 			}
 			array_multisort($priority, SORT_DESC, $menu);
 			
@@ -37,7 +38,7 @@
 				
 				foreach($menu as $key2 => $row2)
 				{
-					if($row2['parent'] == $key)
+					if(isset($row2['parent']) && $row2['parent'] == $key)
 					{
 						// Kolla om barnet är aktivt
 						if($page->menu_active == $key2)
@@ -60,12 +61,12 @@
 			foreach($bigmenu as $key => $row)
 			{
 				// Om det här är den aktiva menyn, hämta submeny
-				if($row['active'] == true)
+				if(isset($row['active']) && $row['active'] == true)
 				{
 					tools::debug($key . ' är aktiv, vilka submenyer finner vi?');
 					foreach($menu as $key2 => $row2)
 					{
-						if($key == $row2['parent'])
+						if(isset($row2['parent']) && $key == $row2['parent'])
 						{
 							tools::debug($key2 . ' finns i ' . $key);
 							$submenu[$key2] = $row2;
@@ -74,7 +75,7 @@
 				}
 			}
 
-			$out .= template('menu', 'menu.php', array('bigmenu' => $bigmenu, 'submenu' => $submenu));
+			$out = template('menu', 'menu.php', array('bigmenu' => $bigmenu, 'submenu' => $submenu));
 			
 			return $out;
 		}
