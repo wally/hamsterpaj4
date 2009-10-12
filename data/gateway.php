@@ -100,7 +100,19 @@
 
 		if(strlen($page->get('title')) == 0)
 		{
-			$page->title = 'Hamsterpaj.net - Underhållning - Onlinespel - Diskussionsforum - Träffa - Fotoblogg - Roliga Bilder - Filmklipp - Animerat - Flashfilmer - Sex och Sinne';
+			$page->title = 'Hamsterpaj - Community - Underhållning - Onlinespel - Forum';
+		}
+		if(strlen($page->get('description')) == 0)
+		{
+			$page->description = 'Hamsterpaj.net - Mötesplats på nätet för ungdomar 13-18 år, där man kan spela spel, titta på filmer och diskutera. Hamsterpaj.net - Tillfredsställelse utan sex!';
+		}
+		if(strlen($page->get('keywords')) == 0)
+		{
+			$page->keywords = 'hamsterpaj, onlinespel, diskussionsforum, träffa, roliga bilder, filmklipp, animerat, sex & sinne';
+		}
+		else
+		{
+			$page->keywords = $page->get('keywords') . ', hamsterpaj, onlinespel, diskussionsforum, träffa, roliga bilder, filmklipp, animerat, sex & sinne';
 		}
 		if(strlen($page->get('content_type')) > 0 )
 		{

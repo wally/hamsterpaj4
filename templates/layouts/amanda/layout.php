@@ -4,6 +4,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $page->get('title'); ?></title>
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
+		<meta name="title" content="<?php echo $page->get('title'); ?>" />
+		<meta name="description" content="<?php echo $page->get('description'); ?>" />
+		<meta name="keywords" content="<?php echo strtolower($page->get('keywords')); ?>" />
+		<link rel="image_src" href="http://images.hamsterpaj.net/fp_recent_update_thumb_universal.png" />
 		<style type="text/css">
 				@import url('/style.css');
 		</style>
@@ -29,7 +33,7 @@
 			</script>
 			<div id="hp">
 				<div id="head">
-				<a href="/"><h1>Hamsterpaj.net</h1></a>
+				<a href="/"><h2>Hamsterpaj.net</h2></a>
 					<?php if($page->user->exists()) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
