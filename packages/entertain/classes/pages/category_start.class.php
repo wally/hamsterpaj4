@@ -18,8 +18,9 @@
 		{
 			$uri_explode = explode('/', $uri);
 			$category = $uri_explode[1];
-			$this->menu_active = $category;
 			$category_label = Entertain::get_category_label($category);
+			$this->menu_active = $category;
+			$this->title = $category_label . ' på Hamsterpaj.net';
 			
 			$latest = Entertain::fetch(array('category' => $category, 'limit' => 1, 'status' => 'released', 'order_by' => 'published_at DESC'));
 			

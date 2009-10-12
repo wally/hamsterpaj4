@@ -2,8 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><?php echo isset($title) ? $title : 'Hamsterpaj.net'; ?></title>
+		<title><?php echo $page->get('title'); ?></title>
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
+		<meta name="title" content="<?php echo $page->get('title'); ?>" />
+		<meta name="description" content="<?php echo $page->get('description'); ?>" />
+		<meta name="keywords" content="<?php echo strtolower($page->get('keywords')); ?>" />
+		<link rel="image_src" href="http://images.hamsterpaj.net/fp_recent_update_thumb_universal.png" />
 		<style type="text/css">
 				@import url('/style.css');
 		</style>

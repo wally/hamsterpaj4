@@ -71,7 +71,21 @@
 			// Search tip
 			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
 			
-			switch( $item->get('status') )
+			$this->title = $item->get('title') . ' | Hamsterpaj - ' . entertain::get_category_label($item->get('category'));
+			
+			$this->description = $item->get('title') . ' på Hamsterpaj i kategorin ' . entertain::get_category_label($item->get('category')) . ' är underhållning på högsta nivå! Taggat med följande ord:';
+			foreach($item->tags as $tag)
+			{
+				$this->description .= ' ' . $tag->title;
+			}
+			
+			$this->keywords = Entertain::get_category_label($item->get('category')) . ', ' . $item->get('title');
+			foreach($item->tags as $tag)
+			{
+				$this->keywords .= ', ' . strtolower($tag->title);
+			}
+			
+			switch($item->get('status'))
 			{
 				case 'removed':
 					$this->content .= 'Objektet borttaget';
