@@ -1,8 +1,8 @@
 <?php
 	require_once PATH_ROOT . 'secrets/mobile_blog_config.php';
-	class mobile_blog extends hp4
+	
+	class MobileBlog extends HP4
 	{
-		
 		function fetch($options)
 		{
 			global $_PDO;
@@ -13,18 +13,18 @@
 			$options['order-direction'] = in_array($options['order-direction'], array('ASC', 'DESC')) ? $options['order-direction'] : MOBILE_BLOG_DEFAULT_ORDER_DIRECTION;
 
 			$query = 'SELECT user_id, text, type, id, timestamp 
-								FROM mobile_blog_posts 
-								WHERE 1 = 1
-								' . (isset($options['user_id']) ? ' AND user_id = ' . $options['user_id'] : '') . ' 
-								ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' 
-								LIMIT ' . $options['limit'];
+				    FROM mobile_blog_posts 
+				    WHERE 1 = 1
+				    ' . (isset($options['user_id']) ? ' AND user_id = ' . $options['user_id'] : '') . ' 
+				    ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' 
+				    LIMIT ' . $options['limit'];
 
 			$mobile_blogs = array();
 			foreach($_PDO->query($query) as $entry)
 			{
-				$mobile_blog = new mobile_blog;
+				$mobile_blog = new MobileBlog;
 				$mobile_blog->set($entry);
-				$mobile_blog->user = user::fetch(array('id' => $entry['user_id']));
+				$mobile_blog->user = User::fetch(array('id' => $entry['user_id']));
 				$mobile_blogs[] = $mobile_blog;
 			}
 
@@ -37,7 +37,7 @@
 			
 			$query = 'INSERT INTO mobile_blog_posts SET user_id = "' . $this->user->id . '", text = "' . $this->text . '", type = "' . $this->type . '", timestamp = UNIX_TIMESTAMP()';
 			$_PDO->query($query);
-			tools::debug($query);
+			Tools::debug($query);
 		}
 		
 		function remove()

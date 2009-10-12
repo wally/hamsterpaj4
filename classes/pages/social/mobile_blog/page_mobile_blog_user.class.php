@@ -1,5 +1,5 @@
 <?php
-	class page_mobile_blog_user extends page
+	class PageMobileBlogUser extends Page
 	{
 		function url_hook($url)
 		{
@@ -12,19 +12,19 @@
 			$username = $request_uri[1];
 			
 			// Check if user exists
-			if(!$user = user::fetch(array('username' => $username)))
+			if(!$user = User::fetch(array('username' => $username)))
 			{
 				$this->content = template('framework/notifications/not_found.php', 'Användaren hittades inte', 'Är du säker på att du fyllt i rätt namn?');
 				return false;
 			}
 			
 			$options['user_id'] = $user->get('id');
-			$mobile_blogs = mobile_blog::fetch($options);
+			$mobile_blogs = MobileBlog::fetch($options);
 			
 			$entries = array();
 			foreach($mobile_blogs as $entry)
 			{
-				$entry->comment_list = new comment_list();
+				$entry->comment_list = new CommentList();
 				$entry->comment_list->user = $this->user;
 				$entry->comment_list->item_id = $entry->id;
 				$entry->comment_list->type = 'mobile_blog';
@@ -41,7 +41,7 @@
 				$this->content .= template('pages/social/mobile_blog/form.php');
 				if(strlen($this->user->get('cell_phone')) < 3)
 				{
-					$this->content .= template('pages/social/mobile_blog/register_number.php', array('user' => $this->user, 'control_number' => mobile_blog::get_control_number($this->user->username)));
+					$this->content .= template('pages/social/mobile_blog/register_number.php', array('user' => $this->user, 'control_number' => MobileBlog::get_control_number($this->user->username)));
 				}
 				else
 				{

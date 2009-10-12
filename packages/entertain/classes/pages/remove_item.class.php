@@ -1,5 +1,5 @@
 <?php
-	class page_entertain_remove_item extends page
+	class PageEntertainRemoveItem extends Page
 	{
 		function url_hook($uri)
 		{
@@ -16,7 +16,7 @@
 			
 			$uri_explode = explode('/', $uri);
 			
-			if($item = entertain::fetch(array('handle' => $uri_explode[3])))
+			if( $item = Entertain::fetch(array('handle' => $uri_explode[3])) )
 			{
 				if($_POST['action'] == 'remove')
 				{

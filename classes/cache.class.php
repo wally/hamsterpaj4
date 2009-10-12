@@ -6,7 +6,7 @@
 			This class should continue to be used, as a wrapper for memcached. This provides portability to systems which lacks memcache.
 	*/
 
-	class cache
+	class Cache
 	{
 		public function load($handle)
 		{
@@ -16,7 +16,7 @@
 		
 		public function save($handle, $data)
 		{
-			cache::cache_save($handle, $data);
+			Cache::cache_save($handle, $data);
 		}
 		
 		public function cache_save($handle, $data)
@@ -30,7 +30,7 @@
 		# This method should not be used. Not at all. Do not use it.
 		public function lastUpdate($handle)
 		{
-			tools::debug('<span style="color: red; font-weight: bold;">Please use cache::last_update() instead of tools::lastUpdate()</span>');
+			Tools::debug('<span style="color: red; font-weight: bold;">Please use Cache::last_update() instead of Tools::lastUpdate()</span>');
 			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
 		}
 		

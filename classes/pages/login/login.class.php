@@ -1,15 +1,16 @@
 <?php
-	class page_login extends page
+	class PageLogin extends Page
 	{
 		function url_hook($url)
 		{
 			return ($url == '/log-in') ? 10 : 0;
 		}
+		
 		function execute()
 		{
 			if(strlen($_POST['username']) > 0)
 			{
-				if($user = user::fetch(array('username' => $_POST['username'])))
+				if($user = User::fetch(array('username' => $_POST['username'])))
 				{
 					if($user->auth($_POST['password']))
 					{
@@ -25,7 +26,7 @@
 		}
 	}
 	
-	class page_logout extends page
+	class PageLogout extends Page
 	{
 		function url_hook($url)
 		{
@@ -34,7 +35,7 @@
 		
 		function execute()
 		{
-			$this->user = new user();
+			$this->user = new User();
 			$this->user->to_session();
 		}
 	}

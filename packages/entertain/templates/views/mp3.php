@@ -11,7 +11,7 @@
 		<div class="info">
 			<dl>
 				<dt>Filstorlek:</dt>
-					<dd><?php echo tools::file_size_readable($data['size']); ?></dd>
+					<dd><?php echo Tools::file_size_readable($data['size']); ?></dd>
 					
 				<dt><a href="<?php echo 'http://static.hamsterpaj.net/entertain/mp3/' . $item->get('handle') . '.mp3'; ?>">Ladda ner</a></dt>
 					<dd></dd>

@@ -1,9 +1,9 @@
 <?php
-	class tools
+	class Tools
 	{
 		function find_files($dir, $options)
 		{
-			tools::pick_inplace($options['recursive'], true);
+			Tools::pick_inplace($options['recursive'], true);
 			
 			$files = scandir($dir);
 			foreach($files AS $key => $file)
@@ -17,7 +17,7 @@
 				
 				if(is_dir($dir . $file))
 		    {
-		    	$subfiles = tools::find_files($dir . $file . '/', $options);
+		    	$subfiles = Tools::find_files($dir . $file . '/', $options);
 		    	foreach($subfiles AS $subfile)
 		    	{
 		    		$files[] = $file . '/' . $subfile;
@@ -44,7 +44,7 @@
 				}
 				if(is_dir($dir . $file) && $file != '.' && $file != '..')
 		    {
-		    	$subfiles = tools::fetch_files_from_folder($dir . $file . '/');
+		    	$subfiles = Tools::fetch_files_from_folder($dir . $file . '/');
 		    	foreach($subfiles as $subfile)
 		    	{
 		    		array_push($files, $file . '/' . $subfile);
@@ -62,7 +62,7 @@
 		
 		function time_readable($duration)
 		{
-			tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');
+			Tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');
 			$days = floor($duration/86400);
 			$hrs = floor(($duration - $days * 86400) / 3600);
 			$min = floor(($duration - $days * 86400 - $hrs * 3600) / 60);
@@ -188,7 +188,7 @@
 			$newArr = array();
 			foreach( $arr as $key => $value )
 			{
-			        $newArr[ $key ] = ( is_array( $value ) ? tools::array_map_multidimensional( $func, $value ) : $func( $value ) );
+			        $newArr[ $key ] = ( is_array( $value ) ? Tools::array_map_multidimensional( $func, $value ) : $func( $value ) );
 			}
 			   return $newArr;
 		}
@@ -204,12 +204,12 @@
 		
 		static function pick_inplace(&$test, $else)
 		{
-		    $test = tools::pick($test, $else);
+		    $test = Tools::pick($test, $else);
 		}
 		
 		static function ensure_array(&$test)
 		{
-		    return tools::pick($test, array());
+		    return Tools::pick($test, array());
 		}
 		
 		static function is_true(&$test)

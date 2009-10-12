@@ -1,5 +1,5 @@
 <?php
-  class page_bdb_download_start extends page
+  class PageBDBDownloadStart extends Page
   {
     function url_hook($url)
     {
@@ -9,9 +9,6 @@
     function execute($uri)
     {
 	$this->menu_active = 'bilddagboken';
-	
-	
-	
 	
 	$uri_explode = explode('/', $uri);
 	

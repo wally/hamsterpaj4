@@ -1,5 +1,5 @@
 <?php
-	class page_heartbeat extends page
+	class PageHeartbeat extends Page
 	{
 		function url_hook($uri)
 		{

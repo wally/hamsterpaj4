@@ -3,7 +3,7 @@
 <?php echo $item->render(); ?>
 
 <h2>Så här kommer den lilla reklamrutan för objektet se ut</h2>
-<?php echo entertain::previews(array($item)); ?>
+<?php echo Entertain::previews(array($item)); ?>
 <br style="clear: both;" />
 
 <h2>Så här kommer den stora reklamrutan för objektet se ut</h2>

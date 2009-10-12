@@ -1,5 +1,5 @@
 <?php
-	class entertain_flash extends entertain
+	class EntertainFlash extends Entertain
 	{
 		function render()
 		{
@@ -22,7 +22,7 @@
 					$this->data['flashfile'] = 'http://static.hamsterpaj.net/entertain/flash/' . $this->handle . '.swf';
 				break;
 			}
-			tools::debug('Updating from post!');
+			Tools::debug('Updating from post!');
 		}
 		
 		function render_edit_form()

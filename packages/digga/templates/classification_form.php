@@ -1,4 +1,4 @@
-<?php tools::debug($classifications); ?>
+<?php Tools::debug($classifications); ?>
 <h2 class="clear">Hur låter <?php echo $artist->get('name'); ?>?</h2>
 <form action="<?php $artist->get('url'); ?>" method="post" class="digga_classification_form">
 	<input type="hidden" name="action" value="classify" />
@@ -12,7 +12,7 @@
 			<?php $class = array_pop($classifications); ?>
 			<li>
 				<select name="classification_<?php echo $i; ?>">
-				<?php foreach(artist::all_classifications() AS $id => $name) : ?>
+				<?php foreach(Artist::all_classifications() AS $id => $name) : ?>
 					<?php $selected = (isset($class['id']) && $id == $class['id']) ? ' selected="true"' : null; ?>
 					<option value="<?php echo $id; ?>"<?php echo $selected; ?>><?php echo $name; ?></option>
 				<?php endforeach; ?>	

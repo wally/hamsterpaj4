@@ -1,10 +1,9 @@
 <h1>Cowsay-generator</h1>
-<?php
-if (isset($cow))
-{
-	echo '<pre class="entertain_preformatted cowsay_preformatted">' . $cow->get('cow') . '</pre>';
-}
-?>
+
+<?php if (isset($cow)): ?>
+	<pre class="entertain_preformatted cowsay_preformatted"><?php echo $cow->get('cow'); ?></pre>
+<?php endif; ?>
+
 <!--
 
 		private $eye_string; # -e
@@ -63,7 +62,7 @@ if (isset($cow))
 		<dt><label for="mode">Uttryck</label></dt>
 		<dd>
 		<?php 
-			$mode_dropdown = new html_dropdown();
+			$mode_dropdown = new HTMLDropdown();
 			$mode_dropdown->set_name('mode');
 			$mode_dropdown->set_selected($_GET['mode']);
 			$mode_dropdown->add_option(array('value' => 'nonsense', 'label' => 'Inget'));
@@ -77,7 +76,7 @@ if (isset($cow))
 		<dt><label for="cow">Figur</label></dt>
 		<dd>
 		<?php 
-			$cow_dropdown = new html_dropdown();
+			$cow_dropdown = new HTMLDropdown();
 			$cow_dropdown->set_name('cow');
 			$cow_dropdown->set_selected($_GET['cow']);
 			$cow_dropdown->add_option(array('value' => 'nonsense', 'label' => 'Ingen (Standardko)'));

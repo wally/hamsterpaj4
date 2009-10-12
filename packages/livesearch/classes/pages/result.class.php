@@ -1,6 +1,5 @@
 <?php
-	
-	class page_livesearch_result extends page
+	class PageLivesearchResult extends Page
 	{
 		function url_hook($uri)
 		{
@@ -14,9 +13,9 @@
 			
 			if(isset($_POST['queryString']) && strlen($_POST['queryString']) > 0)
 			{		
-				$categories = livesearch::search($_POST['queryString']);
+				$categories = Livesearch::search($_POST['queryString']);
 				// This items does not exist?
-				//$this->content .= tools::preint_r($items);
+				//$this->content .= Tools::preint_r($items);
 			}
 			
 			$this->content .= template('livesearch', 'result.php', array('categories' => $categories));

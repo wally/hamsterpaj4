@@ -2,7 +2,7 @@
 <ul>
 	<?php foreach($module->visitors AS $visitor) : ?>
 		<li>
-			<a href="<?php echo $visitor->profile_url(); ?>" title="<?php echo $visitor->get('username'); ?> besökte dig <?php echo tools::date_readable($visitor->get('last_visit')); ?>">
+			<a href="<?php echo $visitor->profile_url(); ?>" title="<?php echo $visitor->get('username'); ?> besökte dig <?php echo Tools::date_readable($visitor->get('last_visit')); ?>">
 			<img src="<?php echo $visitor->avatar_thumb_url(); ?>" />
 			</a>
 		</li>

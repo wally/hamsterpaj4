@@ -1,6 +1,5 @@
 <?php
-
-	class schedule extends hp4
+	class Schedule extends HP4
 	{
 		protected $action;
 		protected $slots;
@@ -42,7 +41,7 @@
 					}
 					if($i == 7)
 					{
-						tools::debug('FATAL: schedule::suggest() could not find a valid slot!');
+						Tools::debug('FATAL: Schedule::suggest() could not find a valid slot!');
 						return false;							
 					}
 				}
@@ -75,7 +74,7 @@
 			// this was $slot_id = -1 before
 			if($slot_id == -1)
 			{
-				tools::debug('No valid slot found today');
+				Tools::debug('No valid slot found today');
 				$next = $this->next_slot($day, 0);
 				$slot_id = $next['slot_id'];
 				$day = $next['day'];
@@ -112,9 +111,9 @@
 				$slot_id = $next['slot_id'];
 				$day = $next['day'];
 				$day_offset = $next['day_offset'];
-				tools::debug('Got slot #' . $slot_id . ', day #' . $day . ' (offset ' . $day_offset . ')');
+				Tools::debug('Got slot #' . $slot_id . ', day #' . $day . ' (offset ' . $day_offset . ')');
 			}
-			tools::debug('Failed to find free slot, giving up after 500 tries');
+			Tools::debug('Failed to find free slot, giving up after 500 tries');
 		}
 		
 		function book($params)
@@ -138,7 +137,4 @@
 		{
 			
 		}
-		
 	}
-
-?>

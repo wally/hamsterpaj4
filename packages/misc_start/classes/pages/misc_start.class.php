@@ -1,5 +1,5 @@
 <?php
-	class page_misc_start extends page
+	class PageMiscStart extends Page
 	{
 		function url_hook($uri)
 		{
@@ -12,4 +12,3 @@
 			$this->content = '<h1>Under mattan</h1>';			
 		}
 	}
-?>

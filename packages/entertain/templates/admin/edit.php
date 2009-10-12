@@ -38,7 +38,7 @@
 </div>
 <div id="step">
 	<h2>Taggar<div id="help_text"> S&aring; vi kan kategorisera ditt objekt</div></h2>
-	<?php global $_ENTERTAIN; echo tag::render_form('entertain', $_ENTERTAIN['master_tags'][$item->category], $item->id); ?>
+	<?php global $_ENTERTAIN; echo Tag::render_form('entertain', $_ENTERTAIN['master_tags'][$item->category], $item->id); ?>
 </div>	
 
 <div id="step">

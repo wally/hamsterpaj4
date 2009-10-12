@@ -1,5 +1,5 @@
 <?php
-	class page_schedule_test extends page
+	class PageScheduleTest extends Page
 	{
 		function url_hook($uri)
 		{
@@ -10,7 +10,7 @@
 		{
 			$this->content = '<h1>Schedule test</h1>';
 			
-			$schedule = new schedule('test');
+			$schedule = new Schedule('test');
 			$release = $schedule->suggest();
 			$this->content .= '<p>Scheduling system suggested release at ' . date('Y-m-d H:i:s', $release) . '</p>';
 			$schedule->book(array('timestamp' => $release));

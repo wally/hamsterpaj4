@@ -1,5 +1,5 @@
 <?php
-	class page_comment_post extends page
+	class PageCommentPost extends Page
 	{
 		function url_hook($uri)
 		{
@@ -13,7 +13,7 @@
 				throw new Exception('Du måste vara inloggad för att använda den här funktionen');
 			}
 			
-			$comment = new comment;
+			$comment = new Comment();
 			$comment->item_id = $_POST['item_id'];
 			$comment->text = $_POST['text'];
 			$comment->type = $_POST['type'];

@@ -54,5 +54,5 @@
 			<li>U-V-W-X-Y-Z</li>
 			<li>Å-Ä-Ö</li>
 		</ul>
-		</li>
+	</li>
 </ul>

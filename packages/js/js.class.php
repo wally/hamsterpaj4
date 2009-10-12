@@ -1,5 +1,5 @@
 <?php
-	class page_js extends page
+	class PageJS extends Page
 	{
 		function url_hook($uri)
 		{
@@ -8,7 +8,7 @@
 		
 		function execute($uri)
 		{
-			$files = tools::find_files(PATH_PACKAGES, array('extension' => 'js'));
+			$files = Tools::find_files(PATH_PACKAGES, array('extension' => 'js'));
 			
 			// Files that have to be loaded before the restore_error_handler
 			array_unshift($files, 'base/js/jquery-1.3.2.min.js');
@@ -22,4 +22,3 @@
 			$this->raw_output = true;
 		}
 	}
-?>

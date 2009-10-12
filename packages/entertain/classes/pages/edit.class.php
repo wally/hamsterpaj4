@@ -1,5 +1,5 @@
 <?php
-	class page_entertain_edit extends page
+	class PageEntertainEdit extends Page
 	{
 		function url_hook($uri)
 		{
@@ -11,7 +11,7 @@
 			$this->menu_active = 'entertain_admin';
 			$uri_explode = explode('/', $uri);
 			
-			if($item = entertain::fetch(array('handle' => $uri_explode[3])))
+			if($item = Entertain::fetch(array('handle' => $uri_explode[3])))
 			{
 				if(($item->get('uploaded_by') == $this->user->get('id') && $item->get('status') == 'preview') || $this->user->privilegied('entertain_admin'))
 				{
@@ -49,9 +49,9 @@
 						}
 					}
 					
-					$dropdown = new html_dropdown();
+					$dropdown = new HTMLDropdown();
 					$dropdown->set(array('name' => 'category'));
-					foreach(entertain::categories() AS $category)
+					foreach(Entertain::categories() AS $category)
 					{
 						$dropdown->add_option(array('label' => $category['label'], 'value' => $category['handle']));
 					}
@@ -64,7 +64,7 @@
 					// Put up a releasetime in schedule
 					if(!isset($item->release))
 					{
-						$schedule = new schedule('entertain');
+						$schedule = new Schedule('entertain');
 						$item->release = $schedule->suggest();
 					}
 					
@@ -84,5 +84,3 @@
 			}
 		}
 	}
-
-?>

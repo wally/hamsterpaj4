@@ -1,5 +1,5 @@
 <?php
-	class hp4
+	class HP4
 	{
 		public function set($args)
 		{
@@ -33,19 +33,26 @@
 		}
 	}
 
-	class page extends hp4
+	class Page extends HP4
 	{
-		public $side_modules = array(), $content_type, $route, $redirect, $raw_output, $menu_active, $content;
+		public $side_modules = array();
+		public $content_type;
+		public $route;
+		public $redirect;
+		public $raw_output;
+		public $menu_active;
+		public $content;
+		
 		private $user;
 		
 		function load_side_modules()
 		{
-			$modules['search'] = new side_module_search();
-			$modules['n24'] = new side_module_n24();
-			$modules['profile_visitors'] = new side_module_profile_visitors($this->get('user'));
-			$modules['statistics'] = new side_module_statistics();
-			$modules['forum_posts'] = new side_module_forum_posts();
-			$modules['forum_threads'] = new side_module_forum_threads();
+			$modules['search'] = new SideModuleSearch();
+			$modules['n24'] = new SideModuleN24();
+			$modules['profile_visitors'] = new SideModuleProfileVisitors($this->get('user'));
+			$modules['statistics'] = new SideModuleStatistics();
+			$modules['forum_posts'] = new SideModuleForumPosts();
+			$modules['forum_threads'] = new SideModuleForumThreads();
 
 			foreach($modules AS $key => $module)
 			{
@@ -59,12 +66,12 @@
 		function load_menu()
 		{
 			global $menu;
-			$this->menu = new menu;
+			$this->menu = new Menu;
 			$this->menu->data = $menu;
 		}
 	}
 	
-	class module extends hp4
+	class Module extends HP4
 	{
 		protected $visible = true;
 		function execute($page)
@@ -110,6 +117,6 @@
 		$backtrace = debug_backtrace();
 		$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
 
-		tools::debug('<span style="color: red;">Deprecated</span> use of function debug() in ' . $file . ' #' . $backtrace[0]['line'] . ' please use tools::debug() instead');
+		Tools::debug('<span style="color: red;">Deprecated</span> use of function debug() in ' . $file . ' #' . $backtrace[0]['line'] . ' please use Tools::debug() instead');
 	}
 ?>

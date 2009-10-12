@@ -1,5 +1,5 @@
 <?php $data = $item->get('data'); ?>
-<?php tools::debug($item); ?>
+<?php Tools::debug($item); ?>
 <div class="entertain_view entertain_div" id="entertain_video">
 	<h1><?php echo $item->get('title'); ?></h1>
 	<div class="rating">

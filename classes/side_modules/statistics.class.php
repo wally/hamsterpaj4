@@ -1,5 +1,5 @@
 <?php
-	class side_module_statistics extends module
+	class SideModuleStatistics extends Module
 	{
 		public $template = 'statistics';
 		public $visitors = 31337;

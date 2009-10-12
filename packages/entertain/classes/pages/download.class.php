@@ -1,5 +1,5 @@
 <?php
-	class page_entertain_download extends page
+	class PageEntertainDownload extends Page
 	{
 		function url_hook($uri)
 		{
@@ -17,7 +17,7 @@
 		function execute($uri)
 		{
 			$uri_explode = explode('/', $uri);
-			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
+			if(!$item = Entertain::fetch(array('handle' => $uri_explode[2])))
 			{
 				$this->content .= template('base', 'notifications/not_found.php', array('header' => 'Item not found', 'information' => 'The sought object could not be found'));
 				return;
@@ -53,7 +53,7 @@
 			}
 			else
 			{
-				tools::debug('No file found');
+				Tools::debug('No file found');
 			}
 		}
 	}

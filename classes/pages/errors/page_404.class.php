@@ -1,5 +1,5 @@
 <?php
-	class page_404 extends page
+	class Page404 extends page
 	{
 		function url_hook($url)
 		{

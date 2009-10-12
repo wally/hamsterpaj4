@@ -2,11 +2,11 @@
 	// comment_list class must be loaded beföre this.
 	require_once PATH_PACKAGES . 'comment/classes/comment_list.class.php';
 
-	class comment extends comment_list
+	class Comment extends CommentList
 	{
 		function build_comment($data = array())
 		{
-			$this->user = user::fetch(array('id' => $this->user_id));
+			$this->user = User::fetch(array('id' => $this->user_id));
 		}
 		
 		function render($user)
@@ -21,14 +21,15 @@
 			global $_PDO;
 			
 			$query = 'INSERT INTO comments
-								SET 
-									item_id = "' . $this->item_id . '", 
-									type = "' . $this->type . '", 
-									timestamp = UNIX_TIMESTAMP(), 
-									text = "' . $this->text . '", 
-									user_id = ' . $this->user->get('id') . '
-							 ';
-			tools::debug($query);
+				    SET 
+					item_id = "' . $this->item_id . '", 
+					type = "' . $this->type . '", 
+					timestamp = UNIX_TIMESTAMP(), 
+					text = "' . $this->text . '", 
+					user_id = ' . $this->user->get('id') . '
+			';
+			
+			Tools::debug($query);
 			$_PDO->exec($query);
 		}
 		
@@ -126,4 +127,3 @@
 			return true;
 		}
 	}
-?>

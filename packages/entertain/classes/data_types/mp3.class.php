@@ -1,5 +1,5 @@
 <?php
-	class entertain_mp3 extends entertain
+	class EntertainMP3 extends Entertain
 	{
 		function render()
 		{

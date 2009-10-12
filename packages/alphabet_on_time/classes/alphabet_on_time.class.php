@@ -1,5 +1,5 @@
 <?php
-	class page_alphabet_on_time extends page
+	class PageAlphabetOnTime extends Page
 	{
 		function url_hook($url)
 		{

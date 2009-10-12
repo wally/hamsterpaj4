@@ -1,5 +1,5 @@
 <?php
-	class entertain_preformatted extends entertain
+	class EntertainPreformatted extends Entertain
 	{
 		function render()
 		{

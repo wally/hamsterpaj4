@@ -1,5 +1,5 @@
 <?php
-	class entertain_web extends entertain
+	class EntertainWeb extends Entertain
 	{
 		function render()
 		{

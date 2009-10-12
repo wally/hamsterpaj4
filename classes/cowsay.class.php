@@ -1,5 +1,5 @@
 <?php
-	class cowsay extends hp4
+	class Cowsay extends HP4
 	{
 		protected $eye_string; # -e
 		protected $tongue_string; # -T

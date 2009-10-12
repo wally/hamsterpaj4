@@ -1,5 +1,5 @@
 <?php
-	class page_entertain_category_toplist extends page
+	class PageEntertainCategoryToplist extends Page
 	{
 		function url_hook($uri)
 		{
@@ -19,11 +19,11 @@
 			$uri_explode = explode('/', $uri);
 			$category = $uri_explode[1];
 			$this->menu_active = $category . '_topplista';
-			$category_label = entertain::get_category_label($category);
+			$category_label = Entertain::get_category_label($category);
 			
-			$most_views = entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
+			$most_views = Entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
 
-			$best_rating = entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
+			$best_rating = Entertain::fetch(array('category' => $category, 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'views DESC'));
 			
 			// Search tip
 			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
@@ -31,5 +31,3 @@
 			$this->content .= template('entertain', 'category_toplist.php', array('category_label' => $category_label, 'best_rating' => $best_rating, 'most_views' => $most_views));
 		}
 	}
-
-?>

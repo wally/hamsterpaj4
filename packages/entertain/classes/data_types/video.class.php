@@ -1,9 +1,9 @@
 <?php
-	class entertain_video extends entertain
+	class EntertainVideo extends Entertain
 	{
 		function render()
 		{
-			tools::debug($this);
+			Tools::debug($this);
 			return template('entertain', 'views/video.php', array('item' => $this, 'data' => $this->get('data')));
 		}
 		
@@ -26,14 +26,14 @@
 					
 						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
-						video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
+						VideoTools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
 						shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
 					}
 		
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
 					$this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
-					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+					VideoTools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 				case 'upload':
 					$file_extension = end(explode(".", $_FILES['video_upload']['name']));
@@ -49,13 +49,13 @@
 					
 						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
-						video_tools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
+						VideoTools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
 						shell_exec('rm /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
 					}
 					$this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
-					video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+					VideoTools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 				case 'youtube':					
 					$youtube_page = @file_get_contents($_POST['youtube_url']);
@@ -82,7 +82,7 @@
 					{
           	$mp4_url = 'http://www.youtube.com/get_video?video_id=' . $video_id . '&l=' . $l . '&t=' . $t . '&fmt=' . $fmt;
          	 $cmd = '/usr/bin/wget --read-timeout=0.4 ' . escapeshellarg($mp4_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.mp4';
-          	tools::debug($cmd);
+          	Tools::debug($cmd);
 						shell_exec($cmd);
 					}
 					
@@ -97,11 +97,11 @@
           
           $this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
           $this->data['preview'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.jpg';
-          video_tools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
+          VideoTools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 					
 				break;
 			}
-			tools::debug('Updating from post!');
+			Tools::debug('Updating from post!');
 		}
 		
 		function render_edit_form()

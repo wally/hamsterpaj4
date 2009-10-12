@@ -1,6 +1,8 @@
 <?php
-	class html_dropdown extends hp4
+	class HTMLDropdown extends HP4
 	{
+		private $selected;
+		
 		function set_name($name)
 		{
 			$this->name = $name;

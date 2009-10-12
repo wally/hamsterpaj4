@@ -1,8 +1,8 @@
 <?php
 	# This is simply a base entertain class, to be extended by
-	# differend data types, such as entertain_text and entertain_image
+	# different data types, such as entertain_text and entertain_image
 	
-	class entertain extends hp4
+	class Entertain extends HP4
 	{
 		function preview_full()
 		{
@@ -47,14 +47,14 @@
 		
 		function render_edit_form()
 		{
-			tools::debug('<span style="color: red;">Don\'t use this, put a render_edit_form() function in your specific object class instead</span>');
+			Tools::debug('<span style="color: red;">Don\'t use this, put a render_edit_form() function in your specific object class instead</span>');
 			
 			return template('entertain', 'admin/edit/text.php', array('item' => $this));
 		}
 		
 		function render()
 		{
-			tools::debug('Render called on generic entertain class!');
+			Tools::debug('Render called on generic entertain class!');
 		}
 		
 		function preview_image($dimension)
@@ -71,7 +71,7 @@
 		{
 			global $_PDO;
 
-			tools::pick_inplace($search['allow_multiple'], false);
+			Tools::pick_inplace($search['allow_multiple'], false);
 			
 			$query = 'SELECT * FROM entertain WHERE 1';
 			$query .= (isset($search['handle'])) ? ' AND handle = :handle' : null;
@@ -94,15 +94,15 @@
 			
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				if(class_exists('entertain_' . $row['type']))
+				if(class_exists('Entertain' . $row['type']))
 				{
-					$class = 'entertain_' . $row['type'];
+					$class = 'Entertain' . $row['type'];
 					$item = new $class();
 				}
 				else
 				{
-					tools::debug('ERROR: Class entertain_' . $row['type'] . ' does not exist!');
-					 $item = new entertain();				
+					Tools::debug('ERROR: Class Entertain_' . $row['type'] . ' does not exist!');
+					$item = new Entertain();				
 				}
 				
 				$item->id = $row['id'];
@@ -119,7 +119,7 @@
 				$item->views = $row['views'];
 				$item->release = $row['release'];
 				
-				$item->tags = tag::fetch(array('system' => 'entertain', 'item_id' => $item->id));
+				$item->tags = Tag::fetch(array('system' => 'entertain', 'item_id' => $item->id));
 				
 				if($search['allow_multiple'] == true)
 				{
@@ -153,7 +153,7 @@
 			$this->update_data_from_post();
 			
 			// add tags
-			tag::save(array('mastertags' => $_POST['mastertags'], 'subtags' => $_POST['subtags'], 'system' => 'entertain', 'item_id' => $this->id));
+			Tag::save(array('mastertags' => $_POST['mastertags'], 'subtags' => $_POST['subtags'], 'system' => 'entertain', 'item_id' => $this->id));
 		}
 		
 		function get_url()
@@ -181,12 +181,12 @@
 			$this->title = $title;
 			if(strlen($this->handle) == 0)
 			{
-				$handle = tools::handle($title);
+				$handle = Tools::handle($title);
 				for($i = 2; $i < 50; $i++)
 				{
-					if(entertain::fetch(array('handle' => $handle)))
+					if(Entertain::fetch(array('handle' => $handle)))
 					{
-						$handle = tools::handle($title) . '-' . $i;
+						$handle = Tools::handle($title) . '-' . $i;
 					}
 					else
 					{
@@ -215,7 +215,7 @@
 				$stmt->bindValue(':views', $this->views);
 				if(!$stmt->execute())
 				{
-					tools::debug($stmt->errorInfo());
+					Tools::debug($stmt->errorInfo());
 				}
 			}
 			else
@@ -235,7 +235,7 @@
 				$stmt->bindValue(':status', $this->status);
 				if(!$stmt->execute())
 				{
-					tools::debug($stmt->errorInfo());
+					Tools::debug($stmt->errorInfo());
 				}
 			}
 		}
@@ -251,5 +251,3 @@
 			return template('entertain', 'item_list.php', array('items' => $items));
 		}
 	}
-
-?>

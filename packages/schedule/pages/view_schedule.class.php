@@ -1,5 +1,5 @@
 <?php
-	class page_view_schedule extends page
+	class PageViewSchedule extends Page
 	{
 		function url_hook($uri)
 		{
@@ -9,8 +9,6 @@
 		function execute()
 		{
 			$this->content = 'Schedule view';
-			
 			$this->content .= template('schedule', 'week_view.php');
 		}
 	}
-?>

@@ -13,5 +13,5 @@
 </div>
 
 <div class="entertain_related">
-	<?php echo entertain::previews($related); ?>
+	<?php echo Entertain::previews($related); ?>
 </div>

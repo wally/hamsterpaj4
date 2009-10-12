@@ -1,18 +1,17 @@
 <?php
-  class page_bdb_download_redirect extends page
+  class PageBDBDownloadRedirect extends Page
   {
     function url_hook($uri)
     {
     	$uri_explode = explode('/', $uri);
-      return ($uri == '/bilddagboken/submit') ? 20 : 0;
-      
-		}
+	return ($uri == '/bilddagboken/submit') ? 20 : 0;
+    }
 
     function execute($uri)
     {
     	if(isset($_POST['image']))
     	{
-				preg_match('#http://(.*?).bilddagboken.se/p/show.html\?id=(.*?)&#', $_POST['url'], $matches);
+		preg_match('#http://(.*?).bilddagboken.se/p/show.html\?id=(.*?)&#', $_POST['url'], $matches);
 
     		$this->redirect = '/bilddagboken/' . $matches[1] . '/' . $matches[2];
     	}
@@ -26,6 +25,6 @@
     	{
     		$this->redirect = '/bilddagboken/' . $_POST['username'] . '/zip';
     	}
-		}
+    }
   }
 ?>

@@ -1,7 +1,7 @@
 <?php
-	class bilddagboken
+	class Bilddagboken
 	{
-		function connect()
+		static function connect()
 		{
 			// Path to cookie
 			$cookie_file_path = '/home/patrick/cookie.txt';
@@ -17,14 +17,14 @@
 			// Do login
 			if($ce1 = curl_exec($ch))
 			{
-				tools::debug('Loggar in på Bilddagboken');
+				Tools::debug('Loggar in på Bilddagboken');
 				if($ce1 == 1)
 				{
-					tools::debug('Inloggningen lyckades');
+					Tools::debug('Inloggningen lyckades');
 				}
 				else
 				{
-					tools::debug('Inloggningen misslyckades');
+					Tools::debug('Inloggningen misslyckades');
 				}
 			}
 				
@@ -34,20 +34,20 @@
 			return $ch;
 		}
 		
-		function fetch_page($ch, $url)
+		static function fetch_page($ch, $url)
 		{
 			curl_setopt($ch, CURLOPT_URL, $url);
 				
 			// Do fetch code fore imagepage
 			if($ce = curl_exec($ch))
 			{
-				// tools::debug('Kapar bilden...');
+				// Tools::debug('Kapar bilden...');
 			}
 			
 			return $ce;
 		}
 		
-		function url($data)
+		static function url($data)
 		{
 			if(preg_match('#<img src="(.*?)" id="picture" />#', $data, $image))
 			{
@@ -55,7 +55,7 @@
 			}	
 		}
 		
-		function download($url, $username, $return = NULL)
+		static function download($url, $username, $return = NULL)
 		{
 			// Create folder for user
 			shell_exec('mkdir /mnt/static/bdb-download/' . escapeshellarg($username));

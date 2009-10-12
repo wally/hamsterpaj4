@@ -17,7 +17,7 @@
 				<div class="bar_wrapper">
 					<div class="bar" style=";height: <?php echo $height; ?>%; width: 99px;"></div>
 				</div>
-				<span class="fans"><?php echo tools::cute_number($artist->get('fan_count')); ?> fans</span>
+				<span class="fans"><?php echo Tools::cute_number($artist->get('fan_count')); ?> fans</span>
 			</a>
 		</div>
 	<?php endforeach; ?>

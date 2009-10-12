@@ -4,7 +4,7 @@
 		<a href="<?php echo $user->profile_url(); ?>"><?php echo $user->username; ?></a>
 		<span> | </span><a href="/logout">Logga ut</a><br />
 	</div>
-	<span>Online <?php echo tools::duration_readable(time() - $user->last_logon); ?></span>
+	<span>Online <?php echo Tools::duration_readable(time() - $user->last_logon); ?></span>
 	<div id="ui_statusbar_forumstatus">
 		<span title="<?php echo $user->signature; ?>"><?php echo ((strlen(trim($user->signature)) > 0) ? ((mb_strlen($user->signature, 'UTF8') > 22) ? mb_substr($user->signature, 0, 19, 'UTF8') . '...' : $user->signature) : 'Ingen status'); ?></span>
 	</div>

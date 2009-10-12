@@ -1,5 +1,5 @@
 <?php
-	class page_comment_remove extends page
+	class PageCommentRemove extends Page
 	{
 		function url_hook($uri)
 		{
@@ -8,15 +8,16 @@
 
 		function execute()
 		{
-			if(!$this->user->privilegied('comments_admin', $_GET['type']))
+			if( ! $this->user->privilegied('comments_admin', $_GET['type']) )
 			{
 				throw new Exception('Du måste vara inloggad för att använda den här funktionen');
 			}
 			
-			$comment = new comment;
+			$comment = new Comment;
 			
 			$comment->id = $_GET['id'];
 			$comment->remove();
+			
 			$this->raw_output = true;
 		}
 	}

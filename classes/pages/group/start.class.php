@@ -1,5 +1,5 @@
 <?php
-	class page_group_start extends page
+	class PageGroupStart extends page
 	{
 		function url_hook($uri)
 		{
@@ -8,9 +8,9 @@
 
 		function execute()
 		{
-			$group = group::fetch(array('id' => 4840));
+			$group = Group::fetch(array('id' => 4840));
 			
-			tools::debug($group->entries());
+			Tools::debug($group->entries());
 			
 			$this->content = template('group/entry_list.php', array('entries' => $group->entries()));
 		}

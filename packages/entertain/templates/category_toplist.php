@@ -2,13 +2,13 @@
 
 <div class="entertain_preview_container">
 	<h2>Mest visningar</h2>
-	<?php echo entertain::previews($most_views); ?>
+	<?php echo Entertain::previews($most_views); ?>
 	<br class="clear" />
 </div>
 
 <div class="entertain_preview_container">
 	<h2>Med bäst betyg</h2>
-	<?php echo entertain::previews($best_rating); ?>
+	<?php echo Entertain::previews($best_rating); ?>
 	<br class="clear" />
 </div>
 

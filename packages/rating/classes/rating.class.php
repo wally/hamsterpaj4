@@ -1,5 +1,5 @@
 <?php
-	class rating
+	class Rating
 	{
 		function save()
 		{
@@ -19,4 +19,3 @@
 			}
 		}
 	}
-?>

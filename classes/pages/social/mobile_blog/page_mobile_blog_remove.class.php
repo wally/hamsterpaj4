@@ -1,5 +1,5 @@
 <?php
-	class page_mobile_blog_remove extends page
+	class PageMobileBlogRemove extends Page
 	{
 		function url_hook($uri)
 		{
@@ -13,11 +13,10 @@
 				throw new Exception('Du måste vara inloggad för att använda den här funktionen');
 			}
 			
-			$entry = new mobile_blog;
+			$entry = new MobileBlog;
 			
 			$entry->id = $_GET['id'];
 			$entry->remove();
 			$this->content = 'Om Daniella nu hade haft ett routingsystem så hade vi kastat tillbaka dig till sidan du kom ifrån, men Johan har inte kodat det ännu. <a href="/mobilblogg/">Gå tillbaka</a>';
 		}
 	}
-?>

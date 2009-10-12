@@ -1,11 +1,11 @@
 <?php
-	class javascript
+	class Javascript
 	{
 		/* 	Public function to get stylesheets, returns a url to the stylesheet */
 		function get()
 		{
 			// Get array off css files
-			$javascripts = tools::fetch_files_from_folder(PATH_JAVASCRIPTS);
+			$javascripts = Tools::fetch_files_from_folder(PATH_JAVASCRIPTS);
 			
 			foreach($javascripts AS $key => $value)
 			{
@@ -25,7 +25,7 @@
 			// If files arn't updated, load cached merge
 			foreach($javascripts as $javascript)
 			{
-				if(filemtime(PATH_COMPRESSED_JAVASCRIPTS . cache::load('latest_javascript_merge')) < filemtime(PATH_JAVASCRIPTS . $javascript))
+				if(filemtime(PATH_COMPRESSED_JAVASCRIPTS . Cache::load('latest_javascript_merge')) < filemtime(PATH_JAVASCRIPTS . $javascript))
 				{
 					$need_update = true;
 				}
@@ -33,23 +33,23 @@
 			
 			if($need_update == false)
 			{
-				return array(0 => cache::load('latest_javascript_merge'));
+				return array(0 => Cache::load('latest_javascript_merge'));
 			}
 			
 			// Load and merge files
 			foreach($javascripts as $javascript)
 			{
-				$merged_file .= javascript::load($javascript);
+				$merged_file .= Javascript::load($javascript);
 			}
 			
 			// Compress file
-			$compressed_file = javascript::compress($merged_file);
+			$compressed_file = Javascript::compress($merged_file);
 
 			// Set filename
 			$filename = 'merge_' . time() . '.js';
 			
 			// remove all old files
-			foreach(tools::fetch_files_from_folder(PATH_COMPRESSED_JAVASCRIPTS) as $remove_file)
+			foreach(Tools::fetch_files_from_folder(PATH_COMPRESSED_JAVASCRIPTS) as $remove_file)
 			{
 				if(!$remove_file == 'merged.js') // merged.js is used in old framework
 				{
@@ -61,7 +61,7 @@
 			file_put_contents(PATH_COMPRESSED_JAVASCRIPTS . $filename, $compressed_file);
 			
 			// save filename in cache
-			cache::cache_save('latest_javascript_merge', $filename);
+			Cache::cache_save('latest_javascript_merge', $filename);
 			
 			// return URL
 			return array(0 => $filename);

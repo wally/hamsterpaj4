@@ -1,5 +1,5 @@
 <?php
-	class side_module_profile_visitors extends module
+	class SideModuleProfileVisitors extends Module
 	{
 		public $template = 'profile_visitors';
 		public $visitors;

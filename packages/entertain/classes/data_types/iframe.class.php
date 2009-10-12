@@ -1,5 +1,5 @@
 <?php
-	class entertain_iframe extends entertain
+	class EntertainIframe extends Entertain
 	{
 		function render()
 		{

@@ -1,5 +1,5 @@
 <?php
-	class page_cowsay_generator_start extends page
+	class PageCowsayGeneratorStart extends page
 	{
 		function url_hook($uri)
 		{
@@ -9,7 +9,7 @@
 		{
 			if (isset($_GET['message']))
 			{
-				$cow = new cowsay();
+				$cow = new Cowsay();
 				$cow->set(array(
 					'mode' => $_GET['mode'], 
 					'eye_string' => $_GET['eye_string'], 
@@ -22,7 +22,7 @@
 			}
 			else
 			{
-				$cow = new cowsay();
+				$cow = new Cowsay();
 				$cow->set(array('message' => $welcome_message));
 				$this->content = template('pages/misc/cowsay_generator.php', array('cow' => $cow));
 			}

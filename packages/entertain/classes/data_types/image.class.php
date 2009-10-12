@@ -1,6 +1,5 @@
 <?php
-	
-	class entertain_image extends entertain
+	class EntertainImage extends Entertain
 	{
 		function render()
 		{
@@ -39,5 +38,3 @@
 			return template('entertain', 'admin/edit/image.php', array('item' => $this, 'data' => $this->get('data')));
 		}
 	}
-
-?>

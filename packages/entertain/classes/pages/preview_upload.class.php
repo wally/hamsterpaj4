@@ -1,6 +1,5 @@
 <?php
-
-	class page_entertain_preview_upload extends page
+	class PageEntertainPreviewUpload extends Page
 	{
 		function url_hook($uri)
 		{
@@ -16,7 +15,7 @@
 					
 					shell_exec('mkdir ' . ENTERTAIN_PREVIEWS_PATH . 'items/' . escapeshellcmd($_POST['handle']));
 					
-					$this->content .= tools::preint_r($_POST);
+					$this->content .= Tools::preint_r($_POST);
 					
 					if($src_medium = imagecreatefromjpeg(PATH_WEBTEMP . '1-hour/' . $_POST['filename']))
 					{
@@ -84,5 +83,3 @@
 			$this->template = 'layouts/amanda/layout_blank.php';
 		}
 	}
-
-?>

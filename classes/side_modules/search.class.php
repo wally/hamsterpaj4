@@ -1,5 +1,5 @@
 <?php
-	class side_module_search extends module
+	class SideModuleSearch extends Module
 	{
 		public $template = 'search';
 		public $visitors = 31337;

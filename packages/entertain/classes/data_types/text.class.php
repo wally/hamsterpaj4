@@ -1,5 +1,5 @@
 <?php
-	class entertain_text extends entertain
+	class EntertainText extends Entertain
 	{
 		function render()
 		{

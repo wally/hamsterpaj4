@@ -1,6 +1,5 @@
 <?php
-	
-	class page_entertain_activate_queue extends page
+	class PageEntertainEctivateQueue extends Page
 	{
 		function url_hook($uri)
 		{
@@ -11,10 +10,8 @@
 		{
 			$this->menu_active = 'entertain_admin_aktivera';
 			// Fetch items which is in queue
-			$items = entertain::fetch(array('limit' => 3000, 'allow_multiple' => true, 'status' => 'queue'));
+			$items = Entertain::fetch(array('limit' => 3000, 'allow_multiple' => true, 'status' => 'queue'));
 
 			$this->content = template('entertain', 'admin/activate_queue.php', array('items' => $items));
 		}
 	}
-
-?>

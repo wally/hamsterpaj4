@@ -13,8 +13,8 @@
 	$new_post = array();
 	$new_get = array();
 	
-	$new_post = tools::array_map_multidimensional('htmlspecialchars', $_POST);
-	$new_get = tools::array_map_multidimensional('htmlspecialchars', $_GET);
+	$new_post = Tools::array_map_multidimensional('htmlspecialchars', $_POST);
+	$new_get = Tools::array_map_multidimensional('htmlspecialchars', $_GET);
 	
 	$_OLD_POST = $_POST;
 	$_POST = $new_post;
@@ -24,14 +24,14 @@
 	try
 	{
 		// Load all classes
-		$classes = tools::fetch_files_from_folder(PATH_CLASSES);
+		$classes = Tools::fetch_files_from_folder(PATH_CLASSES);
 		foreach($classes as $class)
 		{
 			require_once PATH_CLASSES . $class;
 		}
 		
 		// Load all package configs
-		$files = tools::fetch_files_from_folder(PATH_PACKAGES);
+		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
 		foreach($files as $file)
 		{
 			if(substr($file, -9) == '.conf.php')
@@ -41,7 +41,7 @@
 		}
 		
 		// Load all package classes
-		$files = tools::fetch_files_from_folder(PATH_PACKAGES);
+		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
 		foreach($files as $file)
 		{
 			if(substr($file, -10) == '.class.php')
@@ -51,7 +51,7 @@
 		}
 		
 		// Load all configs
-		$configs = tools::fetch_files_from_folder(PATH_CONFIGS);
+		$configs = Tools::fetch_files_from_folder(PATH_CONFIGS);
 		foreach($configs as $config)
 		{
 			if (substr($config, -4) == '.php' )
@@ -77,7 +77,7 @@
 		$top_match = 0;
 		foreach($classes AS $class)
 		{
-			if(substr($class, 0, 5) == 'page_')
+			if(substr($class, 0, 4) == 'Page')
 			{
 				if(method_exists($class, 'url_hook'))
 				{
@@ -86,14 +86,15 @@
 					{
 						$page = new $class();
 						$top_match = $match;
-						event_log::log($class);
+						
+						EventLog::log($class);
 					}
 				}
 			}
 		}
 	
 		$page->pdo = $_PDO;
-		$page->user = new user;
+		$page->user = new User;
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
 		$page->load_menu();
@@ -104,7 +105,8 @@
 		if(strlen($page->get('content_type')) > 0 )
 		{
 			header('Content-type: ' . $page->get('content_type'));
-		} 
+		}
+		
 		if(strlen($page->get('route')) > 0)
 		{
 			
@@ -127,14 +129,16 @@
 			{
 				$out = template(NULL, 'layouts/amanda/layout.php', array('page' => $page));
 			}
-			 $_SESSION = $page->user->to_session();
-			$debug = template(NULL, 'framework/debug.php');
+			
+			$_SESSION = $page->user->to_session();
+			
 			if(ENVIRONMENT == 'production')
 			{
 				echo $out;
 			}
 			else
 			{
+				$debug = template(NULL, 'framework/debug.php');
 				echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 			}
 		}

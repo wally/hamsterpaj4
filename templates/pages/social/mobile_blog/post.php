@@ -5,7 +5,7 @@
 		<p>
 			<?php echo $text; ?>
 		</p>
-		<span class="timestamp"><?php echo tools::date_readable($timestamp); ?></span><?php if($remove_privilegied): ?><a href="/mobilbogg/radera/<?php echo $id; ?>">Radera</a><?php endif; ?>
+		<span class="timestamp"><?php echo Tools::date_readable($timestamp); ?></span><?php if($remove_privilegied): ?><a href="/mobilbogg/radera/<?php echo $id; ?>">Radera</a><?php endif; ?>
 		<div class="comments">
 			<?php echo $comment_list->render(); ?>
 		</div>

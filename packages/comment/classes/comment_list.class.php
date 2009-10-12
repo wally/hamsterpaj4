@@ -1,9 +1,9 @@
 <?php
-	class comment_list extends hp4
+	class CommentList extends HP4
 	{
 		/*
 			HOW TO USE THIS class:
-			$comment_list = new comment_list;
+			$comment_list = new CommentList();
 			$comment_list->user = $this->user;
 			$comment_list->type = 'photos';
 			$comment_list->item_id = $id;
@@ -11,6 +11,7 @@
 			$comment_list->fetch_comments();
 			$comment_list->render();
 		*/
+		
 		function fetch_comments()
 		{
 			global $_PDO;
@@ -30,7 +31,7 @@
 			$this->comments = array();
 			foreach($comments as $comment_data)
 			{
-				$comment = new comment;
+				$comment = new Comment;
 				$comment->set($comment_data);
 				$comment->build_comment();
 				$this->comments[] = $comment;
@@ -47,4 +48,3 @@
 			return $comment_list->out;
 		}
 	}
-?>

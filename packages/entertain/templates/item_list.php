@@ -1,1 +1,1 @@
-<?php echo entertain::previews($items); ?>
+<?php echo Entertain::previews($items); ?>

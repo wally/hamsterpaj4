@@ -1,5 +1,5 @@
 <?php
-	class user extends hp4
+	class User extends HP4
 	{
 		// Die die die
 		public $last_action,
@@ -125,10 +125,10 @@
 			$search['id'] = (isset($search['id']) && !is_array($search['id'])) ? array($search['id']) : array();
 			$search['username'] = (isset($search['username']) && !is_array($search['username'])) ? array($search['username']) : array();
 			
-			tools::pick_inplace($search['has_visited'], 0);
-			tools::pick_inplace($search['has_image'], false);
+			Tools::pick_inplace($search['has_visited'], 0);
+			Tools::pick_inplace($search['has_image'], false);
 			
-			tools::pick_inplace($params['allow_multiple'], false);
+			Tools::pick_inplace($params['allow_multiple'], false);
 			
 			if(isset($search['id']))
 			{
@@ -161,14 +161,14 @@
 
 			foreach($_PDO->query($query) AS $row)
 			{
-				$user = new user();
+				$user = new User();
 				$user->id = $row['id'];
 				$user->username = $row['username'];
 				$user->password = $row['password'];
 				$user->last_logon = $row['lastlogon'];
 				$user->signature = $row['user_status'];
 				$user->cell_phone = $row['cell_phone'];
-				$user->last_visit = tools::pick($row['last_visit'], null);
+				$user->last_visit = Tools::pick($row['last_visit'], null);
 				$user->quality_level = $row['quality_level'];
 				$user->quality_level_expire = $row['quality_level_expire'];
 
@@ -202,14 +202,14 @@
 			else
 			{
 				$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_anonymous' => true);
-				$this->unread_gb_entries = guestbook::fetch($search);
+				$this->unread_gb_entries = Guestbook::fetch($search);
 				return count($this->unread_gb_entries);
 			}
 		}
 		
 		public function auth($password)
 		{
-			return (secret::password_hash($password) == $this->password);
+			return (Secret::password_hash($password) == $this->password);
 		}
 		
 		function profile_url()
@@ -248,7 +248,7 @@
 			{
 				$search = array('has_image' => true, 'has_visited' => $this->id, 'limit' => USER_VISITORS_LIMIT, 'order-by' => 'last_visit', 'order-direction' => 'DESC');
 				$params = array('allow_multiple' => true);
-				$this->visitors = user::fetch($search, $params);
+				$this->visitors = User::fetch($search, $params);
 			}
 			return $this->visitors;
 		}

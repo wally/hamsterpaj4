@@ -1,19 +1,16 @@
 <?php
-	
-	class livesearch
+	class Livesearch
 	{
 		function search($search_query)
 		{	
-			$items = livesearch::fetch_entertain($search_query);
-			
-			$items = array_merge($items, livesearch::fetch_users($search_query));
-			
-//			$items = array_merge($items, livesearch::fetch_forum($search_query));
+			$items = Livesearch::fetch_entertain($search_query);
+			$items = array_merge($items, Livesearch::fetch_users($search_query));
+//			$items = array_merge($items, Livesearch::fetch_forum($search_query));
 			
 			foreach($items as $item)
 			{
 				
-				$categories[tools::handle($item['category_name'])][] = $item;
+				$categories[Tools::handle($item['category_name'])][] = $item;
 			}
 
 			return $categories;
@@ -31,7 +28,7 @@
 			{
 				while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 				{
-					$item['category_name'] = entertain::get_category_label($row['category']);
+					$item['category_name'] = Entertain::get_category_label($row['category']);
 					$item['item_name'] = $row['title'];
 					$item['item_url'] = '/' . $row['category'] . '/' . $row['handle'];
 					$items[] = $item;

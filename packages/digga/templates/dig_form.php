@@ -1,6 +1,6 @@
 <form action="/digga/ny-digga" method="post" class="digga_form">
 	<fieldset>
-		<?php if(tools::is_true($create)) : ?>
+		<?php if(Tools::is_true($create)) : ?>
 			<legend>Lägg till artist i Digga</legend>
 		<?php endif; ?>
 		<label>Artist eller grupp</label>

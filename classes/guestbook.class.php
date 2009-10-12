@@ -1,5 +1,5 @@
 <?php
-	class guestbook
+	class Guestbook
 	{
 		public function fetch($search, $params = array())
 		{
@@ -11,8 +11,8 @@
 			
 			$query = 'SELECT * FROM traffa_guestbooks AS g WHERE 1';
 			$query .= (count($search['recipient']) > 0) ? ' AND g.recipient IN(:recipient)' : null;
-			$query .= (tools::is_true($search['force_unread'])) ? ' AND g.read = 0' : null;
-			$query .= (tools::is_true($search['allow_private'])) ? null : ' AND is_private = 0';
+			$query .= (Tools::is_true($search['force_unread'])) ? ' AND g.read = 0' : null;
+			$query .= (Tools::is_true($search['allow_private'])) ? null : ' AND is_private = 0';
 			$query .= ' LIMIT ' . GB_DEFAULT_LIMIT;
 			
 			$stmt = $_PDO->prepare($query);
@@ -23,7 +23,7 @@
 			$entries = array();
 			while($row = $stmt->fetch())
 			{
-				$entry = new guestbook();
+				$entry = new Guestbook();
 				$entries[] = $entry;
 			}
 			return $entries;

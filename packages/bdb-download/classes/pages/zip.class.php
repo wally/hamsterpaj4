@@ -1,5 +1,5 @@
 <?php
-  class page_bdb_download_zip extends page
+  class PageBDBDownloadZip extends Page
   {
     function url_hook($uri)
     {
@@ -24,7 +24,7 @@
 			$username = $uri_explode[3];
 				
 			// Connect
-			$ch = bilddagboken::connect();
+			$ch = Bilddagboken::connect();
 				
 			// Get first image id and build url
 			curl_setopt($ch, CURLOPT_URL, 'http://' . $username . '.bilddagboken.se/p/rss/rss.xml');
@@ -34,8 +34,8 @@
 			$first_image_url = 'http://' . $username . '.bilddagboken.se/p/show.html?id=' . $first_image_id;
 	
 				
-			$page = bilddagboken::fetch_page($ch, $first_image_url);
-			$images[] = bilddagboken::url($page, $username);
+			$page = Bilddagboken::fetch_page($ch, $first_image_url);
+			$images[] = Bilddagboken::url($page, $username);
 				
 			// Fetch page
 			while(preg_match('#<a href="(.*?)">(Föregående dag|Föregående bild)</a>#', $page))
@@ -43,8 +43,8 @@
 				// Download prev image
 				preg_match('#show.html(.*?)">(Föregående dag|Föregående bild)</a>#', $page, $prev_url);
 				$prev_url = 'http://' . $username . '.bilddagboken.se/p/show.html' . $prev_url[1];
-				$page = bilddagboken::fetch_page($ch, $prev_url);
-				$images[] = bilddagboken::url($page, $username);
+				$page = Bilddagboken::fetch_page($ch, $prev_url);
+				$images[] = Bilddagboken::url($page, $username);
 			}
 				
 			// Close curl
@@ -59,7 +59,7 @@
 				
 			foreach($images as $image)
 			{
-				$path = bilddagboken::download($image, $username, 'path');
+				$path = Bilddagboken::download($image, $username, 'path');
 				
 				$zip->addFile($path, end(split('/', $path)));
 			}

@@ -1,5 +1,5 @@
 <?php
-	class page_free_music extends page
+	class PageFreeMusic extends page
 	{
 		protected $songs;
 		

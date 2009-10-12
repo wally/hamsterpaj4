@@ -1,5 +1,5 @@
 <?php
-	class entertain_file extends entertain
+	class EntertainFile extends Entertain
 	{
 		function render()
 		{
@@ -65,12 +65,12 @@
 					{
 						if(!move_uploaded_file($_FILES['file']['tmp_name'], PATH_STATIC . 'entertain/files/' . $this->get('handle') . '.' . $file_extension))
 						{
-							tools::debug('Filen flyttades inte');
+							Tools::debug('Filen flyttades inte');
 						}
 					}
 					else
 					{
-						tools::debug('Filen laddades inte upp');
+						Tools::debug('Filen laddades inte upp');
 					}
 					
 				break;

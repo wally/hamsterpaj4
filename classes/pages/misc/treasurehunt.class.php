@@ -1,5 +1,5 @@
 <?php
-	class page_treasurehunt extends page
+	class PageTreasurehunt extends page
 	{
 		function url_hook($url)
 		{

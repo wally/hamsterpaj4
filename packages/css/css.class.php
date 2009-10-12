@@ -1,5 +1,5 @@
 <?php
-	class page_css extends page
+	class PageCSS extends Page
 	{
 		function url_hook($uri)
 		{
@@ -8,7 +8,7 @@
 		
 		function execute($uri)
 		{
-			$files = tools::find_files(PATH_PACKAGES, array('extension' => 'css'));
+			$files = Tools::find_files(PATH_PACKAGES, array('extension' => 'css'));
 			
 			foreach($files AS $file)
 			{

@@ -1,6 +1,6 @@
 <?php
 
-	class page_digga_classification extends page
+	class PageDiggaClassification extends Page
 	{
 		function url_hook($uri)
 		{
@@ -17,14 +17,14 @@
 			foreach($_PDO->query($query) AS $row)
 			{
 				
-				$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name', 'has_classification' => $row['id']), array('allow_multiple' => true));
+				$artists = Artist::fetch(array('limit' => 99999, 'order-by' => 'name', 'has_classification' => $row['id']), array('allow_multiple' => true));
 				$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
 			}
 		}	
 	}	
 
 
-	class page_digga_all_artists extends page
+	class PageDiggaAllArtists extends Page
 	{
 		function url_hook($uri)
 		{
@@ -35,12 +35,12 @@
 		{
 			$this->menu_active = 'digga';
 			
-			$artists = artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
+			$artists = Artist::fetch(array('limit' => 99999, 'order-by' => 'name'), array('allow_multiple' => true));
 			$this->content = template('digga', 'all_artists.php', array('artists' => $artists));
 		}
 	}
 
-	class page_digga_start extends page
+	class PageDiggaStart extends Page
 	{
 		function url_hook($uri)
 		{
@@ -53,20 +53,20 @@
 			
 			$passed = array();
 			
-			$passed['recent_artists'] = artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
+			$passed['recent_artists'] = Artist::fetch(array('limit' => 8, 'order-by' => 'id', 'order-direction' => 'DESC'), array('allow_multiple' => true));
 
 			$top_search['limit'] = 6;
 			$top_search['order-by'] = 'fan_count';
 			$top_search['order-direction'] = 'DESC';
-			$passed['top_artists'] = artist::fetch($top_search, array('allow_multiple' => true));
-			$passed['user_idols'] = artist::fetch(array('order-by' => 'name', 'order-direction' => 'ASC', 'has_fan' => $this->user), array('allow_multiple' => true));
+			$passed['top_artists'] = Artist::fetch($top_search, array('allow_multiple' => true));
+			$passed['user_idols'] = Artist::fetch(array('order-by' => 'name', 'order-direction' => 'ASC', 'has_fan' => $this->user), array('allow_multiple' => true));
 			$passed['user'] = $this->user;
 			
 			foreach($passed['user_idols'] AS $idol)
 			{
-				foreach(tools::ensure_array($idol->get('classifications')) AS $classification)
+				foreach(Tools::ensure_array($idol->get('classifications')) AS $classification)
 				{
-					tools::pick_inplace($music_taste[$classification['name']], 0);
+					Tools::pick_inplace($music_taste[$classification['name']], 0);
 					$music_taste[$classification['name']] += $classification['sum'] / $idol->get('fan_count');
 				}
 			}
@@ -84,7 +84,7 @@
 	}
 	
 	
-	class page_digga_add extends page
+	class PageDiggaAdd extends Page
 	{
 		function url_hook($uri)
 		{
@@ -100,7 +100,7 @@
 				$this->content = '<h1>Du måste vara inloggad!</h1>';
 				return;
 			}
-			if($artist = artist::fetch(array('name' => $_POST['artist'])))
+			if($artist = Artist::fetch(array('name' => $_POST['artist'])))
 			{
 				if($artist->is_fan($this->user))
 				{
@@ -116,7 +116,7 @@
 			}
 			elseif($_POST['create'] == 'true')
 			{
-				$artist = new artist();
+				$artist = new Artist();
 				$artist->set(array('name' => $_POST['artist']));
 				$artist->save();
 				$artist->add_fan($this->user);
@@ -127,7 +127,7 @@
 			else
 			{
 				$this->content .= template('digga',  'add_notfound.php', array('name' => $_POST['artist']));
-				if($artists = artist::fetch(array('name_search' => $_POST['artist']), array('allow_multiple' => true)))
+				if($artists = Artist::fetch(array('name_search' => $_POST['artist']), array('allow_multiple' => true)))
 				{
 					$this->content .= template('digga', 'related_matches.php', array('artists' => $artists));
 				}
@@ -136,7 +136,7 @@
 		}
 	}
 	
-	class page_digga_graph extends page
+	class PageDiggaGraph extends Page
 	{
 		function url_hook($uri)
 		{
@@ -159,7 +159,7 @@
 				}
 			}
 			
-		// Dataset definition   
+			// Dataset definition   
 			$DataSet = new pData;
 			$DataSet->AddPoint($titles,"Label");  
 			$DataSet->AddPoint($data);
@@ -182,7 +182,7 @@
 		}
 	}
 	
-	class page_digga_artist extends page
+	class PageDiggaArtist extends Page
 	{
 		function url_hook($uri)
 		{
@@ -194,14 +194,14 @@
 			$this->menu_active = 'digga';
 			
 			global $_PDO;
-			if($artist = artist::fetch(array('handle' => substr($uri, 14))))
+			if($artist = Artist::fetch(array('handle' => substr($uri, 14))))
 			{
 				if(isset($_POST['action']) && $_POST['action'] == 'classify' && $this->user->exists())
 				{
 					// Fetch all old classifications, remove those and decrease the sums in artist classifications
 					// Insert new classifications and increase the sums
-					tools::debug('Got form submission');
-					tools::debug($_POST);
+					Tools::debug('Got form submission');
+					Tools::debug($_POST);
 					
 					$query = 'SELECT * FROM digga_user_classifications WHERE user = "' . $this->user->get('id') . '" AND artist = "' . $artist->get('id') . '"';
 					foreach($_PDO->query($query) AS $row)
@@ -249,7 +249,7 @@
 				
 				foreach($_PDO->query($query) AS $u)
 				{
-					$fan = new user();
+					$fan = new User();
 					$fan->set(array('username' => $u['username'], 'id' => $u['id'], 'image' => $u['image'], 'gender' => $u['gender'], 'birthday' => $u['birthday']));
 					
 					$fans[] = $fan;
@@ -260,12 +260,12 @@
 			}
 			else
 			{
-				tools::debug('Artist not found');
+				Tools::debug('Artist not found');
 			}
 		}
 	}
 	
-	class artist extends hp4
+	class Artist extends HP4
 	{
 		protected $url, $name, $handle, $classifications;
 		protected $group = array();
@@ -274,7 +274,7 @@
 		{
 			global $_PDO;
 			$query = 'SELECT user FROM digga_fans WHERE artist = "' . $this->id . '" AND user = "' . $user->get('id') . '" LIMIT 1';
-			tools::debug($query);
+			Tools::debug($query);
 			foreach($_PDO->query($query) AS $row)
 			{
 				return true;
@@ -301,7 +301,7 @@
 				$search['handle'] = (is_array($search['handle'])) ? $search['handle'] : array($search['handle']);
 			}
 			
-			tools::pick_inplace($params['allow_multiple'], false);
+			Tools::pick_inplace($params['allow_multiple'], false);
 			
 			$artists = array();
 			$query = 'SELECT da.id, da.name, da.handle, da.fan_count, da.group_id';
@@ -322,7 +322,7 @@
 			
 			foreach($_PDO->query($query) AS $row)
 			{
-				$artist = new artist();
+				$artist = new Artist();
 				$artist->set(array('id' => $row['id']));
 				$artist->set(array('name' => $row['name']));
 				$artist->set(array('handle' => $row['handle']));
@@ -345,7 +345,7 @@
 		function set_name($name)
 		{
 			$this->name = $name;
-			$this->handle = tools::handle($name);
+			$this->handle = Tools::handle($name);
 		}
 		
 		function get_url()
@@ -389,7 +389,7 @@
 				}
 				else
 				{
-					tools::debug('Could not create artist!');
+					Tools::debug('Could not create artist!');
 				}
 			}
 		}
@@ -465,7 +465,7 @@
 			}
 			elseif($this->group_id > 0)
 			{
-				$this->group = group::fetch(array('id' => $this->group_id));
+				$this->group = Group::fetch(array('id' => $this->group_id));
 				return $this->group;
 			}
 			else
@@ -486,7 +486,7 @@
 				if($_PDO->query($query))
 				{
 					echo $_PDO->lastInsertId();
-					$this->group = group::fetch(array('id' => $_PDO->lastInsertId()));
+					$this->group = Group::fetch(array('id' => $_PDO->lastInsertId()));
 					$query = 'UPDATE digga_artists SET group_id = "' . $this->group->get('id') . '" WHERE id = "' . $this->id . '" LIMIT 1';
 					$_PDO->query($query);
 					return $this->group;
@@ -495,7 +495,7 @@
 		}
 	}
 	
-	class page_digga_external_battle extends page
+	class PageDiggaExternalBattle extends Page
 	{
 		function url_hook($uri)
 		{
@@ -504,7 +504,7 @@
 		
 		function execute($uri)
 		{
-			$artists = artist::fetch(array('handle' => $_GET['artists']), array('allow_multiple' => true));
+			$artists = Artist::fetch(array('handle' => $_GET['artists']), array('allow_multiple' => true));
 			
 			$this->content = template('digga', 'artist_battle.php', array('artists' => $artists));
 			$this->content .= '<style type="text/css">@import url("/css/misc/digga.css");</style>';

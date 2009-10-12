@@ -1,5 +1,5 @@
 <?php
-	class page_mobile_blog_settings extends page
+	class PageMobileBlogSettings extends Page
 	{
 		function url_hook($uri)
 		{
@@ -13,12 +13,11 @@
 			
 			if(strlen($this->user->get('cell_phone')) < 3)
 			{
-				$this->content .= template('pages/social/mobile_blog/register_number.php', array('user' => $this->user, 'control_number' => mobile_blog::get_control_number($this->user->username)));
+				$this->content .= template('pages/social/mobile_blog/register_number.php', array('user' => $this->user, 'control_number' => MobileBlog::get_control_number($this->user->username)));
 			}
 			elseif(strlen($this->user->get('cell_phone')) > 3)
 			{
-				$this->content .= template('pages/social/mobile_blog/update_number.php', array('user' => $this->user, 'control_number' => mobile_blog::get_control_number($this->user->username)));
+				$this->content .= template('pages/social/mobile_blog/update_number.php', array('user' => $this->user, 'control_number' => MobileBlog::get_control_number($this->user->username)));
 			}
 		}
 	}
-?>

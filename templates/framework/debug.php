@@ -7,7 +7,7 @@
 	</p>
 	<?php global $_DEBUG, $_TIMER; ?>
 	
-	<?php foreach(tools::ensure_array($_TIMER) AS $event): ?>
+	<?php foreach(Tools::ensure_array($_TIMER) AS $event): ?>
 		<dt><?php echo $event['point']; ?></dt>
 		<dd>
 			<?php echo (isset($last_time)) ? '+ ' . ($event['time'] - $last_time) . 's' : date('H:i:s', $event['time']); ?>

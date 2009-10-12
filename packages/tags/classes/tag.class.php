@@ -1,5 +1,5 @@
 <?php
-	class tag
+	class Tag
 	{
 		function fetch($search)
 		{
@@ -21,7 +21,7 @@
 			
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$tag = new tag();				
+				$tag = new Tag();				
 				
 				$tag->id = $row['id'];
 				$tag->item_id = $row['item_id'];
@@ -63,10 +63,8 @@
 				$tags = $subtags;
 			}
 			
-			
-			
 			$tags = array_filter($tags);
-			tools::debug($tags);
+			Tools::debug($tags);
 			$tags_lowcase = array_map('strtolower', $tags);
 			
 			$tags = array_map('trim', $tags);
@@ -77,42 +75,42 @@
 			$stmt->bindValue(':system', $data['system']); 
 			if(!$stmt->execute())
 			{
-				tools::debug($stmt->errorInfo());
+				Tools::debug($stmt->errorInfo());
 			}
 			
 			$query = 'SELECT id, title FROM tags WHERE LOWER(title) IN ("' . implode('", "', $tags_lowcase) . '") AND system = "' . $data['system'] . '"';
-			tools::debug($query);
+			Tools::debug($query);
 			foreach($_PDO->query($query) AS $row)
 			{
-				tag::create_relationship(array('tag_id' => $row['id'], 'item_id' => $data['item_id'], 'system' => $data['system']));
+				Tag::create_relationship(array('tag_id' => $row['id'], 'item_id' => $data['item_id'], 'system' => $data['system']));
 				
 				$existing_tags[] = strtolower($row['title']);
 			}
-			tools::debug($existing_tags);
+			Tools::debug($existing_tags);
 			foreach($tags as $tag)
 			{
 				if(!in_array(strtolower($tag), $existing_tags))
 				{
 					// create tag
-					$insertid = tag::create_tag($tag, $data['system']);
+					$insertid = Tag::create_tag($tag, $data['system']);
 					
 					// add tag to object
-					tag::create_relationship(array('tag_id' => $insertid, 'item_id' => $data['item_id'], 'system' => $data['system']));
+					Tag::create_relationship(array('tag_id' => $insertid, 'item_id' => $data['item_id'], 'system' => $data['system']));
 				}
 			}
-			tools::debug($tags);
+			Tools::debug($tags);
 		}
 			
 		function create_tag($title, $system)
 		{
 			global $_PDO;
 			
-			$handle = tools::handle($title);
+			$handle = Tools::handle($title);
 			for($i = 2; $i < 50; $i++)
 			{
-				if(tag::fetch(array('handle' => $handle, 'system' => $system)))
+				if(Tag::fetch(array('handle' => $handle, 'system' => $system)))
 				{
-					$handle = tools::handle($title) . '-' . $i;
+					$handle = Tools::handle($title) . '-' . $i;
 				}
 			}
 			
@@ -125,8 +123,9 @@
 			$stmt->bindValue(':popularity', 0);
 			if(!$stmt->execute())
 			{
-				tools::debug($stmt->errorInfo());
+				Tools::debug($stmt->errorInfo());
 			}
+			
 			return $_PDO->lastInsertId();
 		}
 		
@@ -136,13 +135,15 @@
 			
 			$query = 'INSERT INTO tags_ownage (item_id, tag_id, system)';
 			$query .= ' VALUES(:item_id, :tag_id, :system)';
+			
 			$stmt = $_PDO->prepare($query);
 			$stmt->bindValue(':item_id', $data['item_id']);
 			$stmt->bindValue(':tag_id', $data['tag_id']); 
 			$stmt->bindValue(':system', $data['system']);
+			
 			if(!$stmt->execute())
 			{
-				tools::debug($stmt->errorInfo());
+				Tools::debug($stmt->errorInfo());
 			}
 		}
 		
@@ -169,7 +170,7 @@
 			$stmt->bindValue(':item_id', $item_id);
 			if(!$stmt->execute())
 			{
-				tools::debug($stmt->errorInfo());
+				Tools::debug($stmt->errorInfo());
 			}
 
 			$active_tags = array();
@@ -177,7 +178,7 @@
 			{
 				$active_tags[] = $row['title'];
 			}
-			tools::debug($active_tags);
+			Tools::debug($active_tags);
 			
 			$active_subtags = array();
 			$active_mastertags = array();
@@ -196,7 +197,5 @@
 			
 			return template('tags', 'choose_tags.php', array('tags' => $tags, 'mastertags' => $mastertags, 'active_subtags' => $active_subtags, 'active_mastertags' => $active_mastertags));
 		}
-		
-
 	}
-?>
+    

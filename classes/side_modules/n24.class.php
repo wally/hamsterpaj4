@@ -1,5 +1,5 @@
 <?php
-	class side_module_n24 extends module
+	class SideModuleN24 extends Module
 	{
 		public $template = 'n24';
 		public $visitors = 31337;

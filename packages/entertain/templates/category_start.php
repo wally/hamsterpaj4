@@ -7,13 +7,13 @@
 
 <div class="entertain_preview_container">
 	<h2>Annat nytt</h2>
-	<?php echo entertain::previews($new_items); ?>
+	<?php echo Entertain::previews($new_items); ?>
 	<br class="clear" />
 </div>
 
 <div class="entertain_preview_container">
 	<h2>Populärt</h2>
-	<?php echo entertain::previews($popular_items); ?>
+	<?php echo Entertain::previews($popular_items); ?>
 	<br class="clear" />
 </div>
 

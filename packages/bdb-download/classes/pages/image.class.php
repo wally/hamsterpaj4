@@ -1,5 +1,5 @@
 <?php
-class page_bdb_download_image extends page
+class PageBDBDownloadImage extends Page
 {
     function url_hook($uri)
     {
@@ -26,13 +26,13 @@ class page_bdb_download_image extends page
 	$url = 'http://' . $username . '.bilddagboken.se/p/show.html?id=' . $id . '&directlink=1';
 	
 	// Connect
-	$ch = bilddagboken::connect();
+	$ch = Bilddagboken::connect();
 	
 	// Fetch page
-	$page = bilddagboken::fetch_page($ch, $url);
+	$page = Bilddagboken::fetch_page($ch, $url);
 	
 	// Image url
-	$image_url = bilddagboken::url($page, $username);
+	$image_url = Bilddagboken::url($page, $username);
 	
 	// Close curl
 	curl_close($ch);

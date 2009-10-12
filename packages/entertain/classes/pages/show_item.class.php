@@ -1,6 +1,6 @@
 <?php
 	
-	class page_entertain_item extends page
+	class PageEntertainItem extends Page
 	{
 		function url_hook($uri)
 		{
@@ -18,16 +18,11 @@
 		
 		function execute($uri)
 		{
-			
-			
 			$uri_explode = explode('/', $uri);
-			if(!$item = entertain::fetch(array('handle' => $uri_explode[2])))
+			if( ! $item = Entertain::fetch(array('handle' => $uri_explode[2])) )
 			{
 				$searchquery = $uri_explode[2];
-				
 				$searchquery = str_replace('_', ' ', $searchquery);
-				
-				
 				$this->content = template('base', 'notifications/not_found.php', array('header' => 'Föremålet hittades inte', 'information' => '<a href="/soek?searchquery=' . $searchquery . '" />Klicka här för att söka efter det istället</a>'));
 				return;
 			}
@@ -39,22 +34,22 @@
 			$item->update_views();
 			
 			// Fetch items with tags matching
-			$matching_tag_items = entertain::fetch(array('category' => $item->get('category'), 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
+			$matching_tag_items = Entertain::fetch(array('category' => $item->get('category'), 'limit' => 8, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 			$matching_tag_items1 = array_slice($matching_tag_items, 0, 4);
 			$matching_tag_items2 = array_splice($matching_tag_items, 5, 8);
-			$matching_tag_items2 = entertain::fetch(array('category' => $item->get('category'), 'limit' => 4, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
+			$matching_tag_items2 = Entertain::fetch(array('category' => $item->get('category'), 'limit' => 4, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 
 			// Fetch two items of the same category
-			$same_category = entertain::fetch(array('category' => $item->get('category'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
+			$same_category = Entertain::fetch(array('category' => $item->get('category'), 'limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 
 			// Fetch three items with random type
-			$random_items = entertain::fetch(array('limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
+			$random_items = Entertain::fetch(array('limit' => 2, 'allow_multiple' => true, 'status' => 'released', 'order_by' => 'RAND()'));
 			
-			$big_related = entertain::fetch(array('limit' => 1,  'status' => 'released', 'order_by' => 'RAND()'));
+			$big_related = Entertain::fetch(array('limit' => 1,  'status' => 'released', 'order_by' => 'RAND()'));
 			
 			$related = array_merge($same_category, $random_items);
 			
-			$comment_list = new comment_list;
+			$comment_list = new CommentList;
 			$comment_list->user = $this->user;
 			$comment_list->type = 'entertain';
 			$comment_list->item_id = $item->get('id');
@@ -67,6 +62,7 @@
 			$out['matching_tag_items1'] = $matching_tag_items1;
 			$out['matching_tag_items2'] = $matching_tag_items2;
 			$out['comment_list'] = $comment_list;
+			
 			if($this->user->privilegied('entertain_edit'))
 			{
 				$out['admin'] = template('entertain', 'item_admin_puff.php', array('item' => $item));
@@ -75,7 +71,7 @@
 			// Search tip
 			$this->content .= template('base', 'notifications/tip.php', array('text' => 'Vet du om att du kan söka efter underhållning i den blå-vita rutan där det står "Sök underhållning" till höger? -->'));
 			
-			switch($item->get('status'))
+			switch( $item->get('status') )
 			{
 				case 'removed':
 					$this->content .= 'Objektet borttaget';
@@ -104,5 +100,3 @@
 			
 		}
 	}
-
-?>

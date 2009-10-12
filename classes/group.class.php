@@ -1,5 +1,5 @@
 <?php
-	class group extends hp4
+	class Group extends HP4
 	{
 		function exists()
 		{
@@ -25,7 +25,7 @@
 			
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$group = new group();
+				$group = new Group();
 				$group->set(array('id' => $row['groupid']));
 				$group->set(array('name' => $row['name']));
 				$group->set(array('description' => $row['description']));
@@ -38,7 +38,7 @@
 			
 			foreach($groups AS $group)
 			{
-				$users = user::fetch(array('id' => $members[$group->get('id')]), array('allow_multiple' => true));
+				$users = User::fetch(array('id' => $members[$group->get('id')]), array('allow_multiple' => true));
 				$groups[$group->get('id')]->set(array('members' => $users));
 			}
 			
@@ -101,10 +101,10 @@
 			
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$entry = new group_entry();
+				$entry = new GroupEntry();
 				$entry->set(array('text' => $row['text'], 'id' => $row['id'], 'timestamp' => $row['timestamp']));
 				
-				$author = user::fetch(array('id' => $row['userid']));
+				$author = User::fetch(array('id' => $row['userid']));
 				$entry->set(array('author' => $author));
 				
 				$entries[] = $entry;
@@ -126,7 +126,7 @@
 		}
 	}
 	
-	class group_entry extends hp4
+	class GroupEntry extends HP4
 	{
 		
 	}

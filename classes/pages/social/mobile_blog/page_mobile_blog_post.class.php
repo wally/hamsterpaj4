@@ -1,5 +1,5 @@
 <?php
-	class page_mobile_blog_post extends page
+	class PageMobileBlogPost extends Page
 	{
 		function url_hook($uri)
 		{
@@ -13,7 +13,7 @@
 				throw new Exception('Du måste vara inloggad för att använda den här funktionen');
 			}
 			
-			$entry = new mobile_blog;
+			$entry = new MobileBlog;
 			
 			$entry->user = $this->user;
 			$entry->text = $_POST['text'];
