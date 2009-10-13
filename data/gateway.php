@@ -1,5 +1,5 @@
 <?php
-	error_reporting(E_ALL);
+	error_reporting(E_NONE);
 	//session_start();
 	
 	require_once '../classes/framework.class.php';
