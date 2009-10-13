@@ -25,7 +25,7 @@
 		<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
 
 
-		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
+		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
 		<div id="wrapper">
 			<script type='text/javascript'><!--//<![CDATA[
 				Ads.insert(250, 'banner980x120 noprint');
@@ -33,7 +33,7 @@
 			</script>
 			<div id="hp">
 				<div id="head">
-				<h1><a href="/">Hamsterpaj.net</a></h1>
+				<h2><a href="/">Hamsterpaj.net</a></h2>
 					<?php if($page->user->exists()) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
