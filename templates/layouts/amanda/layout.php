@@ -34,7 +34,7 @@
 			<div id="hp">
 				<div id="head">
 				<h2><a href="/">Hamsterpaj.net</a></h2>
-					<?php if($page->user->exists()) : ?>
+					<?php if( $page->user->exists() ) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
@@ -46,6 +46,10 @@
 					<?php echo isset($page->xxl) ? $page->xxl : ''; ?>
 				</div>
 				<div id="content">
+					<?php foreach ( $page->user->fetch_notifications() as $note ): ?>
+					    <?php echo call_user_func_array('template', $note); ?>
+					<?php endforeach; ?>
+					
 					<script type="text/javascript">CM8ShowAd("635x50");</script>
 					<?php echo $page->content; ?>
 				</div>
@@ -59,15 +63,12 @@
 			</div>
 			<div id="column_ads">
 				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
-			<script type='text/javascript'><!--//<![CDATA[
-				Ads.insert(251, '');
-				//]]>-->
-			</script>
-			<script type='text/javascript'><!--//<![CDATA[
-				Ads.insert(252, '');
-				//]]>-->
-			</script>
-			
+				<script type='text/javascript'><!--//<![CDATA[
+					Ads.insert(251, '');
+					Ads.insert(252, '');
+					//]]>-->
+				</script>
+				
 				<script type="text/javascript"><!--
 				google_ad_client = "pub-3110640362329253";
 				/* hamsterpaj 160x600, skapad 2009-06-08 */
@@ -77,7 +78,7 @@
 				//-->
 				</script>
 				<script type="text/javascript"
-				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				</script>
 			</div>
 
@@ -103,7 +104,7 @@
 		</noscript>
 		<!-- End Piwik Tag -->
 		
-		<?php if(isset($page->clickheat)): ?>
+		<?php if( isset($page->clickheat) ): ?>
 		<!-- Clickheat -->
 		<script type="text/javascript" src="http://www.hamsterpaj.net/clickheat/js/clickheat.js"></script>
 		<noscript><p><a href="http://www.labsmedia.com/index.html">Traffic monetization</a></p></noscript>

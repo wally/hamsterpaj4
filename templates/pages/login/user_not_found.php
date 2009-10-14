@@ -1,8 +1,6 @@
-<h1>Allvarligt, <?php echo $page; ?> - det här funkar inte</h1>
-<p>
-	Vi har ju pratat om det här förut <?php echo $page; ?>: det är fult att ljuga! Försöker du logga in
-	med fel användarnamn igen kommer din näsa börja växa och till slut blir den JÄTTESTOR!
-</p>
-
-
-
+<div class="notification">
+    <h1>Allvarligt, <?php echo $username; ?> - det här funkar inte</h1>
+    
+    <p>Vi hittade inte dig i databasen! Men du kanske menar att du vill registrera dig som <strong><?php echo $username; ?></strong>.
+	Varför inte hoppa <a href="/register/<?php echo $username; ?>">dit och göra det med en gång?</a></p>
+</div>

@@ -9,3 +9,9 @@
 {
 	padding-top: 25px;
 }
+
+.notification
+{
+    border: 1px solid blue;
+    padding: 1em;
+}

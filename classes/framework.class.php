@@ -23,8 +23,6 @@
 			if( is_callable(array($this, $function)) )
 			{
 				return $this->$function();
-				// Why are we calling $function with $value when $value does not exist?
-				//return $this->$function($value);
 			}
 			else
 			{
@@ -45,6 +43,11 @@
 		public $raw_output;
 		public $menu_active;
 		public $content;
+		
+		// Property: Page::$page_notification
+		// Holds an array of notifications from the previous page view.
+		// An element in the array should be the arguments that are passed to <template>
+		public $page_notification = array();
 		
 		private $user;
 		
@@ -77,12 +80,12 @@
 	class Module extends HP4
 	{
 		protected $visible = true;
+		
 		function execute($page)
 		{
 			return template('base', 'side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
-	
 	
 	function template($package, $template_handle, $params = null)
 	{
@@ -112,6 +115,7 @@
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
+		
 		return $html;
 	}
 ?>

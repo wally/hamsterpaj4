@@ -336,3 +336,19 @@ dd
 {
 	color: #858585;
 }
+
+/**
+* Notifications
+*/
+
+.notification
+{
+    border: 1px solid #C2D6FF;
+    background: #D5E3FF;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+    .notification h1 {
+	margin: 0;
+    }
