@@ -114,12 +114,4 @@
 		ob_end_clean();
 		return $html;
 	}
-	
-	function debug($message)
-	{
-		$backtrace = debug_backtrace();
-		$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
-
-		Tools::debug('<span style="color: red;">Deprecated</span> use of function debug() in ' . $file . ' #' . $backtrace[0]['line'] . ' please use Tools::debug() instead');
-	}
 ?>
