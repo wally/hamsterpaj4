@@ -188,7 +188,8 @@
 		
 		static function ensure_array(&$test)
 		{
-		    return self::pick($test, array());
+		    $arr = self::pick($test, array());
+		    return is_array($arr) ? $arr : array();
 		}
 		
 		static function is_true(&$test)

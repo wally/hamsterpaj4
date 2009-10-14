@@ -255,6 +255,12 @@
 			return $this->visitors;
 		}
 		
+		function notificate($params, $type = 'default')
+		{
+		    $template = sprintf('framework/notifications/%s.php', $type);
+		    $this->notifications[] = array(NULL, $template, $params);
+		}
+		
 		function fetch_notifications()
 		{
 		    $notifications = Tools::pick($_SESSION['notifications'], array());
