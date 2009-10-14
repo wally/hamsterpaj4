@@ -16,14 +16,14 @@
 				}
 				
 				if(is_dir($dir . $file))
-		    {
-		    	$subfiles = Tools::find_files($dir . $file . '/', $options);
-		    	foreach($subfiles AS $subfile)
-		    	{
-		    		$files[] = $file . '/' . $subfile;
-		    	}
-		    	unset($files[$key]);
-		    }
+				{
+				    $subfiles = Tools::find_files($dir . $file . '/', $options);
+				    foreach($subfiles AS $subfile)
+				    {
+					    $files[] = $file . '/' . $subfile;
+				    }
+				    unset($files[$key]);
+				}
 				elseif(isset($options['extension']) && $extension != $options['extension'])
 				{
 					unset($files[$key]);
@@ -43,14 +43,14 @@
 					unset($files[$key]);
 				}
 				if(is_dir($dir . $file) && $file != '.' && $file != '..')
-		    {
-		    	$subfiles = Tools::fetch_files_from_folder($dir . $file . '/');
-		    	foreach($subfiles as $subfile)
-		    	{
-		    		array_push($files, $file . '/' . $subfile);
-		    	}
-		    	unset($files[$key]);
-		    }
+				{
+				    $subfiles = Tools::fetch_files_from_folder($dir . $file . '/');
+				    foreach($subfiles as $subfile)
+				    {
+					    array_push($files, $file . '/' . $subfile);
+				    }
+				    unset($files[$key]);
+				}
 			}
 			return $files;
 		}
@@ -58,22 +58,6 @@
 		function cute_number($num)
 		{
 			return strrev(chunk_split(strrev($num), 3, ' '));
-		}
-		
-		function time_readable($duration)
-		{
-			Tools::debug('Call to deprecated time_readable(). Please use date_readable() or duration_readable() instead');
-			$days = floor($duration/86400);
-			$hrs = floor(($duration - $days * 86400) / 3600);
-			$min = floor(($duration - $days * 86400 - $hrs * 3600) / 60);
-			$s = $duration - $days * 86400 - $hrs * 3600 - $min * 60;
-			
-			$return = ($days > 0) ? $days . ' d ' : '';
-			$return .= ($days > 0 || $hrs > 0) ? $hrs . ' tim ' : '';
-			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $min . ' min ' : '';
-			$return .= ($days > 0 || $hrs > 0 || $min > 0) ? $s . ' s ' : '';
-
-			return $return;
 		}
 
 		function duration_readable($duration)
@@ -145,22 +129,17 @@
 			return preg_replace('/[^a-zA-Z0-9\-\/]/', '', $string);		
 		}
 		
-		function array_pop_key($array, $key)
-		{
-			return $array[$key];
-		}
-		
 		function file_size_readable($bytes, $precision = 2)
 		{
-	    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-	  
-	    $bytes = max($bytes, 0);
-	    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-	    $pow = min($pow, count($units) - 1);
-	  
-	    $bytes /= pow(1024, $pow);
-	  
-	    return round($bytes, $precision) . ' ' . $units[$pow];
+		    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+		  
+		    $bytes = max($bytes, 0);
+		    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+		    $pow = min($pow, count($units) - 1);
+		  
+		    $bytes /= pow(1024, $pow);
+		  
+		    return round($bytes, $precision) . ' ' . $units[$pow];
 		}
 		
 		function file_download_time($bytes, $type)
