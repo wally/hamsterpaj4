@@ -8,14 +8,16 @@
 		
 		function execute()
 		{
-			if(strlen($_POST['username']) > 0)
+			if( strlen($_POST['username']) > 0 )
 			{
-				if($user = User::fetch(array('username' => $_POST['username'])))
+				if( $user = User::fetch(array('username' => $_POST['username'])) )
 				{
-					if($user->auth($_POST['password']))
+					if ( $user->auth($_POST['password']) )
 					{
 						$this->user = $user;
 						$this->user->last_logon = time();
+						
+						$this->redirect = Tools::pick($_SERVER['HTTP_REFFERER'], '/');
 					}
 				}
 				else

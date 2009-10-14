@@ -204,17 +204,22 @@
 		
 		static function pick_inplace(&$test, $else)
 		{
-		    $test = Tools::pick($test, $else);
+		    $test = self::pick($test, $else);
 		}
 		
 		static function ensure_array(&$test)
 		{
-		    return Tools::pick($test, array());
+		    return self::pick($test, array());
 		}
 		
 		static function is_true(&$test)
 		{
 		    return isset($test) && $test;
+		}
+		
+		static function choose(&$test, $on_true, $on_false)
+		{
+		    return self::is_true($test) ? $on_true : $on_false;
 		}
 	}
 ?>

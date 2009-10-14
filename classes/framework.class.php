@@ -20,9 +20,9 @@
 		public function get($var)
 		{
 			$function = 'get_' . $var;
-			if(is_callable(array($this, $function)))
+			if( is_callable(array($this, $function)) )
 			{
-			    return $this->$function();
+				return $this->$function();
 				// Why are we calling $function with $value when $value does not exist?
 				//return $this->$function($value);
 			}
@@ -35,6 +35,9 @@
 
 	class Page extends HP4
 	{
+		public $title;
+		public $description;
+		public $keywords;
 		public $side_modules = array();
 		public $content_type;
 		public $route;
