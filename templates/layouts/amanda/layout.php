@@ -16,6 +16,9 @@
 		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>		
 	</head>
 	<body>
+		<!-- Kiaindex -->
+		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
+		
 		<!-- Adtoma crap -->
 		<script type="text/javascript">
 			var CM8Server = "ad.adtoma.com";
@@ -23,6 +26,14 @@
 			var CM8Profile = "hp_age=&hp_birthyear=&hp_gender=xx"
 		</script>
 		<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
+		
+		<!-- Adwell crap -->
+		<script type="text/javascript">
+			var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55632)' + new
+			String (Math.random()).substring (2, 11);
+			document.write('<sc'+'ript type="text/javascript" src="'+uri+'"
+			charset="UTF-8"></sc'+'ript>');
+		</script>
 
 
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
@@ -59,52 +70,40 @@
 			</div>
 			<div id="column_ads">
 				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
-			<script type='text/javascript'><!--//<![CDATA[
-				Ads.insert(251, '');
-				//]]>-->
-			</script>
-			<script type='text/javascript'><!--//<![CDATA[
-				Ads.insert(252, '');
-				//]]>-->
-			</script>
+				<script type='text/javascript'><!--//<![CDATA[
+					Ads.insert(251, '');
+					//]]>-->
+				</script>
+				<script type='text/javascript'><!--//<![CDATA[
+					Ads.insert(252, '');
+					//]]>-->
+				</script>
 			
-				<script type="text/javascript"><!--
-				google_ad_client = "pub-3110640362329253";
-				/* hamsterpaj 160x600, skapad 2009-06-08 */
-				google_ad_slot = "0695149486";
-				google_ad_width = 160;
-				google_ad_height = 600;
-				//-->
+				<!-- Adwell crap -->
+				<script type="text/javascript">
+					var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55633)' + new
+					String (Math.random()).substring (2, 11);
+					document.write('<sc'+'ript type="text/javascript" src="'+uri+'"
+					charset="UTF-8"></sc'+'ript>');
 				</script>
-				<script type="text/javascript"
-				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-				</script>
+			
+					<script type="text/javascript"><!--
+					google_ad_client = "pub-3110640362329253";
+					/* hamsterpaj 160x600, skapad 2009-06-08 */
+					google_ad_slot = "0695149486";
+					google_ad_width = 160;
+					google_ad_height = 600;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
 			</div>
 
 		</div>
-		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
-		<!-- Piwik -->
-		<script type="text/javascript">
-			var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.hamsterpaj.net/piwik/" : "http://www.hamsterpaj.net/piwik/");
-			document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-		<script type="text/javascript">
-			try
-			{
-				var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-				piwikTracker.trackPageView();
-				piwikTracker.enableLinkTracking();
-			} catch( err ) {}
-		</script>
-		<noscript>
-			<p>
-				<img src="http://www.hamsterpaj.net/piwik/piwik.php?idsite=1" style="border:0" alt=""/>
-			</p>
-		</noscript>
-		<!-- End Piwik Tag -->
 		
-		<?php if(isset($page->clickheat)): ?>
 		<!-- Clickheat -->
+		<?php if(isset($page->clickheat)): ?>
 		<script type="text/javascript" src="http://www.hamsterpaj.net/clickheat/js/clickheat.js"></script>
 		<noscript><p><a href="http://www.labsmedia.com/index.html">Traffic monetization</a></p></noscript>
 		<script type="text/javascript"><!--
@@ -114,7 +113,19 @@
 			clickHeatServer = 'http://www.hamsterpaj.net/clickheat/click.php';
 			initClickHeat(); //-->
 		</script>
-		<!-- End Clickheat Tag -->
 		<?php endif; ?>
+		<!-- End Clickheat Tag -->
+		
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-10835550-1");
+		pageTracker._trackPageview();
+		} catch(err) {}</script>
+		
 	</body>
 </html>
