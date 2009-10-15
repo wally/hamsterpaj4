@@ -41,7 +41,8 @@
 			$zip_code,
 			$location,
 			$privileges,
-			$geo_location;
+			$geo_location,
+			$notifications = array();
 		
 		protected $unread_gb_entries;
 		
@@ -87,10 +88,11 @@
 		public function to_session()
 		{
 			global $session_map;
+			
 			$session = array();
 			foreach($session_map AS $property => $path)
 			{
-				switch(count($path))
+				switch (count($path))
 				{
 					case 1:
 						$session[$path[0]] = $this->get($property);
@@ -251,6 +253,19 @@
 				$this->visitors = User::fetch($search, $params);
 			}
 			return $this->visitors;
+		}
+		
+		function notificate($params, $type = 'default')
+		{
+		    $template = sprintf('framework/notifications/%s.php', $type);
+		    $this->notifications[] = array(NULL, $template, $params);
+		}
+		
+		function fetch_notifications()
+		{
+		    $notifications = Tools::pick($_SESSION['notifications'], array());
+		    unset($_SESSION['notifications']);
+		    return $notifications;
 		}
 		
 		function privilegied($privilegie, $value = NULL)

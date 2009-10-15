@@ -20,11 +20,9 @@
 		public function get($var)
 		{
 			$function = 'get_' . $var;
-			if(is_callable(array($this, $function)))
+			if( is_callable(array($this, $function)) )
 			{
-			    return $this->$function();
-				// Why are we calling $function with $value when $value does not exist?
-				//return $this->$function($value);
+				return $this->$function();
 			}
 			else
 			{
@@ -35,6 +33,9 @@
 
 	class Page extends HP4
 	{
+		public $title;
+		public $description;
+		public $keywords;
 		public $side_modules = array();
 		public $content_type;
 		public $route;
@@ -42,6 +43,11 @@
 		public $raw_output;
 		public $menu_active;
 		public $content;
+		
+		// Property: Page::$page_notification
+		// Holds an array of notifications from the previous page view.
+		// An element in the array should be the arguments that are passed to <template>
+		public $page_notification = array();
 		
 		private $user;
 		
@@ -74,12 +80,12 @@
 	class Module extends HP4
 	{
 		protected $visible = true;
+		
 		function execute($page)
 		{
 			return template('base', 'side_modules/' . $this->template . '.php', array('module' => $this, 'page' => $page));
 		}
 	}
-	
 	
 	function template($package, $template_handle, $params = null)
 	{
@@ -109,14 +115,7 @@
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
+		
 		return $html;
-	}
-	
-	function debug($message)
-	{
-		$backtrace = debug_backtrace();
-		$file = substr($backtrace[0]['file'], strrpos($backtrace[0]['file'], '/')+1);
-
-		Tools::debug('<span style="color: red;">Deprecated</span> use of function debug() in ' . $file . ' #' . $backtrace[0]['line'] . ' please use Tools::debug() instead');
 	}
 ?>

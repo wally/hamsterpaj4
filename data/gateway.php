@@ -1,6 +1,5 @@
 <?php
-	error_reporting(E_NONE);
-	//session_start();
+	@session_start();
 	
 	require_once '../classes/framework.class.php';
 	require_once '../classes/tools.class.php';
@@ -60,6 +59,11 @@
 			}
 		}
 		
+		if ( ENVIRONMENT == 'development' )
+		{
+			error_reporting(E_ALL);
+		}
+		
 		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;
 		$_PDO = new PDO($dns, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true));
 		$_PDO->query('SET NAMES utf8');
@@ -102,15 +106,15 @@
 	
 		$page->user->lastaction();
 
-		if(strlen($page->get('title')) == 0)
+		if (strlen($page->get('title')) == 0)
 		{
 			$page->title = 'Hamsterpaj - Community - Underhållning - Onlinespel - Forum';
 		}
-		if(strlen($page->get('description')) == 0)
+		if (strlen($page->get('description')) == 0)
 		{
 			$page->description = 'Hamsterpaj.net - Mötesplats på nätet för ungdomar 13-18 år, där man kan spela spel, titta på filmer och diskutera. Hamsterpaj.net - Tillfredsställelse utan sex!';
 		}
-		if(strlen($page->get('keywords')) == 0)
+		if (strlen($page->get('keywords')) == 0)
 		{
 			$page->keywords = 'hamsterpaj, onlinespel, diskussionsforum, träffa, roliga bilder, filmklipp, animerat, sex & sinne';
 		}
@@ -118,37 +122,35 @@
 		{
 			$page->keywords = $page->get('keywords') . ', hamsterpaj, onlinespel, diskussionsforum, träffa, roliga bilder, filmklipp, animerat, sex & sinne';
 		}
-		if(strlen($page->get('content_type')) > 0 )
+		
+		if (strlen($page->get('content_type')) > 0 )
 		{
 			header('Content-type: ' . $page->get('content_type'));
 		}
 		
-		if(strlen($page->get('route')) > 0)
+		if (strlen($page->get('route')) > 0)
 		{
 			
 		}
-		elseif(strlen($page->get('redirect')) > 0)
+		elseif (strlen($page->get('redirect')) > 0)
 		{
+			$_SESSION = $page->user->to_session();
+			
 			header('Location: ' . $page->get('redirect'));
+			exit;
 		}
-		elseif($page->get('raw_output') === true)
+		elseif ($page->get('raw_output') === true)
 		{
 			echo $page->content;
 		}
 		else
 		{
-			if( isset($page->template) )
-			{
-				$out = template(NULL, $page->template, array('page' => $page));
-			}
-			else
-			{
-				$out = template(NULL, 'layouts/amanda/layout.php', array('page' => $page));
-			}
+			$template = Tools::pick($page->template, 'layouts/amanda/layout.php');
+			$out = template(NULL, $template, array('page' => $page));
 			
 			$_SESSION = $page->user->to_session();
 			
-			if(ENVIRONMENT == 'production')
+			if ( ENVIRONMENT == 'production' )
 			{
 				echo $out;
 			}

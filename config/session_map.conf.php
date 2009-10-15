@@ -30,23 +30,20 @@
 	$session_map['firstname'] = array('userinfo', 'firstname');
 	$session_map['surname'] = array('userinfo', 'surname');
 	$session_map['email'] = array('userinfo', 'email');
-	
 
 	$session_map['privileges'] = array('privilegies');
 	
 	$session_map['groups'] = array('groups_members');
 	
 	$session_map['preferences'] = array('preferences');
-	
 	$session_map['photoblog_preferences'] = array('photoblog_preferences');
 	
 	$session_map['module_states'] = array('module_states');
-	
 	$session_map['module_order'] = array('module_order');
 	
 	$session_map['cache'] = array('cache');
-	
 	$session_map['notices'] = array('notices');
+	$session_map['notifications'] = array('notifications');
 	
 	$session_map['visitors_with_image'] = array('visitors_with_image');
 	

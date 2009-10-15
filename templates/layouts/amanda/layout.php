@@ -45,7 +45,7 @@
 			<div id="hp">
 				<div id="head">
 				<h2><a href="/">Hamsterpaj.net</a></h2>
-					<?php if($page->user->exists()) : ?>
+					<?php if( $page->user->exists() ) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
@@ -57,6 +57,10 @@
 					<?php echo isset($page->xxl) ? $page->xxl : ''; ?>
 				</div>
 				<div id="content">
+					<?php foreach ( $page->user->fetch_notifications() as $note ): ?>
+					    <?php echo call_user_func_array('template', $note); ?>
+					<?php endforeach; ?>
+					
 					<script type="text/javascript">CM8ShowAd("635x50");</script>
 					<?php echo $page->content; ?>
 				</div>

@@ -123,12 +123,13 @@ dd
 	background: url('http://static.hamsterpaj.net/images/layouts/amanda/head-sprites.png') no-repeat 0 0;
 }
 
-    #hp #head h1 a
+    #hp #head h2 a
     {
 	height: 73px;
 	width: 357px;
 	overflow: hidden;
 	display: block;
+	position: relative;
     }
 
 #hp #head #login
@@ -336,3 +337,26 @@ dd
 {
 	color: #858585;
 }
+
+/**
+* Notifications
+*/
+
+.notification
+{
+    border: 1px solid #C2D6FF;
+    background: #D5E3FF;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+    .notification h1
+    {
+	margin: 0;
+    }
+
+    .notification.error
+    {
+	border: 1px solid #A45A30;
+	background: #FFA57D;
+    }
