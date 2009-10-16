@@ -76,8 +76,9 @@
 			$this->description = $item->get('title') . ' på Hamsterpaj i kategorin ' . entertain::get_category_label($item->get('category')) . ' är underhållning på högsta nivå! Taggat med följande ord:';
 		    	
 			$item->tags = Tools::ensure_array($item->tags);
-			$tags_commad = implode(', ', $item->tags);
-			$tags_spaced = implode(' ', $item->tags);
+			$titles = array_map(create_function('$tag', 'return $tag->title;'), $item->tags);
+			$tags_commad = implode(', ', $titles);
+			$tags_spaced = implode(' ', $titles);
 			
 			$this->description .= $tags_spaced;
 			
