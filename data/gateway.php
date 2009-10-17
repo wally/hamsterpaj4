@@ -174,7 +174,9 @@
 				Tools::pick_inplace($ui_options, array());
 				Tools::pick_inplace($ui_options['stylesheets'], array());
 				Tools::pick_inplace($ui_options['javascripts'], array());
-				
+				Tools::pick_inplace($ui_options['menu_active'], NULL);
+
+				$page->menu_active = $ui_options['menu_active'];
 				$page->extra_css = $ui_options['stylesheets'];
 				$page->extra_js = $ui_options['javascripts'];
 				
