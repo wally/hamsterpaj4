@@ -41,6 +41,14 @@ $menu['community_nya_foton'] = array('parent' => 'community', 'label' => 'Nya fo
 
 // Old under mattan menu
 $menu['under_mattan'] = array('label' => 'Under mattan', 'priority' => '108', 'url' => '/mattan/');
+$menu['under_mattan_start'] = array('parent' => 'under_mattan', 'label' => 'Start', 'url' => '/mattan', 'priority' => '108');
 $menu['under_mattan_tester'] = array('parent' => 'under_mattan', 'label' => 'Tester', 'url' => '/tests/index.php');
-//
+$menu['under_mattan_ascii_art'] = array('parent' => 'under_mattan', 'label' => 'Ascii art', 'url' => '/mattan/ascii_art.php');
+$menu['under_mattan_ditt_namn'] = array('parent' => 'under_mattan', 'label' => 'Ditt namn', 'url' => '/mattan/ditt_namn.php');
+$menu['under_mattan_falskt_personnummer'] = array('parent' => 'under_mattan', 'label' => 'Falskt personnummer', 'url' => '/mattan/falskt_personnummer.php');
+$menu['under_mattan_korkort'] = array('parent' => 'under_mattan', 'label' => 'Körkortsfrågor', 'url' => '/mattan/koerkort.php');
+$menu['under_mattan_program'] = array('parent' => 'under_mattan', 'label' => 'Gratis program', 'url' => '/mattan/ladda_ner_program.php');
+$menu['under_mattan_pornalizer'] = array('parent' => 'under_mattan', 'label' => 'Ditt porrskådisnamn', 'url' => '/mattan/pornalizer.php');
+$menu['under_mattan_snyggve'] = array('parent' => 'under_mattan', 'label' => 'Snyggve', 'url' => '/mattan/snyggve.php');
+$menu['under_mattan_kollageapparaten'] = array('parent' => 'under_mattan', 'label' => 'Kollageapparaten', 'url' => '/mattan/collage_illusion.php');
 ?>
