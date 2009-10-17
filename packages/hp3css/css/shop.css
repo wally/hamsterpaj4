@@ -1,0 +1,10 @@
+fieldset {
+	width: 613px;
+}
+
+#shirt_boy {
+	margin: 10px 4px 10px 0;
+}
+#shirt_girl {
+	margin: 10px 0px 10px 4px;
+}

@@ -1,4 +1,5 @@
 <?php
+
 class PageCellphoneLookup extends page
 {
 	function url_hook($uri)
@@ -30,7 +31,7 @@ class PageCellphoneLookup extends page
 			    $phone_number_cache = Cache::load('cellphone_lookup_numbers');
 			    $data_cached = Tools::pick($phone_number_cache[$phone_number_formatted], false);
 			    
-			    if (! $data_cached || $data_cached['timestamp'] < time() - 60 * 60 * 24 * 7)
+			    if (! is_array($data_cached) || (isset($data_cached['timestamp']) && $data_cached['timestamp'] < time() - 60 * 60 * 24 * 7))
 			    {
 				    Tools::debug('Laddade inte från cache');
 				    $data['raw'] = utf8_encode(exec('/home/joar/mob.sh ' . escapeshellarg($phone_number_formatted)));

@@ -8,7 +8,9 @@
 		
 		function execute($uri)
 		{
-			$files = Tools::find_files(PATH_PACKAGES, array('extension' => 'css'));
+			$files = Tools::find_files(PATH_PACKAGES,
+			    array('extension' => 'css', 'excludes' => array(PATH_PACKAGES . 'hp3css'))
+			);
 			
 			foreach($files AS $file)
 			{

@@ -2,15 +2,24 @@
 	define('PATH_ROOT', '/storage/www/jhdev.hamsterpaj.net/');
 	define('PATH_TEMPLATES', PATH_ROOT . 'templates/');
 	define('PATH_CONFIGS', PATH_ROOT . 'config/');
+	define('PATH_CLASSES', PATH_ROOT . 'classes/');
 	define('PATH_WEBROOT', PATH_ROOT . 'data/');
 	define('PATH_CSS', PATH_WEBROOT . 'css/');
 	define('PATH_COMPRESSED_CSS', '/mnt/static/css/');
 	define('PATH_JAVASCRIPTS', PATH_WEBROOT . 'scripts/');
 	define('PATH_COMPRESSED_JAVASCRIPTS', '/mnt/static/javascripts/');
-	define('PATH_TEMP', '/tmp/hamsterpaj/');
-
 	define('PATH_CACHE', '/storage/www/www.hamsterpaj.net/data/cache/');
-		
+	define('PATH_PACKAGES', PATH_ROOT . 'packages/');
+	define('PATH_STATIC', '/mnt/static/');
+	define('PATH_LOG', PATH_ROOT . 'log/');
+	define('PATH_DEBUG', PATH_LOG . 'debug/');
+	define('PATH_TEMP', '/tmp/hamsterpaj/');
+	define('PATH_HP3', '/storage/www/www.hamsterpaj.net/data/');
+
+	define('PATH_WEBTEMP', PATH_WEBROOT . 'temp/');
+	define('URL_WEBTEMP', '/temp/');
+	
 	define('URL_CSS', '/css/');
 	define('URL_JAVASCRIPTS', '/scripts/');
+	define('URL_STATIC', 'http://static.hamsterpaj.net/');
 ?>

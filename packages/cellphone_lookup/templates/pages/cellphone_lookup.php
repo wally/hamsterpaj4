@@ -1,5 +1,5 @@
 <style type="text/css">@import url("/css/misc/cellphone_lookup.css");</style>
-<?php if (!empty($data['operator_alias']) || $data['operator_alias'] === false): ?>
+<?php if (isset($data['operator_alias'])): ?>
 <h2>Numret <strong><?php echo $data['phone_number_readable']; ?></strong> har</h2>
 <h1 id="operator_container" class="<?php echo $data['operator_short']; ?><?php echo $data['operator_alias'] === false ? ' no_abonnent' : NULL; ?>"><strong><?php echo $data['operator_alias'] === false ? 'Ingen abonnent' : $data['operator_alias']; ?></strong></h1>
 <?php else: ?>
