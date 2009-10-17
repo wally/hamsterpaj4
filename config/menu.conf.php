@@ -19,7 +19,7 @@ $menu['forum_nya_tradar'] = array('parent' => 'forum', 'label' => 'Nya trådar i
 $menu['forum_sok'] = array('parent' => 'forum', 'label' => 'Sök i forumet', 'url' => '/diskussionsforum/soek.php');
 
 // Old sex och sinne menu
-$menu['sex_och_sinne'] = array('label' => 'Sex & Sinne', 'priority' => '100', 'url' => '/sex_och_sinne/');
+$menu['sex_och_sinne'] = array('label' => 'Sex & Sinne', 'priority' => '108', 'url' => '/sex_och_sinne/');
 $menu['sex_och_sinne_start'] = array('parent' => 'sex_och_sinne', 'label' => 'Start', 'url' => '/sex_och_sinne/', 'priority' => 100);
 $menu['sex_och_sinne_senaste_fragorna'] = array('parent' => 'sex_och_sinne', 'label' => 'Senaste frågorna', 'url' => '/sex_och_sinne/senaste_fraagorna.html');
 $menu['sex_och_sinne_kategorier'] = array('parent' => 'sex_och_sinne', 'label' => 'Kategorier', 'url' => '/sex_och_sinne/kategorier.html');
@@ -29,7 +29,18 @@ $menu['sex_och_sinne_fraga'] = array('parent' => 'sex_och_sinne', 'label' => 'St
 $menu['sex_och_sinne_admin'] = array('parent' => 'sex_och_sinne', 'label' => 'Besvara frågor (admin)', 'url' => '/sex_och_sinne/admin.php', 'is_privilegied' => array('sex_sense_admin'));
 
 // Old träffa menu
-$menu['traffa'] = array('label' => 'Träffa', 'priority' => '90', 'url' => '/traffa/');
+$menu['community'] = array('label' => 'Community', 'priority' => '105', 'url' => '/traffa/');
+$menu['community_start'] = array('parent' => 'community', 'label' => 'Start', 'url' => '/traffa/', 'priority' => '105');
+$menu['community_sok'] = array('parent' => 'community', 'label' => 'Sök medlemmar', 'url' => '/traffa/search.php');
+$menu['community_klotterplanket'] = array('parent' => 'community', 'label' => 'Klotterplanket', 'url' => '/traffa/klotterplanket.php');
+$menu['community_galleriet'] = array('parent' => 'community', 'label' => 'Galleriet', 'url' => '/traffa/gallery.php');
+$menu['community_grupper'] = array('parent' => 'community', 'label' => 'Grupper', 'url' => '/traffa/groups.php', 'checklogin' => 'true');
+$menu['community_besoksloggen'] = array('parent' => 'community', 'label' => 'Dina senaste besökare', 'url' => '/traffa/my_visitors.php', 'checklogin' => 'true');
+$menu['community_gissa_aldern'] = array('parent' => 'community', 'label' => 'Gissa Åldern', 'url' => '/traffa/age_guess.php');
+$menu['community_nya_foton'] = array('parent' => 'community', 'label' => 'Nya foton', 'url' => '/traffa/new_photos.php');
 
+// Old under mattan menu
+$menu['under_mattan'] = array('label' => 'Under mattan', 'priority' => '108', 'url' => '/mattan/');
+$menu['under_mattan_tester'] = array('parent' => 'under_mattan', 'label' => 'Tester', 'url' => '/tests/index.php');
 //
 ?>
