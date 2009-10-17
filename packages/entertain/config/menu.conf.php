@@ -33,4 +33,9 @@
 	$menu['filmklipp_topplista'] = array('parent' => 'filmklipp', 'label' => 'Topplista', 'url' => '/filmklipp/topplista');
 
 	$menu['roliga_bilder'] = array('label' => 'Roliga bilder', 'url' => '/roliga_bilder/', 'priority' => '130');
+	$menu['roliga_bilder_roliga_katter'] = array('parent' => 'roliga_bilder', 'label' => 'Roliga katter', 'url' => '/roliga_bilder/taggar/roliga-katter');
+	$menu['roliga_bilder_roliga_skyltar'] = array('parent' => 'roliga_bilder', 'label' => 'Roliga skyltar', 'url' => '/roliga_bilder/taggar/roliga-skyltar');
+	$menu['roliga_bilder_roliga_djur'] = array('parent' => 'roliga_bilder', 'label' => 'Roliga djur', 'url' => '/roliga_bilder/taggar/roliga-djur');
+	$menu['roliga_bilder_pedobear'] = array('parent' => 'roliga_bilder', 'label' => 'Pedobear', 'url' => '/roliga_bilder/taggar/Pedobear');
+	$menu['roliga_bilder_lopsedlar'] = array('parent' => 'roliga_bilder', 'label' => 'Löpsedlar', 'url' => '/roliga_bilder/taggar/lopsedlar');
 ?>

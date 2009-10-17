@@ -1,4 +1,3 @@
-<h1>DET HÄR ÄR EN STOR FET BETA!</h1>
 <form action="/soek" class="livesearch" id="searchform">
 	<input type="text" id="searchfield" class="searchquery" value="<?php echo isset($searchquery) ? $searchquery : 'Sök underhållning...'; ?>" name="searchquery" autocomplete="off" />
 	<input type="submit" value="Sök" />

@@ -49,6 +49,9 @@
 						}
 					}
 					
+					// Search to look after objects with the same name
+					$searchresult = Livesearch::search($item->get('title'));
+					
 					$dropdown = new HTMLDropdown();
 					$dropdown->set(array('name' => 'category'));
 					foreach(Entertain::categories() AS $category)
@@ -68,6 +71,7 @@
 						$item->release = $schedule->suggest();
 					}
 					
+					$this->content .= template('livesearch', 'search.php', array('searchquery' => $item->get('title'), 'result' => $searchresult));
 					$this->content .= template('entertain', 'admin/edit.php', array('item' => $item, 'dropdown' => $dropdown, 'privilegies' => $privilegies));
 				}
 				else

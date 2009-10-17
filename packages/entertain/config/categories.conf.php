@@ -9,7 +9,7 @@
 	$_ENTERTAIN['master_tags']['gratis_musik'] = array();
 	
 	$_ENTERTAIN['categories']['roliga_bilder'] = array('handle' => 'roliga_bilder', 'label' => 'Roliga bilder');
-	$_ENTERTAIN['master_tags']['roliga_bilder'] = array();
+	$_ENTERTAIN['master_tags']['roliga_bilder'] = array('Roliga Katter','Roliga Skyltar','Roliga Djur','Pedobear','Löpsedlar');
 	
 	$_ENTERTAIN['categories']['ascii'] = array('handle' => 'ascii', 'label' => 'ASCII-konst');
 	$_ENTERTAIN['master_tags']['ascii'] = array();
