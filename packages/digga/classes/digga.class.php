@@ -418,6 +418,7 @@
 				$query .= ' WHERE dc.id = duc.classification';
 				$query .= ' AND duc.artist = "' . $this->get('id') . '"';
 				$query .= ' AND duc.user = "' . $user->get('id') . '"';
+				$classifications = array();	
 				foreach($_PDO->query($query) AS $row)
 				{
 					$classifications[$row['classification']] = array('id' => $row['classification'], 'name' => $row['name'], 'value' => $row['value']);

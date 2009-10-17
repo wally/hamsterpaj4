@@ -4,16 +4,17 @@
 		function find_files($dir, $options)
 		{
 			Tools::pick_inplace($options['recursive'], true);
+			Tools::pick_inplace($options['excludes'], array());
 			
 			$files = scandir($dir);
 			foreach($files AS $key => $file)
 			{
-				$extension = substr($file, strrpos($file, '.') + 1);
-				if($file == '.' || $file == '..')
+				if( $file == '.' || $file == '..' || in_array($dir . $file, $options['excludes']) )
 				{
 					unset($files[$key]);
 					continue;
 				}
+				$extension = substr($file, strrpos($file, '.') + 1);
 				
 				if(is_dir($dir . $file))
 				{

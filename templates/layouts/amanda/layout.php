@@ -9,11 +9,22 @@
 		<meta name="keywords" content="<?php echo strtolower($page->get('keywords')); ?>" />
 		<link rel="image_src" href="http://images.hamsterpaj.net/fp_recent_update_thumb_universal.png" />
 		<style type="text/css">
-				@import url('/style.css');
+			@import url('/style.css');
+			<?php if ( IS_HP3_REQUEST ): ?>
+			@import url('/old_style.css:<?php echo implode(',', $page->extra_css); ?>');
+			<?php endif; ?>
 		</style>
 		<script src="/scripts.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		    window.hp = {};
+		    window.hp.login_checklogin = function() { return <?php echo (int)$page->user->exists(); ?>; };
+		</script>
 		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
-		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>		
+		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
+		
+		<?php foreach ( Tools::pick($page->extra_js, array()) as $script ): ?>
+		    <script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
+		<?php endforeach; ?>
 	</head>
 	<body>
 		<!-- Adtoma crap -->
@@ -22,8 +33,7 @@
 			var CM8Cat = "hp.start";
 			var CM8Profile = "hp_age=&hp_birthyear=&hp_gender=xx"
 		</script>
-		<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
-
+		<script type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
 
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
 		<div id="wrapper">

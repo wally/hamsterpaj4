@@ -12,12 +12,18 @@ class PageHP3CSS extends Page
     
     public function execute($uri)
     {
-	$files = trim(substr($uri, 15), '/ ');
+	$files = trim(substr($uri, 15), ', ');
 	$files = explode(',', $files);
+	
+	$files = array_merge($files, HP3Config::$standard);
 	
 	$dir = dirname(__FILE__) . '/../css/';
 	
-	if ( empty($files[0]) )
+	if ( empty($files[0]) && count($files) > 1 )
+	{
+	    $files = array_slice($files, 1);
+	}
+	elseif ( empty($files[0]) )
 	{
 	    return '';
 	}
@@ -27,7 +33,7 @@ class PageHP3CSS extends Page
 	{
 	    $file = preg_replace(HP3Config::$rewrites, HP3Config::$replaces, $filename);
 	    
-	    if ( file_exists($dir . $file) && ! strstr('..', $file) )
+	    if ( file_exists($dir . $file) && ! strstr($file, '..') )
 	    {
 		$this->content .= sprintf('/* %s */', $file);
 		

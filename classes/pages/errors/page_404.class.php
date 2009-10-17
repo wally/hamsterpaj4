@@ -5,7 +5,8 @@
 		{
 			return 1;
 		}
-		function execute()
+		
+		function execute($uri)
 		{
 			$this->content = '<h1>404 not found</h1>';
 		}

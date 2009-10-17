@@ -1,6 +1,8 @@
 <?php
 	@session_start();
 	
+	define('IS_HP4', true);
+	
 	require_once '../classes/framework.class.php';
 	require_once '../classes/tools.class.php';
 	require_once '../classes/user.class.php';
@@ -96,13 +98,106 @@
 				}
 			}
 		}
-	
+		
+		if ( $page instanceof Page404)
+		{			
+
+		}
+		
 		$page->pdo = $_PDO;
 		$page->user = new User;
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
 		$page->load_menu();
 		$page->execute($uri);
+		
+		// -- start HP3
+		if ( $page instanceof Page404 )
+		{
+			$raw_outputters = array();
+			$raw_outputters[] = '/ajax_gateways/';
+			
+			// The directory in which the files lay
+			$_dir = '';
+			
+			$pieces = explode('/', trim($uri, '/'));
+			
+			// Check if the file is a real file, i.e. not URL rewrited
+			if ( strstr($uri, '.php') && file_exists(PATH_HP3 . $uri) )
+			{
+				// Remove filename from dir
+				array_pop($pieces);
+				
+				$_dir = PATH_HP3 . implode(DIRECTORY_SEPARATOR, $pieces);				
+				$_file = PATH_HP3 . $uri;
+			}
+			elseif ( is_dir(PATH_HP3 . $pieces[0]) )
+			{
+				$_dir = PATH_HP3 . $pieces[0];
+				$_file = $_dir . '/index.php';
+			}
+			else
+			{
+				$_dir = false;
+			}
+			
+			if ( $_dir != false )
+			{
+				define('IS_HP3_REQUEST', true);
+				
+				$_OLD_SERVER = $_SERVER;
+				$_SERVER['PHP_SELF'] = $uri;
+				
+				// Emulate HP3 environment
+				$cwd = getcwd();
+				chdir($_dir);
+				
+				// If HP3 overrides error_reporting directive
+				$error_reporting = ini_get('error_reporting');
+				
+				// Variables that should not be overwritten
+				$__page = $page;
+				
+				ob_start();
+				include($_file);
+				$page_contents = ob_get_clean();
+				
+				// Reset variables
+				$page = $__page;
+				
+				// Set error_reporting to old value
+				error_reporting($error_reporting);
+				
+				// Change back to HP4
+				chdir($cwd);
+				
+				Tools::pick_inplace($ui_options, array());
+				Tools::pick_inplace($ui_options['stylesheets'], array());
+				Tools::pick_inplace($ui_options['javascripts'], array());
+				
+				$page->extra_css = $ui_options['stylesheets'];
+				$page->extra_js = $ui_options['javascripts'];
+				
+				foreach ( $raw_outputters as $search )
+				{
+					if ( preg_match($search, $_file) )
+						$page->raw_output = true;
+				}
+				
+				$page->content = $page_contents;
+				
+				$_SERVER = $_OLD_SERVER;
+			}
+			else
+			{
+				define('IS_HP3_REQUEST', false);
+			}
+		}
+		else
+		{
+			define('IS_HP3_REQUEST', false);
+		}
+		// -- end HP3
 	
 		$page->user->lastaction();
 

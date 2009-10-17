@@ -1,6 +1,8 @@
 <?php
 	class PageJS extends Page
 	{
+		public $content_type = 'text/javascript';
+		
 		function url_hook($uri)
 		{
 			return ($uri == '/scripts.js') ? 10 : 0;
@@ -14,7 +16,6 @@
 			array_unshift($files, 'base/js/jquery-1.3.2.min.js');
 			$files = array_unique($files);
 			
-
 			foreach($files AS $file)
 			{
 				$this->content .= file_get_contents(PATH_PACKAGES . $file);
