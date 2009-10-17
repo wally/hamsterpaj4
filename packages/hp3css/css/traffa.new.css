@@ -1,0 +1,256 @@
+.userboxcontainer
+{
+	width: 628px;
+	height: 387px;
+	margin: 0px;
+	padding: 0px;
+	clear: both;
+	overflow: hidden;
+}
+
+.userboxcontainer li
+{
+	width: 195px;
+	height: 115px;
+	float: left;
+	display: inline;
+	margin: 3px;
+	padding: 3px;
+	list-style-type: none;
+	position: relative;
+	border: 1px solid #B6B6B6;
+	-moz-border-radius: 8px;
+	border-radius: 7px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.userboxcontainer .username
+{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+
+.userboxcontainer .userbox .flagcontainer
+{
+	width: auto;
+	height: auto;
+	margin-top: -10px;
+	float: right;
+}
+
+.userboxcontainer .userbox .flagcontainer img
+{
+	width: 25px;
+	height: auto;
+	margin: 2px 0px;
+}
+
+.userboxcontainer .male, .userinfownd.male
+{
+	background: url('http://images.hamsterpaj.net/traffa/bg_male_box.gif') repeat-x #F0F0F0;
+}
+
+.userboxcontainer .female, .userinfownd.female
+{
+	background: url('http://images.hamsterpaj.net/traffa/bg_female_box.gif') repeat-x #FFE3E0;
+}
+
+.setupmaskot
+{
+	width: 176px;
+	height: 200px;
+	background: url('http://images.hamsterpaj.net/hamsternserdig_resized.png') no-repeat;
+	float: left;
+	text-align: center;
+	cursor: default;
+}
+
+.setupmaskot .optionbutton
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_50.png') no-repeat;
+	border: none;
+	width: 50px;
+	height: 20px;
+	margin-top: 176px;
+	filter:alpha(opacity=80);
+	-moz-opacity:.8;
+	opacity:.8;
+}
+
+.setupmaskot .optionbutton_hover:hover
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	opacity:1.0;
+}
+
+.reloadbutton
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_80.png') no-repeat;
+	border: none;
+	width: 80px;
+	height: 20px;
+	float: left;
+}
+
+#setupcontainer
+{
+	width: 462px;
+	height: 200px;
+	float: right;
+	margin-left: -11px;
+}
+
+#setupcontainer .top
+{
+	width: 100%;
+	height: 42px;
+	background: url('http://images.hamsterpaj.net/traffa/q_top.png') no-repeat top right;
+}
+
+#setupcontainer .middle
+{
+	width: auto;
+	height: 149px;
+	background: url('http://images.hamsterpaj.net/traffa/q_middle.png') repeat-y top right;
+}
+
+#setupcontainer .bottom
+{
+	width: 100%;
+	height: 9px;
+	background: url('http://images.hamsterpaj.net/traffa/q_bottom.png') no-repeat bottom right;
+}
+
+.setupquestion
+{
+	width: auto;
+	height: 100%;
+	margin-top: -196px;
+	padding: 10px 10px 10px 21px;
+	cursor: default;
+}
+
+.setupquestion p
+{
+	margin: 10px 0;
+}
+
+.setupquestion a:hover
+{
+	cursor: pointer;
+}
+
+.setupquestion .button
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_40.png') no-repeat;
+	border: none;
+	width: 40px;
+	height: 20px;
+	margin: 0 5px;
+}
+
+.genderbtn
+{
+	width: 80px;
+	height: auto;
+	margin: 0px 30px;
+	float: left;
+	text-align: center;
+}
+
+.genderbtn:hover
+{
+	text-decoration: none;
+	filter:alpha(opacity=75);
+	-moz-opacity:.75;
+	opacity:.75;
+}
+
+.adv_agebox
+{
+	width: 25px;
+	height: 11px;
+	padding: 1px;
+	font-size: 10px;
+	text-align: right;
+	border: 1px dashed #C0C0C0;
+}
+
+#search_desc
+{
+	width: auto;
+	float: left;
+	margin-left: 100px;
+	padding: 8px 0px;
+}
+
+.displayuser
+{
+	display: none;
+}
+
+.userinfownd
+{
+	width: 195px;
+	height: 115px;
+	z-index: 999;
+	position: absolute;
+	left: 30%;
+	top: 30%;
+	background: #FFFFFF;
+	color: #000000;
+	display: block;
+	padding: 5px;
+	border: 1px solid #B6B6B6;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	cursor: default;
+}
+
+.userinfownd .userinfownd_content
+{
+	display: none;
+}
+
+.userinfownd .wndflagcontainer
+{
+	float: right;
+	width: 210px;
+}
+
+.userinfownd .wndflagcontainer img
+{
+	margin: 6px;
+}
+
+.userinfownd #kottmarknad_card
+{
+	position: absolute;
+	bottom: 10px;
+	right: 15px;
+}
+
+.userinfownd #kottmarknad_card p
+{
+	width: 450px;
+	height: 100px;
+}
+
+.userinfownd #kottmarknad_card_message
+{
+	width: 250px;
+	height: 75px;
+	display: block;
+}
+
+.userinfownd p
+{
+	width: 200px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	overflow: visible;
+}

@@ -1,0 +1,9 @@
+#ov_watch_table td
+{
+	text-align: center;
+}
+
+#ov_watch_table .username
+{
+	text-align: left;
+}

@@ -1,0 +1,331 @@
+#radio_playing {
+	background: transparent url(http://images.hamsterpaj.net/radio/playing.png) no-repeat top;
+	height: 24px;
+	margin-bottom: 10px;
+}
+
+	#radio_playing span {
+		display: block;
+		color: #dcdcdc;
+		padding-top: 5px;
+		font-size: 12px;
+		margin-left: 100px;
+	}
+
+#radio_menu {
+	height: 60px;
+	list-style: none;
+	padding-left: 0;
+	margin: 10px 0 10px 0;
+}
+
+#radio_menu li {
+	float: left;
+}
+#radio_menu a {
+	display: block;
+	text-indent: -1000px;
+}
+	#radio_menu_01, #radio_menu_01_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_01.png) no-repeat top;
+		height: 60px;
+		width: 105px;
+	}
+	#radio_menu_01:hover, #radio_menu_01_active {
+		background-position: bottom;
+	}
+	#radio_menu_02, #radio_menu_02_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_02.png) no-repeat top;
+		height: 60px;
+		width: 70px;
+	}
+	#radio_menu_02:hover, #radio_menu_02_active {
+		background-position: bottom;
+	}
+	#radio_menu_03, #radio_menu_03_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_03.png) no-repeat top;
+		height: 60px;
+		width: 94px;
+	}
+	#radio_menu_03:hover, #radio_menu_03_active {
+		background-position: bottom;
+	}
+	#radio_menu_04, #radio_menu_04_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_04.png) no-repeat top;
+		height: 60px;
+		width: 90px;
+	}
+	#radio_menu_04:hover, #radio_menu_04_active {
+		background-position: bottom;
+	}
+	#radio_menu_05, #radio_menu_05_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_05.png) no-repeat top;
+		height: 60px;
+		width: 73px;
+	}
+	#radio_menu_05:hover, #radio_menu_05_active {
+		background-position: bottom;
+	}
+	#radio_menu_06, #radio_menu_06_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_06.png) no-repeat top;
+		height: 60px;
+		width: 78px;
+	}
+	#radio_menu_06:hover, #radio_menu_06_active {
+		background-position: bottom;
+	}
+	#radio_menu_07, #radio_menu_07_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_07.png) no-repeat top;
+		height: 60px;
+		width: 128px;
+	}
+	#radio_menu_07:hover, #radio_menu_07_active {
+		background-position: bottom;
+	}
+.radio_inactive_link {
+	cursor: default;
+}
+	
+#radio_sending {
+	background-image: url(http://images.hamsterpaj.net/radio/program_sending_template.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+	#radio_sending .radio_about {
+		margin-left: 97px;
+	}
+		#radio_sending img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+		}
+		#radio_sending .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		#radio_sending .radio_about span, #radio_sending .radio_about strong {
+			color: #adadad;
+			top: 40px;
+			left: 40px;
+			position: relative;
+		}
+		
+#radio_sending_slinga {
+	background-image: url(http://images.hamsterpaj.net/radio/program_slingan.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+#radio_sending_inactive {
+	background-image: url(http://images.hamsterpaj.net/radio/program_offline.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+
+#radio_next_program {
+	background-image: url(http://images.hamsterpaj.net/radio/program_next_template.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+	#radio_next_program .radio_about {
+		margin-left: 97px;
+	}
+		#radio_next_program img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+		}
+		#radio_next_program .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		#radio_next_program .radio_about span,#radio_next_program .radio_about strong {
+			color: #adadad;
+			top: 40px;
+			left: 40px;
+			position: relative;
+		}
+#radio_next_program_inactive {
+	background-image: url(http://images.hamsterpaj.net/radio/program_next_non.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+.radio_program {
+	background-image: url(http://images.hamsterpaj.net/radio/program_template.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+.even {
+	margin-right: 10px;
+}
+	.radio_program .radio_about {
+		margin-left: 97px;
+	}
+		.radio_program img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+			width: 75px;
+		}
+		.radio_program .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		.radio_program .radio_about span, .radio_program .radio_about strong {
+			color: #adadad;
+			top: 35px;
+			left: 78px;
+			position: relative;
+		}
+.program_remove {
+	top: 10px;
+	left: 150px;
+	position: relative;
+}
+		 
+#choose_player {
+	clear: both;
+	height: 156px;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+#choose_player li {
+	float: left;
+}
+#choose_player a {
+	display: block;
+	text-indent: -1000px;
+}
+	#choose_player_01 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_01.png) no-repeat top;
+		height: 156px;
+		width: 203px;
+	}
+	#choose_player_01:hover {
+		background-position: bottom;
+	}
+	#choose_player_02 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_02.png) no-repeat top;
+		height: 156px;
+		width: 290px;
+	}
+	#choose_player_02:hover {
+		background-position: bottom;
+	}
+	#choose_player_03 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_03.png) no-repeat top;
+		height: 156px;
+		width: 145px;
+	}
+	#choose_player_03:hover {
+		background-position: bottom;
+	}
+	
+.radio_crew {
+	background-image: url(http://images.hamsterpaj.net/radio/crew.png);
+	height: 159px;
+	margin-bottom: 10px;
+}
+	.radio_crew img {
+		float: left;
+		position: relative;
+		top: 30px;
+		left: 23px;
+		width: 75px;
+	}
+	.radio_crew h2 {
+		position: relative;
+		top: 29px;
+		left: 60px;
+		font-size: 1.4em;
+		color: orange;
+		margin-top: 0;
+	}
+	.radio_crew p {
+		position: relative;
+		top: 28px;
+		left: 55px;
+		font-size: 1.1em;
+		width: 555px;
+	}
+	.radio_crew .admin_tools {
+		position: relative;
+		font-size: 1.1em;
+		float: right;
+		margin-right: 30px;
+	}
+		.radio_crew .admin_tools a {
+			color: #fff;
+		}
+.radio_schedule_day {
+	width: 206px;
+	height: 269px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+}
+.radio_schedule_day_marginfix {
+	margin-right: 0px;
+}
+	.radio_schedule_day h2 {
+		position: relative;
+		left: 153px;
+		top: 7px;
+		color: #fff;
+		margin: 0;
+	}
+	.radio_schedule_day table {
+		padding: 25px;
+		width: 206px;
+		margin-top: 10px;
+	}
+		.radio_schedule_day table .radio_schedule_program_name {
+			width: 100px;
+		}
+	
+	#hardjavlahamster_header {
+		margin: 5px 0 5px 0;
+	}
+	#hardjavlahamster_images {
+		margin: 5px 0 5px 0;
+	}
+	.hardjavlahamster_live_image {
+		width:310px;
+		margin: 4px 3px 4px 4px;
+	}
+	#choose_player_peercast, #choose_player_peercast a, #choose_player_peercast a:visited {
+		padding: 4px;
+		-moz-border-radius: 5px;
+		background: #393939;
+		color: #fff;
+		font: 20px Tahoma;
+		text-align: center;
+	}
+	
+	.radio_schedule_mon {background-image: url(http://images.hamsterpaj.net/radio/schedule_monday.png);}
+	.radio_schedule_tue {background-image: url(http://images.hamsterpaj.net/radio/schedule_tuesday.png);}
+	.radio_schedule_wed {background-image: url(http://images.hamsterpaj.net/radio/schedule_wednesday.png);}
+	.radio_schedule_thu {background-image: url(http://images.hamsterpaj.net/radio/schedule_thursday.png);}
+	.radio_schedule_fri {background-image: url(http://images.hamsterpaj.net/radio/schedule_friday.png);}
+	.radio_schedule_sat {background-image: url(http://images.hamsterpaj.net/radio/schedule_saturday.png);}
+	.radio_schedule_sun {background-image: url(http://images.hamsterpaj.net/radio/schedule_sunday.png);}
