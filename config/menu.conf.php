@@ -19,7 +19,14 @@ $menu['forum_nya_tradar'] = array('parent' => 'forum', 'label' => 'Nya trådar i
 $menu['forum_sok'] = array('parent' => 'forum', 'label' => 'Sök i forumet', 'url' => '/diskussionsforum/soek.php');
 
 // Old sex och sinne menu
-$menu['sex_and_sense'] = array('label' => 'Sex & Sinne', 'priority' => '100', 'url' => '/sex_och_sinne/');
+$menu['sex_och_sinne'] = array('label' => 'Sex & Sinne', 'priority' => '100', 'url' => '/sex_och_sinne/');
+$menu['sex_och_sinne_start'] = array('parent' => 'sex_och_sinne', 'label' => 'Start', 'url' => '/sex_och_sinne/', 'priority' => 100);
+$menu['sex_och_sinne_senaste_fragorna'] = array('parent' => 'sex_och_sinne', 'label' => 'Senaste frågorna', 'url' => '/sex_och_sinne/senaste_fraagorna.html');
+$menu['sex_och_sinne_kategorier'] = array('parent' => 'sex_och_sinne', 'label' => 'Kategorier', 'url' => '/sex_och_sinne/kategorier.html');
+$menu['sex_och_sinne_sok'] = array('parent' => 'sex_och_sinne', 'label' => 'Sök frågor och svar', 'url' => '/sex_och_sinne/soek.php');
+$menu['sex_och_sinne_sexperterna'] = array('parent' => 'sex_och_sinne', 'label' => 'Sexperterna', 'url' => '/sex_och_sinne/sexperterna.php');
+$menu['sex_och_sinne_fraga'] = array('parent' => 'sex_och_sinne', 'label' => 'Ställ en fråga', 'url' => '/sex_och_sinne/ny_fraaga.html');
+$menu['sex_och_sinne_admin'] = array('parent' => 'sex_och_sinne', 'label' => 'Besvara frågor (admin)', 'url' => '/sex_och_sinne/admin.php', 'is_privilegied' => array('sex_sense_admin'));
 
 // Old träffa menu
 $menu['traffa'] = array('label' => 'Träffa', 'priority' => '90', 'url' => '/traffa/');
