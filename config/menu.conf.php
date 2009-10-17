@@ -11,7 +11,12 @@ $menu['hamsterpaj_regler'] = array('parent' => 'hamsterpaj', 'label' => 'Regler 
 $menu['hamsterpaj_tillbakablickar'] = array('parent' => 'hamsterpaj', 'label' => 'Gamla versioner av Hamsterpaj', 'url' => '/hamsterpaj/tillbakablickar.php');
 
 // Old diskussionsforum menu
-$menu['discussion_forum'] = array('label' => 'Diskussionsforum', 'priority' => '120', 'url' => '/diskussionsforum/');
+$menu['forum'] = array('label' => 'Forum', 'priority' => '120', 'url' => '/diskussionsforum/');
+$menu['forum_kategorier'] = array('parent' => 'forum', 'label' => 'Kategorier', 'url' => '/diskussionsforum/', 'priority' => 100);
+$menu['forum_dina_notiser'] = array('parent' => 'forum', 'label' => 'Dina forumnotiser', 'url' => '/diskussionsforum/notiser.php');
+$menu['forum_dina_tradar'] = array('parent' => 'forum', 'label' => 'Trådar som du skapat', 'url' => '/diskussionsforum/dina_traadar.php');
+$menu['forum_nya_tradar'] = array('parent' => 'forum', 'label' => 'Nya trådar i forumet', 'url' => '/diskussionsforum/nya_traadar.php');
+$menu['forum_sok'] = array('parent' => 'forum', 'label' => 'Sök i forumet', 'url' => '/diskussionsforum/soek.php');
 
 // Old sex och sinne menu
 $menu['sex_and_sense'] = array('label' => 'Sex & Sinne', 'priority' => '100', 'url' => '/sex_och_sinne/');
