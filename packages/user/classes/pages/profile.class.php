@@ -3,10 +3,10 @@
 	{
 		function url_hook($uri)
 		{
-			preg_match('#^/(.*?)(/|$)#', $uri, $username);
+			preg_match('#^/([a-z0-9_-]+)$#', $uri, $username);
 			if ( ! isset($username[1]) )
 			{
-			    return 1;
+			    return 0;
 			}
 			$username = $username[1];
 			Tools::debug($username);
@@ -15,13 +15,14 @@
 			
 			if(is_object($user) && $user->exists())
 			{
-				return 3;
+				return 2;
 			}
 			else
 			{
-				return 1;
+				return 0;
 			}
 			Tools::debug($user);
+			
 		}
 		
 		function execute($uri)
