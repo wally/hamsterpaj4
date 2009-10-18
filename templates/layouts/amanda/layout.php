@@ -103,8 +103,7 @@
 				<script type="text/javascript">
 					var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55633)' + new
 					String (Math.random()).substring (2, 11);
-					document.write('<sc'+'ript type="text/javascript" src="'+uri+'"
-					charset="UTF-8"></sc'+'ript>');
+					document.write('<sc'+'ript type="text/javascript" src="'+uri+'" charset="UTF-8"></sc'+'ript>');
 				</script>
 			
 					<script type="text/javascript"><!--
