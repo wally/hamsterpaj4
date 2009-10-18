@@ -1,4 +1,4 @@
-<form action="/log-in" method="post" id="login">
+<form action="/login/login.php?action=login" method="post" id="login">
 	<span>
 		<label>Användarnamn</label>
 		<input id="ui_login_username" type="text" name="username" />
