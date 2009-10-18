@@ -45,6 +45,7 @@
 			$notifications = array();
 		
 		protected $unread_gb_entries;
+		protected $unread_group_entries;
 		
 		public function online()
 		{
@@ -207,6 +208,11 @@
 				$this->unread_gb_entries = Guestbook::fetch($search);
 				return count($this->unread_gb_entries);
 			}
+		}
+		
+		public function get_unread_group_entries()
+		{
+		    
 		}
 		
 		public function auth($password)
