@@ -1,8 +1,14 @@
+#side_module_profile_visitors
+{
+	padding-left: 7px !important;
+}
+
 #side_module_profile_visitors ul
 {
 	list-style-type: none;
 	padding: 0px;
 	height: 122px;
+	margin-left: 1px;
 }
 
 #side_module_profile_visitors ul li
@@ -13,10 +19,14 @@
 	-webkit-border-radius: 2px;
 	float: left;
 	display: block;
-	margin-right: 3.5px;
-	margin-bottom: 3.5px;
+	margin-right: 4px;
+	margin-bottom: 4px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+}
+
+#side_module_profile_visitors ul li:nth-child(4n+4) {
+	margin-right: 0;
 }
 
 #side_module_profile_visitors img
@@ -28,10 +38,10 @@
 #side_module_profile_visitors a.show_more_link {
 	display: block;
 	height: 21px;
-	width: 186px;
-	margin: 0;
+	width: 184px;
+	margin: 0 0 2px 0;
 	padding: 3px 0 0 0;
 	text-align: center;
-	background: url('http://images.birdy.nu/images/visitor_button.png') no-repeat;
+	background: url('http://imgur.voxcdn.com/KxpAZ.jpg') no-repeat;
 }
 

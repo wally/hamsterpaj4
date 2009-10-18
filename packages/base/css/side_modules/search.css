@@ -1,7 +1,7 @@
 #side_module_search
 {
 	background: #D5E3FF !important;
-	padding: 6px !important;
+	padding: 4px !important;
 	position: relative;
 	border: 0 !important;
 }
@@ -11,15 +11,11 @@
 	border: 0;
 	font-size: 16px;
 	color: #c7c7c7;
-	width: 145px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
+	width: 147px;
 	padding: 0;
 	margin: 0;
-	padding: 5px;
-	height: 20px;
+	padding: 6px;
+	height: 19px;
 	border: 1px solid #c2d6ff;
 	border-right: 0;
 }
@@ -33,19 +29,16 @@
 {
 	background: url("http://static.hamsterpaj.net/images/layouts/amanda/search.png") no-repeat #eff4f8 center;
 	border: 0;
-	-moz-border-radius-topright: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
 	width: 33px;
-	height: 32px;
+	height: 33px;
 	padding: 5px;
-	right: 6px;
+	right: 4px;
 	position: absolute;
-	top: 6px;
+	top: 4px;
 	border: 1px solid #c2d6ff;
 	border-left: 0;
 	cursor: pointer;
+	text-indent: -2em;
 	margin: 0;
 }
 
@@ -59,32 +52,46 @@
 	background-position: center;
 }
 
+#side_module_search #livesearch_results { display: none; }
+
+#side_module_search .suggestions {
+	margin: 4px 0 0 0;
+	border: 1px solid #c2d6ff;
+	border-top: 0;
+	padding: 0;
+}
+
+#side_module_search .suggestions p {
+	display: none;
+}
+
 #side_module_search h2 {
-	-moz-border-radius-topright: 5px;
+	/*-moz-border-radius-topright: 5px;
 	-moz-border-radius-topleft: 5px;
 	-webkit-border-top-right-radius: 5px;
 	-webkit-border-bottom-right-radius: 5px;
-	background: #eff4f8;
-	border-right: 1px solid #c2d6ff;
+	margin-top: 6px;
 	border-top: 1px solid #c2d6ff;
-	border-left: 1px solid #c2d6ff;
-	border-bottom: 1px solid #E0E0E0;
+	border-right: 1px solid #c2d6ff;
+	border-left: 1px solid #c2d6ff;*/
+	background: #eff4f8;
+	border-bottom: 1px solid #c2d6ff;
+	border-top: 1px solid #c2d6ff;
 	padding: 3px;
 	padding-left: 6px;
 	font-size: 15px;
-	margin-bottom: 0px;
-	margin-top: 6px;
+	margin: 0px;
 }
 
 #side_module_search .category {
-	-moz-border-radius-bottomright: 5px;
+	/*-moz-border-radius-bottomright: 5px;
 	-moz-border-radius-bottomleft: 5px;
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-right-radius: 5px;
-	background: #fff;
-	border-right: 1px solid #c2d6ff;
 	border-bottom: 1px solid #c2d6ff;
-	border-left: 1px solid #c2d6ff;
+	border-right: 1px solid #c2d6ff;
+	border-left: 1px solid #c2d6ff;*/
+	background: #fff;
 	padding: 3px;
 	margin-top: 0;
 }
