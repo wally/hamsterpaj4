@@ -177,6 +177,11 @@
 				$page->extra_css = $ui_options['stylesheets'];
 				$page->extra_js = $ui_options['javascripts'];
 				
+				if ( ! isset($ui_options['ui_top_called']) )
+				{
+					$page->raw_output = true;
+				}
+				
 				foreach ( $raw_outputters as $search )
 				{
 					if ( preg_match($search, $_file) )
