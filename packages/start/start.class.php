@@ -3,7 +3,7 @@
 	{
 		function url_hook($uri)
 		{
-			return ($uri == '') ? 10 : 0;
+			return ($uri == '') ? 0 : 0;
 		}
 		
 		function execute()

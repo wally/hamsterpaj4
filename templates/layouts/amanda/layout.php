@@ -2,29 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
 		<title><?php echo $page->get('title'); ?></title>
+		
 		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
+		
 		<meta name="title" content="<?php echo $page->get('title'); ?>" />
 		<meta name="description" content="<?php echo $page->get('description'); ?>" />
 		<meta name="keywords" content="<?php echo strtolower($page->get('keywords')); ?>" />
+		
 		<link rel="image_src" href="http://images.hamsterpaj.net/fp_recent_update_thumb_universal.png" />
+		
 		<style type="text/css">
 			@import url('/style.css');
 			<?php if ( IS_HP3_REQUEST ): ?>
 			@import url('/old_style.css:<?php echo implode(',', $page->extra_css); ?>');
 			<?php endif; ?>
 		</style>
+		
+		<!-- HP JavaScript -->
 		<script src="/scripts.js" type="text/javascript"></script>
-		<script type="text/javascript">
-		    window.hp = {};
-		    window.hp.login_checklogin = function() { return <?php echo (int)$page->user->exists(); ?>; };
-		</script>
-		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
-		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
 		
 		<?php foreach ( Tools::pick($page->extra_js, array()) as $script ): ?>
 		    <script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
 		<?php endforeach; ?>
+		
+		<!-- Ad JavaScript -->
+		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
+		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
 	</head>
 	<body>
 		<!-- Kiaindex -->
@@ -43,8 +48,8 @@
 		<script type="text/javascript">
 			var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55632)' + new
 			String (Math.random()).substring (2, 11);
-			document.write('<sc'+'ript type="text/javascript" src="'+uri+'"
-			charset="UTF-8"></sc'+'ript>');
+			document.write('<sc'+'ript type="text/javascript" src="'+uri+'"'
+			+ 'charset="UTF-8"></sc'+'ript>');
 		</script>
 
 		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>

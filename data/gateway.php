@@ -99,11 +99,6 @@
 			}
 		}
 		
-		if ( $page instanceof Page404)
-		{			
-
-		}
-		
 		$page->pdo = $_PDO;
 		$page->user = new User;
 		$page->user->from_session($_SESSION);
@@ -157,6 +152,7 @@
 				
 				// Variables that should not be overwritten
 				$__page = $page;
+				$__menu = $menu;
 				
 				ob_start();
 				include($_file);
@@ -164,6 +160,7 @@
 				
 				// Reset variables
 				$page = $__page;
+				$menu = $__menu;
 				
 				// Set error_reporting to old value
 				error_reporting($error_reporting);

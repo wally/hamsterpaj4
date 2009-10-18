@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	if ( ! $('#bdb-download-form').length ) return;
+	
 	$('#bdb-download-form h2').click(function() 
 	{
 		$('#bdb-download-form h2 + form').hide('slow');
