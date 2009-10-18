@@ -46,6 +46,7 @@
 	border: 1px solid #c2d6ff;
 	border-left: 0;
 	cursor: pointer;
+	margin: 0;
 }
 
 #side_module_search input[type="submit"]:hover {
