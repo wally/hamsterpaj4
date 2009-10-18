@@ -70,6 +70,11 @@
 		$_PDO = new PDO($dns, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true));
 		$_PDO->query('SET NAMES utf8');
 	
+		if ( ENVIRONMENT == 'development' )
+		{
+			$_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+	
 		$uri = $_SERVER['REQUEST_URI'];
 		if(strpos($uri, '?'))
 		{

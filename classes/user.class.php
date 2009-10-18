@@ -212,7 +212,16 @@
 		
 		public function get_unread_group_entries()
 		{
-		    
+		    if ( is_null($this->unread_group_entries) )
+		    {
+			$entries = Legacy::fetch_group_notices($this);
+			
+			$this->cache = array_merge($this->cache, $entries['cache']);
+			$this->groups_members = $entries['groups_members'];
+			
+			$this->unread_group_entries = $entries['cache']['unread_group_notices'];
+		    }
+		    return $this->unread_group_entries;
 		}
 		
 		public function auth($password)

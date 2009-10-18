@@ -2,12 +2,9 @@
 
 function beat_groups(Page $page)
 {
-    $groups = array(
-	246 => array(
-	    'name' => 'Webdesign',
-	    'unread' => 10
-	)
-    );
+    $unread = $page->user->get_unread_group_entries();
+    $groups = $page->user->get('cache');
+    $groups = $groups['group_notices'];
     
-    return htmlentities(template('heartbeat', 'beat_group.php', array('groups' => $groups)));
+    return htmlentities(template('heartbeat', 'beat_group.php', array('groups' => $groups, 'unread' => $unread)));
 }

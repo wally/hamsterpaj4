@@ -13,16 +13,20 @@ class Legacy
 {
     public static function fetch_group_notices(User $user)
     {
-	    global $_PDO;
+	    if ( ! $user->exists() )
+		return false;
 	    
-	    $query = 'SELECT id FROM groups_members WHERE userid = ?';
+	    global $_PDO;
+	    $return = array('cache' => array('unread_group_notices' => 0));
+	    
+	    $query = 'SELECT groupid FROM groups_members WHERE userid = ? AND approved = 1';
 	    $query = $_PDO->prepare($query);
 	    $query->execute(array($user->get('id')));
 	    
 	    $groups_members = array();
 	    foreach ( $query->fetchAll() as $row )
 	    {
-		$groups_members[] = $row['id'];
+		$groups_members[] = $row['groupid'];
 	    }
 	    
 	    $return['groups_members'] = $groups_members;
@@ -31,12 +35,14 @@ class Legacy
 	    $query .= 'WHERE groups_members.groupid IN(' . implode(', ', $return['groups_members']) . ') AND groups_list.groupid = groups_members.groupid';
 	    $query .= ' AND groups_members.userid =' . $user->get('id') . ' AND groups_members.notices = "Y"';
 	    
-	    $return = array();
-	    foreach ( $_PDO->query($query) as $row )
+	    $result = $_PDO->prepare($query);
+	    $result->execute();
+	    
+	    foreach ( $result->fetchAll() as $row )
 	    {
 		    $message_count = $row['message_count'] - $row['read_msg'];
-		    $return['unread_group_notices'] += $message_count;
-		    $return['group_notices'][$row['groupid']] = array('unread_messages' => $message_count, 'title' => $row['name'], 'groupid' => $row['groupid']);
+		    $return['cache']['unread_group_notices'] += $message_count;
+		    $return['cache']['group_notices'][$row['groupid']] = array('unread_messages' => $message_count, 'title' => $row['name'], 'groupid' => $row['groupid']);
 	    }
 	    
 	    return $return;

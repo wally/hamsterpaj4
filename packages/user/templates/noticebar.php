@@ -18,7 +18,17 @@
 		</li>
 		
 		<li class="notice_panel" id="notices_groups">
-			<a class="notice_icon" id="ui_noticebar_groups"  href="/traffa/groupnotices.php">Grupper</a>
+			<a class="notice_icon" id="ui_noticebar_groups"  href="/traffa/groupnotices.php">
+			    <?php
+				$unread = $user->get('unread_group_entries'); 
+				if ( $unread == 1 ): ?>
+				1 nytt inlägg
+			    <?php elseif ($unread > 1): ?>
+				<span title="Flera nya, fina inlägg"><?php echo $unread; ?> nya inlägg</span>
+			    <?php else: ?>
+				Gruppesr
+			    <?php endif; ?>
+			</a>
 			<div class="notices_information" />
 		</li>
 		
