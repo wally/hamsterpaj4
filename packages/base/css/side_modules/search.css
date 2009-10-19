@@ -6,6 +6,12 @@
 	border: 0 !important;
 }
 
+#side_module_search form
+{
+	padding: 0;
+	margin: 0;
+}
+
 #side_module_search input[type="text"]
 {
 	border: 0;
