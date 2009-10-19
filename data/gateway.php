@@ -70,6 +70,11 @@
 		$_PDO = new PDO($dns, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true));
 		$_PDO->query('SET NAMES utf8');
 	
+		if ( ENVIRONMENT == 'development' )
+		{
+			$_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+	
 		$uri = $_SERVER['REQUEST_URI'];
 		if(strpos($uri, '?'))
 		{
@@ -97,11 +102,6 @@
 					}
 				}
 			}
-		}
-		
-		if ( $page instanceof Page404)
-		{			
-
 		}
 		
 		$page->pdo = $_PDO;
@@ -157,6 +157,7 @@
 				
 				// Variables that should not be overwritten
 				$__page = $page;
+				$__menu = $menu;
 				
 				ob_start();
 				include($_file);
@@ -164,6 +165,7 @@
 				
 				// Reset variables
 				$page = $__page;
+				$menu = $__menu;
 				
 				// Set error_reporting to old value
 				error_reporting($error_reporting);
@@ -179,6 +181,11 @@
 				$page->menu_active = $ui_options['menu_active'];
 				$page->extra_css = $ui_options['stylesheets'];
 				$page->extra_js = $ui_options['javascripts'];
+				
+				if ( ! isset($ui_options['ui_top_called']) )
+				{
+					$page->raw_output = true;
+				}
 				
 				foreach ( $raw_outputters as $search )
 				{

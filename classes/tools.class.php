@@ -5,6 +5,8 @@
 		{
 			Tools::pick_inplace($options['recursive'], true);
 			Tools::pick_inplace($options['excludes'], array());
+			Tools::pick_inplace($options['extension'], false);
+			Tools::pick_inplace($options['endswith'], false);
 			
 			$files = scandir($dir);
 			foreach($files AS $key => $file)
@@ -25,7 +27,12 @@
 				    }
 				    unset($files[$key]);
 				}
-				elseif(isset($options['extension']) && $extension != $options['extension'])
+				elseif ( $options['endswith'] && ! Tools::endswith($file, $options['endswith']) )
+				{
+				    unset($files[$key]);
+				    continue;
+				}
+				elseif ( $options['extension'] && $extension != $options['extension'] )
 				{
 					unset($files[$key]);
 					continue;
@@ -201,6 +208,16 @@
 		static function choose(&$test, $on_true, $on_false)
 		{
 		    return self::is_true($test) ? $on_true : $on_false;
+		}
+		
+		static function beginswith($string, $test)
+		{
+		    return substr($string, 0, strlen($test)) === $test;
+		}
+		
+		static function endswith($string, $test)
+		{
+		    return substr($string, -strlen($test)) === $test;
 		}
 	}
 ?>
