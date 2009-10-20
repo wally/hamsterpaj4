@@ -206,14 +206,54 @@ dd
 	}
 	
 	#notices li div.notices_information {
-	    position: relative;
-	    background: #000;
-	    color: #fff;
-	    border: 1px solid red;
-	    width: 200px;
-	    padding: 1em;
-	    display: none;
+		position: relative;
+		background: url(http://imgur.com/bvkHd.png) repeat-x;
+		width: 250px;
+		padding: 0 3px;
+		display: none;
+		z-index: 1;
+		text-align: left;
+		left: -90px;
 	}
+	
+	#notices li div.notices_information ul {
+		padding: 0;
+	}
+	
+	#notices li div.notices_information li {
+		list-style: none;
+	}
+	#notices li div.notices_information li a {
+		background: none !important;
+		display: block;
+		height: 20px;
+		padding: 2px 10px 0 10px;
+	}
+	#notices li div.notices_information li:nth-child(odd) {
+		background-color: #e7e7e7 !important;
+	}
+	
+	#notices li div.notices_information li:nth-child(even) {
+		background-color: #f0f0f0 !important;
+	}
+	
+	#notices li div.notices_information h4 {
+		margin: 0;
+		padding: 0;
+		font-size: 16px;
+		text-align: center;
+		font-weight: normal;
+		padding: 15px 0 0;
+		margin-bottom: 4px;
+	}
+	
+	#notices_information_footer {
+		display: block;
+		width: 199px;
+		height: 15px;
+		background-color: grey;
+	}
+	
 /**
 *	Login status
 */
