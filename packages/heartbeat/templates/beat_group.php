@@ -6,3 +6,4 @@
     <li class="<?php echo $counter; ?>"><a href="/traffa/groups.php?action=goto&amp;groupid=<?php echo $id; ?>"><?php echo $group['title']; ?> - <?php echo $group['unread_messages']; ?> nya inl&auml;gg</a></li>
     <?php endforeach; ?>
 </ul>
+<div id="footer" />

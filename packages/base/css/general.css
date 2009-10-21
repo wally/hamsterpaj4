@@ -216,6 +216,14 @@ dd
 		left: -90px;
 	}
 	
+	#notices li div.notices_information #footer {
+		display: block;
+		height: 10px;
+		width: 256px;
+		background: url(http://imgur.com/AiF0T.png) no-repeat;
+		left: -3px;
+	}
+	
 	#notices li div.notices_information ul {
 		padding: 0;
 	}
