@@ -3,7 +3,7 @@
 
 <ul>
     <?php foreach ($groups as $id => $group): ?>
-    <li class="<?php echo $counter; ?>"><a href="/traffa/groups.php?action=goto&amp;groupid=<?php echo $id; ?>"><?php echo $group['title']; ?> - <?php echo $group['unread_messages']; ?> nya inl&auml;gg</a></li>
+    <li class="<?php echo $counter; ?> <?php echo $group['unread_messages'] > 0 ? 'unread' : ''; ?>"><a href="/traffa/groups.php?action=goto&amp;groupid=<?php echo $id; ?>"><?php echo $group['title']; ?> - <?php echo $group['unread_messages']; ?> nya inl&auml;gg</a></li>
     <?php endforeach; ?>
 </ul>
 <div id="footer" />
