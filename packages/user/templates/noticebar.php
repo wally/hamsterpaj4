@@ -1,10 +1,10 @@
 <div id="notices">
 	<ul>
-		<?php $class = ($user->get('unread_gb_entries') > 0) ? ' class="active"' : ''; ?>
-		<li class="notice_panel" id="notices_guestbook"<?php echo $class; ?>>
+		<?php $class = ($user->get('unread_gb_entries') > 0) ? ' active"' : ''; ?>
+		<li class="notice_panel<?php echo $class; ?>" id="notices_guestbook">
 			<a class="notice_icon" href="/traffa/guestbook.php?user_id=3">
 			<?php if($user->get('unread_gb_entries') == 1) : ?>
-				1 nytt inlägg
+				1 ny
 			<?php elseif($user->get('unread_gb_entries') > 1) : ?>
 				<?php echo $user->get('unread_gb_entries'); ?> nya inlägg
 			<?php else : ?>
@@ -17,16 +17,15 @@
 			<a class="notice_icon" id="ui_noticebar_forum" class="ui_noticebar_active" href="/diskussionsforum/notiser.php">Forum</a>
 		</li>
 		
-		<li class="notice_panel" id="notices_groups">
+		<?php $unread = $user->get('unread_group_entries'); ?>
+		<li class="notice_panel <?php echo ($unread == 0) ? '': ' active'; ?>" id="notices_groups">
 			<a class="notice_icon" id="ui_noticebar_groups"  href="/traffa/groupnotices.php">
-			    <?php
-				$unread = $user->get('unread_group_entries'); 
-				if ( $unread == 1 ): ?>
-				1 nytt inlägg
+				<?php if ( $unread == 1 ): ?>
+				1 ny
 			    <?php elseif ($unread > 1): ?>
-				<span title="Flera nya, fina inlägg"><?php echo $unread; ?> nya inlägg</span>
+				<span title="Flera nya, fina inlägg."><?php echo $unread; ?> nya</span>
 			    <?php else: ?>
-				Gruppesr
+				Grupper
 			    <?php endif; ?>
 			</a>
 			<div class="notices_information" />
