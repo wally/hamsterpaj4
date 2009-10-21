@@ -19,7 +19,7 @@ hp.set('packages.heartbeat', {
     },
     
     get_time: function() {
-	this.current_time += this.current_time * 0.02;
+	this.current_time += this.current_time * 0.10;
 	return this.current_time;
     }
 });

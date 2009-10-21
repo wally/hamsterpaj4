@@ -28,7 +28,9 @@
 				Grupper
 			    <?php endif; ?>
 			</a>
-			<div class="notices_information" />
+			<div class="notices_information">
+			    <?php echo PageHeartbeat::run_hook('groups', $page); ?>
+			</div>
 		</li>
 		
 		<li class="notice_panel" id="notices_events">
