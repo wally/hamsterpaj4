@@ -177,6 +177,18 @@
 				Tools::pick_inplace($ui_options['stylesheets'], array());
 				Tools::pick_inplace($ui_options['javascripts'], array());
 				Tools::pick_inplace($ui_options['menu_active'], NULL);
+				
+				$remove_scripts = array(
+						'jquery.js'
+				);
+
+				foreach ( $remove_scripts as $script )
+				{
+						while ( false !== ($position = array_search($script, $ui_options['javascripts'])))
+						{
+							 array_splice($ui_options['javascripts'], $position, 1);
+						}
+				}
 
 				$page->menu_active = $ui_options['menu_active'];
 				$page->extra_css = $ui_options['stylesheets'];
