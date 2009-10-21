@@ -1,5 +1,7 @@
 <?php
 
+class HookNotFoundException extends Exception {}
+
 /*
     Class:
 	PageHeartbeat
@@ -18,6 +20,8 @@ class PageHeartbeat extends Page
 {
     public $template = 'system/json.php';
     
+    private static $hooks = null;
+    
     public static function url_hook($uri)
     {
 	return (Tools::beginswith($uri, '/heartbeat') ? 50 : 0);
@@ -25,17 +29,33 @@ class PageHeartbeat extends Page
     
     public function execute($uri)
     {
-	$hooks = $this->get_hooks();
+	$hooks = self::get_hooks();
 	
 	foreach ( $hooks as $hook )
 	{
 	    $function = 'beat_' . $hook;
-	    $this->content[$hook] = call_user_func($function, $this);
+	    $this->content[$hook] = htmlentities(call_user_func($function, $this), ENT_QUOTES, 'UTF-8');
 	}
     }
     
-    private function get_hooks()
+    public static function run_hook($hook_name, Page $page)
     {
+	$hooks = self::get_hooks();
+	if ( ! in_array($hook_name, $hooks) )
+	{
+	    throw new HookNotFoundException($hook_name);  
+	}
+	
+	return call_user_func('beat_' . $hook_name, $page);
+    }
+    
+    private static function get_hooks()
+    {
+	if ( ! is_null(self::$hooks) )
+	{
+	    return self::$hooks;
+	}
+	
 	$hooks = Tools::find_files(PATH_PACKAGES, array('endswith' => '.beat.php'));
 	$ret = array();
 	
@@ -44,6 +64,8 @@ class PageHeartbeat extends Page
 	    $ret[] = preg_replace('#([A-Za-z0-9-_]+)\.beat\.php#', '$1', end(explode('/', $hook)));
 	    include(PATH_PACKAGES . $hook);
 	}
+	
+	self::$hooks = $hooks;
 	
 	return $ret;
     }

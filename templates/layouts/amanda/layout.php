@@ -62,7 +62,7 @@
 				<div id="head">
 				<h2><a href="/">Hamsterpaj.net</a></h2>
 					<?php if( $page->user->exists() ) : ?>
-						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template('user', 'noticebar.php', array('user' => $page->user, 'page' => $page)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
 						<?php echo template('user', 'loginbar.php'); ?>
