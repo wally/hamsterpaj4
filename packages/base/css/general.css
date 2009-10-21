@@ -188,18 +188,18 @@ dd
 	
 	#notices li a:hover { color: #333; }
 
-	#hp #head #notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") no-repeat; }
-		#hp #head #notices #notices_guestbook a:hover { background-position: 0 -73px; color: #333; }
-		#hp #head #notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #333;}
-	#hp #head #notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -70px 0 no-repeat; }
-		#hp #head #notices #notices_forum a:hover { background-position: -70px -73px; color: #333; }
-		#hp #head #notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #333;}
-	#hp #head #notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -140px 0 no-repeat; }
-		#hp #head #notices #notices_groups a:hover { background-position: -140px -73px; color: #333; }
-		#hp #head #notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #333; }
-	#hp #head #notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -210px 0 no-repeat;}
-		#hp #head #notices #notices_events a:hover { background-position: -210px -73px; color: #333; }
-		#hp #head #notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
+	#notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") no-repeat; }
+		#notices #notices_guestbook a:hover { background-position: 0 -73px; color: #333; }
+		#notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #333;}
+	#notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -70px 0 no-repeat; }
+		#notices #notices_forum a:hover { background-position: -70px -73px; color: #333; }
+		#notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #333;}
+	#notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -140px 0 no-repeat; }
+		#notices #notices_groups a:hover { background-position: -140px -73px; color: #333; }
+		#notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #333; }
+	#notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -210px 0 no-repeat;}
+		#notices #notices_events a:hover { background-position: -210px -73px; color: #333; }
+		#notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
 
 	#notices li.notice_panel:hover div.notices_information {
 	    display: block;
@@ -215,6 +215,10 @@ dd
 		text-align: left;
 		left: -90px;
 	}
+	
+	    #hp #head #notices div.notices_information h4 a {
+		background: none;
+	    }
 	
 	#notices li div.notices_information ul {
 		padding: 0;
