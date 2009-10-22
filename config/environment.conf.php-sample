@@ -1,3 +1,4 @@
 <?php
 	define('ENVIRONMENT', 'development'); // Set environement, either development or production
+	define('DEBUG_SHOW', true); // Whether to show the debug dialog or not
 ?>
