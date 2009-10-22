@@ -207,7 +207,7 @@ dd
 	
 	#notices li div.notices_information {
 		position: relative;
-		background: url(http://imgur.com/bvkHd.png) repeat-x;
+		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_bg.png) repeat-x;
 		width: 250px;
 		padding: 0 3px;
 		display: none;
@@ -225,7 +225,7 @@ dd
 		display: block;
 		height: 11px;
 		width: 256px;
-		background: url(http://imgur.com/AiF0T.png) no-repeat;
+		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_footer.png) no-repeat;
 		margin-left: -3px;
 		position: absolute;
 	}

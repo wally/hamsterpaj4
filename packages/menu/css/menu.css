@@ -27,7 +27,7 @@
 		padding: 9px 12px;
 		height: 23px;
 		color: #634b2f;
-		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") right bottom;
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") right -185px;
 		text-decoration: none;
 	}
   
@@ -96,10 +96,19 @@
 		float: left;
 		display: block;
 		height: 16px;
-		padding: 7px;
+		padding: 7px 9px;
 		color: #757575;
 		text-decoration: none;
 		font-weight: normal;
 	}
 	
 	#main_menu_sub li a:hover { color: #333; }
+	
+	#main_menu_sub li.active {
+	  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") repeat-x bottom right;
+	}
+	
+	#main_menu_sub li.active a {
+	  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") no-repeat 0 -257px;
+	  color: #333;
+	}

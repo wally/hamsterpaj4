@@ -19,13 +19,13 @@
 	-webkit-border-radius: 2px;
 	float: left;
 	display: block;
-	margin-right: 3px;
+	margin-right: 4px;
 	margin-bottom: 4px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
 
-#side_module_profile_visitors ul li:nth-child(4n+4) {
+#side_module_profile_visitors ul li.visitor_4, #side_module_profile_visitors ul li.visitor_8 {
 	margin-right: 0;
 }
 
