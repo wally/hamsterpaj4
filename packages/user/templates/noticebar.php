@@ -20,10 +20,10 @@
 		<?php $unread = $user->get('unread_group_entries'); ?>
 		<li class="notice_panel <?php echo ($unread == 0) ? '': ' active'; ?>" id="notices_groups">
 			<a class="notice_icon" id="ui_noticebar_groups"  href="/traffa/groupnotices.php">
-				<?php if ( $unread == 1 ): ?>
+			    <?php if ( $unread == 1 ): ?>
 				1 ny
 			    <?php elseif ($unread > 1): ?>
-				<span title="Flera nya, fina inlägg."><?php echo $unread; ?> nya</span>
+				<?php echo $unread; ?> nya
 			    <?php else: ?>
 				Grupper
 			    <?php endif; ?>
