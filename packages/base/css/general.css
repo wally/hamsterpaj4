@@ -215,18 +215,18 @@ dd
 	
 	#notices li a:hover { color: #333; }
 
-	#hp #head #notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") no-repeat; }
-		#hp #head #notices #notices_guestbook a:hover { background-position: 0 -73px; color: #333; }
-		#hp #head #notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #333;}
-	#hp #head #notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -70px 0 no-repeat; }
-		#hp #head #notices #notices_forum a:hover { background-position: -70px -73px; color: #333; }
-		#hp #head #notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #333;}
-	#hp #head #notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -140px 0 no-repeat; }
-		#hp #head #notices #notices_groups a:hover { background-position: -140px -73px; color: #333; }
-		#hp #head #notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #333; }
-	#hp #head #notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -210px 0 no-repeat;}
-		#hp #head #notices #notices_events a:hover { background-position: -210px -73px; color: #333; }
-		#hp #head #notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
+	#notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") no-repeat; }
+		#notices #notices_guestbook a:hover { background-position: 0 -73px; color: #333; }
+		#notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #333;}
+	#notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -70px 0 no-repeat; }
+		#notices #notices_forum a:hover { background-position: -70px -73px; color: #333; }
+		#notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #333;}
+	#notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -140px 0 no-repeat; }
+		#notices #notices_groups a:hover { background-position: -140px -73px; color: #333; }
+		#notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #333; }
+	#notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/layouts/amanda/notices.png") -210px 0 no-repeat;}
+		#notices #notices_events a:hover { background-position: -210px -73px; color: #333; }
+		#notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
 
 	#notices li.notice_panel:hover div.notices_information {
 	    display: block;
@@ -234,13 +234,32 @@ dd
 	
 	#notices li div.notices_information {
 		position: relative;
-		background: url(http://imgur.com/bvkHd.png) repeat-x;
+		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_bg.png) repeat-x;
 		width: 250px;
 		padding: 0 3px;
 		display: none;
 		z-index: 100;
 		text-align: left;
 		left: -90px;
+		top: -5px;
+	}
+	
+	    #hp #head #notices div.notices_information h4 a {
+		background: none;
+	    }
+
+	#notices li div.notices_information #footer {
+		display: block;
+		height: 11px;
+		width: 256px;
+		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_footer.png) no-repeat;
+		margin-left: -3px;
+		position: absolute;
+	}
+	
+	#notices li div.notices_information .unread {
+		font-weight: bold;
+		background-color: #d0e0c0 !important;
 	}
 	
 	#notices li div.notices_information ul {
@@ -257,11 +276,11 @@ dd
 		padding: 2px 10px 0 10px;
 	}
 	#notices li div.notices_information li.n1 {
-		background-color: #e7e7e7 !important;
+		background-color: #e7e7e7;
 	}
 	
 	#notices li div.notices_information li.n2 {
-		background-color: #f0f0f0 !important;
+		background-color: #f0f0f0;
 	}
 	
 	#notices li div.notices_information h4 {

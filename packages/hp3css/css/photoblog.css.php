@@ -7,6 +7,10 @@
 	$contrast_color = '#' . ((hexdec($uri_parts[1]) > 8388607) ? '333' : 'eee');
 ?>
 
+#photoblog_image img, #photoblog_header img {
+    display: inline;
+}
+
 #photoblog_upload_wrapper {
 	border: 1px solid #cfe2f1;
 	-moz-border-radius: 5px;

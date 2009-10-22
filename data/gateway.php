@@ -266,7 +266,7 @@
 			
 			$_SESSION = $page->user->to_session();
 			
-			if ( ENVIRONMENT == 'production' )
+			if ( ENVIRONMENT == 'production' || ! DEBUG_SHOW )
 			{
 				echo $out;
 			}

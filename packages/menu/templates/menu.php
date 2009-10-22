@@ -11,12 +11,8 @@
 <?php if (count($submenu) > 0): ?>
 <ul id="main_menu_sub">
 	<?php foreach($submenu AS $current_submenu): ?>
-		<li>
-			<a href="<?php echo $current_submenu['url']; ?>">
-				<?php echo Tools::choose($current_submenu['active'], '<strong>', ''); ?>
-					<?php echo $current_submenu['label']; ?>
-				<?php echo Tools::choose($current_submenu['active'], '</strong>', ''); ?>
-			</a>
+		<li class="<?php echo Tools::choose($current_submenu['active'], 'active', ''); ?>">
+			<a href="<?php echo $current_submenu['url']; ?>"><?php echo $current_submenu['label']; ?></a>
 		</li>
 	<?php endforeach; ?>
 </ul>

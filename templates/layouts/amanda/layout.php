@@ -52,7 +52,7 @@
 			+ 'charset="UTF-8"></sc'+'ript>');
 		</script>
 
-		<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>
+		<!--<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>-->
 		<div id="wrapper">
 			<script type='text/javascript'><!--//<![CDATA[
 				Ads.insert(250, 'banner980x120 noprint');
@@ -62,7 +62,7 @@
 				<div id="head">
 				<h2><a href="/">Hamsterpaj.net</a></h2>
 					<?php if( $page->user->exists() ) : ?>
-						<?php echo template('user', 'noticebar.php', array('user' => $page->user)); ?>
+						<?php echo template('user', 'noticebar.php', array('user' => $page->user, 'page' => $page)); ?>
 						<?php echo template('user', 'statusbar.php', array('user' => $page->user)); ?>
 					<?php else : ?>
 						<?php echo template('user', 'loginbar.php'); ?>

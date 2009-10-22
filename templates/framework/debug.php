@@ -15,7 +15,7 @@
 		<?php $last_time = $event['time']; ?>
 	<?php endforeach; ?>
 	
-	<?php foreach($_DEBUG AS $debug): ?>
+	<?php foreach(Tools::ensure_array($_DEBUG) AS $debug): ?>
 		<dt><?php echo $debug['title']; ?></dt>
 		<dd>
 			<?php echo $debug['text']; ?>
