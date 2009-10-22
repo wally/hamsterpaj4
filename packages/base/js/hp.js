@@ -14,10 +14,6 @@ window.hp = {
 	    else
 		current[space] = value;
 	}
-    },
-    
-    login_checklogin: function() {
-	return <?php echo (int)$page->user->exists(); ?>;
     }
 };
 

@@ -432,3 +432,21 @@ dd
 	border: 1px solid #A45A30;
 	background: #FFA57D;
     }
+
+/**
+* Avatar
+*/
+
+#avatar_container {
+    border: 10px solid rgba(100, 100, 100, 0.9);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+    #avatar_status {
+	background: #333;
+	text-align: center;
+	border: 1px solid #333;
+	color: #fff;
+    }
