@@ -25,7 +25,7 @@
 	-webkit-border-radius: 3px;
 }
 
-#side_module_profile_visitors ul li:nth-child(4n+4) {
+#side_module_profile_visitors ul li.visitor_4, #side_module_profile_visitors ul li.visitor_8 {
 	margin-right: 0;
 }
 
