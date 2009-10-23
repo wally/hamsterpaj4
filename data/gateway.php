@@ -179,15 +179,26 @@
 				Tools::pick_inplace($ui_options['menu_active'], NULL);
 				
 				$remove_scripts = array(
-						'jquery.js'
+					'jquery.js',
+					'jquery-ui.js',
+					'jquery.dimensions.js',
+					'synchronize.js',
+					'swfobject.js',
+					'ui.js',
+					'ui_modules.js',
+					'ui_multisearch.js',
+					'ui_business_card.js',
+					'stay_online.js',
+					'md5.js',
+					'steve.js'
 				);
 
 				foreach ( $remove_scripts as $script )
 				{
-						while ( false !== ($position = array_search($script, $ui_options['javascripts'])))
-						{
-							 array_splice($ui_options['javascripts'], $position, 1);
-						}
+					while ( false !== ($position = array_search($script, $ui_options['javascripts'])))
+					{
+						 array_splice($ui_options['javascripts'], $position, 1);
+					}
 				}
 
 				$page->menu_active = $ui_options['menu_active'];

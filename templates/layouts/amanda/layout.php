@@ -22,6 +22,11 @@
 		
 		<!-- HP JavaScript -->
 		<script src="/scripts.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		    hp.login_checklogin: function() {
+			return <?php echo (int)$page->user->exists(); ?>;
+		    };
+		</script>
 		
 		<?php foreach ( Tools::pick($page->extra_js, array()) as $script ): ?>
 		    <script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
@@ -52,7 +57,6 @@
 			+ 'charset="UTF-8"></sc'+'ript>');
 		</script>
 
-		<!--<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kodnamn_daniella/sida_1.php#post_1875820"><img alt="Kodnamn: Daniella" src="http://static.hamsterpaj.net/images/layouts/amanda/daniella.png" id="daniella" /></a>-->
 		<div id="wrapper">
 			<script type='text/javascript'><!--//<![CDATA[
 				Ads.insert(250, 'banner980x120 noprint');
