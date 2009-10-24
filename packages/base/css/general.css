@@ -248,7 +248,7 @@ dd
 		background: none;
 	    }
 
-	#notices li div.notices_information #footer {
+	#notices li div.notices_information .beat-footer {
 		display: block;
 		height: 11px;
 		width: 256px;
@@ -269,6 +269,8 @@ dd
 	#notices li div.notices_information li {
 		list-style: none;
 	}
+	
+	#notices li div.notices_information li h5,
 	#notices li div.notices_information li a {
 		background: none !important;
 		display: block;
@@ -292,6 +294,13 @@ dd
 		padding: 15px 0 0;
 		margin-bottom: 4px;
 	}
+	
+	    #notices li div.notices_information h5 {
+		margin: 0;
+		background-color: #999;
+		padding-left: 10px;
+		font-weight: normal;
+	    }
 	
 	#notices_information_footer {
 		display: block;

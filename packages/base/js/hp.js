@@ -1,19 +1,17 @@
-window.hp = {
-    packages: {},
+window.hp.packages = {};
+
+window.hp.set = function(namespace, value) {
+    var spaces = namespace.split('.'),
+	current = hp;
     
-    set: function(namespace, value) {
-	var spaces = namespace.split('.'),
-	    current = hp;
+    for ( var i = 0, last = spaces.length - 1, space; space = spaces[i]; i++ ) {
+	if ( ! current[space] )
+	    current[space] = {};
 	
-	for ( var i = 0, last = spaces.length - 1, space; space = spaces[i]; i++ ) {
-	    if ( ! current[space] )
-		current[space] = {};
-	    
-	    if ( i !== last )
-		current = current[space];
-	    else
-		current[space] = value;
-	}
+	if ( i !== last )
+	    current = current[space];
+	else
+	    current[space] = value;
     }
 };
 

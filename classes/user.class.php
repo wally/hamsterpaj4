@@ -42,7 +42,8 @@
 			$location,
 			$privileges,
 			$geo_location,
-			$notifications = array();
+			$notifications = array(),
+			$last_update;
 		
 		protected $unread_gb_entries;
 		protected $unread_group_entries;
@@ -224,6 +225,38 @@
 		    return $this->unread_group_entries;
 		}
 		
+		public function get_forum_subscriptions()
+		{
+		    $this->update_forum();
+		    return $this->forum['subscriptions'];
+		}
+		
+		public function get_forum_category_subscriptions()
+		{
+		    $this->update_forum();
+		    return $this->forum['category_subscriptions'];
+		}
+		
+		public function get_unread_forum_posts()
+		{
+		    $this->update_forum();   
+		    return $this->forum['new_notices'];
+		}
+		
+		public function get_forum_notices()
+		{
+		    $this->update_forum();
+		    return $this->forum['notices'];
+		}
+		
+		public function update_forum()
+		{
+		    if ( true || is_null($this->forum) )
+		    {
+			$this->forum = Legacy::fetch_forum_notices($this);
+		    }
+		}
+		
 		public function auth($password)
 		{
 			return (Secret::password_hash($password) == $this->password);
@@ -268,6 +301,16 @@
 				$this->visitors = User::fetch($search, $params);
 			}
 			return $this->visitors;
+		}
+		
+		function get_forum_categories()
+		{
+			if ( ! isset($this->forum['categories']) || $this->cache['last_update'] - time() > 20 )
+			{
+			
+			}
+			
+			return $this->forum['categories'];
 		}
 		
 		function notificate($params, $type = 'default')

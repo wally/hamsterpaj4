@@ -13,8 +13,21 @@
 			</a>
 		</li>
 		
-		<li class="notice_panel" id="notices_forum">
-			<a class="notice_icon" id="ui_noticebar_forum" class="ui_noticebar_active" href="/diskussionsforum/notiser.php">Forum</a>
+		<?php $unread = $user->get('unread_forum_posts'); ?>
+		<li class="notice_panel <?php echo ($unread > 0) ? 'active' : ''; ?>" id="notices_forum">
+			<a class="notice_icon" id="ui_noticebar_forum" href="/diskussionsforum/notiser.php">
+			    <?php if ( $unread == 1 ): ?>
+				1 ny
+			    <?php elseif ( $unread > 1 ): ?>
+				<?php echo $unread; ?> nya
+			    <?php else: ?>
+				Forum
+			    <?php endif; ?>
+			</a>
+			
+			<div class="notices_information">
+			    <?php echo PageHeartbeat::run_hook('forum', $page); ?>
+			</div>
 		</li>
 		
 		<?php $unread = $user->get('unread_group_entries'); ?>
