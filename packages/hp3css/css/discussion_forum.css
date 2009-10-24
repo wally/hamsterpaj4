@@ -1,3 +1,5 @@
+
+
 .forum_locator
 {
 	font-size: 12px;
@@ -170,6 +172,11 @@
 	float: right;
 	padding: 3px;
 	width: 16px;
+}
+
+.forum_thread_list img
+{
+    display: inline;
 }
 
 .forum_thread_info .started_at, .forum_thread_info .thread_subscribing, .forum_thread_info .post_count, .forum_thread_info .view_count
@@ -364,6 +371,7 @@
 
 .forum_post .abuse_button img
 {
+	float: right;
 	border: none;
 }
 
@@ -495,7 +503,7 @@
 
 .forum_post_form .forum_post_form_help_area
 {
-	width: 150px;
+	width: 145px;
 	margin-left: 10px;
 }
 
