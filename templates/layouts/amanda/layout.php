@@ -21,12 +21,13 @@
 		</style>
 		
 		<!-- HP JavaScript -->
-		<script src="/scripts.js" type="text/javascript"></script>
 		<script type="text/javascript">
-		    hp.login_checklogin: function() {
+		    window.hp = {};
+		    window.hp.login_checklogin = function() {
 			return <?php echo (int)$page->user->exists(); ?>;
 		    };
 		</script>
+		<script src="/scripts.js" type="text/javascript"></script>
 		
 		<?php foreach ( Tools::pick($page->extra_js, array()) as $script ): ?>
 		    <script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
