@@ -177,6 +177,7 @@
 				Tools::pick_inplace($ui_options['stylesheets'], array());
 				Tools::pick_inplace($ui_options['javascripts'], array());
 				Tools::pick_inplace($ui_options['menu_active'], NULL);
+				Tools::pick_inplace($ui_options['title'], false);
 				
 				$remove_scripts = array(
 					'jquery.js',
@@ -204,6 +205,7 @@
 				$page->menu_active = $ui_options['menu_active'];
 				$page->extra_css = $ui_options['stylesheets'];
 				$page->extra_js = $ui_options['javascripts'];
+				$page->title = $ui_options['title'];
 				
 				if ( ! isset($ui_options['ui_top_called']) )
 				{
