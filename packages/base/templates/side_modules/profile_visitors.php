@@ -1,4 +1,4 @@
-<?php $counter = 1; ?><a class="minimize" href="#">+</a><h5>Besökare</h5>
+<?php $counter = 1; ?><a class="minimize" href="#">+</a><h5>Besökare</h5><a class="move" href="#">=</a>
 <ul>
 	<?php foreach($module->visitors AS $visitor) : ?>
 		<li class="visitor_<?php echo $counter++; ?>">

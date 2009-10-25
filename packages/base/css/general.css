@@ -387,10 +387,21 @@ dd
 	height: 7px;
 	outline: none;
 	text-indent: -999em;
-	background: url('http://images.birdy.nu/images/minimize.png') no-repeat;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/module_minimize.png") no-repeat;
 	position: absolute;
-	margin-top: 10px;
+	margin-top: 8px;
 	
+}
+
+#hp #modules a.move {
+	display: block;
+	width: 11px;
+	height: 10px;
+	outline: none;
+	text-indent: -999px;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/side_module_move.png") no-repeat;
+	float: right;
+	margin-top: -22px;
 }
 
 .textarea_full

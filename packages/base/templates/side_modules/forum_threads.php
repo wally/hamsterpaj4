@@ -1,5 +1,5 @@
 <?php $counter = new Counter('odd', 'even'); ?>
-<a class="minimize" href="#">+</a><h5>Nya tr&aring;dar</h5>
+<a class="minimize" href="#">+</a><h5>Nya tr&aring;dar</h5><a class="move" href="#">=</a>
 <ul>
 	<?php foreach($module->threads as $thread) : ?>
 		<li class="<?php echo $counter; ?>">
