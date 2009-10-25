@@ -61,18 +61,18 @@
 			foreach($bigmenu as $key => $row)
 			{
 				// Om det här är den aktiva menyn, hämta submeny
-				if(isset($row['active']) && $row['active'] == true)
-				{
-					Tools::debug($key . ' är aktiv, vilka submenyer finner vi?');
+				//if(isset($row['active']) && $row['active'] == true)
+				//{
+				//	Tools::debug($key . ' är aktiv, vilka submenyer finner vi?');
 					foreach($menu as $key2 => $row2)
 					{
 						if(isset($row2['parent']) && $key == $row2['parent'])
 						{
 							Tools::debug($key2 . ' finns i ' . $key);
-							$submenu[$key2] = $row2;
+							$submenu[$key][$key2] = $row2;
 						}
 					}
-				}
+				//}
 			}
 
 			$out = template('menu', 'menu.php', array('bigmenu' => $bigmenu, 'submenu' => $submenu));
