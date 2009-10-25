@@ -1,4 +1,4 @@
-<h4><a href="/discussionsforum/notiser.php">Dina forumnotiser (<span><?php echo $unread; ?></span>)</a></h4>
+<h4><a href="/diskussionsforum/notiser.php">Dina forumnotiser (<span><?php echo $unread; ?></span>)</a></h4>
 
 <?php if ( $unread > 0 ): ?>
     <?php if ( count($subscriptions) ): ?>
