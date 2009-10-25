@@ -16,10 +16,19 @@ window.hp.set = function(namespace, value) {
 };
 
 function debug(msg) {
-    var dt = $('<dt/>').html('JSdebug');
-    var dd = $('<dd/>').html(typeof msg === 'undefined' ? 'undefined' : msg);
-
-    $('#debug').append(dt)
-	.append(dd)
-	.animate({scrollTop: $('#debug').innerHeight() });
+    $(document).ready(function() {
+	if ( typeof msg == 'object' ) {
+	    var message = '{';
+	    for ( var key in msg ) if ( msg.hasOwnProperty(key) ) {
+		message += key + ': ' + msg[key] + ',<br />';
+	    }
+	    msg = message.substr(0, message.length - 7) + '}';
+	}
+	var dt = $('<dt/>').html('JSdebug');
+	var dd = $('<dd/>').html(typeof msg === 'undefined' ? 'undefined' : msg);
+    
+	$('#debug').append(dt)
+	    .append(dd)
+	    .attr('scrollTop', 100000000);
+    });
 }
