@@ -32,7 +32,7 @@
 				// Kolla om menyvalet är aktivt
 				if($key == $page->menu_active)
 				{
-					Tools::debug($key . ' är satt till aktiv');
+					//Tools::debug($key . ' är satt till aktiv');
 					$row['active'] = true;
 				}
 				
@@ -43,7 +43,7 @@
 						// Kolla om barnet är aktivt
 						if($page->menu_active == $key2)
 						{
-							Tools::debug($key2 . ' är nu satt till aktiv');
+							//Tools::debug($key2 . ' är nu satt till aktiv');
 							// Sätt föräldern till aktiv
 							$row['active'] = true;
 							// Sätt ungen till aktiv
@@ -68,7 +68,7 @@
 					{
 						if(isset($row2['parent']) && $key == $row2['parent'])
 						{
-							Tools::debug($key2 . ' finns i ' . $key);
+							//Tools::debug($key2 . ' finns i ' . $key);
 							$submenu[$key][$key2] = $row2;
 						}
 					}
