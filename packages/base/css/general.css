@@ -26,10 +26,11 @@ a img
 	border: none;
 }
 
+/* Put this back if it breaks anything
 img
 {
 	display: block;
-}
+}*/
 
 h1, h2, h3, h4, h5, h6 
 {
@@ -297,7 +298,7 @@ dd
 	
 	    #notices li div.notices_information h5 {
 		margin: 0;
-		background-color: #999;
+		background-color: #d0e0c0;
 		padding-left: 10px;
 		font-weight: normal;
 	    }
