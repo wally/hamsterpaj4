@@ -17,7 +17,13 @@ class Legacy
 		    return false;
 		
 		global $_PDO;
-		$return = array('cache' => array('unread_group_notices' => 0));
+		
+		$return = array(
+		    'cache' => array(
+			'unread_group_notices' => 0,
+			'group_notices' => array()
+		    )
+		);
 		
 		$query = 'SELECT groupid FROM groups_members WHERE userid = ? AND approved = 1';
 		$query = $_PDO->prepare($query);
@@ -30,6 +36,11 @@ class Legacy
 		}
 		
 		$return['groups_members'] = $groups_members;
+		
+		if ( ! count($groups_members) )
+		{
+			return $return;
+		}
 		
 		$query = 'SELECT groups_list.groupid, groups_list.message_count, groups_members.read_msg, groups_list.name FROM groups_members, groups_list ';
 		$query .= 'WHERE groups_members.groupid IN(' . implode(', ', $return['groups_members']) . ') AND groups_list.groupid = groups_members.groupid';
@@ -56,7 +67,11 @@ class Legacy
 		global $_PDO;
 		
 		// The $return-array can be merged into $_SESSION['forum']
-		$return = array();
+		$return = array(
+		    'categories' => array(),
+		    'new_notices' => 0,
+		    'subscriptions' => array()
+		);
 		
 		$query = 'SELECT cv.*, pf.title, pf.handle FROM forum_category_visits as cv
 		
@@ -174,5 +189,24 @@ class Legacy
 		$return['new_notices'] += $return['new_threads_count'];
 		
 		return $return;
+	}
+	
+	public static function fetch_unread_photo_comments(User $user)
+	{
+		global $_PDO;
+		
+	    	$query = 'SELECT id, unread_comments, description FROM user_photos WHERE user = :user_id AND unread_comments > 0';
+		
+		$stmt = $_PDO->prepare($query);
+		$stmt->bindValue(':user_id', $user->get('id'), PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$unread = array();
+		foreach ( $stmt->fetchAll(PDO::FETCH_ASSOC) as $row )
+		{
+			$unread[$row['id']] = $row;
+		}
+		
+		return $unread;
 	}
 }

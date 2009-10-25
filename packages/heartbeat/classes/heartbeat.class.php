@@ -24,7 +24,7 @@ class PageHeartbeat extends Page
     
     public static function url_hook($uri)
     {
-	return (Tools::beginswith($uri, '/heartbeat') ? 50 : 0);
+	return (String::beginswith($uri, '/heartbeat') ? 50 : 0);
     }
     
     public function execute($uri)

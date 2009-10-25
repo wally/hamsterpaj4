@@ -1,4 +1,4 @@
-<a class="minimize" href="#">+</a><h5>Statistik</h5>
+<a class="minimize" href="#">+</a><h5>Statistik</h5><a class="move" href="#">=</a>
 	<ul>
 		<li>Besökare<span class="right"><?php echo $module->visitors; ?></span></li>
 		<li>Inloggade<span class="right"><?php echo $module->logged_in; ?></span></li>

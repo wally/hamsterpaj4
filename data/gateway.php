@@ -177,6 +177,7 @@
 				Tools::pick_inplace($ui_options['stylesheets'], array());
 				Tools::pick_inplace($ui_options['javascripts'], array());
 				Tools::pick_inplace($ui_options['menu_active'], NULL);
+				Tools::pick_inplace($ui_options['title'], false);
 				
 				$remove_scripts = array(
 					'jquery.js',
@@ -204,6 +205,7 @@
 				$page->menu_active = $ui_options['menu_active'];
 				$page->extra_css = $ui_options['stylesheets'];
 				$page->extra_js = $ui_options['javascripts'];
+				$page->title = $ui_options['title'];
 				
 				if ( ! isset($ui_options['ui_top_called']) )
 				{
@@ -287,6 +289,14 @@
 				echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 			}
 		}
+	}
+	catch (PDOException $e)
+	{
+		echo '<div style="background: #fff; position: absolute; top: 0px; width: 100%; left: 0px; border: 3px solid red; overflow: auto;">';
+		echo '<h1>Oh noes! Error error abort abort! ABORT!</h1>';
+		echo '<p>' . $e->getMessage() . '</p>';
+		preint_r($e->getTrace());
+		echo '</div>';
 	}
 	catch (Exception $e)
 	{

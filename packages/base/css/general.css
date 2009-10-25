@@ -26,10 +26,11 @@ a img
 	border: none;
 }
 
+/* Put this back if it breaks anything
 img
 {
 	display: block;
-}
+}*/
 
 h1, h2, h3, h4, h5, h6 
 {
@@ -255,6 +256,7 @@ dd
 		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_footer.png) no-repeat;
 		margin-left: -3px;
 		position: absolute;
+		clear: both;
 	}
 	
 	#notices li div.notices_information .unread {
@@ -297,8 +299,8 @@ dd
 	
 	    #notices li div.notices_information h5 {
 		margin: 0;
-		background-color: #999;
-		padding-left: 10px;
+		background-color: #d0e0c0;
+		text-align: center;
 		font-weight: normal;
 	    }
 	
@@ -308,6 +310,18 @@ dd
 		height: 15px;
 		background-color: grey;
 	}
+	
+	#notices li div.notices_information #unread_photo_comments li a {
+	    height: 61px;
+	    float: left;
+	    padding: 0;
+	    margin: 0;
+	}
+	    
+	    #notices #unread_photo_comments li img {
+		display: block;
+		float: left;
+	    }
 	
 /**
 *	Login status
@@ -386,10 +400,21 @@ dd
 	height: 7px;
 	outline: none;
 	text-indent: -999em;
-	background: url('http://images.birdy.nu/images/minimize.png') no-repeat;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/module_minimize.png") no-repeat;
 	position: absolute;
-	margin-top: 10px;
+	margin-top: 8px;
 	
+}
+
+#hp #modules a.move {
+	display: block;
+	width: 11px;
+	height: 10px;
+	outline: none;
+	text-indent: -999px;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/side_module_move.png") no-repeat;
+	float: right;
+	margin-top: -22px;
 }
 
 .textarea_full
@@ -479,6 +504,10 @@ dd
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+
+    #avatar_container img {
+	display: block;
+    }
 
     #avatar_status {
 	background: #333;

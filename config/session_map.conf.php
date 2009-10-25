@@ -42,10 +42,14 @@
 	$session_map['module_order'] = array('module_order');
 	
 	$session_map['cache'] = array('cache');
+	$session_map['last_update'] = array('cache', 'lastupdate');
+	
 	$session_map['notices'] = array('notices');
 	$session_map['notifications'] = array('notifications');
 	
 	$session_map['visitors_with_image'] = array('visitors_with_image');
+	
+	$session_map['unread_photo_comments'] = array('cache', 'unread_photo_comments');
 	
 	$session_map['forum'] = array('forum');
 ?>

@@ -4,6 +4,7 @@
 		// Die die die
 		public $last_action,
 			$last_logon,
+			$last_update,
 			$signature,
 			$visitors,
 			$username,
@@ -42,11 +43,11 @@
 			$location,
 			$privileges,
 			$geo_location,
-			$notifications = array(),
-			$last_update;
+			$notifications = array();
 		
 		protected $unread_gb_entries;
 		protected $unread_group_entries;
+		protected $unread_photo_comments;
 		
 		public function online()
 		{
@@ -121,6 +122,15 @@
 			$this->lastaction = time();
 		}
 		
+		public function get_last_update()
+		{
+		    if ( is_null($this->last_update) )
+		    {
+			$this->last_update = time();
+		    }
+		    return $this->last_update;
+		}
+		
 		public function fetch($search, $params = array())
 		{
 			global $_PDO;
@@ -162,7 +172,8 @@
 			$query .= ' GROUP BY l.id';
 			$query .= ' ORDER BY ' . $search['order-by'] . ' ' . $search['order-direction'];
 			$query .= ' LIMIT ' . $search['limit'];
-
+			
+			$users = array();
 			foreach($_PDO->query($query) AS $row)
 			{
 				$user = new User();
@@ -193,28 +204,70 @@
 					return $user;
 				}
 			}
-
+			
 			return ($params['allow_multiple'] == true) ? $users : false;
+		}
+		
+		public function get_unread_photo_comments()
+		{
+			$this->update_notices();
+			return $this->unread_photo_comments;
 		}
 		
 		public function get_unread_gb_entries()
 		{
-			if(isset($this->unread_gb_entries))
-			{
-				return count($this->unread_gb_entries);
-			}
-			else
-			{
-				$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_anonymous' => true);
-				$this->unread_gb_entries = Guestbook::fetch($search);
-				return count($this->unread_gb_entries);
-			}
+			$this->update_notices();
+			return count($this->unread_gb_entries);
 		}
 		
 		public function get_unread_group_entries()
 		{
-		    if ( is_null($this->unread_group_entries) )
+		    $this->update_notices();
+		    return $this->unread_group_entries;
+		}
+		
+		public function get_forum_subscriptions()
+		{
+		    $this->update_notices();
+		    return $this->forum['subscriptions'];
+		}
+		
+		public function get_forum_category_subscriptions()
+		{
+		    $this->update_notices();
+		    return $this->forum['category_subscriptions'];
+		}
+		
+		public function get_unread_forum_posts()
+		{
+		    $this->update_notices();   
+		    return $this->forum['new_notices'];
+		}
+		
+		public function get_forum_notices()
+		{
+		    $this->update_notices();
+		    return $this->forum['notices'];
+		}
+		
+		public function update_notices()
+		{
+		    if ( ! $this->exists() )
 		    {
+			return false;
+		    }
+		    
+		    $force_update = $this->get_last_update() < time() - 20;
+		    
+		    if ( ! isset($this->forum) || $force_update )
+		    {
+			// Forum
+			$this->forum = Legacy::fetch_forum_notices($this);
+		    }
+		    
+		    if ( ! isset($this->groups_members) || $force_update )
+		    {
+			// Groups
 			$entries = Legacy::fetch_group_notices($this);
 			
 			$this->cache = array_merge($this->cache, $entries['cache']);
@@ -222,38 +275,23 @@
 			
 			$this->unread_group_entries = $entries['cache']['unread_group_notices'];
 		    }
-		    return $this->unread_group_entries;
-		}
-		
-		public function get_forum_subscriptions()
-		{
-		    $this->update_forum();
-		    return $this->forum['subscriptions'];
-		}
-		
-		public function get_forum_category_subscriptions()
-		{
-		    $this->update_forum();
-		    return $this->forum['category_subscriptions'];
-		}
-		
-		public function get_unread_forum_posts()
-		{
-		    $this->update_forum();   
-		    return $this->forum['new_notices'];
-		}
-		
-		public function get_forum_notices()
-		{
-		    $this->update_forum();
-		    return $this->forum['notices'];
-		}
-		
-		public function update_forum()
-		{
-		    if ( true || is_null($this->forum) )
+		    
+		    if ( ! isset($this->unread_gb_entries) || $force_update )
 		    {
-			$this->forum = Legacy::fetch_forum_notices($this);
+			// Guestbook
+			$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_anonymous' => true);
+			$this->unread_gb_entries = Guestbook::fetch($search);
+		    }
+		    
+		    if ( ! isset($this->unread_photo_comments) || $force_update )
+		    {
+			// Events (photo comments atm)
+			$this->unread_photo_comments = Legacy::fetch_unread_photo_comments($this);
+		    }
+		    
+		    if ( $force_update )
+		    {
+			$this->last_update = time();
 		    }
 		}
 		

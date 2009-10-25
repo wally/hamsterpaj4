@@ -27,7 +27,7 @@
 				    }
 				    unset($files[$key]);
 				}
-				elseif ( $options['endswith'] && ! Tools::endswith($file, $options['endswith']) )
+				elseif ( $options['endswith'] && ! String::endswith($file, $options['endswith']) )
 				{
 				    unset($files[$key]);
 				    continue;
@@ -208,16 +208,6 @@
 		static function choose(&$test, $on_true, $on_false)
 		{
 		    return self::is_true($test) ? $on_true : $on_false;
-		}
-		
-		static function beginswith($string, $test)
-		{
-		    return substr($string, 0, strlen($test)) === $test;
-		}
-		
-		static function endswith($string, $test)
-		{
-		    return substr($string, -strlen($test)) === $test;
 		}
 	}
 ?>

@@ -31,7 +31,7 @@
     </ul>
     <?php endif; ?>
 <?php else: ?>
-<h5>Inget nytt!</h5>
+<h5 class="nothing-new">Inget nytt!</h5>
 <?php endif; ?>
 
 <div class="beat-footer"></div>
