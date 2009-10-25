@@ -55,8 +55,27 @@ class Legacy
 		
 		global $_PDO;
 		
-		// The $return-array can be merged into $_SESSION
+		// The $return-array can be merged into $_SESSION['forum']
 		$return = array();
+		
+		$query = 'SELECT cv.*, pf.title, pf.handle FROM forum_category_visits as cv
+		
+		    LEFT JOIN public_forums AS pf ON pf.id = cv.category_id
+		    
+		    WHERE cv.user_id = ' . $user->get('id') . '
+		';
+		
+		$statement = $_PDO->prepare($query);
+		$statement->execute();
+		
+		$return['categories'] = array();
+		
+		foreach ( $statement->fetchAll(PDO::FETCH_ASSOC) as $row )
+		{
+		    $return['categories'][$row['category_id']] = $row;
+		}
+		
+		$return['new_notices'] = 0;
 		
 		$query = 'SELECT p.*, l.username, l.lastaction, l.userlevel, l.regtimestamp, u.last_warning,
 			    u.gender, u.user_status, u.forum_userlabel, u.forum_posts AS author_post_count,
@@ -99,6 +118,8 @@ class Legacy
 			{
 				$return['subscriptions'][$thread['id']][$key] = $thread[$key];
 			}
+			
+			$return['new_notices'] += $thread['unread_posts'];
 		}
 		
 		// Reload notices
@@ -111,30 +132,27 @@ class Legacy
 		$result = $_PDO->prepare($query);
 		$result->execute();
 		
-		foreach ( $result->fetchAll() as $row )
+		foreach ( $result->fetchAll(PDO::FETCH_ASSOC) as $row )
 		{
 			$row['title'] = (strlen(trim($row['title'])) == 0) ? 'Rubrik saknas' : $row['title'];
-			$return['notices'][] = $data;
+			$return['notices'][] = $row;
 		}
+		
+		$return['new_notices'] += count($return['notices']);
 		
 		// Reload category subscriptions
 		
-		$query = 'SELECT pf.id FROM public_forums AS pf
-		    LEFT JOIN forum_category_visits AS v ON v.category_id = pf.id
-		    WHERE user_id = ' . $user->get('id') . '
-		    AND subscribing = 1
-		';
-		
-		$result = $_PDO->prepare($query);
-		$result->execute();
-		
-		$categories = array();		
-		foreach ( $result->fetchAll(PDO::FETCH_ASSOC) as $forum )
+		$categories = array();	
+		foreach ( $return['categories'] as $forum )
 		{
-		    $categories[] = $forum['id'];
+		    if ( $forum['subscribing'] )
+		    {
+			$categories[] = $forum['category_id'];
+		    }
 		}
 		
 		$return['new_threads_count'] = 0;
+		$return['category_subscriptions'] = array();
 		
 		$query = 'SELECT id, thread_count FROM public_forums WHERE id IN ("' . implode('", "', $categories) . '")';
 		$query .= ' AND userlevel_read <= ' . ($user->exists() ? /*$user->get('userlevel')*/0 : 0);
@@ -144,11 +162,17 @@ class Legacy
 		
 		foreach( $result->fetchAll(PDO::FETCH_ASSOC) as $data)
 		{
-			if($data['thread_count'] > $_SESSION['forum']['categories'][$data['id']]['last_thread_count'])
+			if ( $data['thread_count'] > $return['categories'][$data['id']]['last_thread_count'] )
 			{
-				//$return['new_threads_count'] += $data['thread_count'] - $_SESSION['forum']['categories'][$data['id']]['last_thread_count'];
-				$return['new_threads_count'] = 0;
+				$category = $return['categories'][$data['id']];
+				$category['new_threads'] = $data['thread_count'] - $return['categories'][$data['id']]['last_thread_count'];
+				$return['category_subscriptions'][] = $category;
+				$return['new_threads_count'] += $category['new_threads'];
 			}
 		}
+		
+		$return['new_notices'] += $return['new_threads_count'];
+		
+		return $return;
 	}
 }

@@ -65,7 +65,7 @@ class PageHeartbeat extends Page
 	    include(PATH_PACKAGES . $hook);
 	}
 	
-	self::$hooks = $hooks;
+	self::$hooks = $ret;
 	
 	return $ret;
     }

@@ -1,6 +1,6 @@
 <?php
 	// Main menu object (Menu items in orange
-	$menu['onlinespel'] = array('label' => 'Onlinespel', 'priority' => '133', 'url' => '/onlinespel/');
+	$menu['onlinespel'] = array('label' => 'Spel', 'priority' => '133', 'url' => '/onlinespel/');
 	$menu['onlinespel_crews-favoriter'] = array('parent' => 'onlinespel', 'label' => 'Crews Favoriter', 'url' => '/onlinespel/taggar/crews-favoriter');
 	$menu['onlinespel_valgjort'] = array('parent' => 'onlinespel', 'label' => 'Välgjort', 'url' => '/onlinespel/taggar/valgjort');
 	$menu['onlinespel_action'] = array('parent' => 'onlinespel', 'label' => 'Action', 'url' => '/onlinespel/taggar/action');
