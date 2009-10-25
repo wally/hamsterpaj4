@@ -180,7 +180,7 @@
 			   return $newArr;
 		}
 		
-		static public static function pick(&$test, $else)
+		public static function pick(&$test, $else)
 		{
 		    if ( ! isset($test) )
 		    {
@@ -189,25 +189,30 @@
 		    return $test;
 		}
 		
-		static public static function pick_inplace(&$test, $else)
+		public static function pick_inplace(&$test, $else)
 		{
 		    $test = self::pick($test, $else);
 		}
 		
-		static public static function ensure_array(&$test)
+		public static function ensure_array(&$test)
 		{
 		    $arr = self::pick($test, array());
 		    return is_array($arr) ? $arr : array();
 		}
 		
-		static public static function is_true(&$test)
+		public static function is_true(&$test)
 		{
 		    return isset($test) && $test;
 		}
 		
-		static public static function choose(&$test, $on_true, $on_false)
+		public static function choose(&$test, $on_true, $on_false)
 		{
 		    return self::is_true($test) ? $on_true : $on_false;
+		}
+		
+		public static function last($array)
+		{
+		    return end($array);
 		}
 	}
 ?>

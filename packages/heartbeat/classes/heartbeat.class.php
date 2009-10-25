@@ -22,7 +22,7 @@ class PageHeartbeat extends Page
     
     private static $hooks = null;
     
-    public static public static function url_hook($uri)
+    public static function url_hook($uri)
     {
 	return (String::beginswith($uri, '/heartbeat') ? 50 : 0);
     }
@@ -61,7 +61,7 @@ class PageHeartbeat extends Page
 	
 	foreach ( $hooks as $hook )
 	{
-	    $ret[] = preg_replace('#([A-Za-z0-9-_]+)\.beat\.php#', '$1', end(explode('/', $hook)));
+	    $ret[] = preg_replace('#([A-Za-z0-9-_]+)\.beat\.php#', '$1', Tools::last(explode('/', $hook)));
 	    include(PATH_PACKAGES . $hook);
 	}
 	

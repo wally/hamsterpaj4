@@ -61,8 +61,17 @@
 			}
 		}
 		
+		$report_errors = true;
+		
 		function hp_error_handler($errno, $errstr, $errfile, $errline)
 		{
+			global $report_errors;
+			
+			if ( ! $report_errors )
+			{
+				return false;
+			}
+			
 			switch ( $errno )
 			{
 				case E_ERROR: $str = 'Error'; break;
@@ -129,6 +138,8 @@
 		// -- start HP3
 		if ( $page instanceof Page404 )
 		{
+			$report_errors = false;
+			
 			$raw_outputters = array();
 			$raw_outputters[] = '/ajax_gateways/';
 			
@@ -241,6 +252,7 @@
 			{
 				define('IS_HP3_REQUEST', false);
 			}
+			$report_errors = true;
 		}
 		else
 		{
