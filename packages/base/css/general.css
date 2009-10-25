@@ -481,6 +481,10 @@ dd
     border-radius: 5px;
 }
 
+    #avatar_container img {
+	display: block;
+    }
+
     #avatar_status {
 	background: #333;
 	text-align: center;
