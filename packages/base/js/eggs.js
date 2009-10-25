@@ -20,7 +20,7 @@ hp.set('packages.eggs', {
 	    pos.x > hp.packages.eggs.supercoloractivatorposition.x
 	    && pos.x < hp.packages.eggs.supercoloractivatorposition.x + 10
 	    && pos.y > hp.packages.eggs.supercoloractivatorposition.y
-	    && pos.y < hp.packages.eggs.supercoloractivatorposition.y + 10
+	    && pos.y < hp.packages.eggs.supercoloractivatorposition.y + 15
 	) {
 	    hp.packages.eggs.go_crazy();
 	    return false;
