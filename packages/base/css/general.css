@@ -113,7 +113,6 @@ dd
 {
 	width: 1200px;
 }
-
 #column_ads
 {
 	padding-top: 50px;
@@ -138,6 +137,14 @@ dd
 	-webkit-border-top-right-radius: 8px;
 	-moz-border-radius-topleft: 8px;
 	-webkit-border-top-left-radius: 8px;
+	position: relative;
+}
+
+#steve
+{
+    position: absolute;
+    top: -22px;
+    left: 855px;
 }
 
 #hp #head h2

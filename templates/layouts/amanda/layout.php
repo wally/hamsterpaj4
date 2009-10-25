@@ -57,14 +57,16 @@
 			document.write('<sc'+'ript type="text/javascript" src="'+uri+'"'
 			+ 'charset="UTF-8"></sc'+'ript>');
 		</script>
-
+		
 		<div id="wrapper">
 			<script type='text/javascript'><!--//<![CDATA[
 				Ads.insert(250, 'banner980x120 noprint');
-				//]]>-->
-			</script>
+			//]]>--></script>
+			
+		
 			<div id="hp">
 				<div id="head">
+				<img id="steve" src="http://images.hamsterpaj.net/steve/steve.gif" alt="" />
 				<h2><a href="/">Hamsterpaj.net</a></h2>
 					<?php if( $page->user->exists() ) : ?>
 						<?php echo template('user', 'noticebar.php', array('user' => $page->user, 'page' => $page)); ?>
