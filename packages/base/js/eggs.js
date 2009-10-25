@@ -22,10 +22,9 @@ hp.set('packages.eggs', {
 	    && pos.y > hp.packages.eggs.supercoloractivatorposition.y
 	    && pos.y < hp.packages.eggs.supercoloractivatorposition.y + 10
 	) {
-	    debug('let\'s go!');
 	    hp.packages.eggs.go_crazy();
+	    return false;
 	}
-	return false;
     },
     
     go_crazy: function() {
