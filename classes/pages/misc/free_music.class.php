@@ -3,7 +3,7 @@
 	{
 		protected $songs;
 		
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return ($url == '/gratis-musik') ? 10 : 0;
 		}

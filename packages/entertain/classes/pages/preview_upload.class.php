@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainPreviewUpload extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/entertain-admin/preview_upload') ? 10 : 0;
 		}

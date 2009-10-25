@@ -4,7 +4,7 @@ class PageJS extends Page
 {
 	public $content_type = 'text/javascript';
 	
-	function url_hook($uri)
+	public static function url_hook($uri)
 	{
 		return ($uri == '/scripts.js') ? 10 : 0;
 	}

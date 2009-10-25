@@ -1,7 +1,7 @@
 <?php
   class PageBDBDownloadUser extends Page
   {
-    function url_hook($url)
+    public static function url_hook($url)
     {
       return (substr($url, 0, 19) == '/ajax/bilddagboken/') ? 5 : 0;
     }

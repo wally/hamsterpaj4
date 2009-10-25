@@ -1,7 +1,7 @@
 <?php
 	class Tools
 	{
-		function find_files($dir, $options)
+		public static function find_files($dir, $options)
 		{
 			Tools::pick_inplace($options['recursive'], true);
 			Tools::pick_inplace($options['excludes'], array());
@@ -41,7 +41,7 @@
 			return $files;
 		}
 
-		function fetch_files_from_folder($dir)
+		public static function fetch_files_from_folder($dir)
 		{
 			$files = scandir($dir);
 			foreach($files as $key => $file)
@@ -63,12 +63,12 @@
 			return $files;
 		}
 		
-		function cute_number($num)
+		public static function cute_number($num)
 		{
 			return strrev(chunk_split(strrev($num), 3, ' '));
 		}
 
-		function duration_readable($duration)
+		public static function duration_readable($duration)
 		{
 			$days = floor($duration/86400);
 			$hrs = floor(($duration - $days * 86400) / 3600);
@@ -84,12 +84,12 @@
 			return $return;
 		}
 
-		function date_readable($timestamp)
+		public static function date_readable($timestamp)
 		{
 			return date('Y-m-d H:i:s', $timestamp);
 		}
 		
-		function preint_r($data)
+		public static function preint_r($data)
 		{
 			$out = '<pre>' . "\n";
 			$out .= print_r($data, true);
@@ -98,7 +98,7 @@
 			return $out;
 		}
 
-		function debug($message)
+		public static function debug($message)
 		{
 			global $_DEBUG;
 			$backtrace = debug_backtrace();
@@ -107,7 +107,7 @@
 			if(isset($backtrace[1]['file']))
 			{
 				$function_file = substr($backtrace[1]['file'], strrpos($backtrace[1]['file'], '/')+1);
-				$message .= '<br /><span class="calling_function">Funktionen anropades utav: ' . $function_file . ' #' . $backtrace[1]['line'] . '</span>';
+				$message .= '<br /><span class="calling_public static function">Funktionen anropades utav: ' . $function_file . ' #' . $backtrace[1]['line'] . '</span>';
 			}
 			$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
 			
@@ -123,13 +123,13 @@
 			file_put_contents($filename, $log, FILE_APPEND);
 		}
 		
-		function timer($point)
+		public static function timer($point)
 		{
 			global $_TIMER;
 			$_TIMER[] = array('point' => $point, 'time' => microtime(true));
 		}
 
-		function handle($string)
+		public static function handle($string)
 		{
 			$healthy = array(' ', 'å', 'ä', 'ö');
 			$yummy = array('-', 'a', 'a', 'o');
@@ -137,7 +137,7 @@
 			return preg_replace('/[^a-zA-Z0-9\-\/]/', '', $string);		
 		}
 		
-		function file_size_readable($bytes, $precision = 2)
+		public static function file_size_readable($bytes, $precision = 2)
 		{
 		    $units = array('B', 'KB', 'MB', 'GB', 'TB');
 		  
@@ -150,7 +150,7 @@
 		    return round($bytes, $precision) . ' ' . $units[$pow];
 		}
 		
-		function file_download_time($bytes, $type)
+		public static function file_download_time($bytes, $type)
 		{
 			switch($type)
 			{
@@ -170,7 +170,7 @@
 			return round($sec, 0);
 		}
 		
-		function array_map_multidimensional($func, $arr)
+		public static function array_map_multidimensional($func, $arr)
 		{
 			$newArr = array();
 			foreach( $arr as $key => $value )
@@ -180,7 +180,7 @@
 			   return $newArr;
 		}
 		
-		static function pick(&$test, $else)
+		static public static function pick(&$test, $else)
 		{
 		    if ( ! isset($test) )
 		    {
@@ -189,23 +189,23 @@
 		    return $test;
 		}
 		
-		static function pick_inplace(&$test, $else)
+		static public static function pick_inplace(&$test, $else)
 		{
 		    $test = self::pick($test, $else);
 		}
 		
-		static function ensure_array(&$test)
+		static public static function ensure_array(&$test)
 		{
 		    $arr = self::pick($test, array());
 		    return is_array($arr) ? $arr : array();
 		}
 		
-		static function is_true(&$test)
+		static public static function is_true(&$test)
 		{
 		    return isset($test) && $test;
 		}
 		
-		static function choose(&$test, $on_true, $on_false)
+		static public static function choose(&$test, $on_true, $on_false)
 		{
 		    return self::is_true($test) ? $on_true : $on_false;
 		}

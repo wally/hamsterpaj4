@@ -1,7 +1,7 @@
 <?php
   class PageBDBDownloadStart extends Page
   {
-    function url_hook($url)
+    public static function url_hook($url)
     {
       return (substr($url, 0, 13)  == '/bilddagboken') ? 10 : 0;
     }

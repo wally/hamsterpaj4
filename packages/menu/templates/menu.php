@@ -1,6 +1,6 @@
 <ul id="main_menu">
     <?php foreach($bigmenu AS $handle => $current_menu): ?>
-	<li class="direct_child <?php echo @$was_active ? 'after_active' : ''; ?> <?php echo (Tools::pick($current_menu['type'], '') == 'big') ? 'big' : 'small'; ?>" <?php echo Tools::is_true($current_menu['active']) ? 'id="active"' : ''; ?>>
+	<li class="direct_child <?php echo Tools::pick($was_active, false) ? 'after_active' : ''; ?> <?php echo (Tools::pick($current_menu['type'], '') == 'big') ? 'big' : 'small'; ?>" <?php echo Tools::is_true($current_menu['active']) ? 'id="active"' : ''; ?>>
 		<a class="direct_child" href="<?php echo $current_menu['url']; ?>">
 			<?php echo $current_menu['label']; ?>
 		</a>

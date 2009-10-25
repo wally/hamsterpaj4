@@ -1,7 +1,7 @@
 <?php
 	class Page404 extends page
 	{
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return 1;
 		}

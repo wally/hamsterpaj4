@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainCompose extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/entertain-admin/ny') ? 10 : 0;
 		}

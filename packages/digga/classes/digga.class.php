@@ -2,7 +2,7 @@
 
 	class PageDiggaClassification extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 19) == '/digga/musikstilar/') ? 10 : 0;			
 		}
@@ -26,7 +26,7 @@
 
 	class PageDiggaAllArtists extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/digga/alla-artister') ? 10 : 0;			
 		}
@@ -42,7 +42,7 @@
 
 	class PageDiggaStart extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/digga') ? 10 : 0;
 		}
@@ -86,7 +86,7 @@
 	
 	class PageDiggaAdd extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/digga/ny-digga') ? 10 : 0;
 		}
@@ -138,7 +138,7 @@
 	
 	class PageDiggaGraph extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/digga/graph') ? 10 : 0;
 		}
@@ -184,7 +184,7 @@
 	
 	class PageDiggaArtist extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 14) == '/digga/artist/') ? 10 : 0;
 		}
@@ -498,7 +498,7 @@
 	
 	class PageDiggaExternalBattle extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/digga/external/battle') ? 10 : 0;
 		}

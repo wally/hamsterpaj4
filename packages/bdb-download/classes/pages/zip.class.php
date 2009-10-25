@@ -1,7 +1,7 @@
 <?php
   class PageBDBDownloadZip extends Page
   {
-    function url_hook($uri)
+    public static function url_hook($uri)
     {
     	$uri_explode = explode('/', $uri);
  

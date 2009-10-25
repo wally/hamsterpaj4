@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainCategoryToplist extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			global $_ENTERTAIN;
 			foreach($_ENTERTAIN['categories'] as $handle => $category)

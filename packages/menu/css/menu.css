@@ -56,7 +56,7 @@
 	}
 	
 	#main_menu li#active a.direct_child:hover,
-	#main_menu #active a.direct_child{
+	#main_menu #active a.direct_child {
 		height: 18px;
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_whereat.png") center;
 		color: #383838;

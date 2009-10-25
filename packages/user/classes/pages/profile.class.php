@@ -1,7 +1,7 @@
 <?php
 	class PageUserProfile extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			preg_match('#^/([a-z0-9_-]+)$#', $uri, $username);
 			if ( ! isset($username[1]) )

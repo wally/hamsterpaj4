@@ -61,9 +61,24 @@
 			}
 		}
 		
+		function hp_error_handler($errno, $errstr, $errfile, $errline)
+		{
+			switch ( $errno )
+			{
+				case E_ERROR: $str = 'Error'; break;
+				case E_WARNING: $str = 'Warning'; break;
+				case E_NOTICE: $str = 'Notice'; break;
+				default: $str = 'PHP Error'; break;
+			}
+			
+			Tools::debug(sprintf('<em><strong>%s</strong> on %s<strong>:%d</strong></em><br />%s', $str, $errfile, $errline, $errstr));
+		}
+		
 		if ( ENVIRONMENT == 'development' )
 		{
 			error_reporting(E_ALL);
+			
+			set_error_handler('hp_error_handler');
 		}
 		
 		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;

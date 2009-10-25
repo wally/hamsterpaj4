@@ -2,7 +2,7 @@
 
 class PageCellphoneLookup extends page
 {
-	function url_hook($uri)
+	public static function url_hook($uri)
 	{
 		return preg_match('#^/mobilnummer(/)?(.*?)?$#', $uri) ? 10 : 0;
 	}

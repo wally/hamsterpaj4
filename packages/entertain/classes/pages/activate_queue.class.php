@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainEctivateQueue extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 25) == '/entertain-admin/aktivera') ? 5 : 0;
 		}

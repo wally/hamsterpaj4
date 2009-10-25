@@ -1,7 +1,7 @@
 <?php
 	class PageCowsayGeneratorStart extends page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return $uri == '/cowsay' ? 10 : 0;
 		}

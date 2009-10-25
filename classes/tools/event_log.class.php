@@ -1,7 +1,7 @@
 <?php
 	class EventLog extends HP4
 	{
-		function log($event)
+		public static function log($event)
 		{
 			global $_PDO;
 			

@@ -1,7 +1,7 @@
 <?php
 	class PageCommentPost extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 17) == '/kommentar/skicka') ? 10 : 0;
 		}

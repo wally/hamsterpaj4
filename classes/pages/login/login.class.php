@@ -1,7 +1,7 @@
 <?php
 	class PageLogin extends Page
 	{
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return ($url == '/log-in') ? 10 : 0;
 		}
@@ -39,7 +39,7 @@
 	
 	class PageLogout extends Page
 	{
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return ($url == '/logout') ? 10 : 0;
 		}

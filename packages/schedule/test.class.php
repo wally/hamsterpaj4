@@ -1,7 +1,7 @@
 <?php
 	class PageScheduleTest extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/schedule/test') ? 5 : 0;
 		}

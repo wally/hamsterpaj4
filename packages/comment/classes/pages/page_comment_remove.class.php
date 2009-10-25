@@ -1,7 +1,7 @@
 <?php
 	class PageCommentRemove extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/kommentar/radera') ? 10 : 0;
 		}

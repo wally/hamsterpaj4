@@ -5,7 +5,7 @@ class PageHP3CSS extends Page
     public $raw_output = true;
     public $content_type = 'text/css';
     
-    public static function url_hook($uri)
+    public static public static function url_hook($uri)
     {
 	return (substr($uri, 0, 14) == '/old_style.css' ? 10 : 0);
     }

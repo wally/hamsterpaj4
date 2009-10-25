@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainRemoveItem extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 24) == '/entertain-admin/radera/') ? 10 : 0;
 		}
