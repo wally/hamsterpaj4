@@ -22,6 +22,7 @@ hp.set('packages.eggs', {
 	    && pos.y > hp.packages.eggs.supercoloractivatorposition.y
 	    && pos.y < hp.packages.eggs.supercoloractivatorposition.y + 15
 	) {
+	    alert('sluta peta på mig!');
 	    hp.packages.eggs.go_crazy();
 	    return false;
 	}
