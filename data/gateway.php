@@ -288,6 +288,14 @@
 			}
 		}
 	}
+	catch (PDOException $e)
+	{
+		echo '<div style="background: #fff; position: absolute; top: 0px; width: 100%; left: 0px; border: 3px solid red; overflow: auto;">';
+		echo '<h1>Oh noes! Error error abort abort! ABORT!</h1>';
+		echo '<p>' . $e->getMessage() . '</p>';
+		preint_r($e->getTrace());
+		echo '</div>';
+	}
 	catch (Exception $e)
 	{
 		echo $e->getMessage();

@@ -256,6 +256,7 @@ dd
 		background: url(http://static.hamsterpaj.net/images/packages/base/layouts/amanda/notices_information_footer.png) no-repeat;
 		margin-left: -3px;
 		position: absolute;
+		clear: both;
 	}
 	
 	#notices li div.notices_information .unread {
@@ -309,6 +310,18 @@ dd
 		height: 15px;
 		background-color: grey;
 	}
+	
+	#notices li div.notices_information #unread_photo_comments li a {
+	    height: 61px;
+	    float: left;
+	    padding: 0;
+	    margin: 0;
+	}
+	    
+	    #notices #unread_photo_comments li img {
+		display: block;
+		float: left;
+	    }
 	
 /**
 *	Login status
