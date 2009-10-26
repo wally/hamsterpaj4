@@ -1,7 +1,7 @@
 <?php
 	class PageViewSchedule extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/admin/schedule') ? 5 : 0;
 		}

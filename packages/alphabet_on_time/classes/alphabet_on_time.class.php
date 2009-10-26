@@ -1,7 +1,7 @@
 <?php
 	class PageAlphabetOnTime extends Page
 	{
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return ($url == '/alfabetet-paa-tid') ? 10 : 0;
 		}

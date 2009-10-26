@@ -3,25 +3,26 @@
 */
 #main_menu { 
   background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -73px repeat-x;
-  height: 31px;
+  height: 60px;
   list-style: none;
   margin: 0;
   padding-left: 16px;
   font-size: 12px;
   line-height: normal;
+  position: relative;
 }
   
-  #main_menu li {
-    float: left;
-    width: auto;
-    height: 31px;
-    display: block;
-    padding-left: 1px;
-    margin-left:-1px;
-    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -104px no-repeat;
-  }
+    #main_menu li.direct_child {
+	float: left;
+	width: auto;
+	height: 31px;
+	display: block;
+	padding-left: 1px;
+	margin-left: -1px;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -104px no-repeat;
+    }
   
-	#main_menu li a{ 
+	#main_menu li.direct_child a.direct_child { 
 		float: left;
 		display: block;
 		padding: 9px 11px;
@@ -46,53 +47,71 @@
 #main_menu #active  {
 	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -135px repeat-x;
 	padding: 0 1px;
-	margin-right: -1px;
-	position: relative;
+	margin-right: 1px;
 	z-index: 2;
- }
+}
  
- 	#main_menu li:hover { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -166px repeat-x; }
-	#main_menu li#active a:hover,
-	#main_menu #active a{
-		height: 19px;
+ 	#main_menu li.direct_child:hover {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -166px repeat-x;
+	}
+	
+	#main_menu li#active a.direct_child:hover,
+	#main_menu #active a.direct_child {
+		height: 18px;
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_whereat.png") center;
 		color: #383838;
 		position: relative;
+		z-index: 5;
 	}
 	
-	#main_menu li a:hover {
+	#main_menu li a.direct_child:hover {
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") top right;
 		color: #383838;
-		position: relative;
 	}
 	
-	#main_menu .small#active a,#main_menu .small#active a:hover { height: 19px; }
+	#main_menu .small#active a.direct_child,
+	#main_menu .small#active a.direct_child:hover { height: 18px; }
 
 	/* This provides an alternative style for IE 6 active, which was buggy. */
-	* html #main_menu li#active a {
+	* html #main_menu li#active a.direct_child {
 		height: 19px;
 		font-weight: bold;
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -166px repeat-x; 
 	}
 
-#main_menu_sub { 
+.main_menu_sub { 
 	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") 0 -197px repeat-x;
 	height: 30px;
 	font-size: 12px;
 	line-height: normal;
-}	
+	position: absolute;
+	width: 874px;
+	top: 31px;
+	display: none;
+	left: 0;
+}
+    
+	#main_menu li.direct_child:hover .main_menu_sub,
+	#main_menu li#active .main_menu_sub {
+	    display: block;
+	    z-index: 3;
+	}
 	
-	#main_menu_sub {
+	    #main_menu li.direct_child:hover .main_menu_sub {
+		z-index: 4;
+	    }
+	
+	.main_menu_sub {
 		list-style: none;
 		margin: 0;
 		padding: 0 0 0 6px;
 	}
 
-	#main_menu_sub li {
+	.main_menu_sub li {
 		float: left;
 	}
 
-	#main_menu_sub li a{ 
+	.main_menu_sub li a{ 
 		float: left;
 		display: block;
 		height: 16px;
@@ -102,13 +121,14 @@
 		font-weight: normal;
 	}
 	
-	#main_menu_sub li a:hover { color: #333; }
+	.main_menu_sub li a:hover { color: #333; }
 	
-	#main_menu_sub li.active {
-	  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") repeat-x bottom right;
+	.main_menu_sub li.active {
+	    height: 30px;
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") repeat-x bottom right;
 	}
 	
-	#main_menu_sub li.active a {
-	  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") no-repeat 0 -257px;
-	  color: #333;
+	.main_menu_sub li.active a {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/sprites.png") no-repeat 0 -257px;
+	    color: #333;
 	}

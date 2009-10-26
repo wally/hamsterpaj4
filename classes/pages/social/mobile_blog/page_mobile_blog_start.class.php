@@ -1,7 +1,7 @@
 <?php
 	class PageMobileBlogStart extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/mobilblogg') ? 10 : 0;
 		}

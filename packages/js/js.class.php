@@ -4,7 +4,7 @@ class PageJS extends Page
 {
 	public $content_type = 'text/javascript';
 	
-	function url_hook($uri)
+	public static function url_hook($uri)
 	{
 		return ($uri == '/scripts.js') ? 10 : 0;
 	}
@@ -20,7 +20,7 @@ class PageJS extends Page
 		$files = array_unique($files);
 		foreach($files AS $file)
 		{
-			$this->content .= sprintf('try { %s } catch (e) { debug("error in scripts.js"); }' . PHP_EOL, file_get_contents(PATH_PACKAGES . $file));
+			$this->content .= sprintf('try { %s } catch (e) { debug("error in scripts.js: " + e.message); }' . PHP_EOL, file_get_contents(PATH_PACKAGES . $file));
 		}
 		$this->raw_output = true;
 	}

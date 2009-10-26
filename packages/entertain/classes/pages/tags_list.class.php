@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainTagsList extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			global $_ENTERTAIN;
 			$uri_explode = explode('/', $uri);

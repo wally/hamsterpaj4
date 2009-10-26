@@ -1,7 +1,7 @@
 <?php
 	class PageMobileBlogUser extends Page
 	{
-		function url_hook($url)
+		public static function url_hook($url)
 		{
 			return (substr($url, -10) == 'mobilblogg') ? 5 : 0;
 		}

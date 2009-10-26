@@ -1,7 +1,7 @@
 <?php
 	class Tag
 	{
-		function fetch($search)
+		public static function fetch($search)
 		{
 			global $_PDO;
 

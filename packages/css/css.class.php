@@ -1,7 +1,7 @@
 <?php
 	class PageCSS extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/style.css') ? 10 : 0;
 		}

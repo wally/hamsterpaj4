@@ -8,18 +8,18 @@
 
 	class Cache
 	{
-		public function load($handle)
+		public static function load($handle)
 		{
 			$serialized = file_get_contents(PATH_CACHE . $handle . '.phpserialized');
 			return unserialize($serialized);
 		}
 		
-		public function save($handle, $data)
+		public static function save($handle, $data)
 		{
 			Cache::cache_save($handle, $data);
 		}
 		
-		public function cache_save($handle, $data)
+		public static function cache_save($handle, $data)
 		{
 			$serialized = serialize($data);
 			$file = fopen(PATH_CACHE . $handle . '.phpserialized', 'w');
@@ -28,14 +28,14 @@
 		}
 		
 		# This method should not be used. Not at all. Do not use it.
-		public function lastUpdate($handle)
+		public static function lastUpdate($handle)
 		{
 			Tools::debug('<span style="color: red; font-weight: bold;">Please use Cache::last_update() instead of Tools::lastUpdate()</span>');
 			return filemtime(PATH_CACHE . $handle . '.phpserialized');
 		}
 		
 		# This method provides you cookies
-		public function last_update($handle)
+		public static function last_update($handle)
 		{
 			return filemtime(PATH_CACHE . $handle . '.phpserialized');
 		}

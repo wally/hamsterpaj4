@@ -1,7 +1,7 @@
 <?php
 	class PageMobileBlogRemove extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/mobilblogg/radera') ? 10 : 0;
 		}

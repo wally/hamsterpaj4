@@ -1,7 +1,7 @@
 <?php
 	class PageGroupStart extends page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/grupper') ? 10 : 0;
 		}

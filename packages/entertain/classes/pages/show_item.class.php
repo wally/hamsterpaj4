@@ -2,7 +2,7 @@
 	
 	class PageEntertainItem extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			global $_ENTERTAIN;
 			

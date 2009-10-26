@@ -61,9 +61,33 @@
 			}
 		}
 		
+		$report_errors = true;
+		
+		function hp_error_handler($errno, $errstr, $errfile, $errline)
+		{
+			global $report_errors;
+			
+			if ( ! $report_errors )
+			{
+				return false;
+			}
+			
+			switch ( $errno )
+			{
+				case E_ERROR: $str = 'Error'; break;
+				case E_WARNING: $str = 'Warning'; break;
+				case E_NOTICE: $str = 'Notice'; break;
+				default: $str = 'PHP Error'; break;
+			}
+			
+			Tools::debug(sprintf('<em><strong>%s</strong> on %s<strong>:%d</strong></em><br />%s', $str, $errfile, $errline, $errstr));
+		}
+		
 		if ( ENVIRONMENT == 'development' )
 		{
 			error_reporting(E_ALL);
+			
+			set_error_handler('hp_error_handler');
 		}
 		
 		$dns = DB_ENGINE . ':dbname=' . DB_DATABASE . ';host=' . DB_HOST . ';charset=' . DB_CHARSET;
@@ -114,8 +138,7 @@
 		// -- start HP3
 		if ( $page instanceof Page404 )
 		{
-			$raw_outputters = array();
-			$raw_outputters[] = '/ajax_gateways/';
+			$report_errors = false;
 			
 			// The directory in which the files lay
 			$_dir = '';
@@ -212,12 +235,6 @@
 					$page->raw_output = true;
 				}
 				
-				foreach ( $raw_outputters as $search )
-				{
-					if ( preg_match($search, $_file) )
-						$page->raw_output = true;
-				}
-				
 				$page->content = $page_contents;
 				
 				$_SERVER = $_OLD_SERVER;
@@ -226,6 +243,7 @@
 			{
 				define('IS_HP3_REQUEST', false);
 			}
+			$report_errors = true;
 		}
 		else
 		{

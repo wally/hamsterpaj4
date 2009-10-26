@@ -131,7 +131,7 @@
 		    return $this->last_update;
 		}
 		
-		public function fetch($search, $params = array())
+		public static function fetch($search, $params = array())
 		{
 			global $_PDO;
 

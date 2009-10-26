@@ -61,7 +61,7 @@ class PageHeartbeat extends Page
 	
 	foreach ( $hooks as $hook )
 	{
-	    $ret[] = preg_replace('#([A-Za-z0-9-_]+)\.beat\.php#', '$1', end(explode('/', $hook)));
+	    $ret[] = preg_replace('#([A-Za-z0-9-_]+)\.beat\.php#', '$1', Tools::last(explode('/', $hook)));
 	    include(PATH_PACKAGES . $hook);
 	}
 	

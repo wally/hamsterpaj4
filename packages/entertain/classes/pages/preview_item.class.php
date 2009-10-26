@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainPreviewItem extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 33) == '/entertain-admin/forhandsgranska/') ? 10 : 0;
 		}

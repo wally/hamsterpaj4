@@ -2,7 +2,7 @@
 	
 	class PageEntertainSearch extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/soek' ? 10 : 0);
 		}

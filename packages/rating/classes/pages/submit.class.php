@@ -1,7 +1,7 @@
 <?php
 	class PageRatingSubmit extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 14) == '/rating/skicka') ? 10 : 0;
 		}

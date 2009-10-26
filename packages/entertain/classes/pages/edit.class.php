@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainEdit extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return (substr($uri, 0, 26) == '/entertain-admin/redigera/') ? 10 : 0;
 		}

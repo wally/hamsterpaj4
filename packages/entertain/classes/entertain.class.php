@@ -15,24 +15,24 @@
 			$this->save();
 		}
 		
-		function previews($items)
+		public static function previews($items)
 		{
 			return template('entertain', 'previews.php', array('items' => $items));
 		}
 		
-		function previews_small($items)
+		public static function previews_small($items)
 		{
 			return template('entertain', 'previews_small.php', array('items' => $items));
 		}
 		
-		function categories()
+		public static function categories()
 		{
 			global $_ENTERTAIN;
 
 			return $_ENTERTAIN['categories'];
 		}
 		
-		function get_category_label($category = NULL)
+		public static function get_category_label($category = NULL)
 		{
 			global $_ENTERTAIN;
 			if(isset($category))
@@ -41,7 +41,8 @@
 			}
 			else
 			{
-				return $_ENTERTAIN['categories'][$this->category]['label'];
+				return null;
+				//return $_ENTERTAIN['categories'][null]['label'];
 			}
 		}
 		
@@ -67,7 +68,7 @@
 			return 'http://static.hamsterpaj.net/images/entertain/default_previews/' . $this->category . '_' . $dimension . '.png';
 		}
 		
-		function fetch($search)
+		public static function fetch($search)
 		{
 			global $_PDO;
 

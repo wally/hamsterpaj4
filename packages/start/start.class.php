@@ -1,7 +1,7 @@
 <?php
 	class PageStart extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '') ? 0 : 0;
 		}

@@ -1,7 +1,7 @@
 <?php
 	class Guestbook
 	{
-		public function fetch($search, $params = array())
+		public static function fetch($search, $params = array())
 		{
 			global $_PDO;
 			if(isset($search['recipient']))
