@@ -140,9 +140,6 @@
 		{
 			$report_errors = false;
 			
-			$raw_outputters = array();
-			$raw_outputters[] = '/ajax_gateways/';
-			
 			// The directory in which the files lay
 			$_dir = '';
 			
@@ -236,12 +233,6 @@
 				if ( ! isset($ui_options['ui_top_called']) )
 				{
 					$page->raw_output = true;
-				}
-				
-				foreach ( $raw_outputters as $search )
-				{
-					if ( preg_match($search, $_file) )
-						$page->raw_output = true;
 				}
 				
 				$page->content = $page_contents;
