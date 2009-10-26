@@ -120,8 +120,6 @@ dd
 
 #hp
 {
-	/*border: 1px solid #6188A4;*/
-	background: #fff;
 	width: 880px;
 	margin: 10px;
 	float: left; /* Makes it possible to have ad's floating on the right side of the page */
@@ -354,7 +352,6 @@ dd
 	height: 58px;
 	float: left;
 	margin-right: 10px;
-	border-bottom: 1px solid #fff;
 }
 
 #content
@@ -364,13 +361,31 @@ dd
 	float: left;
 }
 
+#content_container {
+	background: white;
+	padding-top: 15px;
+}
+
+#content_container {
+    _height: 1%;
+    *display: inline-block;
+    _display: block;
+}
+ 
+#content_container:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
 /**
 * Modules
 */
 #hp #modules
 {
 	background: #F0F0F0;
-	margin-top: 10px;
 	margin-bottom: 10px;
 	-moz-border-radius-topleft: 8px;
 	-moz-border-radius-bottomleft: 8px;
