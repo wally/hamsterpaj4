@@ -7,6 +7,12 @@
 		<style type="text/css">
 				@import url('/style.css');
 		</style>
+		<script type="text/javascript">
+		    window.hp = {};
+		    window.hp.login_checklogin = function() {
+			return <?php echo (int)$page->user->exists(); ?>;
+		    };
+		</script>
 		<script src="/scripts.js" type="text/javascript"></script>
 	</head> 
 	<body class="layout_blank">

@@ -20,7 +20,17 @@ class PageJS extends Page
 		$files = array_unique($files);
 		foreach($files AS $file)
 		{
-			$this->content .= sprintf('try { %s } catch (e) { debug("error in scripts.js: " + e.message); }' . PHP_EOL, file_get_contents(PATH_PACKAGES . $file));
+			if ( $file == 'base/js/hp.js' )
+			{
+			    $this->content .= file_get_contents(PATH_PACKAGES . $file);
+			}
+			else
+			{
+			    $this->content .= sprintf('try { %s } catch (e) {
+				debug("error in scripts.js: " + e.message); }' . PHP_EOL,
+				file_get_contents(PATH_PACKAGES . $file)
+			    );
+			}
 		}
 		$this->raw_output = true;
 	}
