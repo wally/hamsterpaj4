@@ -1,0 +1,7 @@
+#hp #modules .sort-active {
+    opacity: 0.4;
+}
+
+#hp #modules .sort-ghost {
+    cursor: move;
+}

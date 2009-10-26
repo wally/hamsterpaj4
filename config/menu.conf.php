@@ -37,6 +37,7 @@ $menu['community_galleriet'] = array('parent' => 'community', 'label' => 'Galler
 $menu['community_grupper'] = array('parent' => 'community', 'label' => 'Grupper', 'url' => '/traffa/groups.php', 'checklogin' => 'true');
 $menu['community_gissa_aldern'] = array('parent' => 'community', 'label' => 'Gissa Åldern', 'url' => '/traffa/age_guess.php');
 $menu['community_nya_foton'] = array('parent' => 'community', 'label' => 'Nya foton', 'url' => '/traffa/new_photos.php');
+$menu['community_chatt'] = array('parent' => 'community', 'label' => 'Chatten', 'url' => '/chat/');
 
 // Old under mattan menu
 $menu['under_mattan'] = array('label' => 'Under mattan', 'priority' => '114', 'url' => '/mattan/');

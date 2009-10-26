@@ -432,9 +432,10 @@ dd
 	width: 11px;
 	height: 10px;
 	outline: none;
-	text-indent: -999px;
 	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/side_module_move.png") no-repeat;
 	float: right;
+	cursor: move;
+	text-indent: -999px;
 	margin-top: -22px;
 }
 
