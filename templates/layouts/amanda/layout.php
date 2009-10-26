@@ -89,7 +89,7 @@
 				</div>
 				<div id="modules">
 					<?php foreach($page->side_modules AS $module) : ?>
-						<div class="module" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
+						<div class="module <?php echo $module->is_sortable ? 'sortable_module' : ''; ?>" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
 							<?php echo $module->execute($page); ?>
 						</div>
 					<?php endforeach; ?>
@@ -99,9 +99,6 @@
 				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
 				<script type='text/javascript'><!--//<![CDATA[
 					Ads.insert(251, '');
-					//]]>-->
-				</script>
-				<script type='text/javascript'><!--//<![CDATA[
 					Ads.insert(252, '');
 					//]]>-->
 				</script>

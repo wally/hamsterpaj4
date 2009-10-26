@@ -4,6 +4,7 @@
 		public $template = 'search';
 		public $visitors = 31337;
 		public $id = 'search';
+		public $is_sortable = false;
 	}
 
 ?>

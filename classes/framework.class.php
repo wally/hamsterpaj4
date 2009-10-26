@@ -79,6 +79,7 @@
 	
 	class Module extends HP4
 	{
+		public $is_sortable = true;
 		protected $visible = true;
 		
 		function execute($page)
