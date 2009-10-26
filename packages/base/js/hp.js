@@ -17,13 +17,14 @@ window.hp.set = function(namespace, value) {
 
 function debug(msg) {
     $(document).ready(function() {
-	if ( typeof msg == 'object' ) {
+	if ( typeof msg == 'object' && msg.nodeType != 3 && msg.nodeType != 1 ) {
 	    var message = '{';
 	    for ( var key in msg ) if ( msg.hasOwnProperty(key) ) {
 		message += key + ': ' + msg[key] + ',<br />';
 	    }
 	    msg = message.substr(0, message.length - 7) + '}';
 	}
+	
 	var dt = $('<dt/>').html('JSdebug');
 	var dd = $('<dd/>').html(typeof msg === 'undefined' ? 'undefined' : msg);
     
