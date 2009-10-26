@@ -79,20 +79,23 @@
 				<div id="xxl">
 					<?php echo isset($page->xxl) ? $page->xxl : ''; ?>
 				</div>
-				<div id="content">
-					<?php foreach ( $page->user->fetch_notifications() as $note ): ?>
-					    <?php echo call_user_func_array('template', $note); ?>
-					<?php endforeach; ?>
-					
-					<script type="text/javascript">CM8ShowAd("635x50");</script>
-					<?php echo $page->content; ?>
-				</div>
-				<div id="modules">
-					<?php foreach($page->side_modules AS $module) : ?>
-						<div class="module <?php echo $module->is_sortable ? 'sortable_module' : ''; ?>" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
-							<?php echo $module->execute($page); ?>
-						</div>
-					<?php endforeach; ?>
+				
+				<div id="content_container">
+				    <div id="content">
+					    <?php foreach ( $page->user->fetch_notifications() as $note ): ?>
+						<?php echo call_user_func_array('template', $note); ?>
+					    <?php endforeach; ?>
+					    
+					    <script type="text/javascript">CM8ShowAd("635x50");</script>
+					    <?php echo $page->content; ?>
+				    </div>
+				    <div id="modules">
+					    <?php foreach($page->side_modules AS $module) : ?>
+						    <div class="module <?php echo $module->is_sortable ? 'sortable_module' : ''; ?>" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
+							    <?php echo $module->execute($page); ?>
+						    </div>
+					    <?php endforeach; ?>
+				    </div>
 				</div>
 			</div>
 			<div id="column_ads">
