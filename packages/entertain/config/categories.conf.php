@@ -22,4 +22,7 @@
 	
 	$_ENTERTAIN['categories']['musik'] = array('handle' => 'musik', 'label' => 'Musik');
 	$_ENTERTAIN['master_tags']['musik'] = array();
+	
+	// While we are using old system
+	$_ENTERTAIN_OLD = array('filmklipp');
 ?>

@@ -4,11 +4,16 @@
 		public static function url_hook($uri)
 		{
 			global $_ENTERTAIN;
+			global $_ENTERTAIN_OLD;
 			foreach($_ENTERTAIN['categories'] as $handle => $category)
 			{
 				if($uri == '/' . $handle)
 				{
-					return 10;
+					// While old entertain is used
+					if(!in_array($handle, $_ENTERTAIN_OLD))
+					{
+						return 10;
+					}
 				}
 			}
 			return 0;
