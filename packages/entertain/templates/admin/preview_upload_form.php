@@ -11,7 +11,7 @@
 		<li>
 			<input type="radio" name="upload_action" value="wget" id="wget" />
 			<label for="wget">Hämta bild från webben</label>
-			<input type="text" name="url" />
+			<input type="text" name="url" <?php echo file_exists('/mnt/static/entertain/images/' . $handle . '.jpg') ? 'value="http://static.hamsterpaj.net/entertain/images/' . $handle . '.jpg' . '"' : ''; ?> />
 		</li>
 	</ul>
 	<input type="submit" value="Ladda upp" />
