@@ -60,6 +60,7 @@
 			$modules['forum_posts'] = new SideModuleForumPosts();
 			$modules['forum_threads'] = new SideModuleForumThreads();
 			$modules['crew'] = new SideModuleCrew();
+			$modules['administration'] = new SideModuleAdministration($this->get('user'));
 			
 			foreach($modules AS $key => $module)
 			{
