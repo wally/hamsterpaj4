@@ -59,7 +59,8 @@
 			$modules['statistics'] = new SideModuleStatistics();
 			$modules['forum_posts'] = new SideModuleForumPosts();
 			$modules['forum_threads'] = new SideModuleForumThreads();
-
+			$modules['crew'] = new SideModuleCrew();
+			
 			foreach($modules AS $key => $module)
 			{
 				if($module->get('visible') == true)
