@@ -302,6 +302,12 @@
 		
 		function profile_url()
 		{
+			Tools::Debug('<em style="color: red;">Call to deprecated function: profile_url() use get_profile_url() instead. By using $user->get(\'profile_url\')</em>');
+			return '/traffa/profile.php?id=' . $this->id;
+		}
+		
+		function get_profile_url()
+		{
 			return '/traffa/profile.php?id=' . $this->id;
 		}
 		

@@ -31,13 +31,13 @@
 		public static function lastUpdate($handle)
 		{
 			Tools::debug('<span style="color: red; font-weight: bold;">Please use Cache::last_update() instead of Tools::lastUpdate()</span>');
-			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
+			return filemtime(PATH_CACHE . $handle . '.phpserialized');
 		}
 		
 		# This method provides you cookies
 		public static function last_update($handle)
 		{
-			return filemtime(PATHS_CACHE . $handle . '.phpserialized');
+			return filemtime(PATH_CACHE . $handle . '.phpserialized');
 		}
 	}
 ?>
