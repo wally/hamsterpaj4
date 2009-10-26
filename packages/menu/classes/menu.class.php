@@ -57,6 +57,8 @@
 				$bigmenu[$key] = $row;
 			}
 
+			$has_active_sub = false;
+			
 			// Sök upp vilka poster som ska vara i undermenyn
 			foreach($bigmenu as $key => $row)
 			{
@@ -70,10 +72,20 @@
 						{
 							//Tools::debug($key2 . ' finns i ' . $key);
 							$submenu[$key][$key2] = $row2;
+							
+							if ( Tools::is_true($submenu[$key][$key2]['active']) )
+							    $has_active_sub = true;
 						}
 					}
 				//}
 			}
+			
+			if ( ! $has_active_sub )
+			{
+			    $bigmenu['hamsterpaj']['active'] = true;
+			}
+			
+			Tools::debug(($has_active_sub) ? 'actiev sub' : 'non active');
 
 			$out = template('menu', 'menu.php', array('bigmenu' => $bigmenu, 'submenu' => $submenu));
 			
