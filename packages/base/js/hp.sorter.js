@@ -8,12 +8,15 @@ hp.set('classes.Sorter', hp.Class({
     init: function(elements, parents, options) {
 	var self = this;
 	
+        this.ignore = options.ignore || false;
+	this.handleElement = options.handle || false;
+	this.ghostContainer = options.container || false;
+	this.ghostPrimer = options.ghostPrimer || function() { debug("default"); };
+	
 	this.setElements(elements);
 	this.createGraveyard();
 	this.parents = $(parents);
 	
-        this.ignore = options.ignore || false;
-        
 	this.eventMousemove = function(e) {
 		return self.mousemove(e);
 	};
@@ -29,8 +32,22 @@ hp.set('classes.Sorter', hp.Class({
 	var self = this;
 	
 	this.elements = $(elements);
-	this.elements.mousedown(function(e) {
-		return self.mousedown.call(self, e, this);
+	
+	if ( this.handleElement ) {
+	    this.handles = this.elements.find(this.handleElement);
+	} else {
+	    this.handles = this.elements;
+	}
+	
+	debug(this.handles.length);
+	
+	this.handles.mousedown(function(e) {
+		var element = this;
+		if ( self.handleElement ) {
+		    var index = self.handles.index(this);
+		    element = self.elements[index];
+		}
+		return self.mousedown.call(self, e, element);
 	});
 	
 	this.jElements = [];
@@ -38,7 +55,7 @@ hp.set('classes.Sorter', hp.Class({
 		self.jElements[self.jElements.length] = $(this).css('position', 'relative');
 		
 		// Because opera likes to drag images
-		$('<div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%" />').appendTo(this);
+		//$('<div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%" />').appendTo(this);
 	});
 	
 	this.posCache = [];
@@ -46,7 +63,7 @@ hp.set('classes.Sorter', hp.Class({
     },
 
     createGraveyard: function() {
-	this.graveyard = $('<div class="jquery_sort_graveyard" style="list-style-type: none" />').appendTo(document.body);
+	this.graveyard = this.ghostContainer || $('<div class="jquery_sort_graveyard" style="list-style-type: none" />').appendTo(document.body);
     },
 
     setActive: function(element) {
@@ -65,14 +82,17 @@ hp.set('classes.Sorter', hp.Class({
 	this.ghost = from.clone().appendTo(this.graveyard)
 		.addClass('sort-ghost')
 		.css('position', 'absolute')
+		.css('z-index', 1000)
 		.css(this.realOffset(from));
+	
+	this.ghostPrimer(this.ghost, from);
     },
 
     mousedown: function(e, element) {
         if ( this.ignore && ($(e.target).is(this.ignore) || $(e.target).parents(this.ignore).length) ) {
             return true;
         }
-    
+	
  	e.preventDefault();
  	
  	// this because webkit needs it. It will cause a slight jump because updateCache is slooow.

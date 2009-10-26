@@ -84,8 +84,6 @@
 			{
 			    $bigmenu['hamsterpaj']['active'] = true;
 			}
-			
-			Tools::debug(($has_active_sub) ? 'actiev sub' : 'non active');
 
 			$out = template('menu', 'menu.php', array('bigmenu' => $bigmenu, 'submenu' => $submenu));
 			
