@@ -344,7 +344,20 @@ dd
 	color: #333;
 }
 
-#hp #head #status #ui_statusbar_forumstatus { color: #333; }
+#hp #head #status #ui_statusbar_forumstatus {
+	color: #333;
+}
+
+#status_icon_edit {
+	position: relative;
+	text-indent: -999em;
+	float: right;
+	background: url("http://imgur.com/cXSJ8.png") no-repeat;
+	width: 11px;
+	height: 10px;
+	margin-top: 4px;
+	cursor: pointer;
+}
 
 #hp #head #status .user_avatar
 {
