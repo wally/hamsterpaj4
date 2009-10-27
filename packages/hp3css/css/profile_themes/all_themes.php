@@ -1,15 +1,5 @@
 <?php
-	/* OPEN_SOURCE */
-	
-	require('../../include/core/common.php');
-	header('Content-type: text/css');
-	
-	$read_from = PATHS_WEBROOT . 'stylesheets/profile_themes/';
-	if(!is_dir($read_from))
-	{
-		die('/* No such directory. */');
-	}
-	
+	$read_from = '.';
 	$directory_handle  = opendir($read_from);
 	while (($filename = readdir($directory_handle)) !== false)
 	{
@@ -21,4 +11,3 @@
 			echo "\n\n";
 		}
 	}
-?>

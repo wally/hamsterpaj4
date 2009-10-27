@@ -15,18 +15,23 @@ body {
     background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/logo_halloween.png") no-repeat;
 }
 
-    #notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") no-repeat; }
-	#notices #notices_guestbook a:hover { background-position: 0 -73px; color: #d5eea7; }
-	#notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #d5eea7;}
-    #notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -70px 0 no-repeat; }
-	#notices #notices_forum a:hover { background-position: -70px -73px; color: #d5eea7; }
-	#notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #d5eea7;}
-    #notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -140px 0 no-repeat; }
-	#notices #notices_groups a:hover { background-position: -140px -73px; color: #d5eea7; }
-	#notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #d5eea7; }
-    #notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -210px 0 no-repeat; }
-	#notices #notices_events a:hover { background-position: -210px -73px; color: #d5eea7; }
-	#notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #d5eea7; }
+
+#hp #head #status a {
+    color: #B5CE85;
+}
+
+    #notices #notices_guestbook a.notice_icon { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") no-repeat; }
+	#notices #notices_guestbook a.notice_icon:hover { background-position: 0 -73px; color: #d5eea7; }
+	#notices li#notices_guestbook.active a.notice_icon, #hp #head #notices li#notices_guestbook.active a.notice_icon:hover { background-position: 0 -146px; color: #d5eea7;}
+    #notices #notices_forum a.notice_icon { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -70px 0 no-repeat; }
+	#notices #notices_forum a.notice_icon:hover { background-position: -70px -73px; color: #d5eea7; }
+	#notices li#notices_forum.active a.notice_icon, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #d5eea7;}
+    #notices #notices_groups a.notice_icon { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -140px 0 no-repeat; }
+	#notices #notices_groups a.notice_icon:hover { background-position: -140px -73px; color: #d5eea7; }
+	#notices li#notices_groups.active a.notice_icon, #hp #head #notices li#notices_groups.active a.notice_icon:hover { background-position: -140px -146px; color: #d5eea7; }
+    #notices #notices_events a.notice_icon{ background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -210px 0 no-repeat; }
+	#notices #notices_events a.notice_icon:hover { background-position: -210px -73px; color: #d5eea7; }
+	#notices li#notices_events.active a.notice_icon, #hp #head #notices li#notices_events.active a.notice_icon:hover { background-position: -210px -146px; color: #d5eea7; }
                 
 #notices li.notice_panel a.notice_icon {
     color: #B5CE85;
@@ -36,8 +41,18 @@ body {
     padding-top: 55px;
 }
 
-#hp #head #status a {
-    color: #B5CE85;
+#notices .notice_panel a:hover {
+    color: #333;
+}
+
+#notices li div.notices_information h4 a,
+#notices li div.notices_information li a {
+        color: #333;
+}
+
+#notices li div.notices_information h4 a:hover,
+#notices li div.notices_information li a:hover {
+        color: black !important;
 }
 
 #hp #head #status #ui_statusbar_forumstatus {
@@ -47,14 +62,6 @@ body {
 #hp #head #status {
     color: #5e5d75;
     line-height: 19px;
-}
-
-#hp #head #notices li#notices_groups.active div a {
-    color: #333;
-}
-
-#notices .notice_panel a:hover {
-    color: #333 !important;
 }
 
 #main_menu { 

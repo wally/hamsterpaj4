@@ -4,6 +4,7 @@
 	padding: 4px !important;
 	position: relative;
 	border: 0 !important;
+	height: 33px; !important;
 }
 
 #side_module_search form
@@ -14,6 +15,7 @@
 
 #side_module_search input[type="text"]
 {
+	display: block;
 	border: 0;
 	font-size: 16px;
 	color: #c7c7c7;
@@ -24,6 +26,9 @@
 	height: 19px;
 	border: 1px solid #b2caff;
 	border-right: 0;
+	position: absolute;
+	top: 4px;
+	line-height: none;
 }
 
 #side_module_search input[type="text"]:focus
@@ -38,14 +43,15 @@
 	width: 33px;
 	height: 33px;
 	padding: 5px;
+	margin: 0;
 	right: 4px;
 	position: absolute;
-	top: 4px;
 	border: 1px solid #b2caff;
-	border-left: 0;
+	border-left: none;
 	cursor: pointer;
-	text-indent: -2em;
-	margin: 0;
+	text-indent: -999em;
+	display: inline;
+	top: 4px;
 }
 
 #side_module_search input[type="submit"]:hover {
