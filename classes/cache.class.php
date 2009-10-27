@@ -39,5 +39,10 @@
 		{
 			return filemtime(PATH_CACHE . $handle . '.phpserialized');
 		}
+		
+		public static function exists($handle)
+		{
+			return file_exists(PATH_CACHE . $handle . '.phpserialized');
+		}
 	}
 ?>
