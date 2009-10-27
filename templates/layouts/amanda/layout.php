@@ -37,6 +37,7 @@
 		<script type="text/javascript" src="http://nyheter24.se/template/1-0-1/javascript/ads.js?20090605"></script>
 		<script type="text/javascript">Ads.init('http://ads.nyheter24.se/', false);</script>
 	</head>
+	
 	<body>
 		<!-- Kiaindex -->
 		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
@@ -91,7 +92,7 @@
 				    </div>
 				    <div id="modules">
 					    <?php foreach($page->side_modules AS $module) : ?>
-						    <div class="module <?php echo $module->is_sortable ? 'sortable_module' : ''; ?>" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
+						    <div class="module <?php echo $module->is_closed ? 'minimized' : ''; ?> <?php echo $module->is_sortable ? 'sortable_module' : ''; ?>" <?php echo isset($module->id) ? ' id="side_module_' . $module->id . '"' : '' ?>>
 							    <?php echo $module->execute($page); ?>
 						    </div>
 					    <?php endforeach; ?>
@@ -103,8 +104,7 @@
 				<script type='text/javascript'><!--//<![CDATA[
 					Ads.insert(251, '');
 					Ads.insert(252, '');
-					//]]>-->
-				</script>
+				//]]>--></script>
 			
 				<!-- Adwell crap -->
 				<script type="text/javascript">

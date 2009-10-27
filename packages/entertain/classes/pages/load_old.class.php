@@ -1,7 +1,7 @@
 <?php
 	class PageEntertainLoadOld extends Page
 	{
-		function url_hook($uri)
+		public static function url_hook($uri)
 		{
 			return ($uri == '/entertain-load') ? 10 : 0;
 		}

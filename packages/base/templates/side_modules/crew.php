@@ -1,4 +1,4 @@
-<a class="minimize" href="#">+</a><h5>Ordningsvakter</h5>
+<a class="minimize" href="#">+</a><h5>Ordningsvakter</h5><a class="move" href="#">=</a>
 <ul>
 	<?php foreach($module->members as $member): ?>
 	<li>

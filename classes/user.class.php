@@ -62,28 +62,25 @@
 		public function from_session($session)
 		{
 			global $session_map;
-			if(isset($session['login']['id']))
+			foreach($session_map AS $property => $path)
 			{
-				foreach($session_map AS $property => $path)
+				switch(count($path))
 				{
-					switch(count($path))
-					{
-						case 1:
-							$this->set(array($property => $session[$path[0]]));
-							break;
-						case 2:
-							$this->set(array($property => $session[$path[0]][$path[1]]));
-							break;
-						case 3:
-							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]]));
-							break;
-						case 4:
-							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]]));
-							break;
-						case 5:
-							$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]][$path[4]]));
-							break;
-					}
+					case 1:
+						$this->set(array($property => $session[$path[0]]));
+						break;
+					case 2:
+						$this->set(array($property => $session[$path[0]][$path[1]]));
+						break;
+					case 3:
+						$this->set(array($property => $session[$path[0]][$path[1]][$path[2]]));
+						break;
+					case 4:
+						$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]]));
+						break;
+					case 5:
+						$this->set(array($property => $session[$path[0]][$path[1]][$path[2]][$path[3]][$path[4]]));
+						break;
 				}
 			}
 		}
@@ -206,6 +203,65 @@
 			}
 			
 			return ($params['allow_multiple'] == true) ? $users : false;
+		}
+		
+		public function set_module_order($order)
+		{
+		    if ( is_string($order) )
+		    {
+			$order = unserialize($order);
+		    }
+		    $this->module_order = $order;
+		}
+		
+		public function get_module_order()
+		{
+		    if ( is_string($this->module_order) )
+		    {
+			$this->module_order = unserialize($this->module_order);
+		    }
+		    return $this->module_order;
+		}
+		
+		public function set_module_states($states)
+		{
+		    if ( is_string($states) )
+		    {
+			$states = unserialize($states);
+		    }
+		    
+		    $this->module_states = $states;
+		}
+		
+		public function save_module_order($order)
+		{
+		    global $_PDO;
+		    
+		    if ( $this->exists() )
+		    {
+			$query = 'UPDATE preferences';
+			$query .= ' SET module_order = "' . mysql_escape_string(serialize($order)) . '"';
+			$query .= ' WHERE userid = ' . $this->get('id') . ' LIMIT 1';
+			
+			$_PDO->query($query);
+		    }
+		    $this->set(array('module_order' => $order));
+		}
+		
+		public function save_module_state($module_name, $state)
+		{
+		    global $_PDO;
+		    
+		    $this->module_states[$module_name] = $state;
+		    
+		    if ( $this->exists() )
+		    {
+			$query = 'UPDATE preferences ';
+			$query .= 'SET module_states = "' . mysql_escape_string(serialize($this->module_states)) . '"';
+			$query .= 'WHERE userid = "' . $this->get('id') . '" LIMIT 1';
+			
+			$_PDO->query($query);
+		    }
 		}
 		
 		public function get_unread_photo_comments()
@@ -382,13 +438,13 @@
 				return true;
 			}
 			
-			if(@$item_id == NULL) // item_id is never defined?
+			if($value == NULL)
 			{
 				return isset($this->privileges[$privilegie]);
 			}
 			else
 			{
-				return (in_array($item_id, $this->privileges[$privilegie])) ? true : false;
+				return (in_array($value, $this->privileges[$privilegie])) ? true : false;
 			}
 		}
 		

@@ -98,7 +98,7 @@
 			return $out;
 		}
 
-		public static function debug($message)
+		public static function debug($message, $name = null)
 		{
 			global $_DEBUG;
 			$backtrace = debug_backtrace();
@@ -109,7 +109,7 @@
 				$function_file = substr($backtrace[1]['file'], strrpos($backtrace[1]['file'], '/')+1);
 				$message .= '<br /><span class="calling_public static function">Funktionen anropades utav: ' . $function_file . ' #' . $backtrace[1]['line'] . '</span>';
 			}
-			$_DEBUG[] = array('title' => $file . ' #' . $backtrace[0]['line'], 'text' => $message);
+			$_DEBUG[] = array('title' => (is_null($name) ? '' : $name . ': ') . $file . ' #' . $backtrace[0]['line'], 'text' => $message);
 			
 			$log = date('Y-m-d H:i:s') . "\t"; 
 			$log .= $file . "\n";

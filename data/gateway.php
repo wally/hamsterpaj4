@@ -252,6 +252,7 @@
 		// -- end HP3
 	
 		$page->user->lastaction();
+		$_SESSION = $page->user->to_session();
 
 		if (strlen($page->get('title')) == 0)
 		{
@@ -281,8 +282,6 @@
 		}
 		elseif (strlen($page->get('redirect')) > 0)
 		{
-			$_SESSION = $page->user->to_session();
-			
 			header('Location: ' . $page->get('redirect'));
 			exit;
 		}
@@ -294,8 +293,6 @@
 		{
 			$template = Tools::pick($page->template, 'layouts/amanda/layout.php');
 			$out = template(NULL, $template, array('page' => $page));
-			
-			$_SESSION = $page->user->to_session();
 			
 			if ( ENVIRONMENT == 'production' || ! DEBUG_SHOW )
 			{
@@ -313,7 +310,7 @@
 		echo '<div style="background: #fff; position: absolute; top: 0px; width: 100%; left: 0px; border: 3px solid red; overflow: auto;">';
 		echo '<h1>Oh noes! Error error abort abort! ABORT!</h1>';
 		echo '<p>' . $e->getMessage() . '</p>';
-		preint_r($e->getTrace());
+		echo Tools::preint_r($e->getTrace());
 		echo '</div>';
 	}
 	catch (Exception $e)

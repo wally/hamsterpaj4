@@ -15,7 +15,7 @@
 				foreach($_PDO->query($query) AS $row)
 				{
 					$member = new User;
-					$member->set(array('username' => $row['username'], 'id' => $row['id']));
+					$member->set(array('username' => $row['username'], 'id' => $row['user_id']));
 					$this->members[] = $member;
 				}
 
@@ -23,7 +23,7 @@
 			}
 			else
 			{
-				$this->members = cache::load('online_crew');
+				$this->members = Cache::load('online_crew');
 			}
 		}
 	}

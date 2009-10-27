@@ -407,7 +407,22 @@ dd
 	border: 1px solid #e0e0e0;
 }
 
-#hp #modules h5 { 
+#hp #modules .module.minimized {
+    opacity: 0.6;
+    padding-bottom: 0;
+}
+
+#hp #modules .module.minimized * {
+    display: none;
+}
+
+    #hp #modules .module.minimized h5,
+    #hp #modules .module.minimized .move,
+    #hp #modules .module.minimized .minimize {
+	display: block;
+    }
+
+#hp #modules h5 {
 	font-size: 16px;
 	font-weight: normal;
 	margin: 0 0 4px 12px;
@@ -525,6 +540,7 @@ dd
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    z-index: 100000;
 }
 
     #avatar_container img {
