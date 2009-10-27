@@ -82,8 +82,6 @@
 				//}
 			}
 			
-			Tools::debug((int)$active_menu);
-			
 			if ( ! $has_active_sub && ! $active_menu )
 			{
 			    $bigmenu['hamsterpaj']['active'] = true;
