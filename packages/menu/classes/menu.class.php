@@ -11,6 +11,35 @@
 		{
 			$menu = $this->data;
 			
+			// Remove everything you do not have priveleges for
+			foreach($menu as $handle => $menu_item)
+			{
+				// Check for checklogin => true
+				if($menu_item['checklogin'] == true && !$page->user->exists())
+				{
+					$remove = 'do';
+				}
+				
+				// Check privileges
+				foreach($menu_item['privileges'] as $privilege)
+				{
+					if(!$page->user->privilegied($privilege) && $remove != 'keep')
+					{
+						$remove = 'do';
+					}
+					else
+					{
+						$remove = 'keep';
+					}
+				}
+				
+				if($remove == 'do')
+				{
+					unset($menu[$handle]);
+				}
+				unset($remove);
+			}
+			
 			$submenu = (isset($menu[$page->menu_active]['sub']) ? $menu[$page->menu_active]['sub'] : null);
 			
 			$priority = array();
