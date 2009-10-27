@@ -19,3 +19,13 @@
 
 #hp #modules #side_module_forum_threads ul li.even,
 #hp #modules #side_module_forum_posts ul li.even { background-color: #edf5fa !important; }
+
+#forum_thread_by_category {
+	padding: 2px;
+	font-size: 12px;
+	font-family: tahoma;
+	color: #333;
+	width: 100%;
+	border: 1px solid #bcbcbc;
+	letter-spacing: normal;
+}
