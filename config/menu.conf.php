@@ -59,7 +59,7 @@ $menu['settings_unregister'] = array('parent' => 'settings', 'label' => 'Avregis
 
 
 // Old admin menu
-$menu['admin'] = array('label' => 'A', 'priority' => '110', 'url' => '/admin/moderator_contact_info.php', 'privileges' => array('ip_ban_admin','warnings_admin','','','','','',''));
+$menu['admin'] = array('label' => 'A', 'priority' => '110', 'url' => '/admin/moderator_contact_info.php', 'privileges' => array('ip_ban_admin','warnings_admin','use_ghosting_tools','ip_ban_admin','ov_admin','privilegies_admin'));
 $menu['admin_ip_ban'] = array('parent' => 'admin', 'label' => 'IP bann', 'priority' => '109', 'url' => '/admin/ip_ban_admin.php', 'privileges' => array('ip_ban_admin'));
 $menu['admin_warnings'] = array('parent' => 'admin', 'label' => 'Varningar', 'url' => '/admin/warnings.php', 'privileges' => array('warnings_admin'));
 $menu['admin_guestbook_hack'] = array('parent' => 'admin', 'label' => 'Gästbokshack', 'url' => '/admin/guestbook_hack.php', 'privileges' => array('use_ghosting_tools'));
@@ -67,7 +67,7 @@ $menu['admin_user_logins'] = array('parent' => 'admin', 'label' => 'Användar in
 $menu['admin_ov_statistics'] = array('parent' => 'admin', 'label' => 'OV statistik', 'url' => '/admin/ov_watch.php', 'privileges' => array('ov_admin'));
 $menu['admin_admin_log'] = array('parent' => 'admin', 'label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'privileges' => array('ov_admin'));
 $menu['admin_priveleges'] = array('parent' => 'admin', 'label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'privileges' => array('privilegies_admin'));
-$menu['admin_contact_info'] = array('parent' => 'admin', 'label' => 'OV kontaktinfo', 'url' => '/admin/moderator_contact_info.php');
+$menu['admin_contact_info'] = array('parent' => 'admin', 'label' => 'OV kontaktinfo', 'url' => '/admin/moderator_contact_info.php', 'privileges' => array('warnings_admin'));
 
 // Old site admin menu
 $menu['site_admin'] = array('label' => 'S', 'priority' => '109', 'url' => '/site_admin/event_log.php', 'privileges' => array('fp_modules_rearrange','use_statistic_tools','discussion_forum_category_admin','use_debug_tools'));
