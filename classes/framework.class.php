@@ -58,8 +58,8 @@
 			$modules['n24'] = new SideModuleN24();
 			$modules['profile_visitors'] = new SideModuleProfileVisitors($this->get('user'));
 			$modules['statistics'] = new SideModuleStatistics();
-			$modules['forum_posts'] = new SideModuleForumPosts();
 			$modules['forum_threads'] = new SideModuleForumThreads();
+			$modules['forum_posts'] = new SideModuleForumPosts();
 			$modules['crew'] = new SideModuleCrew();
 			$modules['administration'] = new SideModuleAdministration($this->get('user'));
 			

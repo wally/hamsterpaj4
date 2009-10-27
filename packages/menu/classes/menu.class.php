@@ -50,6 +50,8 @@
 			}
 			array_multisort($priority, SORT_DESC, $menu);
 			
+			$active_menu = false;
+			
 			// Sätt rätt menyval till aktivt
 			foreach($menu as $key => $row)
 			{
@@ -63,6 +65,7 @@
 				{
 					//Tools::debug($key . ' är satt till aktiv');
 					$row['active'] = true;
+					$active_menu = true;
 				}
 				
 				foreach($menu as $key2 => $row2)
@@ -77,7 +80,6 @@
 							$row['active'] = true;
 							// Sätt ungen till aktiv
 							$menu[$key2]['active'] = true;
-							
 						}
 					}
 				}
@@ -109,7 +111,7 @@
 				//}
 			}
 			
-			if ( ! $has_active_sub )
+			if ( ! $has_active_sub && ! $active_menu )
 			{
 			    $bigmenu['hamsterpaj']['active'] = true;
 			}

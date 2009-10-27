@@ -1,5 +1,5 @@
 <div class="user_profile_mini">
-	<a href="<?php echo $user->profile_url(); ?>">
+	<a href="<?php echo $user->get('profile_url'); ?>">
 		<img src="<?php echo $user->avatar_thumb_url(); ?>" />
 		<h3><?php echo $user->get('username'); ?></h3>
 		<p>
