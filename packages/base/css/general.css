@@ -189,7 +189,7 @@ dd
 {
 	width: 200px;
 	padding-top: 16px;
-	position: absolute;
+	float:right;
 }
 
 #hp #head #login .buttons .ui_login_submit {
@@ -198,8 +198,6 @@ dd
 
 #hp #head #login .buttons input, #hp #head #login .buttons button
 {
-	padding: 0;
-	margin: 0;
 	width: auto;
 }
 
