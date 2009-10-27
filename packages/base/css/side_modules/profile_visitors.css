@@ -1,6 +1,7 @@
 #side_module_profile_visitors
 {
 	padding-left: 7px !important;
+	display: block;
 }
 
 #side_module_profile_visitors ul
@@ -33,6 +34,7 @@
 {
 	width: 37px;
 	height: 50px;
+	display: block;
 }
 
 #side_module_profile_visitors a.show_more_link {
