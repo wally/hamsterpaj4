@@ -74,7 +74,7 @@
 			    $temp[$module] = $modules[$module];
 			}
 			
-	    		foreach ( $this->user->get('module_order') as $module )
+	    		foreach ( (array)$this->user->get('module_order') as $module )
 			{
 			    $temp[$module] = $modules[$module];
 			}
