@@ -85,7 +85,10 @@
 			$states = (array)$this->user->get('module_states');
 			foreach ( $states as $module => $state )
 			{
-			    $modules[$module]->is_closed = ($state == 'close');
+			    if ( isset($modules[$module]) )
+			    {
+				$modules[$module]->is_closed = ($state == 'close');
+			    }
 			}
 			
 			foreach($modules AS $key => $module)
