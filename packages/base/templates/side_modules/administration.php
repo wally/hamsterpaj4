@@ -1,4 +1,4 @@
-<a class="minimize" href="#">+</a><h5>Administration</h5>
+<a class="minimize" href="#">+</a><h5>Administration</h5><a class="move" href="#">=</a>
 <?php if($module->abuses > 0): ?>
 <a href="/admin/abuse.php">
 	<?php echo $module->abuses; ?> nya rapporter »

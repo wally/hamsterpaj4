@@ -44,12 +44,13 @@
 		public $menu_active;
 		public $content;
 		
-		// Property: Page::$page_notification
+		// Property:
+		//	Page::$page_notification
 		// Holds an array of notifications from the previous page view.
 		// An element in the array should be the arguments that are passed to <template>
 		public $page_notification = array();
 		
-		private $user;
+		public $user;
 		
 		function load_side_modules()
 		{
@@ -61,6 +62,31 @@
 			$modules['forum_threads'] = new SideModuleForumThreads();
 			$modules['crew'] = new SideModuleCrew();
 			$modules['administration'] = new SideModuleAdministration($this->get('user'));
+			
+			// Module ordering
+			$all_modules = array_keys($modules);
+			
+			$not_saved = array_diff($all_modules, (array)$this->user->get('module_order'));
+			
+			$temp = array();
+			foreach ( $not_saved as $module )
+			{
+			    $temp[$module] = $modules[$module];
+			}
+			
+	    		foreach ( $this->user->get('module_order') as $module )
+			{
+			    $temp[$module] = $modules[$module];
+			}
+			
+			$modules = $temp;
+			
+			// Module visibility
+			$states = (array)$this->user->get('module_states');
+			foreach ( $states as $module => $state )
+			{
+			    $modules[$module]->is_closed = ($state == 'close');
+			}
 			
 			foreach($modules AS $key => $module)
 			{
@@ -82,6 +108,7 @@
 	class Module extends HP4
 	{
 		public $is_sortable = true;
+		public $is_closed = false;
 		protected $visible = true;
 		
 		function execute($page)

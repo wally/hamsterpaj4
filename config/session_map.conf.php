@@ -38,8 +38,8 @@
 	$session_map['preferences'] = array('preferences');
 	$session_map['photoblog_preferences'] = array('photoblog_preferences');
 	
-	$session_map['module_states'] = array('module_states');
-	$session_map['module_order'] = array('module_order');
+	$session_map['module_states'] = array('preferences', 'module_states');
+	$session_map['module_order'] = array('preferences', 'module_order');
 	
 	$session_map['cache'] = array('cache');
 	$session_map['last_update'] = array('cache', 'lastupdate');

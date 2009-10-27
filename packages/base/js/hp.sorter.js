@@ -11,7 +11,11 @@ hp.set('classes.Sorter', hp.Class({
         this.ignore = options.ignore || false;
 	this.handleElement = options.handle || false;
 	this.ghostContainer = options.container || false;
-	this.ghostPrimer = options.ghostPrimer || function() { debug("default"); };
+	this.ghostPrimer = options.ghostPrimer || function() {};
+	
+	this.onRelease = options.onRelease || function() {};
+	
+	this.scrollInterval = false;
 	
 	this.setElements(elements);
 	this.createGraveyard();
@@ -38,8 +42,6 @@ hp.set('classes.Sorter', hp.Class({
 	} else {
 	    this.handles = this.elements;
 	}
-	
-	debug(this.handles.length);
 	
 	this.handles.mousedown(function(e) {
 		var element = this;
@@ -76,6 +78,10 @@ hp.set('classes.Sorter', hp.Class({
 	this.activeElement.removeClass('sort-active');
 	this.activeElement = null;
 	this.ghost.remove();
+	
+	clearInterval(this.scrollInterval);
+	
+	this.onRelease();
     },
 
     createGhost: function(from) {
@@ -128,6 +134,23 @@ hp.set('classes.Sorter', hp.Class({
 	
 	this.sort(pos);
 	this.prev = pos;
+	
+	var windowHeight = $(window).height() - 50;
+	
+	if ( e.clientY > windowHeight ) {
+	    if ( ! this.scrollInterval )
+		this.scrollInterval = setInterval(function() {
+		    $(document).scrollTop($(document).scrollTop() + 20)
+		}, 50);
+	} else if ( e.clientY < 40 ) {
+		if ( ! this.scrollInterval )
+		    this.scrollInterval = setInterval(function() {
+			$(document).scrollTop($(document).scrollTop() - 20);
+		    }, 50);
+	} else if ( this.scrollInterval )  {
+	    clearInterval(this.scrollInterval);
+	    this.scrollInterval = false;
+	}
 	
 	return false;
     },
