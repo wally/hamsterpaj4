@@ -1,0 +1,117 @@
+body {
+    background: #324878 url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/background.png") repeat-x;
+}
+
+#content {
+    padding: 0 10px 10px 10px;
+}
+
+#hp #head {
+    background: transparent url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/header_halloween.png") no-repeat;
+    color: #b5ce85;
+}
+
+#hp #head h2 {
+    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/logo_halloween.png") no-repeat;
+}
+
+    #notices #notices_guestbook a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") no-repeat; }
+	#notices #notices_guestbook a:hover { background-position: 0 -73px; color: #d5eea7; }
+	#notices li#notices_guestbook.active a, #hp #head #notices li#notices_guestbook.active a:hover { background-position: 0 -146px; color: #d5eea7;}
+    #notices #notices_forum a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -70px 0 no-repeat; }
+	#notices #notices_forum a:hover { background-position: -70px -73px; color: #d5eea7; }
+	#notices li#notices_forum.active a, #hp #head #notices li#notices_forum.active a:hover { background-position: -70px -146px; color: #d5eea7;}
+    #notices #notices_groups a { background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -140px 0 no-repeat; }
+	#notices #notices_groups a:hover { background-position: -140px -73px; color: #d5eea7; }
+	#notices li#notices_groups.active a, #hp #head #notices li#notices_groups.active a:hover { background-position: -140px -146px; color: #d5eea7; }
+    #notices #notices_events a{ background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/notices_halloween.png") -210px 0 no-repeat; }
+	#notices #notices_events a:hover { background-position: -210px -73px; color: #d5eea7; }
+	#notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #d5eea7; }
+                
+#notices li.notice_panel a.notice_icon {
+    color: #B5CE85;
+}
+
+#notices li.notice_panel a.notice_icon {
+    padding-top: 55px;
+}
+
+#hp #head #status a {
+    color: #B5CE85;
+}
+
+#hp #head #status #ui_statusbar_forumstatus {
+    color: #B5CE85;
+}
+
+#hp #head #status {
+    color: #5e5d75;
+    line-height: 19px;
+}
+
+#hp #head #notices li#notices_groups.active div a {
+    color: #333;
+}
+
+#notices .notice_panel a:hover {
+    color: #333 !important;
+}
+
+#main_menu { 
+  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -73px repeat-x !important;
+  color: #d8d3d1 !important;
+}
+  
+    #main_menu li.direct_child {
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -104px no-repeat !important;
+    }
+  
+	#main_menu li.direct_child a.direct_child { 
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") right -185px !important;
+                  color: #d8d3d1 !important;
+	}
+
+#main_menu li#active:hover,
+#main_menu #active  {
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -135px repeat-x !important;
+}
+ 
+ 	#main_menu li.direct_child:hover {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x !important;
+	}
+	
+	#main_menu li#active a.direct_child:hover,
+	#main_menu #active a.direct_child {
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_whereat_halloween.png") center !important;
+	}
+	
+	#main_menu li a.direct_child:hover {
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") top right !important;
+	}
+        
+	/* This provides an alternative style for IE 6 active, which was buggy. */
+	* html #main_menu li#active a.direct_child {
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x !important; 
+	}
+        
+        #main_menu #active.small a.direct_child, #main_menu #active.small a.direct_child:hover {
+            color: white !important;
+        }
+
+.main_menu_sub { 
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -197px repeat-x !important;
+}
+	.main_menu_sub li.active {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") repeat-x bottom right !important;
+	}
+	
+	.main_menu_sub li.active a {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") no-repeat 0 -257px !important;
+	}
+        
+#hp #head #status {
+    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/grave.png") no-repeat transparent;
+    margin-left: 0;
+    padding-left: 9px;
+    height: 65px;
+}

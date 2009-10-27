@@ -26,10 +26,11 @@
 		float: left;
 		display: block;
 		padding: 9px 11px;
-		height: 23px;
+		height: 12px;
 		color: #4d361b;
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/menu_items_sprite.png") right -185px;
 		text-decoration: none;
+		line-height: 13px;
 	}
   
 	#main_menu .big {
@@ -40,6 +41,7 @@
 	#main_menu .small a {
 		padding-top: 8px;
 		height: 14px;
+		line-height: 13px;
 	}
 
 
