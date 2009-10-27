@@ -205,6 +205,10 @@
 			return ($params['allow_multiple'] == true) ? $users : false;
 		}
 		
+		/*
+		    Modules
+		*/
+		
 		public function set_module_order($order)
 		{
 		    if ( is_string($order) )
@@ -263,6 +267,10 @@
 			$_PDO->query($query);
 		    }
 		}
+		
+		/*
+		    Notices
+		*/
 		
 		public function get_unread_photo_comments()
 		{
@@ -351,15 +359,26 @@
 		    }
 		}
 		
+		/*
+		    User status
+		*/
+		
+		public function save_signature($status)
+		{
+		    global $_PDO;
+		    
+		    if ( $this->exists() )
+		    {
+			$query = 'UPDATE userinfo SET user_status = "' . $status . '", user_status_update = ' . time() . '';
+			$query .= ' WHERE userid = ' . $this->get('id') . ' LIMIT 1';
+			$_PDO->query($query);
+		    }
+		    $this->signature = $status;
+		}
+		
 		public function auth($password)
 		{
 			return (Secret::password_hash($password) == $this->password);
-		}
-		
-		function profile_url()
-		{
-			Tools::Debug('<em style="color: red;">Call to deprecated function: profile_url() use get_profile_url() instead. By using $user->get(\'profile_url\')</em>');
-			return '/traffa/profile.php?id=' . $this->id;
 		}
 		
 		function get_profile_url()

@@ -112,7 +112,7 @@ hp.set('packages.avatars', {
     },
     
     hide_avatar: function() {
-	if ( this.container.css('display') != 'none' ) {
+	if ( this.container && this.container.css('display') != 'none' ) {
 	    this.open = false;
 	    
 	    this.container.animate(this.original_offset, function() {
