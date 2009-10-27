@@ -32,6 +32,7 @@ class PageJS extends Page
 			    );
 			}
 		}
+		$this->cache = 300;
 		$this->raw_output = true;
 	}
 }
