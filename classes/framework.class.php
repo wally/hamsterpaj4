@@ -90,7 +90,7 @@
 			
 			foreach($modules AS $key => $module)
 			{
-				if($module->get('visible') == true)
+				if ( $module instanceof Module && $module->get('visible') == true)
 				{
 					$this->side_modules[] = $module;
 				}
