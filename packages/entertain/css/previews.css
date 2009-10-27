@@ -39,7 +39,7 @@
 
 .entertain_preview li h4
 {
-	position: absolute;
+	position: relative;
 	background: black;
 	color: white;
 	width: 100%;
@@ -138,7 +138,7 @@
 
 .entertain_preview_small li h4
 {
-	position: absolute;
+	position: relative;
 	background: black;
 	color: white;
 	width: 100%;
