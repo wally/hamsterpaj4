@@ -357,11 +357,16 @@ dd
 	position: relative;
 	text-indent: -999em;
 	float: right;
-	background: url("http://imgur.com/cXSJ8.png") no-repeat;
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/status_edit_icon.png") no-repeat;
 	width: 11px;
 	height: 10px;
+	top: 0;
 	margin-top: 5px;
 	cursor: pointer;
+}
+
+#status_left {
+	float: left;
 }
 
 #hp #head #status .user_avatar
