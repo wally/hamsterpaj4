@@ -7,10 +7,14 @@
 	padding: 0 0 0 5px;
 }
 
-#hp #modules #side_module_statistics li {
+#side_module_statistics li {
 	height: 19px;
 }
 
-#hp #modules #side_module_statistics .right {
+#side_module_statistics .left {
+	float: left;
+}
+
+#side_module_statistics .right {
 	float: right;
 }
