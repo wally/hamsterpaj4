@@ -9,7 +9,7 @@ class PageSideModuleSort extends Page
     
     public function execute($uri)
     {
-	$order = trim(substr($uri, 18), '|');
+	$order = trim(substr(urldecode($uri), 18), '|');
 	$order = explode('|', str_replace('side_module_', '', $order));
 	
 	$this->user->save_module_order($order);
