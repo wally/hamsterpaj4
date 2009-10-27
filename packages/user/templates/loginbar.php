@@ -9,7 +9,7 @@
 	</span>
 	<span class="buttons">
 		<input class="ui_login_submit" type="submit" value="Logga in" />
-		<button class="ui_login_submit">Registrera</button>
+		<a href="/register.php" onclick="document.location = this.getAttribute('href'); return false;"><input class="ui_login_submit" type="submit" value="Registrera" /></a>
 	</span>
 </form>
 

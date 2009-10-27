@@ -14,14 +14,16 @@
 			// Remove everything you do not have priveleges for
 			foreach($menu as $handle => $menu_item)
 			{
+				$remove = null;
+				
 				// Check for checklogin => true
-				if($menu_item['checklogin'] == true && !$page->user->exists())
+				if(Tools::is_true($menu_item['checklogin']) && !$page->user->exists())
 				{
 					$remove = 'do';
 				}
 				
 				// Check privileges
-				foreach($menu_item['privileges'] as $privilege)
+				foreach(Tools::pick($menu_item['privileges'], array()) as $privilege)
 				{
 					if(!$page->user->privilegied($privilege) && $remove != 'keep')
 					{
@@ -37,7 +39,6 @@
 				{
 					unset($menu[$handle]);
 				}
-				unset($remove);
 			}
 			
 			$submenu = (isset($menu[$page->menu_active]['sub']) ? $menu[$page->menu_active]['sub'] : null);

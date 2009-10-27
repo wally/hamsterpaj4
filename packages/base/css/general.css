@@ -175,7 +175,6 @@ dd
 
 #hp #head #login span
 {
-	display: block;
 	float: left;
 	width: 120px;
 	margin-left: 10px;
@@ -188,11 +187,16 @@ dd
 
 #hp #head #login .buttons
 {
-	width: 180px;
+	width: 200px;
 	padding-top: 16px;
+	float:right;
 }
 
-#hp #head #login .buttons input
+#hp #head #login .buttons .ui_login_submit {
+	padding: 0;
+}
+
+#hp #head #login .buttons input, #hp #head #login .buttons button
 {
 	width: auto;
 }
