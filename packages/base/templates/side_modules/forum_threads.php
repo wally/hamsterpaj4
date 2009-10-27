@@ -10,3 +10,13 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+
+<?php if ( $page->user->exists() ): ?>
+<select id="forum_thread_by_category">
+    <option value="">Skapa en ny tr&aring;d i kategori</option>
+    <?php 
+	$categories = Legacy::discussion_forum_categories_fetch(array('parent' => 0));
+	echo $module->recurse_forum_category($categories, 0);
+    ?>
+</select>
+<?php endif; ?>

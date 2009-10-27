@@ -73,7 +73,7 @@ class Legacy
 		    'subscriptions' => array()
 		);
 		
-		$query = 'SELECT cv.*, pf.title, pf.handle FROM forum_category_visits as cv
+		$query = 'SELECT cv.*, pf.title, pf.handle, pf.parent FROM forum_category_visits as cv
 		
 		    LEFT JOIN public_forums AS pf ON pf.id = cv.category_id
 		    
@@ -208,5 +208,60 @@ class Legacy
 		}
 		
 		return $unread;
+	}
+	
+	public static function discussion_forum_categories_fetch($options)
+	{
+		global $_PDO;
+		
+		$options['url_prefix'] = (isset($options['url_prefix'])) ? $options['url_prefix'] : '/diskussionsforum/';
+		if(isset($options['id']) && !is_array($options['id']))
+		{
+			$options['id'] = array($options['id']);
+		}
+		
+		$query = 'SELECT pf.*, t.title AS last_thread_title, t.handle AS last_thread_handle, l.username AS last_thread_username, l.id AS last_thread_author';
+		$query .= ' FROM public_forums AS pf, forum_posts AS t, login AS l WHERE 1';
+		$query .= (isset($options['parent'])) ? ' AND pf.parent = "' . $options['parent'] . '"' : '';
+		$query .= (isset($options['forum_id'])) ? ' AND pf.id = "' . $options['forum_id'] . '"' : ''; // This exists, I know. But it didn't work, so I made my own
+		$query .= (isset($options['id'])) ? ' AND pf.id IN("' . implode('", "', $options['id']) . '")' : '';
+		$query .= (isset($options['handle'])) ? ' AND pf.handle LIKE "' . $options['handle'] . '"' : '';
+		$query .= ' AND t.id = pf.last_thread';
+		$query .= ' AND l.id = t.author';
+		$query .= ' ORDER BY pf.priority DESC, pf.handle ASC';
+		
+		$statement = $_PDO->query($query);
+		
+		$data_rows = array();
+		foreach ( $statement->fetchAll(PDO::FETCH_ASSOC) as $data)
+		{
+			$data_rows[] = $data;
+		}
+		
+		$categories = array();
+		
+		foreach($data_rows as $data)
+		{
+			if(!isset($options['max_levels']) || $options['max_levels'] > 0)
+			{
+				$recursive_options = $options;
+				$recursive_options['parent'] = $data['id'];
+				if(isset($options['max_levels']))
+				{
+					$recursive_options['max_levels'] = $options['max_levels'] - 1;
+				}
+				$recursive_options['url_prefix'] = $options['url_prefix'] . $data['handle'] . '/';
+				$children = Legacy::discussion_forum_categories_fetch($recursive_options);
+			}
+			if(count($children) > 0)
+			{
+				$data['children'] = $children;
+			}
+			$data['url'] = $options['url_prefix'] . $data['handle'] . '/';
+			
+			$categories[] = $data;
+		}
+		
+		return $categories;
 	}
 }

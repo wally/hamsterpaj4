@@ -424,11 +424,7 @@
 		
 		function get_forum_categories()
 		{
-			if ( ! isset($this->forum['categories']) || $this->cache['last_update'] - time() > 20 )
-			{
-			
-			}
-			
+			$this->update_notices();
 			return $this->forum['categories'];
 		}
 		
