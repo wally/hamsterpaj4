@@ -410,6 +410,8 @@ dd
 #hp #modules .module.minimized {
     opacity: 0.6;
     padding-bottom: 0;
+    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/amanda/minimized_bg.png") repeat-x;
+    border-color: #d7d7d7;
 }
 
 #hp #modules .module.minimized * {
@@ -425,7 +427,7 @@ dd
 #hp #modules h5 {
 	font-size: 16px;
 	font-weight: normal;
-	margin: 0 0 4px 12px;
+	margin: -1px 0 4px 12px;
 }
 
 #hp #modules ul { margin: 0; }
@@ -451,7 +453,7 @@ dd
 	float: right;
 	cursor: move;
 	text-indent: -999px;
-	margin-top: -22px;
+	margin-top: -21px;
 }
 
 .textarea_full
