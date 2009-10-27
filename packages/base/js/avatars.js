@@ -3,8 +3,10 @@ hp.set('packages.avatars', {
     statuses: {},
 
     init: function() {
+	var self = this;
+	
 	$(document).ready(function() {
-	    hp.packages.avatars.create_base();
+	    self.create_base();
 	});
 	
 	$(document).click(function(event) {
