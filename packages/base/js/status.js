@@ -38,7 +38,7 @@ hp.set('packages.status', {
     
     save: function() {
 	var value = this.input.val();
-	$.get('/forumstatus/' + value);
+	$.get('/forumstatus/' + encodeURI(value));
 	hp.packages.status.span.show().text(value.substring(0, 19) + '...');
 	this.input.remove();
     }
