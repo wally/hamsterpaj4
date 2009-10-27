@@ -8,6 +8,14 @@
 		
 		function execute($uri)
 		{
+			if(Cache::last_update('css') > (time() - 600))
+			{
+				$this->content = Cache::load('css');
+				$this->raw_output = true;
+				$this->content_type = 'text/css';
+				return true;
+			}
+		
 			$files = Tools::find_files(PATH_PACKAGES,
 			    array('extension' => 'css', 'excludes' => array(PATH_PACKAGES . 'hp3css'))
 			);
@@ -18,7 +26,7 @@
 				$this->content .= file_get_contents(PATH_PACKAGES . $file);
 			}
 			
-			$this->cache = 300;
+			Cache::save('css', $this->content);
 			$this->raw_output = true;
 			$this->content_type = 'text/css';
 		}

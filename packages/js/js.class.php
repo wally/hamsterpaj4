@@ -11,6 +11,13 @@ class PageJS extends Page
 	
 	function execute($uri)
 	{
+		if(Cache::last_update('js') > (time() - 600))
+		{
+			$this->content = Cache::load('js');
+			$this->raw_output = true;
+			return true;
+		}
+		
 		$files = Tools::find_files(PATH_PACKAGES, array('extension' => 'js'));
 		
 		// Files that have to be loaded before the restore_error_handler
@@ -32,7 +39,7 @@ class PageJS extends Page
 			    );
 			}
 		}
-		$this->cache = 300;
+		Cache::save('js', $this->content);
 		$this->raw_output = true;
 	}
 }
