@@ -240,7 +240,8 @@ dd
 		#notices li#notices_events.active a, #hp #head #notices li#notices_events.active a:hover { background-position: -210px -146px; color: #333;}
 
 	#notices li.notice_panel:hover div.notices_information {
-	    display: block;
+		display: block;
+		position: relative;
 	}
 	
 	#notices li div.notices_information {

@@ -4,13 +4,14 @@
 	padding: 4px !important;
 	position: relative;
 	border: 0 !important;
-	height: 33px; !important;
+	min-height: 33px;
 }
 
 #side_module_search form
 {
 	padding: 0;
 	margin: 0;
+	positon: relative;
 }
 
 #side_module_search input[type="text"]
@@ -67,7 +68,8 @@
 #side_module_search #livesearch_results { display: none; }
 
 #side_module_search .suggestions {
-	margin: 4px 0 0 0;
+	position: relative;
+	margin: 36px 0 0 0;
 	border: 1px solid #c2d6ff;
 	border-top: 0;
 	padding: 0;

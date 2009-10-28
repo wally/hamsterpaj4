@@ -39,7 +39,7 @@
 
 .entertain_preview li h4
 {
-	position: relative;
+	position: relative !important;
 	background: black;
 	color: white;
 	width: 100%;
@@ -49,13 +49,14 @@
 	padding-bottom: 3px;
 	display: block;
 	margin-top: 0px;
+	margin-bottom: 0px;
 	padding-top: 0px;
 	text-indent: 5px;
 	font-weight: bold;
 	font-size: 12px;
 }
 
-.entertain_preview li .type
+.entertain_preview li span
 {
 	background: black;
 	position: absolute;
