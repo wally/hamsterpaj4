@@ -17,7 +17,7 @@
 			}
 		
 			$files = Tools::find_files(PATH_PACKAGES,
-			    array('extension' => 'css', 'excludes' => array(PATH_PACKAGES . 'hp3css'))
+			    array('extension' => 'css', 'excludes' => array(PATH_PACKAGES . 'hp3'))
 			);
 			
 			foreach($files AS $file)
