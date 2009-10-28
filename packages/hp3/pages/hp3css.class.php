@@ -15,7 +15,7 @@ class PageHP3CSS extends Page
 	$files = trim(substr($uri, 15), ', ');
 	$files = explode(',', $files);
 	
-	$files = array_merge($files, HP3Config::$standard);
+	$files = array_merge($files, HP3Config::$standard_css);
 	
 	$dir = dirname(__FILE__) . '/../css/';
 	
@@ -31,7 +31,7 @@ class PageHP3CSS extends Page
 	$orig_uri = $_SERVER['REQUEST_URI'];
 	foreach ( $files as $filename )
 	{
-	    $file = preg_replace(HP3Config::$rewrites, HP3Config::$replaces, $filename);
+	    $file = preg_replace(HP3Config::$rewrites_css, HP3Config::$replaces_css, $filename);
 	    
 	    if ( file_exists($dir . $file) && ! strstr($file, '..') )
 	    {
