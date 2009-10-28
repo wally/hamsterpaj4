@@ -8,12 +8,12 @@ class HP3Config
 	
 	For rewriting the incoming paths.
     */
-    public static $rewrites_css = array(
+    public static $rewrites = array(
 	// Photoblog uses special URL:s
 	'#photoblog_[A-Za-z0-9]*_[A-Za-z0-9]*_\.css#'
     );
     
-    public static $replaces_css = array(
+    public static $replaces = array(
 	'photoblog.css.php'
     );
     
@@ -23,7 +23,7 @@ class HP3Config
 	
 	Files that are allways present
     */
-    public static $standard_css = array(
+    public static $standard = array(
 	'shared.css',
 	'new_guestbook.css',
 	'poll.css'
