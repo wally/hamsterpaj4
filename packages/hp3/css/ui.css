@@ -1,0 +1,716 @@
+/*
+	################################################################
+	Mantainer: Patrick Lef
+	################################################################
+	Color specifications
+		Text: #454545;
+		Links: #000;
+		Grey-border: #d7d8dc;
+		Grey-background: #f9f9f9;
+	################################################################
+*/
+
+body {
+	background: #8ec0e5 url(http://images.hamsterpaj.net/ui/ui_background_gradient.png) repeat-x;
+	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
+	color: #454545;
+	font-size: 0.7em;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+a { 
+	color: #000;
+	text-decoration: none; 
+}
+
+a:hover { 
+	text-decoration: underline; 
+}
+
+a img {
+	border: none;
+}
+
+h1 {
+	font-family: Georgia, serif;
+	font-size: 25px;
+	font-weight: normal;
+	margin: 0;
+}
+
+h2 {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 13px;
+}
+
+h4 {
+	font-size: 11px;
+}
+
+th, td {
+	font-size: 11px;
+}
+/*
+	################################################################
+		FULL PAGE NOTICE
+		
+		Full page notice is a bar, placed on top of the 
+		whole site, user for very importent messages.
+	################################################################
+*/
+
+#ui_full_page_notice {
+	width: 100%;
+	height: 60px;
+	padding: 3px;
+	padding-left: 60px;
+	background: #fffbc9 url('http://images.hamsterpaj.net/common_icons/tips_light_bulb.png') no-repeat 10px 7px;
+	border-bottom: 1px solid #f0dca1;
+}
+	#ui_full_page_notice_close {
+		margin: 10px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+	}
+	#ui_full_page_notice h2	{
+		margin: 8px 0 8px 0;
+		font-size: 16px;
+	}
+	#ui_full_page_notice span {
+		margin-left: 15px;
+		font-size: 12px;
+	}
+	
+/*
+	################################################################
+		OUTER WRAPPER
+		
+		Wraps the whole site to make sure float_right ad's doesn't
+		fall down.
+	################################################################
+*/
+
+#outer_wrapper {
+	width: 1180px;
+}
+
+/*
+	################################################################
+		FOLLOW US
+		
+		Shows twitter and facebook follow us links
+	################################################################
+*/
+	
+	#follow_us {
+		margin: 10px 0 0 700px;
+	}
+	
+/*
+	################################################################
+		UI WRAPPER
+		
+		Wraps the Hamsterpaj layout
+	################################################################
+*/
+
+#ui_wrapper {
+	border: 1px solid #6188A4;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: #fff;
+	width: 880px;
+	margin: 0 10px 10px 10px;
+	float: left; /* Makes it possible to have ad's floating on the right side of the page */
+}
+
+/*
+	################################################################
+		UI HEADER
+		
+		The top part of the layout. Logo, login-bar, notice-bar and a
+		status-bar
+	################################################################
+*/
+
+#ui_header {
+	margin: -1px -1px 0 -1px;
+	background: url(http://images.hamsterpaj.net/ui/ui_header_right.png) right top no-repeat;
+	height: 73px;
+}
+	#ui_header h1 {
+		margin: 0;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_left.png) left top no-repeat;
+		height: 73px;
+	}
+	#ui_header h1 a {
+			display: block;
+			background: url(http://images.hamsterpaj.net/ui/ui_logo.png) left 3px no-repeat;
+			height: 73px;
+			text-indent: -10000px;
+			margin-left: 10px;
+	}
+	#ui_header #ui_login, #ui_header #ui_noticebar {
+		padding: 7px;
+		margin: -72px 0 0 380px;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
+		height: 58px;
+	}	
+	#ui_header #ui_login {
+		padding-left: 10px;
+		padding-top: 20px;
+	}
+		#ui_header #ui_login p {
+			margin: 0;
+			margin-right: 10px;
+			float: left;
+		}
+		#ui_header #ui_login #ui_login_username, #ui_header #ui_login #ui_login_password {
+				width: 125px;
+		}
+		#ui_header form { margin: 0; padding: 0; }
+		#ui_header .ui_login_submit {
+			margin-top: 11px;
+		}
+		#ui_header #ui_login #ui_login_register {
+			margin-top: 11px;
+		}
+		#ui_header #ui_noticebar h2 {
+			display: none;
+		}	
+		#ui_header #ui_noticebar ul {
+			margin: 0;
+			padding: 45px 0 0 0;
+			list-style-type: none;
+		}
+		#ui_header #ui_noticebar ul li {
+			display: inline;
+			position: relative;
+		}
+		#ui_header #ui_noticebar ul li a {
+			margin: 0px;
+			text-align: center;
+			padding: 40px 3px 0 3px;
+			margin: 0 9px 0 9px;
+			color: #717171;
+		}
+		#ui_header #ui_noticebar ul li li a {
+			color: #4C4C4C;
+		}
+		#ui_header #ui_noticebar #ui_noticebar_guestbook	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_guestbook:hover	{ background-position: center bottom; }
+		
+		#ui_header #ui_noticebar #ui_noticebar_forum		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_forum:hover 	{ background-position: center bottom; }
+			
+		#ui_header #ui_noticebar #ui_noticebar_groups		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_groups:hover 	{ background-position: center bottom; }
+		
+		#ui_header #ui_noticebar #ui_noticebar_events		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_events:hover,
+		#ui_header #ui_noticebar #ui_noticebar_events.ui_noticebar_active  { background-position: center -82px; }/* -82 because the images have a different height than the others */
+	
+		#ui_header #ui_noticebar #ui_noticebar_guestbook.ui_noticebar_active,
+		#ui_header #ui_noticebar #ui_noticebar_forum.ui_noticebar_active,
+		#ui_header #ui_noticebar #ui_noticebar_groups.ui_noticebar_active{ 
+			background-position: center bottom; 
+		}
+		#ui_header #ui_noticebar .ui_noticebar_info {
+			display: none;
+			padding: 10px;
+			margin: 0;
+			width: 180px;
+			position: absolute;
+			left: -65px;
+			top: 12px;
+			~top: 100px;
+			background: #f9f9f9;
+			border: 1px solid #d7d8dc;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px
+		}
+			#ui_header #ui_noticebar .ui_noticebar_info h3 {
+				margin: 0 0 10px;
+			}
+			#ui_header #ui_noticebar > ul > li:hover .ui_noticebar_info {
+				display: block;
+				z-index: 100;
+			}
+			#ui_header #ui_noticebar .ui_noticebar_info li {
+				display: block;
+				margin: 0 0 6px;
+			}
+				#ui_header #ui_noticebar .ui_noticebar_info li.ui_noticebar_infoheader {
+					margin: 0;
+					text-align: center;
+				}
+				#ui_header #ui_noticebar .ui_noticebar_info li a {
+					text-align: left;
+					padding: 0;
+					margin: 0;
+				}	
+	#ui_header #ui_statusbar {
+		margin: -72px 0 0 660px;
+		padding: 8px;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
+		width: 200px;
+		height: 56px;
+	}
+		#ui_header #ui_statusbar img {
+			margin-right: 5px;
+			float: left;
+			height: 58px;
+			width: 45px;
+			border: 1px solid #d3d3d3;
+		}
+		#ui_header #ui_statusbar #ui_statusbar_username {
+			padding-top: 5px;
+		}
+		#ui_header #ui_statusbar #ui_statusbar_logintime {
+			padding-top: 3px;
+		}
+		#ui_header #ui_statusbar #ui_statusbar_forumstatus {
+			padding-top: 4px;
+			color: #717171;
+		}
+
+/*
+	################################################################
+		UI MENU
+		
+		Style for the top menu
+	################################################################
+*/
+
+#ui_menu {
+  background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
+  height: 26px;
+  font-size: 94%;
+  z-index: 1;
+}
+	#ui_menu ul {
+	  padding: 0;
+	  margin: 0;
+	}
+	#ui_menu > ul > li {
+		list-style: none;
+	  float: left;
+	  background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right.png") right top no-repeat;
+	  height: 25px;
+	  margin-right: 1px;
+	}
+		/* internet explorer 6 is cute */
+		* html #ui_menu ul li {
+			list-style: none;
+			float: left;
+			background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right.png") right top no-repeat;
+			height: 25px;
+			margin-right: 1px;
+		}
+	#ui_menu > ul > li > a {
+	display: block;
+  	color: #960;
+  	text-decoration: none;
+  	background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
+ 	height: 25px;
+	padding: 4px 9px 0 9px;
+	}
+		/* internet explorer 6 is still cute */
+		* html #ui_menu ul li a {
+			display: block;
+			color: #960;
+			text-decoration: none;
+			background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
+			height: 25px;
+			float: left;
+			padding: 4px 9px 0 9px;
+		}
+	#ui_menu > ul > li:hover > a { 
+		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
+		color: #630;
+	}
+	#ui_menu > ul > li:hover { 
+		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right_hover.png") right top no-repeat; 
+	}
+	#ui_menu li ul  {
+		visibility: hidden;
+  	margin-top: -4px;
+  	list-style: none;
+  	width: 120px;
+ 		background: #f5f5f5;
+	  position: absolute;
+	  border: 1px solid #d7d8dc;
+	  border-top: 0;
+	  padding: 2px 0 2px 38px;
+	  z-index: 1;
+	}
+	#ui_menu li:hover ul li ul {
+		visibility: visible;
+  	margin-top: 0;
+  	list-style: none;
+ 		background: none;
+	  position: relative;
+	  border: none;
+	  border-top: 0;
+	  padding: 2px 0 2px 10px;
+	}
+	#ui_menu li ul li {
+		padding: 4px 0;
+	}
+	#ui_menu li ul a {
+	 	margin-left: -30px;
+		text-decoration: none;
+		color: #494949;
+		display: block;
+	}
+	#ui_menu li ul a:hover {
+		color: #000;
+		text-decoration: underline;
+		background: none;
+	}
+	#ui_menu li ul a:visited { 
+		color: #494949;
+	}
+	#ui_menu li:hover ul {
+		visibility: visible;
+
+	}
+	
+/*
+	################################################################
+		UI MODULEBAR
+		
+		Here is the style for the ui modulebar. It sets som standard
+		rules of style to the modules. Which can be overwritten/added with
+		styling in a stylesheet named as the module placed in
+		stylesheets/ui_modules/ and this file is loaded automaticly.
+	################################################################
+*/
+#ui_modulebar
+{
+	position: relative;
+	padding: 10px 0 1px 10px;
+	background-color: #f0f0f0;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-topleft: 8px;
+	z-index: 0;
+	margin: 10px 0 10px 10px;
+	float: left;
+	width: 210px;
+}
+
+	#ui_modulebar .ui_module
+	{
+		width: 200px;
+		margin-bottom: 10px;
+		color: #717171;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		background: #fff;
+	}
+		/* iefix */
+		* html #ui_modulebar .ui_module {
+			width: 190px;
+			float: left;
+			clear: both;
+		}
+	#ui_modulebar .ui_module_header
+	{
+		padding: 0.5em 0.5em 0.5em 0.7em;
+	}
+		#ui_modulebar .ui_module h2 
+		{
+			margin: 0;
+		  font-weight: bold;
+		  font-size: 8pt;
+		  color: #4c4c4c;
+		  width: 200px;
+		  display: inline;
+		}
+		.ui_module_minimize
+		{
+			height: 7px;
+			width: 7px;
+		  background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") top no-repeat;
+		  display: block;
+		  text-indent: -10000px;
+		  float: left;
+		  outline: none;
+		  margin-top: 3px;
+		  margin-right: 5px;
+		}
+		.ui_module_minimize:hover	{	background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") bottom no-repeat;	}
+		
+		.ui_module_close
+		{
+			height: 15px;
+			width: 15px;
+		  background: url("http://images.hamsterpaj.net/ui/ui_module_close.png") top no-repeat;
+		  display: block;
+		  text-indent: -10000px;
+		  float: right;
+		  margin-left: 4px;
+		  outline: none;
+		  margin-top: -1px;
+		}
+		.ui_module_close:hover	{	background: url("http://images.hamsterpaj.net/ui/ui_module_close.png") bottom no-repeat;	}
+	
+	.ui_module_content
+	{
+		padding: 0 0.7em 0.7em 0.7em;
+	}
+	.ui_module_state_min .ui_module_content {
+		display: none;
+	}
+	
+/* 
+	################################################################
+		STEVE
+		
+		Steve is the dancing maskot att the right side of the menu
+	################################################################
+*/
+
+#steve
+{
+	margin: 2px 0px 0px 0px;
+	padding: 0px;
+	width: 22px;
+	height: 22px;
+	float: right;
+	clear: right;
+	cursor: pointer;
+	display: block;
+	background: url('http://images.hamsterpaj.net/steve/steve.gif');
+}
+#steve_bubble
+{
+	margin: 0px;
+	padding: 0px;
+	width: 280px;
+	height: auto;
+	position: absolute;
+	clear: both;
+	top: 100px;
+	left: 500px;
+	overflow: hidden;
+	z-index: 9;
+}
+#steve_bubble .steve_top
+{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 18px;
+	background: url('http://images.hamsterpaj.net/steve/bubble_top.png') no-repeat;
+}
+#steve_bubble .steve_bottom
+{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 21px;
+	background: url('http://images.hamsterpaj.net/steve/bubble_bottom.png') no-repeat;
+}
+#steve_bubble .steve_inner
+{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: auto;
+	background: url('http://images.hamsterpaj.net/steve/bubble_shadow.png') repeat-y;
+	background-position: 272px 0px;
+}
+#steve_bubble .steve_content
+{
+	margin: 0px;
+	padding: 0px;
+	width: 270px;
+	height: auto;
+	position: relative;
+	background: #FFFFFF;
+	border-left: 1px solid #F2A83A;
+	border-right: 1px solid #F2A83A;
+}
+#steve_bubble .steve_content .steve_text
+{
+	margin: 0px;
+	padding: 3px 2px 1px 10px;
+	width: 255px;
+	height: auto;
+	position: relative;
+	top: -8px;
+	font-family: Tahoma;
+	font-size: 10pt;
+	line-height: 1.1 pt;
+	cursor: default;
+}
+	
+/*
+	################################################################
+		UI NOTICE
+		
+		This is a small noticebar which is shown under the menu.
+		It is used to display new events, like stuff uploaded in entertain
+	################################################################
+*/
+	
+#ui_notice {
+	border-bottom: 1px solid #b5c0ca;
+	padding: 10px 10px 10px 36px;
+	background: #d5e3ff url(http://images.hamsterpaj.net/famfamfam_icons/comment.png) no-repeat scroll 12px 10px;
+	margin-top: -1px;
+}
+
+/*
+	################################################################
+		UI CONTENT
+		
+		This is the box where all pages are loaded.
+	################################################################
+*/
+
+#ui_content {
+	padding: 10px 0px 0 10px;
+	width: 638px; 
+	float: left;
+	overflow: hidden;
+	clear: left;
+}
+
+/*
+	################################################################
+		UI BREAK
+		
+		Clears the float of ui_modulebar and ui_content. Without this
+		the layout would break before the content and modules.
+	################################################################
+*/
+
+#ui_break {
+	clear: both;
+}
+
+/*
+	################################################################
+		UI BUSINESS CARD
+		
+		Those are used for the javascript-popup using brief information
+		about a user, and a guestbook form.
+	################################################################
+*/
+
+#ui_business_card {
+	border: 1px solid #c7c7c7;
+	background: #f9f9f9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 300px;
+	position: absolute;
+	padding: 10px;
+}
+.ui_business_card {
+	position: relative;
+	top: 3px;
+}
+	#ui_business_card_close {
+	 	display: block;
+	 	width: 15px;
+	 	height: 15px;
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		background: transparent url(http://images.hamsterpaj.net/ui/ui_module_close.png) no-repeat scroll center bottom;
+		text-indent: -10000px;
+		outline: none;
+	}
+	#ui_business_card h1 {
+		margin: 0;
+		font-size: 20px;
+	}
+	#ui_business_card .ui_avatar {
+		float: left;
+		margin: 0 10px 10px 0;
+	}
+	#ui_business_card_about p {
+		margin: 0 0 5px;
+	}
+	#ui_business_card_about img {
+		margin-right: 5px;
+	}
+
+	#ui_business_card_guestbook textarea {
+		width: 293px;
+	}
+		
+	#ui_business_card_guestbook {
+		clear: both;
+	}
+	
+/*
+	################################################################
+		UI RIGHT AD
+		
+		This is called fiskpinne because we don't whish that it should
+		be blocked by ad-block programs.
+	################################################################
+*/
+
+#fiskpinne {
+	float: left;
+	margin-top: 10px;
+	background: white;
+}
+
+#skyscraper {
+	float: left;
+	margin-top: 10px;
+	background: white;
+}
+
+/*
+	################################################################
+		UI AVATAR
+		
+		Should this really be here?
+	################################################################
+*/
+.ui_avatar
+{
+	cursor: pointer;
+}
+
+#avatar_wnd
+{
+	z-index: 999;
+	position: absolute;
+	color: #000000;
+	display: block;
+	padding: 2px;
+	-moz-border-radius: 3px;
+	background: #EEE;
+	border: thin solid #999;
+	opacity: 0.1;
+}
+
+#avatar_wnd img
+{
+	width: 100%;
+	height: auto;
+}
+
+#avatar_wnd div
+{
+	background: #f5f5f5;
+	text-align: center;
+	padding: 2px;
+	border: thin solid #CCC;
+	-moz-border-radius: 3px;
+}
