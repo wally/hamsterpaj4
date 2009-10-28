@@ -28,9 +28,9 @@
 		    };
 		</script>
 		<script src="/scripts.js" type="text/javascript"></script>
-		
+
 		<?php foreach ( Tools::pick($page->extra_js, array()) as $script ): ?>
-		    <script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
+		<script type="text/javascript" src="http://iphone2.hamsterpaj.net/javascripts/<?php echo $script; ?>"></script>
 		<?php endforeach; ?>
 		
 		<!-- Ad JavaScript -->
