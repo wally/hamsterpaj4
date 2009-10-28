@@ -120,7 +120,6 @@
 					if($match > $top_match)
 					{
 						$page = new $class();
-						$page_class = $class;
 						$top_match = $match;
 						
 						EventLog::log($class);
@@ -129,41 +128,12 @@
 			}
 		}
 		
+		$page->pdo = $_PDO;
 		$page->user = new User;
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
 		$page->load_menu();
-		
-		// Check for cached version
-		$cache_time = Cache::Exists('pagecache_time_' . $page_class) ? Cache::Exists('pagecache_time_' . $page_class) : false;
-		
-		// Page should be cached?
-		if($cache_time && ENVIRONMENT == 'production')
-		{
-			// Check for usable cache
-			if(Cache::last_update('pagecache_page_' . $page_class) > (time() - $cache_time))
-			{
-				// Load cache
-				$page = Cache::load('pagecache_page_' . $page_class);
-			}
-			else
-			{
-				// No usable cache exists. Do cache
-				$page->execute($uri);
-				Cache::save('pagecache_page_' . $page_class, $page);
-			}
-		}
-		else
-		{
-			// Just simply load page
-			$page->execute($uri);
-		}
-		
-		// If cache time is set on page build cachefile
-		if(isset($page->cache))
-		{
-			Cache::save('pagecache_time_' . $page_class, $page->cache);
-		}
+		$page->execute($uri);
 		
 		// -- start HP3
 		if ( $page instanceof Page404 )
