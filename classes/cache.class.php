@@ -19,9 +19,9 @@
 		    return PATH_CACHE . $handle . '.phpserialized';
 		}
 		
-		public static function save($handle, $data)
+		public static function save($handle, $data, $serialize = true)
 		{
-			Cache::cache_save($handle, $data);
+			Cache::cache_save($handle, $data, $serialize = true);
 		}
 		
 		public static function cache_save($handle, $data, $serialize = true)
