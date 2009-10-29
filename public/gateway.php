@@ -3,12 +3,12 @@
 	
 	define('IS_HP4', true);
 	
-	require_once '../classes/framework.class.php';
-	require_once '../classes/tools.class.php';
-	require_once '../classes/user.class.php';
-	require_once '../config/paths.conf.php';
-	require_once '../secrets/secret.class.php';
-	require_once '../secrets/db_config.php';
+	require '../classes/framework.class.php';
+	require '../classes/tools.class.php';
+	require '../classes/user.class.php';
+	require '../config/paths.conf.php';
+	require '../secrets/secret.class.php';
+	require '../secrets/db_config.php';
 
 	// Sanitize POST and GET data
 	$new_post = array();
@@ -31,21 +31,11 @@
 			require_once PATH_CLASSES . $class;
 		}
 		
-		// Load all package configs
+		// Load all package classes and package configs
 		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
 		foreach($files as $file)
 		{
-			if(substr($file, -9) == '.conf.php')
-			{
-				require_once PATH_PACKAGES . $file;
-			}
-		}
-		
-		// Load all package classes
-		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-		foreach($files as $file)
-		{
-			if(substr($file, -10) == '.class.php')
+			if(substr($file, -10) == '.class.php' || substr($file, -9) == '.conf.php' )
 			{
 				require_once PATH_PACKAGES . $file;
 			}
@@ -57,9 +47,13 @@
 		{
 			if (substr($config, -4) == '.php' )
 			{
-				require_once PATH_CONFIGS . $config;
+				require PATH_CONFIGS . $config;
 			}
 		}
+		
+		/*
+		    Function to catch all errors and report via Tools::debug
+		*/
 		
 		$report_errors = true;
 		
@@ -276,11 +270,7 @@
 			header('Content-type: ' . $page->get('content_type'));
 		}
 		
-		if (strlen($page->get('route')) > 0)
-		{
-			
-		}
-		elseif (strlen($page->get('redirect')) > 0)
+		if (strlen($page->get('redirect')) > 0)
 		{
 			header('Location: ' . $page->get('redirect'));
 			exit;
