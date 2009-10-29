@@ -28,7 +28,7 @@
 			
 			if ( ENVIRONMENT != 'development' )
 			{
-			    Cache::save('css', $this->content);
+			    Cache::save('css', $this->content, false);
 			}
 			$this->raw_output = true;
 			$this->content_type = 'text/css';

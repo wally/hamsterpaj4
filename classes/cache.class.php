@@ -24,9 +24,9 @@
 			Cache::cache_save($handle, $data);
 		}
 		
-		public static function cache_save($handle, $data)
+		public static function cache_save($handle, $data, $serialize = true)
 		{
-			$serialized = serialize($data);
+			$serialized = ($serialize) ? serialize($data) : $data;
 			$file = fopen(PATH_CACHE . $handle . '.phpserialized', 'w');
 			fwrite($file, $serialized);
 			fclose($file);

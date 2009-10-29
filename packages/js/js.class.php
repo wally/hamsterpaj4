@@ -42,7 +42,7 @@ class PageJS extends Page
 		}
 		if ( ENVIRONMENT != 'development' )
 		{
-		    Cache::save('js', $this->content);
+		    Cache::save('js', $this->content, false);
 		}
 		$this->raw_output = true;
 	}
