@@ -21,7 +21,7 @@
 		
 		public static function save($handle, $data, $serialize = true)
 		{
-			Cache::cache_save($handle, $data, $serialize = true);
+			Cache::cache_save($handle, $data, $serialize);
 		}
 		
 		public static function cache_save($handle, $data, $serialize = true)
