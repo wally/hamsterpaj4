@@ -9,12 +9,12 @@
 	<li>
 		<input type="radio" name="video_action" value="upload" id="video_upload" />
 		<label for="video_upload">Ladda upp ny videofil</label>
-		<input type="file" name="video_upload" />
+		<!-- <<input type="file" name="video_upload" /> --> Under utveckling
 	</li>
 	<li>
 		<input type="radio" name="video_action" value="wget" id="video_wget" />
 		<label for="video_wget">Hämta videofil från webben</label>
-		<input type="text" name="video_url" />
+		<!-- <input type="text" name="video_url" /> --> Under utveckling
 	</li>
 	<li>
 		<input type="radio" name="video_action" value="youtube" id="video_youtube" />

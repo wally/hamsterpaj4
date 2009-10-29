@@ -11,11 +11,7 @@
 			{
 				if(substr($uri, 1, strlen($handle)) == $handle && strlen($uri) > strlen($handle)+2)
 				{
-					// While old entertain is used
-					if(!in_array($handle, $_ENTERTAIN_OLD))
-					{
-						return 10;
-					}
+					return 10;
 				}
 			}
 			return 0;

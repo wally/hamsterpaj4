@@ -12,19 +12,20 @@
 			switch($_POST['video_action'])
 			{
 				case 'wget':
+					// Remove old files
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.flv');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.mp4');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.jpg');
 					$file_extension = end(explode(".", $_POST['video_url']));
 					
 					if($file_extension == 'flv')
 					{
-						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					 $cmd = 'wget ' . escapeshellarg($_POST['video_url']) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
 					}
 					else
 					{
 						$cmd = 'wget ' . escapeshellarg($_POST['video_url']) . ' -O /mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension;
 						shell_exec($cmd);
-					
-						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
 						VideoTools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
@@ -36,18 +37,19 @@
 					VideoTools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
 				case 'upload':
+					// Remove old files
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.flv');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.mp4');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.jpg');
 					$file_extension = end(explode(".", $_FILES['video_upload']['name']));
 					
 					if($file_extension == 'flv')
           {
-            shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 						move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video/' . $this->handle . '.flv');
           }
           else
           {
 						move_uploaded_file($_FILES['video_upload']['tmp_name'], '/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension);
-					
-						shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
 					
 						VideoTools::convert_to_flv('/mnt/static/entertain/video_tmp/' . $this->handle . '.' . $file_extension, '/mnt/static/entertain/video/' . $this->handle . '.flv', 'high');
 					
@@ -57,12 +59,16 @@
 					$this->data['file'] = 'http://static.hamsterpaj.net/entertain/video/' . $this->handle . '.flv';
 					VideoTools::generate_preview('/mnt/static/entertain/video/' . $this->handle . '.flv', '/mnt/static/entertain/video/' . $this->handle . '.jpg');
 				break;
-				case 'youtube':					
+				case 'youtube':		
+					// Remove old files
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.flv');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.mp4');
+					unlink('/mnt/static/entertain/video/' . $this->handle . '.jpg');			
 					$youtube_page = @file_get_contents($_POST['youtube_url']);
 
-				  preg_match('#var swfArgs = {(.*?)}#', $youtube_page, $fullscreen_url);
+				  preg_match('#\'SWF_ARGS\': {(.*?)}#', $youtube_page, $fullscreen_url);
 				  $fullscreen_url = $fullscreen_url[1] . '&' ;
-
+					Tools::debug($fullscreen_url);
 				  preg_match('#"video_id": "([a-z0-9-_]+)"#i', $fullscreen_url, $video_id);
 				  $video_id = $video_id[1];
 
@@ -89,9 +95,8 @@
 					// FLASH
 					$flash_url = 'http://www.youtube.com/get_video?video_id=' . $video_id . '&l=' . $l . '&t=' . $t;
 
-					shell_exec('rm /mnt/static/entertain/video/' . $this->handle . '.flv');
-
           $cmd = '/usr/bin/wget --read-timeout=0.4 ' . escapeshellarg($flash_url) . ' -O /mnt/static/entertain/video/' . $this->handle . '.flv';
+          Tools::debug($cmd);
           shell_exec($cmd);
           
           

@@ -9,11 +9,7 @@
 			{
 				if($uri == '/' . $handle)
 				{
-					// While old entertain is used
-					if(!in_array($handle, $_ENTERTAIN_OLD))
-					{
-						return 10;
-					}
+					return 10;
 				}
 			}
 			return 0;
