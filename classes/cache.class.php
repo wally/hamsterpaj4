@@ -14,6 +14,11 @@
 			return unserialize($serialized);
 		}
 		
+		public static function get_name($handle)
+		{
+		    return PATH_CACHE . $handle . '.phpserialized';
+		}
+		
 		public static function save($handle, $data)
 		{
 			Cache::cache_save($handle, $data);

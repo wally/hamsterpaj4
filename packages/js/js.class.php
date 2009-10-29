@@ -11,11 +11,12 @@ class PageJS extends Page
 	
 	function execute($uri)
 	{
-		if(Cache::last_update('js') > (time() - 600))
+		if(ENVIRONMENT != 'development' && Cache::last_update('js') > (time() - 600))
 		{
-			$this->content = Cache::load('js');
-			$this->raw_output = true;
-			return true;
+			header('Content-type: text/javascript');
+			header('Expires: ' . date('r', time() + (60 * 60)));
+			readfile(Cache::get_name('js'));
+			exit;
 		}
 		
 		$files = Tools::find_files(PATH_PACKAGES, array('extension' => 'js'));
@@ -39,7 +40,10 @@ class PageJS extends Page
 			    );
 			}
 		}
-		Cache::save('js', $this->content);
+		if ( ENVIRONMENT != 'development' )
+		{
+		    Cache::save('js', $this->content);
+		}
 		$this->raw_output = true;
 	}
 }
