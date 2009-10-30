@@ -100,6 +100,21 @@
 			}
 		}
 		
+		function logVisit()
+		{
+			if(rand(0, 73) == 50)
+			{
+				global $_PDO;
+				$query = 'UPDATE pageviews SET views = views + 73 WHERE date = DATE_FORMAT(NOW(),"%Y-%m-%d") LIMIT 1';
+				
+				if(!$_PDO->query($query))
+				{
+					$query = 'INSERT INTO pageviews (views, date) VALUES(73, DATE_FORMAT(NOW(),"%Y-%m-%d"))';
+					$_PDO->query($query);
+				}
+			}
+		}
+		
 		function load_menu()
 		{
 			global $menu;

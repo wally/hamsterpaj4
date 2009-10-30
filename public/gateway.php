@@ -133,6 +133,7 @@
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
 		$page->load_menu();
+		$page->logVisit();
 		$page->execute($uri);
 		
 		// -- start HP3
