@@ -1,5 +1,5 @@
 <?php
-	class PageEntertainEctivateQueue extends Page
+	class PageEntertainActivateQueue extends Page
 	{
 		public static function url_hook($uri)
 		{
@@ -15,3 +15,4 @@
 			$this->content = template('entertain', 'admin/activate_queue.php', array('items' => $items));
 		}
 	}
+?>

@@ -1,65 +1,80 @@
 <?php
 	@session_start();
-	
 	define('IS_HP4', true);
 	
-	require_once '../classes/framework.class.php';
-	require_once '../classes/tools.class.php';
-	require_once '../classes/user.class.php';
-	require_once '../config/paths.conf.php';
-	require_once '../secrets/secret.class.php';
-	require_once '../secrets/db_config.php';
-
-	// Sanitize POST and GET data
-	$new_post = array();
-	$new_get = array();
-	
-	$new_post = Tools::array_map_multidimensional('htmlspecialchars', $_POST);
-	$new_get = Tools::array_map_multidimensional('htmlspecialchars', $_GET);
-	
-	$_OLD_POST = $_POST;
-	$_POST = $new_post;
-	$_GET = $new_get;
-	unset($new_post, $new_get);
-
 	try
 	{
-		// Load all classes
-		$classes = Tools::fetch_files_from_folder(PATH_CLASSES);
-		foreach($classes as $class)
+		require_once '../classes/tools.class.php';
+		require_once '../config/paths.conf.php';
+
+		$daniella_include_file = PATH_CACHE . 'daniella_includes' . md5(PATH_ROOT) . '.php';
+		if(filemtime($daniella_include_file) < (time() - 300) )
 		{
-			require_once PATH_CLASSES . $class;
-		}
-		
-		// Load all package configs
-		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-		foreach($files as $file)
-		{
-			if(substr($file, -9) == '.conf.php')
+			// Needed files
+			$daniella_includes .= file_get_contents('../packages/daniella/classes/hp4.class.php');
+			$daniella_includes .= file_get_contents('../packages/daniella/classes/page.class.php');
+			$daniella_includes .= file_get_contents('../packages/side_modules/classes/module.class.php');
+			$daniella_includes .= file_get_contents('../classes/user.class.php');
+			$daniella_includes .= file_get_contents('../secrets/secret.class.php');
+			$daniella_includes .= file_get_contents('../secrets/db_config.php');
+
+			// Load all classes
+			$classes = Tools::fetch_files_from_folder(PATH_CLASSES);
+			foreach($classes as $class)
 			{
-				require_once PATH_PACKAGES . $file;
+				if(!in_array($class, array('tools.class.php','user.class.php')))
+				{
+					$daniella_includes .= file_get_contents(PATH_CLASSES . $class);
+				}
 			}
-		}
-		
-		// Load all package classes
-		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-		foreach($files as $file)
-		{
-			if(substr($file, -10) == '.class.php')
+			
+			// Load all package classes and package configs
+			$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
+			foreach($files as $file)
 			{
-				require_once PATH_PACKAGES . $file;
+				if(substr($file, -10) == '.class.php' || substr($file, -9) == '.conf.php')
+				{
+					if(!in_array($file, array('daniella/classes/page.class.php','daniella/classes/hp4.class.php','side_modules/classes/module.class.php')))
+					{
+						$daniella_includes .= file_get_contents(PATH_PACKAGES . $file);
+					}
+				}
 			}
-		}
-		
-		// Load all configs
-		$configs = Tools::fetch_files_from_folder(PATH_CONFIGS);
-		foreach($configs as $config)
-		{
-			if (substr($config, -4) == '.php' )
+			
+			// Load all configs
+			$configs = Tools::fetch_files_from_folder(PATH_CONFIGS);
+			foreach($configs as $config)
 			{
-				require_once PATH_CONFIGS . $config;
+				if (substr($config, -4) == '.php' )
+				{
+					$daniella_includes .= file_get_contents(PATH_CONFIGS . $config);
+				}
 			}
+			$daniella_includes_file = fopen($daniella_include_file, 'w');
+			fwrite($daniella_includes_file, $daniella_includes);
+			fclose($daniella_includes_file);
+			require $daniella_include_file;
 		}
+		else
+		{
+			require $daniella_include_file;
+		}
+	
+		// Sanitize POST and GET data
+		$new_post = array();
+		$new_get = array();
+		
+		$new_post = Tools::array_map_multidimensional('htmlspecialchars', $_POST);
+		$new_get = Tools::array_map_multidimensional('htmlspecialchars', $_GET);
+		
+		$_OLD_POST = $_POST;
+		$_POST = $new_post;
+		$_GET = $new_get;
+		unset($new_post, $new_get);
+		
+		/*
+		    Function to catch all errors and report via Tools::debug
+		*/
 		
 		$report_errors = true;
 		
@@ -133,6 +148,7 @@
 		$page->user->from_session($_SESSION);
 		$page->load_side_modules();
 		$page->load_menu();
+		$page->logVisit();
 		$page->execute($uri);
 		
 		// -- start HP3
@@ -276,11 +292,7 @@
 			header('Content-type: ' . $page->get('content_type'));
 		}
 		
-		if (strlen($page->get('route')) > 0)
-		{
-			
-		}
-		elseif (strlen($page->get('redirect')) > 0)
+		if (strlen($page->get('redirect')) > 0)
 		{
 			header('Location: ' . $page->get('redirect'));
 			exit;
@@ -291,8 +303,8 @@
 		}
 		else
 		{
-			$template = Tools::pick($page->template, 'layouts/amanda/layout.php');
-			$out = template(NULL, $template, array('page' => $page));
+			$template = Tools::pick($page->template, 'layouts/amanda.php');
+			$out = template('base', $template, array('page' => $page));
 			
 			if ( ENVIRONMENT == 'production' || ! DEBUG_SHOW )
 			{
@@ -300,7 +312,7 @@
 			}
 			else
 			{
-				$debug = template(NULL, 'framework/debug.php');
+				$debug = template('base', 'debug.php');
 				echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 			}
 		}

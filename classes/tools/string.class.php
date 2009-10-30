@@ -28,3 +28,4 @@ class String
 	return substr($string, -strlen($test)) === $test;
     }
 }
+?>

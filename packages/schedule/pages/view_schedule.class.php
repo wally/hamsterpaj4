@@ -12,3 +12,4 @@
 			$this->content .= template('schedule', 'week_view.php');
 		}
 	}
+?>

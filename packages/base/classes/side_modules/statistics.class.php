@@ -14,9 +14,9 @@
 			
 			global $_PDO;
 			
-			if(Cache::last_update('pageviews') < (time() - 300) )
+			if(Cache::last_update('pageviews') < (time() - 1) )
 			{
-				$query = 'SELECT views FROM pageviews WHERE date = "' . date('Y-m-d') . '" LIMIT 1';
+				$query = 'SELECT views FROM pageviews WHERE date = DATE_FORMAT(NOW(),"%Y-%m-%d") LIMIT 1';
 				$stmt = $_PDO->query($query);
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 				$this->pageviews = $data['views'];

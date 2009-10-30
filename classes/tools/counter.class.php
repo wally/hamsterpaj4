@@ -24,3 +24,4 @@ class Counter
 		return $this->row	();
 	}
 }
+?>

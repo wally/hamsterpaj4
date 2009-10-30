@@ -8,12 +8,12 @@
 		
 		function execute($uri)
 		{
-			if(Cache::last_update('css') > (time() - 600))
+			if ( ENVIRONMENT != 'development' && Cache::last_update('css') > (time() - 600) )
 			{
-				$this->content = Cache::load('css');
-				$this->raw_output = true;
-				$this->content_type = 'text/css';
-				return true;
+				header('Content-type: text/css');
+				header('Expires: ' . date('r', time() + (60 * 60)));
+				readfile(Cache::get_name('css'));
+				exit;
 			}
 		
 			$files = Tools::find_files(PATH_PACKAGES,
@@ -26,7 +26,10 @@
 				$this->content .= file_get_contents(PATH_PACKAGES . $file);
 			}
 			
-			Cache::save('css', $this->content);
+			if ( ENVIRONMENT != 'development' )
+			{
+			    Cache::save('css', $this->content, false);
+			}
 			$this->raw_output = true;
 			$this->content_type = 'text/css';
 		}

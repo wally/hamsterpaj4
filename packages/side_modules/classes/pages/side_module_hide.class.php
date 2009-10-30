@@ -20,3 +20,4 @@ class PageSideModuleHide extends Page
 	$this->user->save_module_state($module, $state);
     }
 }
+?>
