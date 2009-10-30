@@ -53,3 +53,4 @@ class PageHP3CSS extends Page
 	$_SERVER['REQUEST_URI'] = $orig_uri;
     }
 }
+?>

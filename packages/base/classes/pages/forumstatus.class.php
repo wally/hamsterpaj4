@@ -15,3 +15,4 @@ class PageForumStatus extends Page
 	$this->user->save_signature(urldecode($status));
     }
 }
+?>

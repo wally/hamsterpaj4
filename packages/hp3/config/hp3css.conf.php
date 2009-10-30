@@ -27,3 +27,4 @@ class HP3Config
 	'poll.css'
     );
 }
+?>

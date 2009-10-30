@@ -1,67 +1,86 @@
 <?php
 	@session_start();
-	
 	define('IS_HP4', true);
 	
-	require_once '../packages/daniella/classes/hp4.class.php';
-	require_once '../packages/daniella/classes/page.class.php';
-	require_once '../packages/side_modules/classes/module.class.php';
-	require_once '../classes/tools.class.php';
-	require_once '../classes/user.class.php';
-	require_once '../config/paths.conf.php';
-	require_once '../secrets/secret.class.php';
-	require_once '../secrets/db_config.php';
-
-	// Sanitize POST and GET data
-	$new_post = array();
-	$new_get = array();
-	
-	$new_post = Tools::array_map_multidimensional('htmlspecialchars', $_POST);
-	$new_get = Tools::array_map_multidimensional('htmlspecialchars', $_GET);
-	
-	$_OLD_POST = $_POST;
-	$_POST = $new_post;
-	$_GET = $new_get;
-	unset($new_post, $new_get);
-
 	try
 	{
-		// Load all classes
-		$classes = Tools::fetch_files_from_folder(PATH_CLASSES);
-		foreach($classes as $class)
+		require_once '../classes/tools.class.php';
+		require_once '../config/paths.conf.php';
+
+		$daniella_include_file = PATH_CACHE . 'daniella_includes' . md5(PATH_ROOT) . '.php';
+		if(filemtime($daniella_include_file) < (time() - 300) )
 		{
-			require_once PATH_CLASSES . $class;
-		}
-		
-		// Load all package configs
-		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-		foreach($files as $file)
-		{
-			if(substr($file, -9) == '.conf.php')
+			// Needed files
+			$daniella_includes .= file_get_contents('../packages/daniella/classes/hp4.class.php');
+			$daniella_includes .= file_get_contents('../packages/daniella/classes/page.class.php');
+			$daniella_includes .= file_get_contents('../packages/side_modules/classes/module.class.php');
+			$daniella_includes .= file_get_contents('../classes/user.class.php');
+			$daniella_includes .= file_get_contents('../secrets/secret.class.php');
+			$daniella_includes .= file_get_contents('../secrets/db_config.php');
+
+			// Load all classes
+			$classes = Tools::fetch_files_from_folder(PATH_CLASSES);
+			foreach($classes as $class)
 			{
-				require_once PATH_PACKAGES . $file;
+				if(!in_array($class, array('tools.class.php','user.class.php')))
+				{
+					$daniella_includes .= file_get_contents(PATH_CLASSES . $class);
+				}
 			}
-		}
-		
-		// Load all package classes
-		$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-		foreach($files as $file)
-		{
-			if(substr($file, -10) == '.class.php')
+			
+			// Load all package configs
+			$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
+			foreach($files as $file)
 			{
-				require_once PATH_PACKAGES . $file;
+				if(substr($file, -9) == '.conf.php')
+				{
+					$daniella_includes .= file_get_contents(PATH_PACKAGES . $file);
+				}
 			}
-		}
-		
-		// Load all configs
-		$configs = Tools::fetch_files_from_folder(PATH_CONFIGS);
-		foreach($configs as $config)
-		{
-			if (substr($config, -4) == '.php' )
+			
+			// Load all package classes
+			$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
+			foreach($files as $file)
 			{
-				require_once PATH_CONFIGS . $config;
+				if(substr($file, -10) == '.class.php')
+				{
+					if(!in_array($file, array('daniella/classes/hp4.class.php','daniella/classes/page.class.php','side_modules/classes/module.class.php')))
+					{
+						$daniella_includes .= file_get_contents(PATH_PACKAGES . $file);
+					}
+				}
 			}
+			
+			// Load all configs
+			$configs = Tools::fetch_files_from_folder(PATH_CONFIGS);
+			foreach($configs as $config)
+			{
+				if (substr($config, -4) == '.php' )
+				{
+					$daniella_includes .= file_get_contents(PATH_CONFIGS . $config);
+				}
+			}
+			$daniella_includes_file = fopen($daniella_include_file, 'w');
+			fwrite($daniella_includes_file, $daniella_includes);
+			fclose($daniella_includes_file);
+			require $daniella_include_file;
 		}
+		else
+		{
+			require $daniella_include_file;
+		}
+	
+		// Sanitize POST and GET data
+		$new_post = array();
+		$new_get = array();
+		
+		$new_post = Tools::array_map_multidimensional('htmlspecialchars', $_POST);
+		$new_get = Tools::array_map_multidimensional('htmlspecialchars', $_GET);
+		
+		$_OLD_POST = $_POST;
+		$_POST = $new_post;
+		$_GET = $new_get;
+		unset($new_post, $new_get);
 		
 		$report_errors = true;
 		

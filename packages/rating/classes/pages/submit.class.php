@@ -18,3 +18,4 @@
 			$this->raw_output = true;
 		}
 	}
+?>
