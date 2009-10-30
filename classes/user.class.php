@@ -116,7 +116,23 @@
 		
 		public function lastaction()
 		{
+			
 			$this->lastaction = time();
+			
+			// If user, save to database
+			if($this->exists() && rand(1, 5) == 2)
+			{
+				global $_PDO;
+				
+				$query = 'UPDATE login SET lastaction = UNIX_TIMESTAMP() WHERE id= :id';
+				$stmt = $_PDO->prepare($query);
+				$stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+				
+				if(!$stmt->execute())
+				{
+					Tools::Debug('Couldn\'t save lastaction');
+				}
+			}
 		}
 		
 		public function get_last_update()

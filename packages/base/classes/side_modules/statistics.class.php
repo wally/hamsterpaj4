@@ -7,7 +7,7 @@
 
 		function __construct()
 		{
-			$stats = unserialize(file_get_contents(PATH_CACHE . 'live_stats.phpserialized'));
+			$stats = Cache::load('live_stats');
 			$this->visitors = $stats['visitors'];
 			$this->logged_in = $stats['logged_in'];
 			$this->members = $stats['members'];
