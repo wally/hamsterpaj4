@@ -303,7 +303,7 @@
 			}
 			else
 			{
-				$debug = template(NULL, 'framework/debug.php');
+				$debug = template('base', 'debug.php');
 				echo str_replace('<body>', '<body>' . "\n" . $debug, $out);	
 			}
 		}
