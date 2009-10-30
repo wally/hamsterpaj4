@@ -28,23 +28,13 @@
 				}
 			}
 			
-			// Load all package configs
+			// Load all package classes and package configs
 			$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
 			foreach($files as $file)
 			{
-				if(substr($file, -9) == '.conf.php')
+				if(substr($file, -10) == '.class.php' || substr($file, -9) == '.conf.php')
 				{
-					$daniella_includes .= file_get_contents(PATH_PACKAGES . $file);
-				}
-			}
-			
-			// Load all package classes
-			$files = Tools::fetch_files_from_folder(PATH_PACKAGES);
-			foreach($files as $file)
-			{
-				if(substr($file, -10) == '.class.php')
-				{
-					if(!in_array($file, array('daniella/classes/hp4.class.php','daniella/classes/page.class.php','side_modules/classes/module.class.php')))
+					if(!in_array($file, array('daniella/classes/page.class.php','daniella/classes/hp4.class.php','side_modules/classes/module.class.php')))
 					{
 						$daniella_includes .= file_get_contents(PATH_PACKAGES . $file);
 					}
@@ -81,6 +71,10 @@
 		$_POST = $new_post;
 		$_GET = $new_get;
 		unset($new_post, $new_get);
+		
+		/*
+		    Function to catch all errors and report via Tools::debug
+		*/
 		
 		$report_errors = true;
 		
@@ -298,11 +292,7 @@
 			header('Content-type: ' . $page->get('content_type'));
 		}
 		
-		if (strlen($page->get('route')) > 0)
-		{
-			
-		}
-		elseif (strlen($page->get('redirect')) > 0)
+		if (strlen($page->get('redirect')) > 0)
 		{
 			header('Location: ' . $page->get('redirect'));
 			exit;

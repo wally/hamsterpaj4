@@ -33,6 +33,11 @@ class PageHP3CSS extends Page
 	{
 	    $file = preg_replace(HP3Config::$rewrites_css, HP3Config::$replaces_css, $filename);
 	    
+	    if ( ENVIRONMENT != 'development' )
+	    {
+		header('Expires: ' . date('r', time() + (60 * 60 * 4)));
+	    }
+	    
 	    if ( file_exists($dir . $file) && ! strstr($file, '..') )
 	    {
 		$this->content .= sprintf('/* %s */', $file);

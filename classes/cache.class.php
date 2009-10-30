@@ -14,14 +14,19 @@
 			return unserialize($serialized);
 		}
 		
-		public static function save($handle, $data)
+		public static function get_name($handle)
 		{
-			Cache::cache_save($handle, $data);
+		    return PATH_CACHE . $handle . '.phpserialized';
 		}
 		
-		public static function cache_save($handle, $data)
+		public static function save($handle, $data, $serialize = true)
 		{
-			$serialized = serialize($data);
+			Cache::cache_save($handle, $data, $serialize);
+		}
+		
+		public static function cache_save($handle, $data, $serialize = true)
+		{
+			$serialized = ($serialize) ? serialize($data) : $data;
 			$file = fopen(PATH_CACHE . $handle . '.phpserialized', 'w');
 			fwrite($file, $serialized);
 			fclose($file);
