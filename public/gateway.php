@@ -3,7 +3,9 @@
 	
 	define('IS_HP4', true);
 	
-	require_once '../classes/framework.class.php';
+	require_once '../packages/daniella/classes/hp4.class.php';
+	require_once '../packages/daniella/classes/page.class.php';
+	require_once '../packages/side_modules/classes/module.class.php';
 	require_once '../classes/tools.class.php';
 	require_once '../classes/user.class.php';
 	require_once '../config/paths.conf.php';
@@ -292,8 +294,8 @@
 		}
 		else
 		{
-			$template = Tools::pick($page->template, 'layouts/amanda/layout.php');
-			$out = template(NULL, $template, array('page' => $page));
+			$template = Tools::pick($page->template, 'layouts/amanda.php');
+			$out = template('base', $template, array('page' => $page));
 			
 			if ( ENVIRONMENT == 'production' || ! DEBUG_SHOW )
 			{
