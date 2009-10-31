@@ -1,14 +1,13 @@
 <?php
 	@session_start();
 	define('IS_HP4', true);
-	
 	try
 	{
 		require_once '../classes/tools.class.php';
 		require_once '../config/paths.conf.php';
 
 		$daniella_include_file = PATH_CACHE . 'daniella_includes' . md5(PATH_ROOT) . '.php';
-		if(filemtime($daniella_include_file) < (time() - 300) )
+		if(filemtime($daniella_include_file) < (time() - 300) || ENVIRONMENT == 'production' )
 		{
 			// Needed files
 			$daniella_includes .= file_get_contents('../packages/daniella/classes/hp4.class.php');
