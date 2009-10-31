@@ -6,7 +6,7 @@
 <ul id="unread_photo_comments">
     <?php foreach ( $photo_comments as $photo ): ?>
     <li>
-	<a href="/fotoblogg/iPhone/<?php echo $photo['id']; ?>">
+	<a href="/fotoblogg/<?php echo $user->get('username'); ?>/<?php echo $photo['id']; ?>">
 	    <img width="83" src="http://images.hamsterpaj.net/photos/thumb/<?php echo floor($photo['id'] / 5000); ?>/<?php echo $photo['id']; ?>.jpg" alt="<?php echo $photo['description']; ?>" />
 	</a>
     </li>
