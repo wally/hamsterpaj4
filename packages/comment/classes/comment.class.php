@@ -1,5 +1,5 @@
 <?php
-	class Comment
+	class Comment extends CommentList
 	{
 		function build_comment($data = array())
 		{
