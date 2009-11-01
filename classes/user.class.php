@@ -386,9 +386,13 @@
 		    
 		    if ( $this->exists() )
 		    {
-			$query = 'UPDATE userinfo SET user_status = "' . $status . '", user_status_update = ' . time() . '';
-			$query .= ' WHERE userid = ' . $this->get('id') . ' LIMIT 1';
-			$_PDO->query($query);
+			$query = 'UPDATE userinfo SET user_status = :status, user_status_update = ' . time() . '';
+			$query .= ' WHERE userid = :user_id LIMIT 1';
+			
+			$statement = $_PDO->prepare($query);
+			$statement->bindValue(':status', $status, PDO::PARAM_STR);
+			$statement->bindValue(':user_id', $this->get('id'), PDO::PARAM_INT);
+			$statement->execute();
 		    }
 		    $this->signature = $status;
 		}
