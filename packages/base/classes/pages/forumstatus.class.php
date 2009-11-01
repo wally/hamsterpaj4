@@ -6,7 +6,7 @@ class PageForumStatus extends Page
     
     public static function url_hook($uri)
     {
-	return String::beginswith($uri, '/forumstatus/') ? 20 : 0;
+	return String::beginswith($uri, '/forumstatus') ? 20 : 0;
     }
     
     public function execute($uri)
