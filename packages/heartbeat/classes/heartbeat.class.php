@@ -18,7 +18,7 @@ class HookNotFoundException extends Exception {}
 
 class PageHeartbeat extends Page
 {
-    public $template = 'system/json.php';
+    public $template = 'layouts/json.php';
     
     private static $hooks = null;
     
