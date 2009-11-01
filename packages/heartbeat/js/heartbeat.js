@@ -1,5 +1,5 @@
 hp.set('packages.heartbeat', {
-    current_time: 20000,
+    current_time: 60000,
     
     init: function() {
 	$(document).ready(function() {
