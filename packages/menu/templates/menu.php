@@ -1,6 +1,7 @@
 <ul id="main_menu">
     <?php foreach($bigmenu AS $handle => $current_menu): ?>
-	<li class="direct_child <?php echo Tools::pick($was_active, false) ? 'after_active' : ''; ?> <?php echo (Tools::pick($current_menu['type'], '') == 'big') ? 'big' : 'small'; ?>" <?php echo Tools::is_true($current_menu['active']) ? 'id="active"' : ''; ?>>
+	<?php /* onmouseover/onmouseout are so we dont have to add the handlers on document.ready, so they always respond */ ?>
+	<li id="<?php echo $handle; ?>" onmouseover="hp.menu.over(event, this);" onmouseout="hp.menu.out(event, this);" class="<?php echo Tools::is_true($current_menu['active']) ? 'active_menu the_active' : ''; ?> direct_child <?php echo Tools::pick($was_active, false) ? 'after_active' : ''; ?> <?php echo (Tools::pick($current_menu['type'], '') == 'big') ? 'big' : 'small'; ?>">
 		<a class="direct_child" href="<?php echo $current_menu['url']; ?>">
 			<?php echo $current_menu['label']; ?>
 		</a>
