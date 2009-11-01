@@ -32,3 +32,4 @@ class ECache
 	readfile($filename);
     }
 }
+?>
