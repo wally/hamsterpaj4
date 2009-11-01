@@ -3,7 +3,8 @@
 	{
 		public static function url_hook($uri)
 		{
-			return ( $uri == '/artiklar' ) ? 10 : 0;
+			return 0;
+			//return ( $uri == '/artiklar' ) ? 10 : 0;
 		}
 		
 		function execute()
