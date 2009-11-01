@@ -26,6 +26,7 @@
 		{
 			if ( ! file_exists(PATH_PACKAGES . $package . '/templates/' . $template_handle) )
 			{
+			    debug_print_backtrace();
 			    die('no such template: ' . PATH_PACKAGES . $package . '/templates/' . $template_handle);
 			}
 			include(PATH_PACKAGES . $package . '/templates/' . $template_handle);
