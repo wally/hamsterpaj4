@@ -43,7 +43,8 @@
 			$location,
 			$privileges,
 			$geo_location,
-			$notifications = array();
+			$notifications = array(),
+			$live_chat;
 		
 		protected $unread_gb_entries;
 		protected $unread_group_entries;

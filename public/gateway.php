@@ -259,6 +259,7 @@
 				define('IS_HP3_REQUEST', false);
 			}
 			$report_errors = true;
+			$page->user->from_session($_SESSION);
 		}
 		else
 		{
