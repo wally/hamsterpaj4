@@ -11,24 +11,30 @@
 .chat_channel h3
 {
 	background: #fee4ba;
-	margin: -5px;
+	margin: -5px -5px 0;
 	padding: 5px;
 }
 
 .chat_channel .channel
 {
-	float: left;
+    
 }
 
 .chat_channel .client_count
 {
 	text-align: right;
 	color: #fee4ba;
+	display: none;
+}
+
+.chat_channel p
+{
+    margin: 5px;
 }
 
 .chat_channel ul
 {
-	padding-left: 3px;
+
 }
 
 .java_needed
@@ -43,7 +49,7 @@
 {
 	font-size: 14px;
 	font-weight: bold;
-	margin-bottom: 3px;
+	margin: 0;
 }
 
 .java_needed p
