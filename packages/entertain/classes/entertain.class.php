@@ -252,3 +252,4 @@
 			return template('entertain', 'item_list.php', array('items' => $items));
 		}
 	}
+?>

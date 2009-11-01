@@ -83,3 +83,4 @@
 			$this->template = 'layouts/amanda/layout_blank.php';
 		}
 	}
+?>

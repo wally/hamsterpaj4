@@ -1,7 +1,4 @@
 <?php
-	// comment_list class must be loaded beföre this.
-	require_once PATH_PACKAGES . 'comment/classes/comment_list.class.php';
-
 	class Comment extends CommentList
 	{
 		function build_comment($data = array())
@@ -127,3 +124,4 @@
 			return true;
 		}
 	}
+?>

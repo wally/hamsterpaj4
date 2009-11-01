@@ -32,3 +32,4 @@
 			$this->content .= template('entertain', 'category_toplist.php', array('category_label' => $category_label, 'best_rating' => $best_rating, 'most_views' => $most_views));
 		}
 	}
+?>

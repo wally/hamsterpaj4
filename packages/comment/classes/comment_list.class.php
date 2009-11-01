@@ -48,3 +48,4 @@
 			return $comment_list->out;
 		}
 	}
+?>

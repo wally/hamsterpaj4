@@ -198,4 +198,4 @@
 			return template('tags', 'choose_tags.php', array('tags' => $tags, 'mastertags' => $mastertags, 'active_subtags' => $active_subtags, 'active_mastertags' => $active_mastertags));
 		}
 	}
-    
+?>

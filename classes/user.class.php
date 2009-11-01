@@ -359,7 +359,7 @@
 		    if ( ! isset($this->unread_gb_entries) || $force_update )
 		    {
 			// Guestbook
-			$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_anonymous' => true);
+			$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_private' => true);
 			$this->unread_gb_entries = Guestbook::fetch($search);
 		    }
 		    

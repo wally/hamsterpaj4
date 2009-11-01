@@ -12,3 +12,4 @@
 			$this->content = '<h1>Under mattan</h1>';			
 		}
 	}
+?>

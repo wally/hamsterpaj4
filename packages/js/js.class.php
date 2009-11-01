@@ -47,3 +47,4 @@ class PageJS extends Page
 		$this->raw_output = true;
 	}
 }
+?>

@@ -70,3 +70,4 @@ class PageHeartbeat extends Page
 	return $ret;
     }
 }
+?>
