@@ -24,6 +24,10 @@
 		}
 		else
 		{
+			if ( ! file_exists(PATH_PACKAGES . $package . '/templates/' . $template_handle) )
+			{
+			    die('no such template: ' . PATH_PACKAGES . $package . '/templates/' . $template_handle);
+			}
 			include(PATH_PACKAGES . $package . '/templates/' . $template_handle);
 		}
 		$html = ob_get_contents();
