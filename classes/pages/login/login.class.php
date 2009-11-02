@@ -52,4 +52,4 @@
 			$this->redirect = Tools::pick($_SERVER['HTTP_REFERER'], '/');
 		}
 	}
-    
+?>

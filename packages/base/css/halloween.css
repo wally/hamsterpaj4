@@ -52,7 +52,7 @@ body {
 
 #notices li div.notices_information h4 a:hover,
 #notices li div.notices_information li a:hover {
-        color: black !important;
+        color: black;
 }
 
 #hp #head #status #ui_statusbar_forumstatus {
@@ -64,56 +64,57 @@ body {
     line-height: 19px;
 }
 
-#main_menu { 
-  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -73px repeat-x !important;
-  color: #d8d3d1 !important;
+#hp #main_menu { 
+  background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -73px repeat-x;
+  color: #d8d3d1;
 }
   
-    #main_menu li.direct_child {
-	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -104px no-repeat !important;
+    #hp #main_menu li.direct_child {
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -104px no-repeat;
     }
   
-	#main_menu li.direct_child a.direct_child { 
-		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") right -185px !important;
-                  color: #d8d3d1 !important;
+	#hp #main_menu li.direct_child a.direct_child { 
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") right -185px;
+                  color: #d8d3d1;
 	}
 
-#main_menu li#active:hover,
-#main_menu #active  {
-	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -135px repeat-x !important;
+#hp #main_menu li.active_menu:hover,
+#hp #main_menu li.direct-child.active_menu  {
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -135px repeat-x;
 }
  
- 	#main_menu li.direct_child:hover {
-	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x !important;
+ 	#hp #main_menu li.direct_child:hover {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x;
 	}
 	
-	#main_menu li#active a.direct_child:hover,
-	#main_menu #active a.direct_child {
+	#hp #main_menu li.active_menu a.direct_child:hover,
+	#hp #main_menu .active_menu a.direct_child {
 		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_whereat_halloween.png") center !important;
 	}
 	
-	#main_menu li a.direct_child:hover {
-		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") top right !important;
+	#hp #main_menu li a.direct_child:hover {
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") top right;
 	}
         
 	/* This provides an alternative style for IE 6 active, which was buggy. */
-	* html #main_menu li#active a.direct_child {
-		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x !important; 
+	* html #hp #main_menu li.active_menu a.direct_child {
+		background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -166px repeat-x; 
 	}
         
-        #main_menu #active.small a.direct_child, #main_menu #active.small a.direct_child:hover {
-            color: white !important;
+        #hp #main_menu .active_menu.small a.direct_child,
+	#hp #main_menu .active_menu.small a.direct_child:hover {
+            color: white;
         }
 
-.main_menu_sub { 
-	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -197px repeat-x !important;
+#hp .main_menu_sub { 
+	background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") 0 -197px repeat-x;
 }
-	.main_menu_sub li.active {
-	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") repeat-x bottom right !important;
+	#hp .main_menu_sub li.active {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/menu_item_sprite_halloween.png") repeat-x bottom right;
 	}
 	
-	.main_menu_sub li.active a {
-	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") no-repeat 0 -257px !important;
+	#hp .main_menu_sub li.active a {
+	    background: url("http://static.hamsterpaj.net/images/packages/base/layouts/halloween/sprites_halloween.png") no-repeat 0 -257px;
 	}
         
 #hp #head #status {

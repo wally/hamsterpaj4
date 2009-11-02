@@ -8,11 +8,10 @@
 		
 		function execute($uri)
 		{
-			if ( ENVIRONMENT != 'development' && Cache::last_update('css') > (time() - 600) )
+			if ( ENVIRONMENT != 'development' && Cache::last_update('css') > (time() - 3600) )
 			{
-				header('Content-type: text/css');
-				header('Expires: ' . date('r', time() + (60 * 60)));
-				readfile(Cache::get_name('css'));
+				header('content-type: text/css');
+				ECache::output(Cache::get_name('css'));
 				exit;
 			}
 		

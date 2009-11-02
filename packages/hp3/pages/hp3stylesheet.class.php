@@ -21,3 +21,4 @@ class PageHP3Stylesheet extends Page
 	}
     }
 }
+?>

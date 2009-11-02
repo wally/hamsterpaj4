@@ -52,4 +52,5 @@
 	$session_map['unread_photo_comments'] = array('cache', 'unread_photo_comments');
 	
 	$session_map['forum'] = array('forum');
+	$session_map['live_chat'] = array('live_chat');
 ?>

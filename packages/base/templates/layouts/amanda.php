@@ -42,15 +42,6 @@
 		<!-- Kiaindex -->
 		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
 		
-		<!-- Adtoma crap -->
-		<script type="text/javascript">
-			var CM8Server = "ad.adtoma.com";
-			var CM8Cat = "hp.start";
-			var CM8Profile = "hp_age=&hp_birthyear=&hp_gender=xx"
-		</script>
-		
-		<script type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>
-		
 		<!-- Adwell crap -->
 		<script type="text/javascript">
 			var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55632)' + new
@@ -84,10 +75,9 @@
 				<div id="content_container">
 				    <div id="content">
 					    <?php foreach ( $page->user->fetch_notifications() as $note ): ?>
-						<?php echo call_user_func_array('template', $note); ?>
+								<?php echo call_user_func_array('template', $note); ?>
 					    <?php endforeach; ?>
 					    
-					    <script type="text/javascript">CM8ShowAd("635x50");</script>
 					    <?php echo $page->content; ?>
 				    </div>
 				    <div id="modules">
@@ -100,7 +90,6 @@
 				</div>
 			</div>
 			<div id="column_ads">
-				<script type="text/javascript">CM8ShowAd("Skyscraper");</script>
 				<script type='text/javascript'><!--//<![CDATA[
 					Ads.insert(251, '');
 					Ads.insert(252, '');

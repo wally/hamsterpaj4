@@ -39,3 +39,4 @@
 			$this->content .= template('entertain', 'category_start.php', array('category_label' => $category_label, 'new_items' => $new_items, 'latest' => $latest, 'popular_items' => $popular_items));
 		}
 	}
+?>

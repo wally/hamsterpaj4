@@ -43,7 +43,8 @@
 			$location,
 			$privileges,
 			$geo_location,
-			$notifications = array();
+			$notifications = array(),
+			$live_chat;
 		
 		protected $unread_gb_entries;
 		protected $unread_group_entries;
@@ -359,7 +360,7 @@
 		    if ( ! isset($this->unread_gb_entries) || $force_update )
 		    {
 			// Guestbook
-			$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_anonymous' => true);
+			$search = array('recipient' => $this->id, 'force_unread' => true, 'allow_private' => true);
 			$this->unread_gb_entries = Guestbook::fetch($search);
 		    }
 		    
@@ -385,9 +386,13 @@
 		    
 		    if ( $this->exists() )
 		    {
-			$query = 'UPDATE userinfo SET user_status = "' . $status . '", user_status_update = ' . time() . '';
-			$query .= ' WHERE userid = ' . $this->get('id') . ' LIMIT 1';
-			$_PDO->query($query);
+			$query = 'UPDATE userinfo SET user_status = :status, user_status_update = ' . time() . '';
+			$query .= ' WHERE userid = :user_id LIMIT 1';
+			
+			$statement = $_PDO->prepare($query);
+			$statement->bindValue(':status', $status, PDO::PARAM_STR);
+			$statement->bindValue(':user_id', $this->get('id'), PDO::PARAM_INT);
+			$statement->execute();
 		    }
 		    $this->signature = $status;
 		}

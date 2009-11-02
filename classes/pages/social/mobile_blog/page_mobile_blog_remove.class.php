@@ -20,3 +20,4 @@
 			$this->content = 'Om Daniella nu hade haft ett routingsystem så hade vi kastat tillbaka dig till sidan du kom ifrån, men Johan har inte kodat det ännu. <a href="/mobilblogg/">Gå tillbaka</a>';
 		}
 	}
+?>
