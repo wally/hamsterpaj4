@@ -8,7 +8,7 @@
 			<input name="star2" type="radio" class="star" title="Väldigt bra"/>
 			<input name="star2" type="radio" class="star" title="Bäst"/>
 		</div>
-	<img src="http://static.hamsterpaj.net/entertain/images/<?php echo $item->get('handle'); ?>.jpg" style="width: 638px;" /> 
+	<a href="/<?php echo $item->category; ?>/slumpad"><img src="http://static.hamsterpaj.net/entertain/images/<?php echo $item->get('handle'); ?>.jpg" style="width: 638px;" /></a>
 	<div class="info">
 		<div class="extrainfo">
 			<dl>
