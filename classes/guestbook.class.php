@@ -13,6 +13,7 @@
 			$query .= (count($search['recipient']) > 0) ? ' AND g.recipient IN(:recipient)' : null;
 			$query .= (Tools::is_true($search['force_unread'])) ? ' AND g.read = 0' : null;
 			$query .= (Tools::is_true($search['allow_private'])) ? null : ' AND is_private = 0';
+			$query .= (Tools::is_true($search['get_removed'])) ? null : ' AND g.deleted = 0';
 			$query .= ' LIMIT ' . GB_DEFAULT_LIMIT;
 			
 			$stmt = $_PDO->prepare($query);
