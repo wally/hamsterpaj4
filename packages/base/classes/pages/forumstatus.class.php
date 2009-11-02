@@ -12,7 +12,7 @@ class PageForumStatus extends Page
     public function execute($uri)
     {
 	$status = substr($uri, 13);
-	$this->user->save_signature(urldecode($status));
+	$this->user->save_signature(htmlspecialchars(urldecode($status)));
     }
 }
 ?>
