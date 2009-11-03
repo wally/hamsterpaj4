@@ -72,8 +72,6 @@
 	-webkit-border-top-left-radius: 3px;
 }
 
-
-
 .entertain_preview_full
 {
 	position: relative;
@@ -93,7 +91,7 @@
 
 .entertain_preview_full h2
 {
-	position: absolute;
+	position: relative;
 	color: white;
 	opacity: 0.8;
 	filter: alpha(opacity = 80);
@@ -139,7 +137,7 @@
 
 .entertain_preview_small li h4
 {
-	position: relative;
+	position: relative !important;
 	background: black;
 	color: white;
 	width: 100%;
