@@ -19,7 +19,11 @@
 					$item->set(array('title' => $_POST['title']));				
 					$item->set(array('category' => $_POST['category']));		
 					$item->set(array('status' => 'preview'));	
-					$item->set(array('uploaded_by' => $this->user->get('id')));		
+					$item->set(array('created_by' => $this->user->get('id')));
+					$item->set(array('updated_by' => $this->user->get('id')));
+					$item->set(array('updated_at' => time()));
+					$item->set(array('released_by' => $this->user->get('id')));
+					$item->set(array('released_at' => time()));
 					$item->save();
 
 					$this->redirect = $item->get('edit_url');

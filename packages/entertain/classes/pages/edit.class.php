@@ -36,7 +36,7 @@
 							return;
 						}
 						
-						$item->update_from_post();
+						$item->update_from_post($this->user);
 						$item->save();
 						
 						if($_POST['status'] == 'preview')
