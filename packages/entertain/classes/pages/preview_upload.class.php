@@ -80,7 +80,7 @@
 					break;
 			}
 			
-			$this->template = 'layouts/amanda/layout_blank.php';
+			$this->template = 'layouts/layout_blank.php';
 		}
 	}
 ?>
