@@ -12,7 +12,8 @@ class PageHP3Stylesheet extends Page
     public function execute($uri)
     {
 	$filename = str_replace('/stylesheets/', '', $uri);
-	$path = dirname(__FILE__) . '/../css/' . $filename;
+	$path = Tools::makePath('packages', 'hp3', 'css', $filename);
+	
 	if ( ! strstr($uri, '..') && file_exists($path) )
 	{
 	    $this->content_type = 'text/css';

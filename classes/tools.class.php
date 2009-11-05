@@ -63,6 +63,21 @@
 			return $files;
 		}
 		
+		public static function makePath($in)
+		{
+		    $pieces = func_get_args();
+		    $pieces = array_slice($pieces, 1);
+		    
+		    switch ( $in )
+		    {
+			case 'packages':
+			    return PATH_PACKAGES . implode(DIRECTORY_SEPARATOR, $pieces);
+			break;
+		    }
+		    
+		    throw new Exception('No such path in Tools::makePath');
+		}
+		
 		public static function cute_number($num)
 		{
 			return strrev(chunk_split(strrev($num), 3, ' '));
