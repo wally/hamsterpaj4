@@ -114,11 +114,14 @@
 				$item->click = (isset($row['click']) ? $row['click'] : false); // Does click even exist?
 				$item->data = unserialize($row['data']);
 				$item->has_image = $row['has_image'];
-				$item->published_at = $row['published_at'];
-				$item->uploaded_by = $row['uploaded_by'];
 				$item->status = $row['status'];
 				$item->views = $row['views'];
-				$item->release = $row['release'];
+				$item->released_by = $row['released_by'];
+				$item->created_by = $row['created_by'];
+				$item->released_at = $row['released_at'];
+				$item->created_at = $row['created_at'];
+				$item->updated_at = $row['updated_at'];
+				$item->updated_by = $row['updated_by'];
 				
 				$item->tags = Tag::fetch(array('system' => 'entertain', 'item_id' => $item->id));
 				
@@ -140,16 +143,20 @@
 
 		function __construct()
 		{
-			$this->published_at = time();
-			$this->active = 0;
+			$this->updated_at = time();
+			$this->created_at = time();
 		}
 		
-		function update_from_post()
+		function update_from_post($user)
 		{
 			$this->set(array('title' => $_POST['title']));
 			$this->set(array('category' => $_POST['category']));
 			$this->set(array('has_image' => $_POST['has_image']));
 			$this->set(array('status' => $_POST['status']));
+			$this->set(array('updated_at' => time()));
+			$this->set(array('updated_by' => $user->id));
+			$this->set(array('released_at' => time()));
+			$this->set(array('released_by' => $user->id));
 			//$this->set(array('release' => strtotime($_POST['release'])));
 			$this->update_data_from_post();
 			
@@ -198,13 +205,36 @@
 			}
 		}
 		
+		function set_released_at($time)
+		{
+			if($this->status == 'released')
+			{
+				$this->released_at = $time;
+				return true;
+			}
+		}
+		
+		function set_released_by($user_id)
+		{
+			if($this->status == 'released')
+			{
+				$this->released_by = $user_id;
+				
+			}
+			else
+			{
+				$this->released_by = NULL;
+			}
+			return true;
+		}
+		
 		function save()
 		{
 			global $_PDO;
 			
 			if($this->id > 0)
 			{
-				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, views = :views WHERE id = :id LIMIT 1';
+				$query = 'UPDATE entertain SET title = :title, data = :data, category = :category, has_image = :has_image, status = :status, updated_at = :updated_at, updated_by = :updated_by, released_at = :released_at, released_by = :released_by, views = :views WHERE id = :id LIMIT 1';
 				
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':title', $this->title); 
@@ -213,6 +243,10 @@
 				$stmt->bindValue(':has_image', $this->has_image);
 				$stmt->bindValue(':id', $this->id);
 				$stmt->bindValue(':status', $this->status);
+				$stmt->bindValue(':updated_at', $this->updated_at);
+				$stmt->bindValue(':updated_by', $this->updated_by);
+				$stmt->bindValue(':released_at', $this->released_at);
+				$stmt->bindValue(':released_by', $this->released_by);
 				$stmt->bindValue(':views', $this->views);
 				if(!$stmt->execute())
 				{
@@ -221,8 +255,8 @@
 			}
 			else
 			{
-				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, published_at, uploaded_by, status)';
-				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :published_at, :uploaded_by, :status)';
+				$query = 'INSERT INTO entertain (type, category, title, handle, data, has_image, created_at, created_by, updated_at, updated_by, released_at, released_by, status)';
+				$query .= ' VALUES(:type, :category, :title, :handle, :data, :has_image, :created_at, :created_by, :updated_at, :updated_by, :released_at, :released_by, :status)';
 
 				$stmt = $_PDO->prepare($query);
 				$stmt->bindValue(':type', $this->type); 
@@ -231,8 +265,12 @@
 				$stmt->bindValue(':handle', $this->handle);
 				$stmt->bindValue(':data', serialize($this->data));
 				$stmt->bindValue(':has_image', $this->has_image);
-				$stmt->bindValue(':published_at', $this->published_at);
-				$stmt->bindValue(':uploaded_by', $this->uploaded_by);
+				$stmt->bindValue(':created_at', $this->created_at);
+				$stmt->bindValue(':created_by', $this->created_by);
+				$stmt->bindValue(':updated_at', $this->updated_at);
+				$stmt->bindValue(':updated_by', $this->updated_by);
+				$stmt->bindValue(':released_at', $this->released_at);
+				$stmt->bindValue(':released_by', $this->released_by);
 				$stmt->bindValue(':status', $this->status);
 				if(!$stmt->execute())
 				{

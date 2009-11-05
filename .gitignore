@@ -13,11 +13,7 @@
 #
  
 # Directories to exclude
-data/*
-!data/gateway.php
-!data/.htaccess
-!data/css/
-!data/scripts/
+public/temp/*
 log/*
  
 # Files to exclude

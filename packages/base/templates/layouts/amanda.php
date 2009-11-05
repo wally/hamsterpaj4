@@ -39,9 +39,6 @@
 	</head>
 	
 	<body>
-		<!-- Kiaindex -->
-		<img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />
-		
 		<!-- Adwell crap -->
 		<script type="text/javascript">
 			var uri = 'http://anet.tradedoubler.com/anet?type(js)loc(55632)' + new
@@ -141,6 +138,8 @@
 		var pageTracker = _gat._getTracker("UA-10835550-1");
 		pageTracker._trackPageview();
 		} catch(err) {}</script>
-		
+
+	 	<!-- Kiaindex -->
+    <img src="http://sifomedia.nyheter24.se/RealMedia/ads/adstream_nx.ads/nyheter24/123645@TopRight?XE&Sajt=hamsterpaj&Grupp1=nyheter24natverket&XE" border="0" alt="" />		
 	</body>
 </html>
